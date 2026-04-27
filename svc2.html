@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Flows Solutions — From Start to Scale</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Brand reds — softer, warmer tone */
+  --red: #D63B3B;
+  --red-dark: #B82E2E;
+  --red-light: #FDF0F0;
+  --red-mid: rgba(214, 59, 59, 0.12);
+
+  /* Neutrals */
+  --dark: #1A1A1A;
+  --mid: #5C5C5C;
+  --muted: #909090;
+  --off-white: #F8F8F8;
+  --white: #FFFFFF;
+
+  /* Borders */
+  --border: rgba(0,0,0,0.09);
+  --border-dark: rgba(0,0,0,0.18);
+
+  /* Semantic — keep green as-is per brief */
+  --green: #00B050;
+  --green-light: #EAF3DE;
+
+  /* Layout */
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  /* Typography scale */
+  --font-body: 16px;
+  --line-height: 1.7;
+
+  /* Transitions */
+  --transition: 0.18s ease;
+
+  /* Warm accent for trip/leisure sections */
+  --warm: #F8F8F8;
+  --warm-border: rgba(180,150,100,0.2);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.page { display: none; }
+.page.active { display: block; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
+.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
+.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+.nav-links a:hover { color: var(--dark); }
+.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; }
+.nav-cta:hover { background: #333; }
+
+/* SHARED */
+.eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+.eyebrow.red { color: var(--red); }
+.serif { font-family: 'DM Serif Display', serif; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--mid); max-width: 540px; line-height: 1.75; font-weight: 300; margin-bottom: 48px; }
+.btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-dark { background: var(--dark); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; }
+.btn-dark:hover { opacity: 0.85; }
+.btn-outline { background: transparent; color: var(--dark); border: 1px solid var(--border-dark); padding: 13px 28px; border-radius: 6px; font-size: 15px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; }
+.btn-outline:hover { border-color: var(--dark); }
+.divider { border: none; border-top: 1px solid var(--border); }
+
+/* PILLAR CARD — equal-weight blocks: off-white bg, colored border */
+.pillar-card { background: var(--off-white); border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); }
+.pillar-card.red-border { border-color: var(--red); border-width: 2px; }
+.pillar-card.dark-border { border-color: var(--dark); border-width: 1.5px; }
+.pillar-card.grey-border { border-color: #AAA; border-width: 1.5px; }
+
+/* ══ HERO ══ */
+.hero-wrap { border-bottom: 1px solid var(--border); }
+.hero { max-width: 1100px; margin: 0 auto; padding: 80px 48px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: end; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border-dark); color: var(--mid); font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 50px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 20px; }
+.hero h1 em { font-style: italic; color: var(--red); }
+.hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; margin-bottom: 36px; font-weight: 300; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-img-wrap { position: relative; }
+.hero-img { width: 100%; height: 420px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
+.hero-stat-strip { display: flex; background: var(--dark); color: white; border-radius: 0; padding: 0; }
+.hero-stat { flex: 1; padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.1); }
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; line-height: 1; margin-bottom: 4px; }
+.hero-stat-num.red { color: var(--red); }
+.hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+
+/* PARTNER */
+.partner-strip { border-bottom: 1px solid var(--border); padding: 16px 48px; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+.partner-strip strong { color: var(--dark); }
+
+/* ══ PROCESS SECTION (home) ══ */
+.process-section { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+.flow-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 40px; }
+.flow-step { background: var(--off-white); border: 1px solid var(--border); padding: 28px 24px; cursor: pointer; transition: background 0.2s, border-color 0.2s; position: relative; }
+.flow-step:first-child { border-radius: var(--radius) 0 0 0; }
+.flow-step:last-child { border-radius: 0 var(--radius) 0 0; }
+.flow-step.active { background: var(--dark); border-color: var(--dark); color: white; }
+.flow-step.active .flow-num { background: var(--red); color: white; }
+.flow-step.active .flow-title { color: white; }
+.flow-step.active .flow-desc { color: rgba(255,255,255,0.65); }
+.flow-num { width: 32px; height: 32px; background: white; border: 1px solid var(--border-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 14px; transition: background 0.2s; }
+.flow-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.flow-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+.flow-arrow { position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; background: var(--white); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--mid); z-index: 2; }
+.flow-detail { border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); background: var(--white); overflow: hidden; }
+.flow-detail-inner { display: none; }
+.flow-detail-inner.active { display: grid; grid-template-columns: 1fr 1fr; }
+.flow-detail-content { padding: 40px; }
+.flow-detail-img { height: 320px; object-fit: cover; width: 100%; display: block; }
+.flow-detail-steps { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.flow-detail-step { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--mid); }
+.flow-detail-step-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--off-white); border: 1px solid var(--border-dark); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: var(--dark); flex-shrink: 0; margin-top: 1px; }
+.flow-cta { margin-top: 28px; }
+
+/* ══ SERVICES GRID (home) ══ */
+.services-section { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.services-inner { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 40px; }
+.svc-tile { background: var(--white); border: 1px solid var(--border); padding: 36px 32px; cursor: pointer; transition: border-color 0.18s; position: relative; overflow: hidden; }
+.svc-tile:hover { border-color: var(--dark); }
+.svc-tile:hover .svc-tile-arrow { opacity: 1; transform: translateX(0); }
+.svc-tile-num { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.svc-tile-title { font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1.15; margin-bottom: 12px; }
+.svc-tile-desc { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; margin-bottom: 20px; }
+.svc-tile-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.svc-tile-tag { font-size: 11px; color: var(--mid); background: var(--off-white); border: 1px solid var(--border); padding: 3px 10px; border-radius: 20px; }
+.svc-tile-arrow { position: absolute; bottom: 24px; right: 28px; font-size: 20px; color: var(--dark); opacity: 0; transform: translateX(-6px); transition: opacity 0.2s, transform 0.2s; }
+.svc-tile-img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
+
+/* ══ PROOF ══ */
+.proof-wrap { background: var(--dark); }
+.proof-inner { max-width: 1100px; margin: 0 auto; padding: 80px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.proof-quote { font-family: 'DM Serif Display', serif; font-size: 26px; line-height: 1.4; color: white; font-style: italic; margin-bottom: 16px; }
+.proof-attr { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 36px; }
+.proof-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.proof-metric { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 16px; }
+.proof-num { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--red); line-height: 1; margin-bottom: 6px; }
+.proof-lbl { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+.proof-img { width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius); }
+
+/* ══ TEAM ══ */
+.team-section { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.team-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--white); }
+.team-photo-wrap { height: auto; }
+.team-img { width: 100%; height: auto; display: block; }
+
+
+.team-body { padding: 24px 28px; }
+.team-name { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 4px; }
+.team-role { font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.team-bio { font-size: 14px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+/* ══ RESOURCES ══ */
+.resources-section { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.resources-inner { max-width: 1100px; margin: 0 auto; padding: 72px 48px; }
+.resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 36px; }
+.resource-tile { background: var(--white); border: 1px solid var(--border); padding: 28px 24px; }
+.resource-tile:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.resource-tile:last-child { border-radius: 0 var(--radius) var(--radius) 0; opacity: 0.6; }
+.resource-icon { font-size: 24px; margin-bottom: 14px; }
+.resource-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.resource-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+
+/* ══ CTA ══ */
+.cta-section { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+.cta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 40px; }
+.cta-tile { background: var(--off-white); border: 1px solid var(--border); padding: 32px 28px; }
+.cta-tile:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.cta-tile:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.cta-tile.highlight { background: var(--dark); color: white; border-color: var(--dark); }
+.cta-tile.highlight .cta-tile-desc { color: rgba(255,255,255,0.6); }
+.cta-tile-icon { font-size: 22px; margin-bottom: 16px; }
+.cta-tile-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.cta-tile-desc { font-size: 14px; color: var(--mid); line-height: 1.6; font-weight: 300; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--dark); }
+
+/* ══ SERVICE PAGES ══ */
+.svc-hero-wrap { border-bottom: 1px solid var(--border); }
+.svc-hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
+.breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.breadcrumb:hover { color: var(--dark); }
+.svc-hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 18px; }
+.svc-hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 32px; }
+.svc-for { background: var(--off-white); border-left: 3px solid var(--dark); border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 40px; }
+.svc-for-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+.svc-for ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.svc-for ul li { font-size: 14px; color: var(--mid); display: flex; gap: 8px; }
+.svc-for ul li::before { content: '·'; color: var(--dark); font-size: 18px; line-height: 1.2; }
+.svc-hero-img { width: 100%; height: 420px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
+.svc-cta-sticky { position: sticky; top: 80px; background: var(--white); border: none; border-radius: var(--radius); padding: 28px; }
+.svc-cta-sticky h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 10px; }
+.svc-cta-sticky p { font-size: 14px; color: var(--mid); margin-bottom: 20px; line-height: 1.6; }
+.svc-cta-sticky .btn-red { width: 100%; text-align: center; display: block; padding: 14px; }
+.svc-cta-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+.svc-section { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.svc-section.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+
+.problem-bg { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.pain-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--mid); display: flex; gap: 12px; align-items: flex-start; line-height: 1.55; }
+
+.process-steps { display: flex; flex-direction: column; gap: 0; }
+.process-step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.process-step:last-child { border-bottom: none; }
+.process-num { width: 40px; height: 40px; border-radius: 50%; background: var(--off-white); border: 1.5px solid var(--border-dark); color: var(--dark); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.process-content h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.process-content p { font-size: 14px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+.process-highlight { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; background: var(--dark); color: white; padding: 4px 12px; border-radius: 20px; font-weight: 500; margin-top: 8px; }
+
+.deliverables-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.deliverable { background: var(--off-white); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+.deliverable-icon { font-size: 20px; margin-bottom: 10px; }
+.deliverable-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.deliverable-desc { font-size: 13px; color: var(--mid); line-height: 1.5; }
+
+.pricing-bg { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pricing-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 26px; position: relative; }
+.pricing-card.featured { border-color: var(--dark); border-width: 2px; }
+.pricing-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--dark); color: white; font-size: 10px; font-weight: 600; padding: 3px 14px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.04em; }
+.pricing-tier { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 12px; }
+.pricing-price { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; margin-bottom: 4px; }
+.pricing-price span { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; color: var(--mid); }
+.pricing-desc { font-size: 13px; color: var(--mid); margin: 12px 0 18px; line-height: 1.55; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+.pricing-includes { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.pricing-includes li { font-size: 13px; color: var(--mid); display: flex; gap: 8px; align-items: flex-start; }
+.pricing-includes li::before { content: '✓'; color: var(--dark); font-weight: 600; flex-shrink: 0; }
+
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; cursor: pointer; }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q { font-size: 15px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-icon { color: var(--dark); font-size: 18px; flex-shrink: 0; transition: transform 0.2s; font-weight: 300; }
+.faq-a { font-size: 14px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-top: 12px; display: none; }
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+.svc-bottom-cta { background: var(--dark); }
+.svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
+.svc-bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
+
+/* Responsive */
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero, .svc-hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
+  .hero h1, .svc-hero h1 { font-size: 36px; }
+  .process-section, .team-section, .svc-section, .cta-section { padding: 56px 20px; }
+  .services-inner, .resources-inner, .proof-inner { padding: 56px 20px; }
+  .flow-container { grid-template-columns: 1fr 1fr; }
+  .flow-detail-inner.active { grid-template-columns: 1fr; }
+  .services-grid, .team-grid, .pricing-grid, .deliverables-grid, .resource-grid, .cta-grid { grid-template-columns: 1fr; gap: 12px; }
+  .proof-inner { grid-template-columns: 1fr; }
+  .proof-metrics { grid-template-columns: repeat(3,1fr); }
+  .partner-strip { padding: 14px 20px; }
+  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  footer { padding: 20px; }
+}
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
+.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
+.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+/* SHARED */
+.eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+.eyebrow.red { color: var(--red); }
+.eyebrow.muted { color: var(--muted); }
+.serif { font-family: 'DM Serif Display', serif; }
+.btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-dark { background: var(--dark); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; }
+.btn-dark:hover { opacity: 0.85; }
+.btn-outline { background: transparent; color: var(--dark); border: 1.5px solid var(--border-dark); padding: 11px 24px; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; }
+.btn-outline:hover { border-color: var(--dark); }
+.divider { border: none; border-top: 1px solid var(--border); }
+
+/* HERO */
+.svc-hero-wrap { border-bottom: 1px solid var(--border); }
+.svc-hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
+.breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.breadcrumb:hover { color: var(--dark); }
+.svc-hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px; }
+.svc-hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 28px; }
+.svc-for { background: var(--off-white); border-left: 3px solid var(--dark); border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 40px; }
+.svc-for-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+.svc-for ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.svc-for ul li { font-size: 14px; color: var(--mid); display: flex; gap: 8px; }
+.svc-for ul li::before { content: '·'; color: var(--dark); font-size: 18px; line-height: 1.2; }
+.hero-img-stack { position: relative; }
+.svc-hero-img { width: 100%; height: 400px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
+.cta-box { background: var(--white); border: none; padding: 28px; }
+.cta-box h3 { font-family: 'DM Serif Display', serif; font-size: 21px; margin-bottom: 10px; }
+.cta-box p { font-size: 14px; color: var(--mid); margin-bottom: 20px; line-height: 1.6; }
+.cta-box .btn-red { width: 100%; text-align: center; display: block; padding: 14px; }
+.cta-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+/* SERVICE OVERVIEW STRIP */
+.overview-strip { border-bottom: 1px solid var(--border); background: var(--white); border-top: 1px solid var(--border); }
+.overview-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.overview-tile { padding: 28px 24px; border-right: 1px solid var(--border); cursor: pointer; transition: background 0.15s; position: relative;  border: none !important;}
+.overview-tile:last-child { border-right: none; }
+.overview-tile:hover { background: var(--off-white); }
+.overview-tile.active { background: var(--red); color: white;  color: white; }
+.overview-tile.active .ov-num { color: var(--red); }
+.overview-tile.active .ov-title { color: white; }
+.overview-tile.active .ov-desc { color: rgba(255,255,255,0.55); }
+.ov-num { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.ov-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.ov-desc { font-size: 13px; color: var(--mid); line-height: 1.5; }
+.ov-badge { position: absolute; top: 16px; right: 16px; background: var(--red); color: white; font-size: 10px; font-weight: 600; padding: 2px 10px; border-radius: 20px; letter-spacing: 0.04em; }
+
+/* SECTIONS */
+.section { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.section.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 40px; max-width: 560px; }
+
+.bg-off { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.bg-dark { background: var(--dark); }
+.bg-warm { background: var(--warm); border-top: 1px solid var(--warm-border); border-bottom: 1px solid var(--warm-border); }
+
+/* PAIN LIST */
+.pain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.pain-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--mid); display: flex; gap: 12px; align-items: flex-start; line-height: 1.55; }
+
+/* PROCESS STEPS */
+.process-steps { display: flex; flex-direction: column; }
+.process-step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.process-step:last-child { border-bottom: none; }
+.process-num { width: 40px; height: 40px; border-radius: 50%; background: var(--off-white); border: 1.5px solid var(--border-dark); color: var(--dark); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.process-content h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.process-content p { font-size: 14px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+.process-highlight { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; background: var(--dark); color: white; padding: 4px 12px; border-radius: 20px; font-weight: 500; margin-top: 8px; }
+
+/* MAKE OR BUY MATRIX */
+.mob-section { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.mob-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 48px; }
+.mob-lead { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 14px; }
+.mob-dimensions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.mob-dim { background: var(--off-white); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+.mob-dim-icon { font-size: 20px; margin-bottom: 10px; }
+.mob-dim-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.mob-dim-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+.mob-examples { margin-top: 40px; }
+.mob-examples-title { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
+.mob-example-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mob-example { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+.mob-example-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.mob-example-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.mob-example-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+.mob-pricing { background: var(--off-white); border: 1.5px solid var(--border-dark); border-radius: var(--radius); padding: 28px; margin-top: 40px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+.mob-pricing-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.mob-pricing-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+.mob-pricing-price { text-align: right; white-space: nowrap; }
+.mob-pricing-amount { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--dark); line-height: 1; }
+.mob-pricing-unit { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.mob-bundle-note { font-size: 12px; color: var(--mid); margin-top: 6px; }
+
+/* TRIP SECTION */
+.trip-hero { position: relative; overflow: hidden; }
+.trip-hero-img { width: 100%; height: 480px; object-fit: cover; display: block; filter: brightness(0.55); }
+.trip-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 48px; }
+.trip-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: white; font-size: 11px; font-weight: 600; padding: 5px 16px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.04em; width: fit-content; }
+.trip-hero-title { font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 1.08; color: white; letter-spacing: -0.02em; margin-bottom: 12px; max-width: 680px; }
+.trip-hero-sub { font-size: 17px; color: rgba(255,255,255,0.8); font-weight: 300; max-width: 560px; line-height: 1.7; }
+
+.trip-concept { max-width: 1100px; margin: 0 auto; padding: 72px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.trip-concept-title { font-family: 'DM Serif Display', serif; font-size: 34px; line-height: 1.15; margin-bottom: 18px; letter-spacing: -0.02em; }
+.trip-pillars { display: flex; flex-direction: column; gap: 16px; }
+.trip-pillar { display: flex; gap: 16px; align-items: flex-start; }
+.trip-pillar-icon { width: 40px; height: 40px; background: var(--off-white); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.trip-pillar-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.trip-pillar-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+.trip-concept-img { width: 100%; height: 380px; object-fit: cover; border-radius: var(--radius); }
+
+/* DESTINATIONS */
+.destinations-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.destinations-inner { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.dest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+.dest-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); position: relative; cursor: pointer; }
+.dest-card.coming { opacity: 0.6; }
+.dest-img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.dest-card:hover .dest-img { transform: scale(1.03); }
+.dest-flag { font-size: 20px; margin-bottom: 8px; }
+.dest-country { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.dest-specialties { font-size: 12px; color: var(--mid); margin-bottom: 10px; }
+.dest-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.dest-tag { font-size: 11px; color: var(--mid); background: var(--off-white); border: 1px solid var(--border); padding: 2px 10px; border-radius: 20px; }
+.dest-coming-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: white; font-size: 10px; font-weight: 600; padding: 3px 12px; border-radius: 20px; letter-spacing: 0.04em; }
+
+/* FORMATS */
+.formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 36px; }
+.format-tile { background: var(--off-white); border: 1px solid var(--border); padding: 32px 28px; }
+.format-tile:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.format-tile:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.format-tile.featured { background: var(--dark); border-color: var(--dark); }
+.format-icon { font-size: 24px; margin-bottom: 16px; }
+.format-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.format-title-light { color: white; }
+.format-desc { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; margin-bottom: 20px; }
+.format-desc-light { color: rgba(255,255,255,0.6); }
+.format-includes { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.format-includes li { font-size: 13px; color: var(--mid); display: flex; gap: 8px; align-items: flex-start; }
+.format-includes li::before { content: '✓'; color: var(--dark); font-weight: 600; flex-shrink: 0; }
+.format-includes-light li { color: rgba(255,255,255,0.75); }
+.format-includes-light li::before { color: var(--red); }
+.format-price { font-family: 'DM Serif Display', serif; font-size: 28px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+.format-price-light { border-top-color: rgba(255,255,255,0.15); color: white; }
+.format-price span { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; color: var(--muted); }
+.format-price-light span { color: rgba(255,255,255,0.5); }
+
+/* ITINERARY SAMPLE */
+.itinerary { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.itin-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; margin-top: 36px; }
+.itin-days { display: flex; flex-direction: column; gap: 4px; }
+.itin-day-btn { padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--off-white); cursor: pointer; font-size: 14px; font-weight: 500; text-align: left; transition: background 0.15s, border-color 0.15s; font-family: 'DM Sans', sans-serif; }
+.itin-day-btn:hover { border-color: var(--dark); }
+.itin-day-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
+.itin-day-sub { font-size: 12px; color: var(--muted); font-weight: 400; display: block; margin-top: 2px; }
+.itin-day-btn.active .itin-day-sub { color: rgba(255,255,255,0.5); }
+.itin-content { display: none; }
+.itin-content.active { display: block; }
+.itin-content-title { font-family: 'DM Serif Display', serif; font-size: 26px; margin-bottom: 6px; }
+.itin-content-loc { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.itin-activities { display: flex; flex-direction: column; gap: 12px; }
+.itin-activity { display: flex; gap: 14px; align-items: flex-start; padding: 14px 18px; background: var(--off-white); border: 1px solid var(--border); border-radius: 10px; }
+.itin-time { font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; padding-top: 2px; min-width: 52px; }
+.itin-act-title { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+.itin-act-desc { font-size: 13px; color: var(--mid); line-height: 1.5; }
+.itin-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 4px; }
+.itin-tag.biz { background: var(--red-light); color: var(--red); }
+.itin-tag.leisure { background: #EAF3DE; color: #3B6D11; }
+.itin-tag.oncall { background: #E6F1FB; color: #185FA5; }
+.itin-note { font-size: 13px; color: var(--muted); margin-top: 20px; font-style: italic; }
+
+/* PRICING TABLE */
+.pricing-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+.pricing-table th { background: var(--dark); color: white; padding: 14px 18px; text-align: left; font-size: 13px; font-weight: 500; }
+.pricing-table th:first-child { border-radius: var(--radius) 0 0 0; }
+.pricing-table th:last-child { border-radius: 0 var(--radius) 0 0; text-align: center; }
+.pricing-table td { padding: 14px 18px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.pricing-table td:last-child { text-align: center; }
+.pricing-table tr:last-child td { border-bottom: none; }
+.pricing-table tr:nth-child(even) td { background: var(--off-white); }
+.check { color: var(--dark); font-weight: 600; }
+.dash { color: var(--muted); }
+.price-cell { font-family: 'DM Serif Display', serif; font-size: 20px; }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; cursor: pointer; }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q { font-size: 15px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-icon { color: var(--dark); font-size: 20px; flex-shrink: 0; transition: transform 0.2s; font-weight: 300; }
+.faq-a { font-size: 14px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-top: 12px; display: none; }
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+/* BOTTOM CTA */
+.bottom-cta { background: var(--dark); }
+.bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 400px; line-height: 1.25; }
+.bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+.bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--dark); }
+
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  .svc-hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
+  .svc-hero h1 { font-size: 36px; }
+  .section, .mob-section, .itinerary { padding: 48px 20px; }
+  .section.two-col, .mob-intro, .trip-concept, .itin-grid { grid-template-columns: 1fr; gap: 36px; }
+  .overview-inner { grid-template-columns: 1fr; }
+  .dest-grid, .mob-example-grid, .mob-dimensions { grid-template-columns: 1fr; }
+  .formats-grid { grid-template-columns: 1fr; gap: 12px; }
+  .format-tile:first-child, .format-tile:last-child { border-radius: var(--radius); }
+  .mob-pricing { grid-template-columns: 1fr; }
+  .mob-pricing-price { text-align: left; }
+  .trip-hero-title { font-size: 34px; }
+  .trip-hero-overlay { padding: 28px 20px; }
+  .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  .destinations-inner { padding: 48px 20px; }
+  footer { padding: 20px; }
+  .pricing-table { font-size: 12px; }
+  .pricing-table th, .pricing-table td { padding: 10px 12px; }
+}
+
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: var(--dark); }
+.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
+.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
+.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+.eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+.eyebrow.red { color: var(--red); }
+.eyebrow.muted { color: var(--muted); }
+.section-title { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 40px; max-width: 580px; }
+.btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-dark { background: var(--dark); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.btn-outline { background: transparent; color: var(--dark); border: 1.5px solid var(--border-dark); padding: 11px 24px; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.divider { border: none; border-top: 1px solid var(--border); }
+
+.bg-off { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.bg-dark { background: var(--dark); }
+.section { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.pain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.pain-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--mid); display: flex; gap: 12px; align-items: flex-start; line-height: 1.55; }
+
+/* HERO */
+.hero-wrap { border-bottom: 1px solid var(--border); }
+.hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
+.breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; cursor: pointer; }
+.breadcrumb:hover { color: var(--dark); }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px; }
+.hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 28px; }
+.svc-for { background: var(--off-white); border-left: 3px solid var(--dark); border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 40px; }
+.svc-for-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+.svc-for ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.svc-for ul li { font-size: 14px; color: var(--mid); display: flex; gap: 8px; }
+.svc-for ul li::before { content: '·'; color: var(--dark); font-size: 18px; line-height: 1.2; }
+.hero-img { width: 100%; height: 400px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
+.cta-box { background: var(--white); border: none; padding: 28px; }
+.cta-box h3 { font-family: 'DM Serif Display', serif; font-size: 21px; margin-bottom: 10px; }
+.cta-box p { font-size: 14px; color: var(--mid); margin-bottom: 20px; line-height: 1.6; }
+.cta-box .btn-red { width: 100%; text-align: center; display: block; padding: 14px; }
+.cta-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+/* CONTINUITY BANNER */
+.continuity-banner { background: var(--dark); }
+.continuity-inner { max-width: 1100px; margin: 0 auto; padding: 24px 48px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.continuity-badge { background: var(--red); color: white; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.04em; flex-shrink: 0; }
+.continuity-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; flex: 1; }
+.continuity-text strong { color: white; }
+
+/* TAB STRIP */
+.tab-strip { border-bottom: 1px solid var(--border); }
+.tab-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: repeat(4, 1fr); }
+.tab-btn { padding: 20px 16px; border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; text-align: left; border-bottom: 2px solid transparent; transition: border-color 0.2s; position: relative; }
+.tab-btn:hover { background: var(--off-white); }
+.tab-btn.active { border-bottom-color: var(--dark); }
+.svc3-tab-btn { padding: 20px 16px; border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; text-align: left; border-bottom: 2px solid transparent; transition: border-color 0.2s; position: relative; }
+.svc3-tab-btn:hover { background: var(--off-white); }
+.svc3-tab-btn.active { border-bottom-color: var(--dark); }
+.tab-btn-num { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.tab-btn-title { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
+.tab-btn-sub { font-size: 12px; color: var(--muted); }
+.tab-badge { position: absolute; top: 12px; right: 12px; background: var(--off-white); border: 1px solid var(--border); color: var(--mid); font-size: 10px; padding: 2px 8px; border-radius: 20px; }
+.tab-badge.req { background: var(--red-light); border-color: rgba(214,59,59,0.2); color: var(--red); }
+
+/* WORKSTREAM CONTENT */
+.ws-content { display: none; }
+.ws-content.active { display: block; }
+
+/* BRAND SECTION */
+.design-process { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 36px; }
+.design-step { background: var(--off-white); border: 1px solid var(--border); padding: 28px 24px; }
+.design-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.design-step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.design-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--white); border: 1.5px solid var(--border-dark); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+.design-step-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.design-step-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+.brand-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+.brand-tier { border-radius: var(--radius); padding: 28px; border: 1px solid var(--border); background: var(--off-white); }
+.brand-tier.featured { background: var(--white); border: 2px solid var(--dark); position: relative; }
+.tier-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--dark); color: white; font-size: 10px; font-weight: 600; padding: 3px 14px; border-radius: 20px; white-space: nowrap; }
+.tier-name { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 10px; }
+.tier-price { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; margin-bottom: 4px; }
+.tier-price span { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; color: var(--muted); }
+.tier-desc { font-size: 13px; color: var(--mid); margin: 12px 0 16px; line-height: 1.55; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.tier-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.tier-list li { font-size: 13px; color: var(--mid); display: flex; gap: 8px; align-items: flex-start; }
+.tier-list li::before { content: '✓'; color: var(--dark); font-weight: 600; flex-shrink: 0; }
+
+/* SHERPA CONCEPT */
+.sherpa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.sherpa-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 16px; }
+.sherpa-pillars { display: flex; flex-direction: column; gap: 14px; }
+.sherpa-pillar { display: flex; gap: 14px; align-items: flex-start; }
+.sherpa-icon { width: 40px; height: 40px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.sherpa-pillar-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.sherpa-pillar-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+
+.week-timeline { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
+.week-row { display: grid; grid-template-columns: 80px 1fr; gap: 20px; align-items: start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.week-row:last-child { border-bottom: none; }
+.week-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding-top: 2px; }
+.week-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.week-content p { font-size: 13px; color: var(--mid); line-height: 1.6; }
+.week-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.wtag { font-size: 11px; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
+.wtag.client { background: #EAF3DE; color: #3B6D11; }
+.wtag.tf { background: var(--red-light); color: var(--red); }
+.wtag.shared { background: #E6F1FB; color: #185FA5; }
+
+/* SYSTEM INTEGRATION */
+.platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+.platform-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+.platform-icon { font-size: 24px; margin-bottom: 10px; }
+.platform-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.platform-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+.month-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 36px; }
+.month-block { background: var(--off-white); border: 1px solid var(--border); padding: 24px 20px; }
+.month-block:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.month-block:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.month-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.month-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.month-items { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.month-items li { font-size: 13px; color: var(--mid); display: flex; gap: 7px; }
+.month-items li::before { content: '→'; color: var(--dark); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+/* PROCESS DESIGN */
+.threeflows-concept { background: var(--dark); border-radius: var(--radius); padding: 40px; margin-bottom: 32px; }
+.threeflows-concept-title { font-family: 'DM Serif Display', serif; font-size: 26px; color: white; margin-bottom: 12px; }
+.threeflows-concept-sub { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.7; font-weight: 300; margin-bottom: 28px; }
+.flow-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.flow-type { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 20px; }
+.flow-type-icon { font-size: 22px; margin-bottom: 10px; }
+.flow-type-title { font-size: 14px; font-weight: 600; color: white; margin-bottom: 6px; }
+.flow-type-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.55; }
+.system-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+.system-tier { border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; background: var(--off-white); }
+.system-tier.featured { background: var(--white); border: 2px solid var(--dark); position: relative; }
+
+/* PRICING SUMMARY */
+.pricing-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 8px; }
+.ps-card { background: var(--off-white); border: 1px solid var(--border); padding: 24px 20px; }
+.ps-card:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.ps-card:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.ps-num { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 8px; }
+.ps-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.ps-price { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--dark); line-height: 1; margin-bottom: 4px; }
+.ps-price span { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 300; color: var(--muted); }
+.ps-optional { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.ps-optional.req { color: var(--red); font-weight: 500; }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; cursor: pointer; }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q { font-size: 15px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-icon { color: var(--dark); font-size: 20px; flex-shrink: 0; transition: transform 0.2s; }
+.faq-a { font-size: 14px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-top: 12px; display: none; }
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+.bottom-cta { background: var(--dark); }
+.bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
+.bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+.bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  .hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
+  .hero h1 { font-size: 36px; }
+  .section { padding: 48px 20px; }
+  .two-col, .sherpa-grid { grid-template-columns: 1fr; gap: 36px; }
+  .three-col, .brand-tiers, .system-tiers, .design-process, .month-timeline, .flow-types, .platform-grid { grid-template-columns: 1fr; gap: 12px; }
+  .pricing-summary { grid-template-columns: 1fr 1fr; }
+  .tab-inner { grid-template-columns: 1fr 1fr; }
+  .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  .continuity-inner { padding: 20px; }
+  footer { padding: 20px; }
+}
+
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: var(--dark); }
+.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
+.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
+.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+.eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+.eyebrow.red { color: var(--red); }
+.eyebrow.muted { color: var(--muted); }
+.section-title { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--mid); line-height: 1.75; font-weight: 300; max-width: 580px; }
+.btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--dark); border: 1.5px solid var(--border-dark); padding: 11px 24px; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.bg-off { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+
+.pain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.pain-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--mid); display: flex; gap: 12px; align-items: flex-start; line-height: 1.55; }
+
+/* HERO */
+.hero-wrap { border-bottom: 1px solid var(--border); }
+.hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
+.breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; cursor: pointer; }
+.breadcrumb:hover { color: var(--dark); }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px; }
+.hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 28px; }
+.svc-for { background: var(--off-white); border-left: 3px solid var(--dark); border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 40px; }
+.svc-for-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+.svc-for ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.svc-for ul li { font-size: 14px; color: var(--mid); display: flex; gap: 8px; }
+.svc-for ul li::before { content: '·'; color: var(--dark); font-size: 18px; line-height: 1.2; }
+.hero-img { width: 100%; height: 400px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
+.cta-box { background: var(--white); border: none; padding: 28px; }
+.cta-box h3 { font-family: 'DM Serif Display', serif; font-size: 21px; margin-bottom: 10px; }
+.cta-box p { font-size: 14px; color: var(--mid); margin-bottom: 20px; line-height: 1.6; }
+.cta-box .btn-red { width: 100%; text-align: center; display: block; padding: 14px; }
+.cta-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+/* CONTINUITY */
+.continuity-banner { background: var(--dark); }
+.continuity-inner { max-width: 1100px; margin: 0 auto; padding: 24px 48px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.continuity-badge { background: var(--red); color: white; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.04em; flex-shrink: 0; }
+.continuity-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; flex: 1; }
+.continuity-text strong { color: white; }
+
+/* PHILOSOPHY */
+.philosophy-wrap { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.philosophy-inner { max-width: 1100px; margin: 0 auto; padding: 72px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.philosophy-title { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--dark); line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.02em; }
+.philosophy-body { font-size: 16px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 16px; }
+.philosophy-pillars { display: flex; flex-direction: column; gap: 16px; }
+.philosophy-pillar { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+.pp-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.pp-title { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+.pp-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+.pp-label.keep { color: var(--red); }
+
+/* CORE VS OPTIONAL */
+.services-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+.split-card { border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); }
+.split-card.core { background: var(--dark); color: white; border-color: var(--dark); }
+.split-card.optional { background: var(--off-white); }
+.split-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+.split-label.core { color: var(--red); }
+.split-label.optional { color: var(--muted); }
+.split-title { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.split-title.light { color: white; }
+.split-desc { font-size: 14px; line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
+.split-desc.light { color: rgba(255,255,255,0.65); }
+.split-desc.dark { color: var(--mid); }
+.service-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.service-list li { font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
+.service-list li .svc-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.service-list li .svc-text { flex: 1; }
+.service-list li .svc-name { font-weight: 600; display: block; margin-bottom: 2px; }
+.service-list li .svc-desc { font-size: 12px; font-weight: 300; }
+.service-list.light li { color: rgba(255,255,255,0.85); }
+.service-list.light li .svc-desc { color: rgba(255,255,255,0.5); }
+.service-list.dark li { color: var(--dark); }
+.service-list.dark li .svc-desc { color: var(--mid); }
+
+/* CONTROL TOWER */
+.tower-wrap { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.tower-inner { max-width: 1100px; margin: 0 auto; padding: 72px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.tower-title { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em; }
+.tower-functions { display: flex; flex-direction: column; gap: 12px; }
+.tower-fn { display: flex; gap: 14px; align-items: flex-start; }
+.tower-fn-icon { width: 40px; height: 40px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.tower-fn-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.tower-fn-desc { font-size: 13px; color: var(--mid); line-height: 1.55; }
+.tower-visual { position: relative; }
+.tower-img { width: 100%; height: 380px; object-fit: cover; border-radius: var(--radius); }
+
+/* WHAT YOU KEEP */
+.keep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 36px; }
+.keep-tile { background: var(--white); border: 1px solid var(--border); padding: 28px 24px; }
+.keep-tile:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.keep-tile:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.keep-tile-icon { font-size: 24px; margin-bottom: 14px; }
+.keep-tile-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.keep-tile-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+.keep-tile-examples { margin-top: 12px; font-size: 12px; color: var(--muted); font-style: italic; }
+
+/* GROWTH PATH */
+.growth-steps { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
+.growth-step { display: grid; grid-template-columns: 100px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.growth-step:last-child { border-bottom: none; }
+.growth-phase { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding-top: 3px; }
+.growth-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.growth-content p { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; }
+.growth-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.gtag { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+.gtag.tf { background: var(--red-light); color: var(--red); }
+.gtag.client { background: #EAF3DE; color: #3B6D11; }
+
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pricing-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 26px; background: var(--off-white); position: relative; }
+.pricing-card.featured { background: var(--white); border: 2px solid var(--dark); }
+.pricing-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--dark); color: white; font-size: 10px; font-weight: 600; padding: 3px 14px; border-radius: 20px; white-space: nowrap; }
+.tier-name { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 10px; }
+.tier-price { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; margin-bottom: 4px; }
+.tier-price span { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; color: var(--muted); }
+.tier-desc { font-size: 13px; color: var(--mid); margin: 12px 0 16px; line-height: 1.55; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.tier-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.tier-list li { font-size: 13px; color: var(--mid); display: flex; gap: 8px; align-items: flex-start; }
+.tier-list li::before { content: '✓'; color: var(--dark); font-weight: 600; flex-shrink: 0; }
+.surcharge-box { background: var(--off-white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-top: 24px; }
+.surcharge-box-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.surcharge-box-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; cursor: pointer; }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q { font-size: 15px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-icon { color: var(--dark); font-size: 20px; flex-shrink: 0; transition: transform 0.2s; }
+.faq-a { font-size: 14px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-top: 12px; display: none; }
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+.bottom-cta { background: var(--dark); }
+.bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
+.bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+.bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  .hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
+  .hero h1 { font-size: 36px; }
+  .section { padding: 48px 20px; }
+  .two-col, .services-split, .philosophy-inner, .tower-inner { grid-template-columns: 1fr; gap: 36px; }
+  .pricing-grid, .keep-grid { grid-template-columns: 1fr; gap: 12px; }
+  .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  .continuity-inner { padding: 20px; }
+  footer { padding: 20px; }
+}
+
+
+/* ── NAV DROPDOWNS ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 240px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  z-index: 1000;
+  padding: 6px 0;
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 400;
+}
+.nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+.nav-dropdown.open .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+/* ── UNIFIED PAGE SYSTEM ── */
+.page { display: none !important; }
+.page.active { display: block !important; }
+</style>
+</head>
+<body>
+
+<!-- ══ SHARED NAV ══ -->
+<nav>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">
+      <div class="logo-bar" style="height:9px"></div>
+      <div class="logo-bar" style="height:15px"></div>
+      <div class="logo-bar" style="height:7px"></div>
+    </div>
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">01 — Business Planning</a>
+        <a href="svc2.html">02 — Sourcing Consultation</a>
+        <a href="svc3.html">03 — Launch Hypercare</a>
+        <a href="svc4.html">04 — Ongoing Management</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="index.html#resources-anchor">Blogs &amp; articles</a>
+        <a href="index.html#resources-anchor">Business launch checklist</a>
+        <a href="index.html#resources-anchor">Useful websites</a>
+        <a href="index.html#resources-anchor">Free spreadsheets</a>
+        <a href="index.html#resources-anchor">Recorded webinars &amp; seminars</a>
+        <a href="index.html#resources-anchor">Livestream discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#contact-anchor">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#">Book a call</a>
+</nav>
+
+<!-- ══ SVC2 PAGE CONTENT ══ -->
+<!-- HERO -->
+<div class="svc-hero-wrap">
+  <div class="svc-hero">
+    <div>
+      <a class="breadcrumb" href="index.html#services-anchor" style="text-decoration:none;color:inherit">← Services</a>
+      <div class="eyebrow red">Stage 02 — Source</div>
+      <h1>Sourcing Consultation</h1>
+      <p class="svc-hero-sub">Sourcing goes beyond finding a product supplier. Other professional services are just as important — we help you vet your suppliers, review contract terms, and give you objective recommendations across every cost dimension.</p>
+      <div class="svc-for">
+        <div class="svc-for-label">Best for</div>
+        <ul>
+          <li>Pre-launch entrepreneurs sourcing their first product</li>
+          <li>Existing sellers rethinking, switching, or optimizing suppliers</li>
+          <li>Businesses navigating tariff exposure or supply chain disruption</li>
+          <li>Anyone who wants to see where their products are made — firsthand</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-img-stack">
+      <img class="svc-hero-img" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80" alt="Warehouse and supply chain">
+      <div class="cta-box">
+        <h3>Not sure where to start?</h3>
+        <p>Tell us about your product and sourcing situation — we'll recommend the right service.</p>
+        <a href="intake.html" class="btn-red" style="text-align:center;display:block;padding:14px;width:100%;text-decoration:none">Submit an inquiry</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTINUITY DISCOUNT BANNER -->
+<div class="continuity-banner">
+  <div class="continuity-inner">
+    <div class="continuity-badge">Continuity discount</div>
+    <div class="continuity-text"><strong>Completed Service 01 with us?</strong> You qualify for a discount on this engagement. Each step you take with Three Flows builds context we carry forward — so you pay less and we deliver more. New to Three Flows? We'll conduct an onboarding interview to get up to speed before we begin.</div>
+  </div>
+</div>
+
+<!-- SERVICE OVERVIEW NAVIGATION -->
+<div class="tab-strip">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="setTab(0)">
+      <div class="tab-btn-num">2A</div>
+      <div class="tab-btn-title">Make-or-buy modeling</div>
+      <div class="tab-btn-sub">Domestic vs. overseas decision</div>
+    </button>
+    <button class="tab-btn" onclick="setTab(1)">
+      <div class="tab-btn-num">2B</div>
+      <div class="tab-btn-title">Sourcing project playbook</div>
+      <div class="tab-btn-sub">Supplier search & selection</div>
+    </button>
+    <button class="tab-btn" onclick="setTab(2)">
+      <div class="tab-btn-num">2C</div>
+      <div class="tab-btn-title">Factory visit support</div>
+      <div class="tab-btn-sub">Remote, virtual, or in-person</div>
+    </button>
+    <button class="tab-btn" onclick="setTab(3)">
+      <div class="tab-btn-num">2D</div>
+      <div class="tab-btn-title">Contract impact analysis</div>
+      <div class="tab-btn-sub">Key terms & financial impact</div>
+    </button>
+  </div>
+</div>
+
+
+<!-- ══ 2A: MAKE OR BUY ══ -->
+<div id="tab-0">
+  <div class="mob-section">
+    <div class="mob-intro">
+      <div>
+        <div class="eyebrow muted">Service 2A</div>
+        <div class="mob-lead">Make-or-buy modeling</div>
+        <p class="mob-body">One of the most consequential decisions in any product business — and one that most founders get wrong by defaulting to "buy from overseas" without fully understanding their real options, risks, and long-term cost structure.</p>
+        <p class="mob-body" style="margin-top:14px">We work through your specific situation, product category, volume, timeline, and risk tolerance to build a decision framework that's right for <em>you</em> — not a generic matrix.</p>
+      </div>
+      <div>
+        <div class="mob-dimensions">
+          <div class="mob-dim">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span style="font-size:24px;line-height:1;">💰</span><div class="mob-dim-title" style="margin-bottom:0;">Cost structure</div></div>
+            <div class="mob-dim-desc">Fixed vs. variable cost across manufacturing, procurement, and logistics — modeled at your volume</div>
+          </div>
+          <div class="mob-dim">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span style="font-size:24px;line-height:1;">🛡️</span><div class="mob-dim-title" style="margin-bottom:0;">Risk &amp; compliance</div></div>
+            <div class="mob-dim-desc">Tariff exposure, IP protection, labor law, environmental compliance — varies significantly by origin</div>
+          </div>
+          <div class="mob-dim">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span style="font-size:24px;line-height:1;">🔧</span><div class="mob-dim-title" style="margin-bottom:0;">Quality control</div></div>
+            <div class="mob-dim-desc">How much control do you need over design, materials, and production consistency?</div>
+          </div>
+          <div class="mob-dim">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span style="font-size:24px;line-height:1;">📈</span><div class="mob-dim-title" style="margin-bottom:0;">Scalability</div></div>
+            <div class="mob-dim-desc">Can your supply model grow with you — or will you need to re-source at scale?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mob-examples" style="background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;margin-top:48px;">
+      <div class="mob-examples-title">We work through situations like these</div>
+      <div class="mob-example-grid">
+        <div class="mob-example">
+          <div class="mob-example-label">Startup</div>
+          <div class="mob-example-title">First-time founder, limited capital</div>
+          <div class="mob-example-desc">Should you manufacture domestically for quality control, or source overseas for lower unit cost? How does MOQ affect your runway? We model both and tell you the real tradeoff.</div>
+        </div>
+        <div class="mob-example">
+          <div class="mob-example-label">Existing business</div>
+          <div class="mob-example-title">Tariff impact on current supplier</div>
+          <div class="mob-example-desc">Your landed cost just jumped 20% due to new tariffs. Do you absorb it, switch suppliers, nearshore, or start manufacturing domestically? We work through the numbers and the options.</div>
+        </div>
+        <div class="mob-example">
+          <div class="mob-example-label">Growth stage</div>
+          <div class="mob-example-title">Scaling beyond current supplier capacity</div>
+          <div class="mob-example-desc">Your current supplier can't scale with you. Do you expand with them, find a second source, or vertically integrate? We help you think through the build vs. buy decision at scale.</div>
+        </div>
+      </div>
+    </div>
+
+  <div class="bg-off">
+    <div class="section">
+      <div class="eyebrow muted">FAQ</div>
+      <div class="section-title">Common questions</div>
+      <div class="faq-list">
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I know which service (2A, 2B, 2C, 2D) I need? <span class="faq-icon">+</span></div><div class="faq-a">Start with where you are. If you haven't decided where or how to make your product yet, start with 2A. If you know you're buying but haven't found a supplier, 2B is your next step. If you've shortlisted suppliers and want to see them in person, 2C is your trip. If you have a deal in hand and need to review the contract, go straight to 2D. Most clients do them in sequence — but if you already have a supplier, you can start at 2C or 2D directly.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What do I need to prepare before starting? <span class="faq-icon">+</span></div><div class="faq-a">A product concept and a rough idea of your target price and volume is enough to get started. You don't need a detailed spec — we'll develop that as part of the process. The more you've thought through your cost constraints and risk tolerance, the faster we can move.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Do I need a supplier in mind already? <span class="faq-icon">+</span></div><div class="faq-a">No. The make-or-buy analysis comes before supplier selection. We help you decide where and how to source first — then Service 2B takes care of finding and vetting actual suppliers.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What's the difference between domestic and overseas sourcing? <span class="faq-icon">+</span></div><div class="faq-a">Domestic sourcing offers faster lead times, lower minimum order quantities, easier quality oversight, no tariff exposure, and simpler compliance — but typically higher unit costs. Overseas sourcing offers lower unit costs and more manufacturing variety, but comes with longer lead times, larger MOQs, currency risk, tariff exposure, and more complex logistics. The right answer depends on your product category, volume, margin targets, and risk tolerance — and it often isn't obvious. That's exactly what the make-or-buy model helps you decide.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What's the difference between "make" and "buy"? <span class="faq-icon">+</span></div><div class="faq-a">"Buy" means purchasing a finished or semi-finished product from a supplier — the most common path for e-commerce sellers. "Make" means manufacturing it yourself or with a production partner, giving you full control over specifications and costs. There's also a middle path: buying semi-finished components and doing final assembly or customization locally. Some founders start by buying and transition to making as volume justifies the investment. We help you figure out which path makes sense given your product, capital, and timeline.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can Three Flows help if I already have a supplier but want alternatives? <span class="faq-icon">+</span></div><div class="faq-a">Yes. We often work with clients who have an existing supplier but want to pressure-test it — either because costs have risen, quality has slipped, or tariff exposure has changed. We model the alternatives alongside your current setup so you can make an informed decision on whether to switch, diversify, or stay put.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How is make-or-buy modeling priced? <span class="faq-icon">+</span></div><div class="faq-a">It's billed at $200/hour, with most engagements running between 3 and 10 hours depending on complexity. A total hours estimate is provided during your discovery call before you commit. If you're planning to proceed to Service 2B (sourcing playbook), the make-or-buy analysis can be bundled at a reduced rate — and in some cases, if you've already decided to "buy," we can skip straight to supplier identification and save you the cost.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- end tab-0 -->
+
+
+<!-- ══ 2B: SOURCING PROJECT ══ -->
+<div id="tab-1" style="display:none">
+  <div class="bg-off">
+    <div class="section two-col">
+      <div>
+        <div class="eyebrow muted">Service 2B</div>
+        <div class="section-title">Sourcing project playbook</div>
+        <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300">We build a customized sourcing playbook — a step-by-step checklist tailored to your product and scope. It covers supplier identification, vetting, and selection, and produces a supply chain design recommendation that sets the strategic guideline for your 3PL sourcing decisions.</p>
+      </div>
+      <ul class="pain-list" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <li class="pain-item"><span>🌏</span><span>Choosing overseas sourcing without understanding tariff exposure or compliance risk</span></li>
+        <li class="pain-item"><span>📝</span><span>Signing supplier contracts without understanding the key negotiation levers</span></li>
+        <li class="pain-item"><span>🚢</span><span>Getting logistics wrong — wrong carrier, wrong Incoterms, wrong cost structure</span></li>
+        <li class="pain-item"><span>📊</span><span>No landed cost model — buying at FOB price without knowing true delivered cost</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow muted">Process</div>
+    <div class="section-title">From assessment to supplier-ready</div>
+    <div class="process-steps">
+      <div class="process-step"><div class="process-num">1</div><div class="process-content"><h4>Sourcing situation assessment</h4><p>We understand your product, target cost, volume expectations, and existing sourcing situation — whether starting from scratch or evaluating current suppliers.</p></div></div>
+      <div class="process-step"><div class="process-num">2</div><div class="process-content"><h4>Make-or-buy analysis <span style="font-size:12px;color:var(--muted);font-weight:400">(included if not already done separately)</span></h4><p>We help you decide whether to manufacture, source domestically, or import — weighing fixed cost, variable cost, compliance risk, IP protection, and flexibility.</p></div></div>
+      <div class="process-step"><div class="process-num">3</div><div class="process-content"><h4>Supplier identification &amp; vetting</h4><p>We identify and evaluate qualified supplier candidates on quality, reliability, MOQs, lead times, and communication. For international sourcing, this can connect to a sourcing trip (Service 2C).</p><div class="process-highlight">✈️ Can connect to Meet Your Manufacturer trip</div></div></div>
+      <div class="process-step"><div class="process-num">4</div><div class="process-content"><h4>Contract negotiation support</h4><p>We coach you through negotiations on pricing, packaging, lead times, MOQs, customization, and payment terms — and review contracts before you sign.</p></div></div>
+      <div class="process-step"><div class="process-num">5</div><div class="process-content"><h4>Logistics &amp; professional services &amp; setup</h4><p>We help select the right freight method, carrier, and logistics structure — including Incoterms, customs documentation, and 3PL evaluation at your volume.</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow muted">FAQ</div>
+    <div class="section-title">Common questions</div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I know which service (2A, 2B, 2C, 2D) I need? <span class="faq-icon">+</span></div><div class="faq-a">Start with where you are. If you haven't decided where or how to make your product yet, start with 2A. If you know you're buying but haven't found a supplier, 2B is your next step. If you've shortlisted suppliers and want to see them in person, 2C is your trip. If you have a deal in hand and need to review the contract, go straight to 2D. Most clients do them in sequence — but if you already have a supplier, you can start at 2C or 2D directly.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What do I need to prepare before starting? <span class="faq-icon">+</span></div><div class="faq-a">A product concept, a rough cost target, and a sense of your volume is a solid starting point. If you've already done Service 2A (make-or-buy), we'll pick up from your decision. If you're coming in fresh, we'll run a quick situation assessment first to calibrate the playbook scope before we begin.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can you help find alternative suppliers? <span class="faq-icon">+</span></div><div class="faq-a">Yes — supplier identification is a core part of the playbook. We research and evaluate candidates based on your product category, quality requirements, MOQ, lead time needs, and target cost. Keep in mind that Three Flows is a consultant, not a sourcing agent — we guide the process and evaluate suppliers, but the final selection and relationship is yours. We don't take commissions from suppliers.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can you help with other professional services beyond suppliers? <span class="faq-icon">+</span></div><div class="faq-a">Yes. Sourcing a product involves more than finding a factory — you also need freight forwarders, customs brokers, inspection agencies, 3PLs, and sometimes compliance labs. We have a network of trusted professionals in these areas and can make referrals. We don't manage these relationships on your behalf (that's Service 04), but we'll point you in the right direction at each stage.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Do I have to use the suppliers you recommend? <span class="faq-icon">+</span></div><div class="faq-a">No. Our recommendations are advisory — the decision is always yours. Some clients take the playbook and run independently; others want us to stay involved through negotiations and contract review. We're flexible on scope. You're never locked in to a follow-on engagement.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How is the sourcing playbook priced? <span class="faq-icon">+</span></div><div class="faq-a">The playbook is priced as a flat project fee — typically $500 to $2,000 depending on product complexity, number of supplier types being evaluated, and whether make-or-buy analysis is included. Scope and price are confirmed during the discovery call. Multi-category or multi-country projects are quoted separately.</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 2C: MEET YOUR MANUFACTURER ══ -->
+<div id="tab-2" style="display:none">
+
+  <!-- Trip hero -->
+  <div class="trip-hero">
+    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&q=80" alt="Sourcing trip destination" style="width:100%;height:480px;object-fit:cover;display:block;filter:brightness(0.5)">
+    <div class="trip-hero-overlay">
+      <div class="trip-hero-badge">✦ Signature experience</div>
+      <div class="trip-hero-title">Factory visit support</div>
+      <div class="trip-hero-sub">Nothing builds supplier trust like showing up. We support factory visits in three formats — remote preparation only, virtual guided visit, or full in-person accompaniment. Available in the US, Italy, China, and Vietnam, with local on-call guidance and a post-visit debrief included.</div>
+    </div>
+  </div>
+
+  <!-- Concept -->
+  <div class="trip-concept">
+    <div>
+      <div class="eyebrow muted">Service 2C</div>
+      <div class="trip-concept-title">Business travel reimagined for retail entrepreneurs</div>
+      <p class="trip-concept-body">Most sourcing trips are transactional — fly in, see a factory, fly out. We design something different. A trip that gives you the business outcomes you need, the cultural context to understand your suppliers, and the space to explore somewhere remarkable.</p>
+      <p class="trip-concept-body">We handle all the preparation. You handle the adventure.</p>
+      <div class="trip-pillars" style="margin-top:32px;">
+        <div class="trip-pillar">
+          <div class="trip-pillar-icon">📋</div>
+          <div>
+            <div class="trip-pillar-title">We design the whole trip</div>
+            <div class="trip-pillar-desc">Supplier itinerary, meeting prep, factory visit briefings, travel logistics, cultural context guides — all ready before you board</div>
+          </div>
+        </div>
+        <div class="trip-pillar">
+          <div class="trip-pillar-icon">📞</div>
+          <div>
+            <div class="trip-pillar-title">On-call support throughout</div>
+            <div class="trip-pillar-desc">We're available during business hours in-country for real-time guidance — negotiation coaching, translation support, or just a second opinion before you commit</div>
+          </div>
+        </div>
+        <div class="trip-pillar">
+          <div class="trip-pillar-icon">🗺️</div>
+          <div>
+            <div class="trip-pillar-title">You do the exploring</div>
+            <div class="trip-pillar-desc">We build in leisure time, suggest experiences, and let you discover the destination — because understanding a culture makes you a better buyer from it</div>
+          </div>
+        </div>
+        <div class="trip-pillar">
+          <div class="trip-pillar-icon">👥</div>
+          <div>
+            <div class="trip-pillar-title">Solo or small group</div>
+            <div class="trip-pillar-desc">Travel alone or bring a business partner. Group trips (2–4 people) available at shared pricing — great for co-founders sourcing together</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="trip-concept-img" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=700&q=80" alt="Exploring a destination city">
+  </div>
+
+  <!-- Destinations -->
+  <div class="destinations-wrap">
+    <div class="destinations-inner">
+      <div class="eyebrow muted">Destinations</div>
+      <div class="section-title">Where we operate</div>
+      <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300;max-width:600px">Four countries live now, with more launching soon. Each destination has a mix of established product specialties and open exploration — you bring your product focus, we build the trip around it.</p>
+
+      <div class="dest-grid">
+        <div class="dest-card">
+          <img class="dest-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=75" alt="United States">
+          <div class="dest-body" style="padding:20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <div class="dest-flag" style="margin-bottom:0;">🇺🇸</div>
+              <div class="dest-country" style="margin-bottom:0;">United States</div>
+            </div>
+            <div class="dest-specialties">Domestic manufacturing · "Made in USA" strategy · Product reengineering</div>
+            <div class="dest-tags">
+              <span class="dest-tag">Assembly & finishing</span>
+              <span class="dest-tag">Specialty manufacturing</span>
+              <span class="dest-tag">Product reengineering</span>
+            </div>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img class="dest-img" src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=600&q=75" alt="Italy">
+          <div class="dest-body" style="padding:20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <div class="dest-flag" style="margin-bottom:0;">🇮🇹</div>
+              <div class="dest-country" style="margin-bottom:0;">Italy</div>
+            </div>
+            <div class="dest-specialties">Luxury goods · Artisan manufacturing</div>
+            <div class="dest-tags">
+              <span class="dest-tag">Leather & fashion</span>
+              <span class="dest-tag">Ceramics & home</span>
+              <span class="dest-tag">Jewelry</span>
+              <span class="dest-tag">Food & beverage</span>
+            </div>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img class="dest-img" src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=600&q=75" alt="China">
+          <div class="dest-body" style="padding:20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <div class="dest-flag" style="margin-bottom:0;">🇨🇳</div>
+              <div class="dest-country" style="margin-bottom:0;">China</div>
+            </div>
+            <div class="dest-specialties">Scale manufacturing · Novelty products · General goods</div>
+            <div class="dest-tags">
+              <span class="dest-tag">Trade shows</span>
+              <span class="dest-tag">Yiwu market</span>
+              <span class="dest-tag">Electronics</span>
+              <span class="dest-tag">Home goods</span>
+            </div>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img class="dest-img" src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=75" alt="Vietnam">
+          <div class="dest-body" style="padding:20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <div class="dest-flag" style="margin-bottom:0;">🇻🇳</div>
+              <div class="dest-country" style="margin-bottom:0;">Vietnam</div>
+            </div>
+            <div class="dest-specialties">Textiles · Furniture · Fast-growing alternative to China</div>
+            <div class="dest-tags">
+              <span class="dest-tag">Apparel & textiles</span>
+              <span class="dest-tag">Furniture & wood</span>
+              <span class="dest-tag">Footwear</span>
+              <span class="dest-tag">Electronics assembly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;background:var(--off-white);border:1px dashed var(--border-dark);border-radius:10px;padding:18px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <span style="font-size:20px">🇯🇵🇰🇷🇹🇼🇬🇧</span>
+        <div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Coming soon — Japan, South Korea, Taiwan, United Kingdom</div>
+          <div style="font-size:13px;color:var(--mid)">Express interest and we'll notify you when your preferred destination launches</div>
+        </div>
+        <a href="mailto:contact@threeflows.com?subject=Notify%20me%20about%20new%20destinations" class="btn-dark" style="margin-left:auto;text-decoration:none;font-size:14px;font-weight:400;padding:11px 24px;">Notify me</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sample itinerary -->
+  <div class="itinerary">
+    <div class="eyebrow muted">Sample itinerary</div>
+    <div class="section-title">What a trip looks like</div>
+    <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300;max-width:600px">A sample 5-day trip to Vietnam — apparel sourcing focus. Business days balanced with leisure. On-call support throughout.</p>
+    <div class="itin-grid">
+      <div class="itin-days">
+        <button class="itin-day-btn active" onclick="setDay(0)">Day 1 <span class="itin-day-sub">Arrival &amp; orientation</span></button>
+        <button class="itin-day-btn" onclick="setDay(1)">Day 2 <span class="itin-day-sub">3 factory visits</span></button>
+        <button class="itin-day-btn" onclick="setDay(2)">Day 3 <span class="itin-day-sub">Markets &amp; negotiation</span></button>
+        <button class="itin-day-btn" onclick="setDay(3)">Day 4 <span class="itin-day-sub">Leisure &amp; internalize</span></button>
+        <button class="itin-day-btn" onclick="setDay(4)">Day 5 <span class="itin-day-sub">Standby &amp; departure</span></button>
+      </div>
+      <div>
+        <div id="day-0" class="itin-content active">
+          <div class="itin-content-title">Arrival &amp; orientation</div>
+          <div class="itin-content-loc">📍 Ho Chi Minh City, Vietnam</div>
+          <div class="itin-activities">
+            <div class="itin-activity"><div class="itin-time">Morning</div><div><div class="itin-act-title">Arrive &amp; settle in</div><div class="itin-act-desc">Transfer to hotel in the garment district. Pre-trip briefing document from Three Flows waiting in your room.</div></div></div>
+            <div class="itin-activity"><div class="itin-time">Afternoon</div><div><div class="itin-act-title">Neighborhood orientation walk</div><div class="itin-act-desc">Explore the Ben Thanh market area and surrounding textile streets — get a feel for the local retail landscape. <span class="itin-tag leisure">Leisure</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Evening</div><div><div class="itin-act-title">Supplier briefing call with Three Flows</div><div class="itin-act-desc">30-minute call to review tomorrow's factory visits, key questions to ask, and red flags to watch for. <span class="itin-tag oncall">On-call</span></div></div></div>
+          </div>
+        </div>
+        <div id="day-1" class="itin-content">
+          <div class="itin-content-title">3 factory visits</div>
+          <div class="itin-content-loc">📍 Industrial district, HCMC outskirts</div>
+          <div class="itin-activities">
+            <div class="itin-activity"><div class="itin-time">Morning</div><div><div class="itin-act-title">Factory visit #1 — primary supplier</div><div class="itin-act-desc">Pre-vetted mid-scale factory. Tour production floor, review quality samples, discuss MOQs and lead times. <span class="itin-tag biz">Business</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Midday</div><div><div class="itin-act-title">Factory visit #2 — alternative supplier</div><div class="itin-act-desc">A second vetted option for direct comparison — different specialization and scale. Three Flows on-call for real-time guidance. <span class="itin-tag biz">Business</span> <span class="itin-tag oncall">On-call</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Afternoon</div><div><div class="itin-act-title">Factory visit #3 — backup or specialist</div><div class="itin-act-desc">Third factory rounds out your options — backup sourcing or a specialist supplier for components. <span class="itin-tag biz">Business</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Evening</div><div><div class="itin-act-title">Debrief &amp; dinner</div><div class="itin-act-desc">Debrief call with Three Flows to score all three factories. Then explore the local food scene — a Three Flows-curated recommendation. <span class="itin-tag oncall">On-call</span> <span class="itin-tag leisure">Leisure</span></div></div></div>
+          </div>
+        </div>
+        <div id="day-2" class="itin-content">
+          <div class="itin-content-title">Markets &amp; negotiation</div>
+          <div class="itin-content-loc">📍 HCMC wholesale markets</div>
+          <div class="itin-activities">
+            <div class="itin-activity"><div class="itin-time">Morning</div><div><div class="itin-act-title">Wholesale fabric &amp; trim market</div><div class="itin-act-desc">Source materials, understand cost inputs, build supplier context. Guide provided by Three Flows. <span class="itin-tag biz">Business</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Afternoon</div><div><div class="itin-act-title">Return visit + preliminary negotiation</div><div class="itin-act-desc">Revisit preferred supplier from Day 2. Begin price and terms discussion. Three Flows available on-call for real-time coaching. <span class="itin-tag biz">Business</span> <span class="itin-tag oncall">On-call</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Evening</div><div><div class="itin-act-title">Free evening</div><div class="itin-act-desc">Rooftop bars, riverside walks, night market — your call. <span class="itin-tag leisure">Leisure</span></div></div></div>
+          </div>
+        </div>
+        <div id="day-3" class="itin-content">
+          <div class="itin-content-title">Leisure &amp; internalize</div>
+          <div class="itin-content-loc">📍 HCMC — free exploration</div>
+          <div class="itin-activities">
+            <div class="itin-activity"><div class="itin-time">Full day</div><div><div class="itin-act-title">Optional day trip</div><div class="itin-act-desc">Mekong Delta tour, Cu Chi tunnels, or Mũi Né beach — Three Flows curated suggestions, you choose. <span class="itin-tag leisure">Leisure</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Evening</div><div><div class="itin-act-title">Post-trip debrief with Three Flows</div><div class="itin-act-desc">1-hour structured debrief on supplier findings, negotiation strategy, and recommended next steps before you return home. <span class="itin-tag oncall">On-call</span></div></div></div>
+          </div>
+        </div>
+        <div id="day-4" class="itin-content">
+          <div class="itin-content-title">Standby &amp; departure</div>
+          <div class="itin-content-loc">📍 HCMC → Home</div>
+          <div class="itin-activities">
+            <div class="itin-activity"><div class="itin-time">Morning</div><div><div class="itin-act-title">Final supplier follow-up</div><div class="itin-act-desc">Send thank-you notes and initial term sheets to shortlisted suppliers — templates provided by Three Flows. <span class="itin-tag biz">Business</span></div></div></div>
+            <div class="itin-activity"><div class="itin-time">Afternoon</div><div><div class="itin-act-title">Departure</div><div class="itin-act-desc">Transfer to airport. Three Flows delivers written trip summary and supplier comparison within 3 business days of your return. <span class="itin-tag oncall">On-call</span></div></div></div>
+          </div>
+          <div class="itin-note">This is a sample itinerary for illustration. Your trip is custom-designed around your product, suppliers, and destination.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-off">
+    <div class="section">
+      <div class="eyebrow muted">FAQ</div>
+      <div class="section-title">Common questions</div>
+      <div class="faq-list">
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I know which service (2A, 2B, 2C, 2D) I need? <span class="faq-icon">+</span></div><div class="faq-a">Start with where you are. If you haven't decided where or how to make your product yet, start with 2A. If you know you're buying but haven't found a supplier, 2B is your next step. If you've shortlisted suppliers and want to see them in person, 2C is your trip. If you have a deal in hand and need to review the contract, go straight to 2D. Most clients do them in sequence — but if you already have a supplier, you can start at 2C or 2D directly.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can I have a multi-country tour? <span class="faq-icon">+</span></div><div class="faq-a">Yes, though we recommend focusing on one country per trip unless you have a clear reason to visit multiple. Multi-country trips add complexity — different logistics, different cultural contexts, and less time at each destination. If you need to compare suppliers across countries, we can help you plan a multi-leg itinerary. Just note that coordination costs increase and we'll need more lead time.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What if I want more than 5 days? <span class="faq-icon">+</span></div><div class="faq-a">Trips over 5 days are available — just let us know your goals and we'll scope accordingly. Longer trips typically work well when you're visiting multiple supplier hubs within a country, combining factory visits with market sourcing, or adding a leisure extension. The pricing scales with duration and scope.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can you book tickets and hotels? <span class="faq-icon">+</span></div><div class="faq-a">Yes — we can handle all travel bookings on your behalf, including flights, hotels, and local transfers. A 20% service fee applies to all bookings, and all travel costs are prepaid by you before departure. This is an optional add-on; many clients prefer to book their own travel using our logistics recommendations as a guide.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What do I do when I run into language issues? <span class="faq-icon">+</span></div><div class="faq-a">Most factories dealing with international buyers have English-speaking staff or can arrange an interpreter. For supplier meetings, we can help coordinate a local interpreter in advance. Our on-call support also covers real-time guidance when communication gets difficult — we can help you navigate tone, intent, and negotiation language even if we're not physically present. For accompanied trips, a Three Flows advisor can provide live translation support at key meetings.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What does "on-call support" mean during the trip? <span class="faq-icon">+</span></div><div class="faq-a">On-call means we're available to you — by phone, WhatsApp, or video — during your business hours in-country. Think of it as a lifeline, not hand-holding. You handle the meetings and make the decisions; we're there when you need a second opinion, hit an unexpected issue, or want coaching before a negotiation. We're not managing your schedule or traveling with you. If you want someone physically present at supplier meetings, that's the Accompanied format — available on request with a custom quote. Local driver and guide add-ons are also available for select destinations.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How is the sourcing trip priced? <span class="faq-icon">+</span></div><div class="faq-a">Pricing starts from $500 for an itinerary-only (self-guided) package. On-call support during the trip starts from $1,000. Accompanied trips (where a Three Flows advisor attends supplier meetings with you) are custom-quoted based on destination, duration, and scope. All formats include trip design, supplier pre-vetting, a pre-trip briefing document, and a post-trip debrief. Travel costs — flights, hotels, local transport — are separate and paid directly by you.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end tab-2 -->
+
+
+<!-- ══ 2D: CONTRACT & NEGOTIATION ══ -->
+<div id="tab-3" style="display:none">
+  <div class="bg-off">
+    <div class="section two-col">
+      <div>
+        <div class="eyebrow muted">Service 2D</div>
+        <div class="section-title">Contract impact analysis support</div>
+        <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300">A supplier contract is more than a legal document — it defines your costs, risks, and obligations for years. We help you understand what you're signing up for, protect your interests, and tie every key term back to your financial reality.</p>
+        <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300;margin-top:14px">We work on both sides: drafting contracts from scratch when you have no template, and reviewing existing contracts before you sign. Charged as a consulting service — hourly or per engagement.</p>
+      </div>
+      <ul class="pain-list" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <li class="pain-item"><span>📄</span><span>Signing a supplier contract without fully understanding payment terms, penalties, or IP ownership clauses</span></li>
+        <li class="pain-item"><span>💸</span><span>Agreeing to terms that look fine on paper but quietly destroy your margins at volume</span></li>
+        <li class="pain-item"><span>🔒</span><span>No exclusivity, no quality standards, no remedies — leaving you exposed if a supplier underdelivers</span></li>
+        <li class="pain-item"><span>🤝</span><span>Walking into a negotiation without knowing which levers to pull or when to walk away</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow muted">What we do</div>
+    <div class="section-title">Two engagement types</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px">
+      <div style="background:var(--off-white);border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:32px">
+        <div style="font-size:22px;margin-bottom:14px">✍️</div>
+        <div style="font-size:16px;font-weight:600;margin-bottom:10px">Contract drafting</div>
+        <p style="font-size:14px;color:var(--mid);line-height:1.65;font-weight:300;margin-bottom:16px">You have a verbal agreement or a term sheet — we draft a proper supplier contract from scratch. We cover the clauses that matter for your product, volume, and relationship type.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Payment terms &amp; milestones</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Order size (MOQ) &amp; lead time commitments</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Quality standards &amp; inspection rights</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>IP ownership &amp; confidentiality</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Exclusivity &amp; territory clauses</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Remedies, penalties &amp; exit clauses</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>MOQ, lead time &amp; capacity commitments</li>
+        </ul>
+      </div>
+      <div style="background:var(--off-white);border:1.5px solid var(--border-dark);border-radius:var(--radius);padding:32px">
+        <div style="font-size:22px;margin-bottom:14px">🔍</div>
+        <div style="font-size:16px;font-weight:600;margin-bottom:10px">Contract review</div>
+        <p style="font-size:14px;color:var(--mid);line-height:1.65;font-weight:300;margin-bottom:16px">Your supplier has sent you their standard contract. We review it line by line, flag the risks, and tell you what to push back on before you sign anything.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Red flag identification</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Term-by-term plain-English explanation</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Recommended redlines &amp; pushbacks</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Negotiation coaching &amp; scripting</li>
+          <li style="font-size:13px;color:var(--mid);display:flex;gap:8px"><span style="color:var(--dark);font-weight:600">✓</span>Comparison to industry standard terms</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financial tie-back callout -->
+  <div class="bg-off">
+    <div class="section">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+        <div>
+          <div class="eyebrow muted">Why this matters</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:30px;line-height:1.2;margin-bottom:16px">A contract is a cashflow commitment in disguise</div>
+          <p style="font-size:15px;color:var(--mid);line-height:1.75;font-weight:300;margin-bottom:16px">Payment schedules, MOQ commitments, penalty clauses, and lead time guarantees all have direct financial implications — but they're written in legal language that makes it easy to miss what you're actually agreeing to.</p>
+          <p style="font-size:15px;color:var(--mid);line-height:1.75;font-weight:300;margin-bottom:24px">We recommend tying every material contract term back to your cashflow model, so you can see the real-world impact before you sign. This tie-back is optional — but clients who do it consistently report fewer surprises after launch.</p>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:3px solid var(--dark);border-radius:0 8px 8px 0;padding:16px 20px;font-size:14px;color:var(--mid);line-height:1.65">
+            <strong style="color:var(--dark);display:block;margin-bottom:4px">Optional add-on: Financial tie-back</strong>
+            We map your contract terms to your P&amp;L and cashflow model — so you see what a 30% deposit, 60-day lead time, and $5,000 MOQ actually means for your runway. Can be done alongside a pre-launch model (Service 01) or as a standalone update.
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" alt="Contract review" style="width:100%;height:340px;object-fit:cover;border-radius:var(--radius)">
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-off">
+    <div class="section">
+      <div class="eyebrow muted">FAQ</div>
+      <div class="section-title">Common questions</div>
+      <div class="faq-list">
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I know which service (2A, 2B, 2C, 2D) I need? <span class="faq-icon">+</span></div><div class="faq-a">Start with where you are. If you haven't decided where or how to make your product yet, start with 2A. If you know you're buying but haven't found a supplier, 2B is your next step. If you've shortlisted suppliers and want to see them in person, 2C is your trip. If you have a deal in hand and need to review the contract, go straight to 2D. Most clients do them in sequence — but if you already have a supplier, you can start at 2C or 2D directly.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What is an MOU vs. a contract — and which do I need? <span class="faq-icon">+</span></div><div class="faq-a">An MOU (Memorandum of Understanding) is a pre-contract document that captures intent and working terms before a formal agreement is signed. It's useful when you need to lock in key commercial terms quickly without waiting for a full contract negotiation. A supplier contract is binding and governs the full relationship — including payment, quality, IP, and remedies. Many clients use an MOU to kick off production while the formal contract is being drafted. We support both.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Why do you only review "key terms" — why not the whole contract? <span class="faq-icon">+</span></div><div class="faq-a">Three Flows is a commercial consultant, not a law firm. Our review focuses on the business terms that directly affect your costs, obligations, and risk — payment structure, pricing, MOQs, lead times, IP ownership, quality standards, and remedies. Legal language, governing law, dispute resolution, and regulatory clauses are outside our scope. For those, we refer you to an attorney. This distinction is important: we tell you what the terms mean for your business, not whether they're legally enforceable.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Do you provide legal advice? <span class="faq-icon">+</span></div><div class="faq-a">No — Three Flows is not a law firm and does not provide legal advice. We provide commercial consulting on contract terms and their business implications. If your contract has significant legal complexity — cross-border disputes, IP litigation risk, regulatory exposure — we will tell you and refer you to qualified attorneys in our network. Final legal decisions are always yours.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can you help build contract terms back to my financial model? <span class="faq-icon">+</span></div><div class="faq-a">Yes — this is one of the most valuable things we do. Payment timing, MOQ commitments, penalty clauses, and price escalation terms all have direct cash flow and margin implications. We map the key contract terms to your unit economics so you can see exactly how each clause affects your P&amp;L and working capital before you sign. This is especially useful for clients who have already done Service 01 (business planning) with us, since we can work directly from your financial model.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How is contract support priced? <span class="faq-icon">+</span></div><div class="faq-a">Contract review starts at $200 per engagement — covering key commercial terms and a written summary of findings. Contract drafting starts at $500. Complex engagements with multi-round negotiations or multiple suppliers are billed hourly at $200/hr. Scope and total estimate are confirmed at the discovery call before you commit.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-cta">
+  <div class="bottom-inner">
+    <div>
+      <h2>Ready to source smarter?</h2>
+      <p>Know your supplier options and true landed cost before you commit.</p>
+    </div>
+    <div class="bottom-actions">
+      <a href="intake.html" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
+      <a href="intake.html" class="btn-outline" style="font-size:14px;font-weight:400;padding:11px 24px;color:white;border-color:rgba(255,255,255,0.4);text-decoration:none">Fill in an intake form</a>
+      <a href="#" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="logo-icon" style="width:28px;height:28px;padding:5px 6px"><div class="logo-bar" style="height:7px"></div><div class="logo-bar" style="height:12px"></div><div class="logo-bar" style="height:5px"></div></div>
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:contact@threeflows.com">contact@threeflows.com</a>
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+
+function toggleFaq(el) {
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+  if (!wasOpen) el.classList.add('open');
+}
+
+function setTab(idx) {
+  document.querySelectorAll('.tab-btn').forEach((t, i) => t.classList.toggle('active', i === idx));
+  ['tab-0', 'tab-1', 'tab-2', 'tab-3'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = i === idx ? 'block' : 'none';
+  });
+  const strip = document.querySelector('.tab-strip');
+  if (strip) strip.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function setDay(idx) {
+  document.querySelectorAll('.itin-day-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.querySelectorAll('.itin-content').forEach((c, i) => c.classList.toggle('active', i === idx));
+}
+</script>
+</body>
+</html>
