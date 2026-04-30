@@ -1171,7 +1171,7 @@
 
 <script>
   // ── Config ─────────────────────────────────────────────────────────────────
-  const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbzvXMotmrepkkJ9YOnyzi-oOLcDGhhvvAEiQ3fC2TpFwddsDSU6bfuOgyzP7DiIR_2I/exec';
+  const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbxDl1z-mHrMpKupasrOuY5nsCJryPFLRSauHB6BBqI6alKBDdkII86oe5nm3itEKMQg/exec';
 
   // ── State ──────────────────────────────────────────────────────────────────
   let navHistory   = ['s-about'];  // breadcrumb stack of screen IDs
@@ -1507,13 +1507,23 @@
     const btn = document.getElementById('btn-submit');
     btn.disabled = true; btn.textContent = 'Submitting…';
     try {
-      const formData = new FormData();
-      formData.append('data', JSON.stringify(collectData()));
-      await fetch(SUBMIT_URL, {
-        method: 'POST',
-        body: formData,
-      });
-    } catch (e) {}
+        const data = collectData();
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = SUBMIT_URL;
+        form.target = 'hidden_iframe';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'data';
+        input.value = JSON.stringify(data);
+        form.appendChild(input);
+        const iframe = document.createElement('iframe');
+        iframe.name = 'hidden_iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        document.body.appendChild(form);
+        form.submit();
+      } catch (e) {}
     document.getElementById('form-body').style.display    = 'none';
     document.getElementById('form-footer').style.display  = 'none';
     document.getElementById('progress-wrap').style.display = 'none';
