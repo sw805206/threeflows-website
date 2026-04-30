@@ -1171,7 +1171,7 @@
 
 <script>
   // ── Config ─────────────────────────────────────────────────────────────────
-  const SUBMIT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+  const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbzvXMotmrepkkJ9YOnyzi-oOLcDGhhvvAEiQ3fC2TpFwddsDSU6bfuOgyzP7DiIR_2I/exec';
 
   // ── State ──────────────────────────────────────────────────────────────────
   let navHistory   = ['s-about'];  // breadcrumb stack of screen IDs
@@ -1507,10 +1507,11 @@
     const btn = document.getElementById('btn-submit');
     btn.disabled = true; btn.textContent = 'Submitting…';
     try {
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(collectData()));
       await fetch(SUBMIT_URL, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(collectData()),
+        method: 'POST',
+        body: formData,
       });
     } catch (e) {}
     document.getElementById('form-body').style.display    = 'none';
