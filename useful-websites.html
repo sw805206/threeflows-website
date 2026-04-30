@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<title>Useful Websites — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #D63B3B;
+  --red-dark: #B82E2E;
+  --red-light: #FDF0F0;
+  --red-mid: rgba(214, 59, 59, 0.12);
+  --dark: #1A1A1A;
+  --mid: #5C5C5C;
+  --muted: #909090;
+  --off-white: #F8F8F8;
+  --white: #FFFFFF;
+  --border: rgba(0,0,0,0.09);
+  --border-dark: rgba(0,0,0,0.18);
+  --green: #00B050;
+  --green-light: #EAF3DE;
+  --green-text: #2D6A1A;
+  --blue: #2563EB;
+  --blue-light: #E8EFFC;
+  --amber: #B45309;
+  --amber-light: #FBF1DC;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.18s ease;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* ── NAV ── */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
+.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
+.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+.nav-links a:hover { color: var(--dark); }
+.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: #333; }
+
+/* ── NAV DROPDOWNS ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 240px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  z-index: 1000;
+  padding: 6px 0;
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 400;
+}
+.nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+.nav-dropdown.open .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+/* ── SHARED ── */
+.eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+.eyebrow.red { color: var(--red); }
+.serif { font-family: 'DM Serif Display', serif; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--mid); max-width: 640px; line-height: 1.75; font-weight: 300; margin-bottom: 48px; }
+.btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-dark { background: var(--dark); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-dark:hover { opacity: 0.85; }
+.btn-outline { background: transparent; color: var(--dark); border: 1px solid var(--border-dark); padding: 13px 28px; border-radius: 6px; font-size: 15px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; display: inline-block; text-decoration: none; }
+.btn-outline:hover { border-color: var(--dark); }
+.divider { border: none; border-top: 1px solid var(--border); }
+
+/* ── HERO ── */
+.res-hero-wrap { border-bottom: 1px solid var(--border); }
+.res-hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 56px; }
+.breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 22px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.breadcrumb:hover { color: var(--dark); }
+.res-hero h1 { font-family: 'DM Serif Display', serif; font-size: 46px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px; max-width: 800px; }
+.res-hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; max-width: 680px; }
+
+/* ── TAB BAR ── */
+.uw-tab-bar-wrap { position: sticky; top: 64px; z-index: 90; background: var(--white); border-bottom: 1px solid var(--border); }
+.uw-tab-bar { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; gap: 0; overflow-x: auto; }
+.uw-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 16px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mid);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.uw-tab-btn:hover { color: var(--dark); }
+.uw-tab-btn.active { color: var(--dark); border-bottom-color: var(--dark); }
+
+/* ── PLACEHOLDER SECTIONS ── */
+.uw-placeholder { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+.uw-placeholder-box { background: var(--off-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 56px 48px; text-align: center; }
+.uw-placeholder-eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px; }
+.uw-placeholder-box p { font-size: 16px; color: var(--mid); font-weight: 300; line-height: 1.75; max-width: 520px; margin: 0 auto; }
+
+/* ── LEGEND STRIP ── */
+.legend-strip { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.legend-inner { max-width: 1100px; margin: 0 auto; padding: 18px 48px; }
+.legend-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+.legend-items-row { display: flex; align-items: center; gap: 22px; flex-wrap: nowrap; }
+.legend-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.legend-item-text { font-size: 12px; color: var(--mid); font-weight: 300; white-space: nowrap; }
+
+/* ── BADGES ── */
+.badge { display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.02em; white-space: nowrap; line-height: 1.4; }
+.badge-open { background: var(--green-light); color: var(--green-text); border: 1px solid rgba(0,176,80,0.25); }
+.badge-invite { background: var(--amber-light); color: var(--amber); border: 1px solid rgba(180,83,9,0.3); }
+.badge-supplier { background: var(--off-white); color: var(--mid); border: 1px solid var(--border-dark); }
+
+/* ── MARKETPLACE CARDS ── */
+.mkt-section { max-width: 1100px; margin: 0 auto; padding: 48px 48px 0; }
+.mkt-section + .mkt-section { border-top: 1px solid var(--border); padding-top: 40px; }
+.mkt-section:last-of-type { padding-bottom: 56px; }
+.mkt-section-heading { font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 32px; padding-bottom: 14px; border-bottom: 1.5px solid var(--dark); }
+.mkt-group { margin-bottom: 36px; }
+.mkt-group:last-child { margin-bottom: 0; }
+.mkt-group-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+.mkt-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.mkt-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 12px 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s; text-align: center; }
+.mkt-card:hover { border-color: var(--dark); transform: translateY(-1px); }
+.mkt-favicon { width: 32px; height: 32px; border-radius: 7px; display: block; }
+.mkt-name { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+
+/* ── BOTTOM CTA ── */
+.svc-bottom-cta { background: var(--dark); }
+.svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 460px; line-height: 1.25; }
+.svc-bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
+.bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--dark); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .res-hero { padding: 48px 20px 40px; }
+  .res-hero h1 { font-size: 32px; }
+  .uw-tab-bar { padding: 0 20px; }
+  .uw-placeholder { padding: 48px 20px; }
+  .uw-placeholder-box { padding: 36px 24px; }
+  .legend-inner { padding: 18px 20px; gap: 14px; }
+  .mkt-section { padding: 40px 20px 0; }
+  .mkt-grid { grid-template-columns: repeat(2, 1fr); }
+  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  footer { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SHARED NAV ══ -->
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">01 — Business Planning</a>
+        <a href="svc2.html">02 — Sourcing Consultation</a>
+        <a href="svc3.html">03 — Launch Hypercare</a>
+        <a href="svc4.html">04 — Ongoing Management</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="#">Blogs &amp; articles</a>
+        <a href="#">Business launch checklist</a>
+        <a href="useful-websites.html">Useful websites</a>
+        <a href="#">Free spreadsheets</a>
+        <a href="#">Recorded webinars &amp; seminars</a>
+        <a href="#">Livestream discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#contact-anchor">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://docs.google.com/forms/d/e/1FAIpQLScyAHHixx8-nRiunG29zQA-dQ5FmtMkCToWBcagVI1U8wJtbQ/viewform?usp=publish-editor" target="_blank">Submit an inquiry</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="res-hero-wrap">
+  <div class="res-hero">
+    <a class="breadcrumb" href="index.html#resources-anchor">← Resources</a>
+    <div class="eyebrow red">Resources</div>
+    <h1>Useful Websites</h1>
+    <p class="res-hero-sub">A curated directory of tools, platforms and resources for e-commerce sellers and retail businesses.</p>
+  </div>
+</div>
+
+<!-- ══ TAB BAR ══ -->
+<div class="uw-tab-bar-wrap">
+  <div class="uw-tab-bar">
+    <button class="uw-tab-btn" id="uw-btn-1" onclick="uwShowTab(1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#378ADD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="1.5" y="9" width="3" height="6" rx="0.5"/><rect x="6.5" y="5" width="3" height="10" rx="0.5"/><rect x="11.5" y="2" width="3" height="13" rx="0.5"/></svg>Trade &amp; Retail Market Insights</button>
+    <button class="uw-tab-btn active" id="uw-btn-2" onclick="uwShowTab(2)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0"><circle cx="8" cy="8" r="6"/><path d="M2 8h12"/><path d="M8 2c-2 1.8-3 3.7-3 6s1 4.2 3 6"/><path d="M8 2c2 1.8 3 3.7 3 6s-1 4.2-3 6"/></svg>Global E-Commerce Marketplaces</button>
+    <button class="uw-tab-btn" id="uw-btn-3" onclick="uwShowTab(3)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 15V6l5-3.5L13 6v9H3z"/><path d="M6.5 15v-4.5h3V15"/></svg>Company Setup &amp; Brand Registration</button>
+    <button class="uw-tab-btn" id="uw-btn-4" onclick="uwShowTab(4)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D63B3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M8 1.5L2.5 4v4c0 3.2 2.4 5.5 5.5 6.5 3.1-1 5.5-3.3 5.5-6.5V4L8 1.5z"/><path d="M5.5 8l2 2 3-3"/></svg>Compliance Information</button>
+  </div>
+</div>
+
+<!-- ══ TAB 1: Trade & Retail Market Insights ══ -->
+<div id="uw-tab-1" style="display:none">
+  <div class="uw-placeholder">
+    <div class="uw-placeholder-box">
+      <div class="uw-placeholder-eyebrow">Coming soon</div>
+      <p>Curated market intelligence sources, industry reports, and retail trend trackers.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 2: Global E-Commerce Marketplaces ══ -->
+<div id="uw-tab-2" style="display:block">
+
+  <div class="legend-strip">
+    <div class="legend-inner">
+      <div class="legend-label">Access types</div>
+      <div class="legend-items-row">
+        <div class="legend-item"><span class="badge badge-open">Open signup</span><span class="legend-item-text">any qualifying seller can self-register</span></div>
+        <div class="legend-item"><span class="badge badge-invite">Invite / curated</span><span class="legend-item-text">application, invite-only, or retailer-selected</span></div>
+        <div class="legend-item"><span class="badge badge-supplier">Supplier model</span><span class="legend-item-text">no open marketplace; direct vendor relationship required</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="mkt-section">
+    <h2 class="mkt-section-heading">Top US e-commerce marketplaces</h2>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Open signup</div>
+      <div class="mkt-grid">
+        <a href="https://sell.amazon.com/sell" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://marketplace.walmart.com/about-walmart-marketplace/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=walmart.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Walmart</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.ebay.com/sellercenter/selling/start-selling-on-ebay" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=ebay.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">eBay</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.etsy.com/sell" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=etsy.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Etsy</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.shopify.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=shopify.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Shopify</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://seller-us.tiktok.com/homepage?shop_region=US" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=tiktok.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">TikTok Shop</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://seller.temu.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=temu.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Temu</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.newegg.com/sellers/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=newegg.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Newegg</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.faire.com/sell" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=faire.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Faire</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Invite / curated &amp; supplier model</div>
+      <div class="mkt-grid">
+        <a href="https://marketplace.shein.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=shein.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">SHEIN</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://www.whatnot.com/seller" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=whatnot.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Whatnot</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://sell.wayfair.com/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=wayfair.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Wayfair</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://plus.target.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=target.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Target Plus</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://www.costco.com/supplier-diversity.html" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=costco.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Costco</span>
+          <span class="badge badge-supplier">Supplier model</span>
+        </a>
+        <a href="https://supplierhub-prospective.homedepot.com/hc/en-us/articles/360034558452" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=homedepot.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Home Depot</span>
+          <span class="badge badge-supplier">Supplier model</span>
+        </a>
+        <a href="https://partners.bestbuy.com/-/onboarding-activity-guides-new-bby-vendors" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=bestbuy.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Best Buy</span>
+          <span class="badge badge-supplier">Supplier model</span>
+        </a>
+        <a href="https://www.bedbathandbeyond.com/partner" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=bedbathandbeyond.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Bed Bath &amp; Beyond</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="mkt-section">
+    <h2 class="mkt-section-heading">Amazon Seller Central by market</h2>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">North America</div>
+      <div class="mkt-grid">
+        <a href="https://sellercentral.amazon.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon US</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.ca" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon CA</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.com.mx" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon MX</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon BR</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Europe</div>
+      <div class="mkt-grid">
+        <a href="https://sellercentral-europe.amazon.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon EU (UK/DE/FR/ES/IT)</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.nl" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon NL</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.se" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon SE</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.pl" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon PL</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.com.tr" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon TR</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Middle East &amp; Africa</div>
+      <div class="mkt-grid">
+        <a href="https://sellercentral.amazon.com.sa" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon SA</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.ae" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon UAE</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.eg" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon EG</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Asia-Pacific</div>
+      <div class="mkt-grid">
+        <a href="https://sellercentral.amazon.in" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon IN</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.co.jp" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon JP</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.com.au" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon AU</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.sg" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon SG</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="mkt-section">
+    <h2 class="mkt-section-heading">Regional marketplaces</h2>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Europe</div>
+      <div class="mkt-grid">
+        <a href="https://www.onbuy.com/gb/sell-on-onbuy/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=onbuy.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">OnBuy</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.zalando.co.uk/partner-program/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=zalando.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Zalando</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://www.otto.de/shoppages/partner/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=otto.de" class="mkt-favicon" alt="">
+          <span class="mkt-name">Otto</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://www.cdiscount.com/vendre-sur-cdiscount.html" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=cdiscount.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Cdiscount</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://allegro.pl/dla-sprzedajacych" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=allegro.pl" class="mkt-favicon" alt="">
+          <span class="mkt-name">Allegro</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Latin America</div>
+      <div class="mkt-grid">
+        <a href="https://www.mercadolibre.com/sell" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=mercadolibre.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Mercado Libre</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Amazon BR</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://shopee.com.br/m/sell-on-shopee" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=shopee.com.br" class="mkt-favicon" alt="">
+          <span class="mkt-name">Shopee BR</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Far East — China, Japan, Korea</div>
+      <div class="mkt-grid">
+        <a href="https://seller.tmall.hk/index.htm" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=tmall.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Tmall Global</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://global.jd.com/merchant.html" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=jd.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">JD Worldwide</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://www.rakuten.co.jp/ec/partner/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=rakuten.co.jp" class="mkt-favicon" alt="">
+          <span class="mkt-name">Rakuten JP</span>
+          <span class="badge badge-invite">Invite / curated</span>
+        </a>
+        <a href="https://wing.coupang.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=coupang.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Coupang</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Southeast Asia</div>
+      <div class="mkt-grid">
+        <a href="https://seller.shopee.sg/edu/article/register" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=shopee.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Shopee</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://sellercenter.lazada.sg/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=lazada.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Lazada</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.tokopedia.com/seller" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=tokopedia.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Tokopedia</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://tiki.vn/seller" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=tiki.vn" class="mkt-favicon" alt="">
+          <span class="mkt-name">Tiki</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mkt-group">
+      <div class="mkt-group-label">Middle East &amp; Africa</div>
+      <div class="mkt-grid">
+        <a href="https://www.noon.com/seller/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=noon.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Noon</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://www.jumia.com/sp/sell-on-jumia/" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=jumia.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Jumia</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://seller.flipkart.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=flipkart.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Flipkart</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+        <a href="https://supplier.meesho.com" target="_blank" rel="noopener" class="mkt-card">
+          <img src="https://www.google.com/s2/favicons?sz=64&domain=meesho.com" class="mkt-favicon" alt="">
+          <span class="mkt-name">Meesho</span>
+          <span class="badge badge-open">Open signup</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ TAB 3: Company Setup & Brand Registration ══ -->
+<div id="uw-tab-3" style="display:none">
+  <div class="uw-placeholder">
+    <div class="uw-placeholder-box">
+      <div class="uw-placeholder-eyebrow">Coming soon</div>
+      <p>Guides and official portals for business registration, trademark filing, and brand protection.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 4: Compliance Information ══ -->
+<div id="uw-tab-4" style="display:none">
+  <div class="uw-placeholder">
+    <div class="uw-placeholder-box">
+      <div class="uw-placeholder-eyebrow">Coming soon</div>
+      <p>Compliance requirements, product safety standards, and regulatory resources by market.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BOTTOM CTA ══ -->
+<div class="svc-bottom-cta">
+  <div class="svc-bottom-inner">
+    <div>
+      <h2>Looking for something specific? We can help.</h2>
+      <p>Start with a free conversation — we'll recommend the right package.</p>
+    </div>
+    <div class="bottom-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScyAHHixx8-nRiunG29zQA-dQ5FmtMkCToWBcagVI1U8wJtbQ/viewform?usp=publish-editor" target="_blank" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
+      <a href="intake.html" class="btn-outline" style="font-size:14px;font-weight:400;padding:11px 24px;color:white;border-color:rgba(255,255,255,0.4);text-decoration:none">Fill in an intake form</a>
+      <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="logo-icon" style="width:28px;height:28px;padding:5px 6px"><div class="logo-bar" style="height:7px"></div><div class="logo-bar" style="height:12px"></div><div class="logo-bar" style="height:5px"></div></div>
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:contact@threeflows.com">contact@threeflows.com</a>
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function uwShowTab(n) {
+  [1, 2, 3, 4].forEach(function(i) {
+    document.getElementById('uw-tab-' + i).style.display = (i === n) ? 'block' : 'none';
+    document.getElementById('uw-btn-' + i).classList.toggle('active', i === n);
+  });
+}
+
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  var el = document.getElementById(id);
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(function(d) { d.classList.remove('open'); });
+  if (!isOpen) el.classList.add('open');
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(function(d) { d.classList.remove('open'); });
+  }
+});
+</script>
+</body>
+</html>
