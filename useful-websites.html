@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Curated directory of tools, platforms, and resources for e-commerce sellers — market data, business setup, compliance, and top marketplaces in one place.">
 <link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
 <title>Useful Websites — Three Flows Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
@@ -28,7 +29,11 @@
   --amber-light: #FBF1DC;
   --radius: 12px;
   --radius-sm: 8px;
+  --font-body: 16px;
+  --line-height: 1.7;
   --transition: 0.18s ease;
+  --warm: #F8F8F8;
+  --warm-border: rgba(180,150,100,0.2);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -143,9 +148,9 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 
 /* ── BADGES ── */
 .badge { display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.02em; white-space: nowrap; line-height: 1.4; }
-.badge-open { background: var(--green-light); color: var(--green-text); border: 1px solid rgba(0,176,80,0.25); }
-.badge-invite { background: var(--amber-light); color: var(--amber); border: 1px solid rgba(180,83,9,0.3); }
-.badge-supplier { background: var(--off-white); color: var(--mid); border: 1px solid var(--border-dark); }
+.badge-open   { background: var(--green-light); color: var(--green-text); position: absolute; top: 12px; right: 12px; border: none; }
+.badge-invite { background: var(--amber-light); color: var(--amber); position: absolute; top: 12px; right: 12px; border: none; }
+.badge-supplier { background: var(--off-white); color: var(--mid); position: absolute; top: 12px; right: 12px; border: none; }
 
 /* ── MARKETPLACE CARDS ── */
 .mkt-section { max-width: 1100px; margin: 0 auto; padding: 48px 48px 0; }
@@ -156,7 +161,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .mkt-group:last-child { margin-bottom: 0; }
 .mkt-group-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
 .mkt-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-.mkt-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 12px 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s; text-align: center; }
+.mkt-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 12px 14px; display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s; position: relative; }
 .mkt-card:hover { border-color: var(--dark); transform: translateY(-1px); }
 .mkt-favicon { width: 32px; height: 32px; border-radius: 7px; display: block; }
 .mkt-name { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.3; }
@@ -189,6 +194,21 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
   footer { padding: 20px; }
 }
+
+/* ── RESOURCE FILTER & CARDS ── */
+.resource-cat-section { margin-bottom: 8px; }
+.resource-cat-head { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--border); margin: 28px 0 12px; }
+.resource-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+.resource-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; transition: border-color var(--transition); position: relative; }
+.resource-card:hover { border-color: var(--border-dark); }
+.resource-card-top { display: flex; align-items: flex-start; gap: 8px; }
+.resource-card-name { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+.resource-stage-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; position: absolute; top: 12px; right: 12px; }
+.resource-stage-badge.startup { background: #FDE8F0; color: #B5256A; }
+.resource-stage-badge.established { background: #E8E8E8; color: #3A3A3A; }
+.resource-card-note { font-size: 12px; color: var(--mid); line-height: 1.45; }
+.resource-card-link { font-size: 11px; color: var(--red); text-decoration: none; margin-top: auto; display: inline-block; }
+.resource-card-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -243,32 +263,265 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 <!-- ══ TAB BAR ══ -->
 <div class="uw-tab-bar-wrap">
   <div class="uw-tab-bar">
-    <button class="uw-tab-btn" id="uw-btn-1" onclick="uwShowTab(1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#378ADD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="1.5" y="9" width="3" height="6" rx="0.5"/><rect x="6.5" y="5" width="3" height="10" rx="0.5"/><rect x="11.5" y="2" width="3" height="13" rx="0.5"/></svg>Trade &amp; Retail Market Insights</button>
-    <button class="uw-tab-btn active" id="uw-btn-2" onclick="uwShowTab(2)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0"><circle cx="8" cy="8" r="6"/><path d="M2 8h12"/><path d="M8 2c-2 1.8-3 3.7-3 6s1 4.2 3 6"/><path d="M8 2c2 1.8 3 3.7 3 6s-1 4.2-3 6"/></svg>Global E-Commerce Marketplaces</button>
-    <button class="uw-tab-btn" id="uw-btn-3" onclick="uwShowTab(3)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 15V6l5-3.5L13 6v9H3z"/><path d="M6.5 15v-4.5h3V15"/></svg>Setup &amp; Compliance</button>
+    <button class="uw-tab-btn active" id="uw-btn-1" onclick="uwShowTab(1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#378ADD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="1.5" y="9" width="3" height="6" rx="0.5"/><rect x="6.5" y="5" width="3" height="10" rx="0.5"/><rect x="11.5" y="2" width="3" height="13" rx="0.5"/></svg>Market Insights &amp; Compliance</button>
+    <button class="uw-tab-btn" id="uw-btn-2" onclick="uwShowTab(2)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 15V6l5-3.5L13 6v9H3z"/><path d="M6.5 15v-4.5h3V15"/></svg>Business Management</button>
+    <button class="uw-tab-btn" id="uw-btn-3" onclick="uwShowTab(3)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0"><circle cx="8" cy="8" r="6"/><path d="M2 8h12"/><path d="M8 2c-2 1.8-3 3.7-3 6s1 4.2 3 6"/><path d="M8 2c2 1.8 3 3.7 3 6s-1 4.2-3 6"/></svg>Top E-Commerce Marketplaces</button>
   </div>
 </div>
 
-<!-- ══ TAB 1: Trade & Retail Market Insights ══ -->
-<div id="uw-tab-1" style="display:none">
-  <div class="uw-placeholder">
-    <div class="uw-placeholder-box">
-      <div class="uw-placeholder-eyebrow">Coming soon</div>
-      <p>Curated market intelligence sources, industry reports, and retail trend trackers.</p>
+<!-- ══ TAB 1: Market Insights & Compliance ══ -->
+<div id="uw-tab-1" style="display:block">
+  <div style="max-width:1100px;margin:0 auto;padding:40px 48px 56px">
+
+    <!-- Global Trade Data -->
+    <div class="resource-cat-section" data-section="Global Trade Data">
+      <div class="resource-cat-head">Global Trade Data</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Global Trade Data" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=oec.world" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">OEC — Observatory of Economic Complexity</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Visualizes bilateral trade flows &amp; export opportunities</p>
+          <a class="resource-card-link" href="https://oec.world/en" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Global Trade Data" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=data.wto.org" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">WTO Data Portal</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Official tariff &amp; trade statistics for 150+ economies</p>
+          <a class="resource-card-link" href="https://data.wto.org" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Market Research -->
+    <div class="resource-cat-section" data-section="Market Research">
+      <div class="resource-cat-head">Market Research</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Market Research" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=ahrefs.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Ahrefs</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Backlink &amp; keyword research for SEO growth</p>
+          <a class="resource-card-link" href="https://app.ahrefs.com/user/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=emarketer.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">eMarketer</span>
+            </div>
+          </div>
+          <p class="resource-card-note">US e-commerce forecasts &amp; digital trends</p>
+          <a class="resource-card-link" href="https://www.emarketer.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=trends.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Google Trends</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Free search trend signals by keyword &amp; region</p>
+          <a class="resource-card-link" href="https://trends.google.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=helium10.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Helium 10</span>
+            </div>
+          </div>
+          <p class="resource-card-note">All-in-one Amazon seller research suite</p>
+          <a class="resource-card-link" href="https://members.helium10.com/user/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=junglescout.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Jungle Scout</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Amazon product &amp; keyword research tool</p>
+          <a class="resource-card-link" href="https://www.junglescout.com/get-started/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=marketplacepulse.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Marketplace Pulse</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Amazon &amp; marketplace-specific intel</p>
+          <a class="resource-card-link" href="https://www.marketplacepulse.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=semrush.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">SEMrush</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Keyword demand, SEO &amp; competitor traffic analysis</p>
+          <a class="resource-card-link" href="https://www.semrush.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=similarweb.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">SimilarWeb</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Benchmarks your web traffic vs. competitors</p>
+          <a class="resource-card-link" href="https://www.similarweb.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Market Research" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=statista.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Statista</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Macro category stats &amp; market sizing</p>
+          <a class="resource-card-link" href="https://www.statista.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliance & IP -->
+    <div class="resource-cat-section" data-section="Compliance &amp; IP">
+      <div class="resource-cat-head">Compliance &amp; IP</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=brandservices.amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon Brand Registry</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Protects your brand on Amazon &amp; unlocks A+ content</p>
+          <a class="resource-card-link" href="https://brandservices.amazon.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=cbp.dhs.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">CBP ACE Portal</span>
+            </div>
+          </div>
+          <p class="resource-card-note">US Customs import bonds, ISF &amp; entry filings</p>
+          <a class="resource-card-link" href="https://ace.cbp.dhs.gov" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=cnipa.gov.cn" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">CNIPA</span>
+            </div>
+          </div>
+          <p class="resource-card-note">China trademark filing — register before your factory does</p>
+          <a class="resource-card-link" href="https://www.cnipa.gov.cn" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=cpsc.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">CPSC</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Consumer product safety standards for physical goods</p>
+          <a class="resource-card-link" href="https://www.cpsc.gov/Business--Manufacturing" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=fcc.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">FCC</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Federal Communications Commission — required certification for electronics, wireless, and RF-emitting products sold in the US</p>
+          <a class="resource-card-link" href="https://www.fcc.gov/consumers/guides/equipment-authorization-and-electronic-labeling" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=fda.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">FDA</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Required for food, supplements, cosmetics &amp; devices</p>
+          <a class="resource-card-link" href="https://www.fda.gov/industry/fda-basics-industry" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=ftc.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">FTC</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Advertising rules, endorsement &amp; Made-in-USA guidelines</p>
+          <a class="resource-card-link" href="https://www.ftc.gov/business-guidance" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=gs1us.org" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">GS1 US</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Official UPC/GTIN barcode licensing — required by Amazon &amp; major retailers</p>
+          <a class="resource-card-link" href="https://store.gs1us.org/gs1-company-prefix/p" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=uspto.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">USPTO</span>
+            </div>
+          </div>
+          <p class="resource-card-note">US trademark &amp; patent registration portal</p>
+          <a class="resource-card-link" href="https://www.uspto.gov/trademarks/apply" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=usitc.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">USITC HTS</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Official US tariff code (HTS) lookup tool — use to classify your products for import and customs filing</p>
+          <a class="resource-card-link" href="https://hts.usitc.gov" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- ══ TAB 2: Global E-Commerce Marketplaces ══ -->
-<div id="uw-tab-2" style="display:block">
+<!-- ══ TAB 3: Top E-Commerce Marketplaces ══ -->
+<div id="uw-tab-3" style="display:none">
 
   <div class="legend-strip">
     <div class="legend-inner">
       <div class="legend-label">Access types</div>
       <div class="legend-items-row">
-        <div class="legend-item"><span class="badge badge-open">Open signup</span><span class="legend-item-text">any qualifying seller can self-register</span></div>
-        <div class="legend-item"><span class="badge badge-invite">Invite / curated</span><span class="legend-item-text">application, invite-only, or retailer-selected</span></div>
-        <div class="legend-item"><span class="badge badge-supplier">Supplier model</span><span class="legend-item-text">no open marketplace; direct vendor relationship required</span></div>
+        <div class="legend-item"><span class="badge badge-open">Open</span><span class="legend-item-text">any qualifying seller can self-register</span></div>
+        <div class="legend-item"><span class="badge badge-invite">Curated</span><span class="legend-item-text">application, invite-only, or retailer-selected</span></div>
+        <div class="legend-item"><span class="badge badge-supplier">Vendor</span><span class="legend-item-text">no open marketplace; direct vendor relationship required</span></div>
       </div>
     </div>
   </div>
@@ -278,129 +531,278 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <h2 class="mkt-section-heading">Top US e-commerce marketplaces</h2>
 
     <div class="mkt-group">
-      <div class="mkt-group-label">Open signup</div>
+      <div class="mkt-group-label">Open</div>
       <div class="mkt-grid">
-        <a href="https://sell.amazon.com/sell" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.ebay.com/sellercenter/selling/start-selling-on-ebay" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=ebay.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">eBay</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.etsy.com/sell" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=etsy.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Etsy</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.facebook.com/business/shopping" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=facebook.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Facebook &amp; Instagram Shops</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.faire.com/sell" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=faire.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Faire</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.newegg.com/sellers/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=newegg.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Newegg</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.shopify.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=shopify.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Shopify</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://seller.temu.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=temu.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Temu</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://seller-us.tiktok.com/homepage?shop_region=US" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=tiktok.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">TikTok Shop</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://marketplace.walmart.com/about-walmart-marketplace/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=walmart.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Walmart</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon</span>
+            </div>
+          </div>
+          <p class="resource-card-note">The world's largest online marketplace; dominant channel for product discovery and DTC sales in the US.</p>
+          <a class="resource-card-link" href="https://sell.amazon.com/sell" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=ebay.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">eBay</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Pioneer auction and fixed-price marketplace; strong for refurbished, collectibles, and niche categories.</p>
+          <a class="resource-card-link" href="https://www.ebay.com/sellercenter/selling/start-selling-on-ebay" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=etsy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Etsy</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Curated marketplace for handmade, vintage, and craft goods; loyal buyer community.</p>
+          <a class="resource-card-link" href="https://www.etsy.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=facebook.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Facebook</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Social commerce channel via Facebook Shops; broad reach across demographics.</p>
+          <a class="resource-card-link" href="https://www.facebook.com/business/shopping" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=faire.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Faire</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Wholesale marketplace connecting indie brands with independent retailers across the US and Canada.</p>
+          <a class="resource-card-link" href="https://www.faire.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=instagram.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Instagram</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Visual-first social commerce via Instagram Shops; strong for lifestyle, fashion, and beauty brands.</p>
+          <a class="resource-card-link" href="https://www.facebook.com/business/shopping" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=newegg.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Newegg</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Specialist marketplace for electronics, components, and tech accessories.</p>
+          <a class="resource-card-link" href="https://www.newegg.com/sellers/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shopify.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Shopify</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Leading e-commerce platform for building your own storefront; not a marketplace but the standard for DTC brands.</p>
+          <a class="resource-card-link" href="https://www.shopify.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=temu.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Temu</span>
+            </div>
+          </div>
+          <p class="resource-card-note">High-volume discount marketplace; open to US sellers with competitive pricing requirements.</p>
+          <a class="resource-card-link" href="https://seller.temu.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=tiktok.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">TikTok Shop</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Fastest-growing social commerce channel in the US; strong for impulse and lifestyle product categories.</p>
+          <a class="resource-card-link" href="https://seller-us.tiktok.com/homepage?shop_region=US" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=walmart.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Walmart</span>
+            </div>
+          </div>
+          <p class="resource-card-note">The #2 US marketplace by GMV; strong for everyday goods, groceries, and value-oriented categories.</p>
+          <a class="resource-card-link" href="https://marketplace.walmart.com/about-walmart-marketplace/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
-      <div class="mkt-group-label">Invite / curated &amp; supplier model</div>
+      <div class="mkt-group-label">Curated &amp; vendor</div>
       <div class="mkt-grid">
-        <a href="https://www.bedbathandbeyond.com/partner" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=bedbathandbeyond.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Bed Bath &amp; Beyond</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://partners.bestbuy.com/-/onboarding-activity-guides-new-bby-vendors" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=bestbuy.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Best Buy</span>
-          <span class="badge badge-supplier">Supplier model</span>
-        </a>
-        <a href="https://www.macysinc.com/work-with-us/vendors/Become-a-Vendor-Partner/default.aspx" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=bloomingdales.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Bloomingdale's</span>
-          <span class="badge badge-supplier">Supplier model</span>
-        </a>
-        <a href="https://www.costco.com/supplier-diversity.html" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=costco.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Costco</span>
-          <span class="badge badge-supplier">Supplier model</span>
-        </a>
-        <a href="https://supplierhub-prospective.homedepot.com/hc/en-us/articles/360034558452" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=homedepot.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Home Depot</span>
-          <span class="badge badge-supplier">Supplier model</span>
-        </a>
-        <a href="https://www.kohls.com/feature/certifiedpartners.jsp" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=kohls.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Kohl's</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://vendor.lowes.com/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=lowes.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Lowe's</span>
-          <span class="badge badge-supplier">Supplier model</span>
-        </a>
-        <a href="https://marketplace.macys.com/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=macys.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Macy's Marketplace</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="http://nordstromsupplier.com/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=nordstrom.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Nordstrom</span>
-          <span class="badge badge-supplier">Supplier model</span>
-        </a>
-        <a href="https://marketplace.shein.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=shein.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">SHEIN</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://plus.target.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=target.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Target Plus</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://sell.wayfair.com/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=wayfair.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Wayfair</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://www.whatnot.com/seller" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=whatnot.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Whatnot</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=bedbathandbeyond.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Bed Bath &amp; Beyond</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Marketplace for home, bath, and lifestyle products; application-based.</p>
+          <a class="resource-card-link" href="https://www.bedbathandbeyond.com/partner" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-supplier">Vendor</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=bestbuy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Best Buy</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Consumer electronics and appliance retailer; vendor onboarding initiated by category leads.</p>
+          <a class="resource-card-link" href="https://partners.bestbuy.com/-/onboarding-activity-guides-new-bby-vendors" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-supplier">Vendor</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=bloomingdales.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Bloomingdale's</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Premium department store vendor program; application via Macy's Inc. vendor portal.</p>
+          <a class="resource-card-link" href="https://www.macysinc.com/work-with-us/vendors/Become-a-Vendor-Partner/default.aspx" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-supplier">Vendor</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=costco.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Costco</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Membership warehouse club; vendor relationships are negotiated directly with category buyers.</p>
+          <a class="resource-card-link" href="https://www.costco.com/supplier-diversity.html" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-supplier">Vendor</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=homedepot.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Home Depot</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Home improvement retailer; new suppliers apply via SupplierGATEWAY.</p>
+          <a class="resource-card-link" href="https://supplierhub-prospective.homedepot.com/hc/en-us/articles/360034558452" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=kohls.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Kohl's</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Mass-market department store with a certified partner program for apparel, home, and footwear brands.</p>
+          <a class="resource-card-link" href="https://www.kohls.com/feature/certifiedpartners.jsp" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-supplier">Vendor</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=lowes.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Lowe's</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Home improvement retailer vendor portal; direct supplier relationship required.</p>
+          <a class="resource-card-link" href="https://vendor.lowes.com/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=macys.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Macy's Marketplace</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Department store marketplace open to third-party sellers in fashion, home, and beauty.</p>
+          <a class="resource-card-link" href="https://marketplace.macys.com/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-supplier">Vendor</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=nordstrom.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Nordstrom</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Upscale fashion and lifestyle vendor program; strong for premium and contemporary brands.</p>
+          <a class="resource-card-link" href="http://nordstromsupplier.com/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shein.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">SHEIN</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Fast-fashion marketplace with massive Gen Z reach; application-based with volume and pricing requirements.</p>
+          <a class="resource-card-link" href="https://marketplace.shein.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=target.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Target Plus</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Curated extension of Target.com; invite-only with a focus on quality, trend-forward assortments.</p>
+          <a class="resource-card-link" href="https://plus.target.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=wayfair.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Wayfair</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Home goods and furniture marketplace; application-based with strict imagery and content standards.</p>
+          <a class="resource-card-link" href="https://sell.wayfair.com/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=whatnot.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Whatnot</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Live-stream selling platform for collectibles, trading cards, and niche enthusiast categories.</p>
+          <a class="resource-card-link" href="https://www.whatnot.com/seller" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
       </div>
     </div>
   </div>
@@ -412,104 +814,200 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <div class="mkt-group">
       <div class="mkt-group-label">North America</div>
       <div class="mkt-grid">
-        <a href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon BR</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.ca" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon CA</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.com.mx" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon MX</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon US</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon BR</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Brazil — largest e-commerce market in Latin America.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon CA</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Canada — separate listings and fulfillment from the US.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.ca" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon MX</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Mexico — growing marketplace with cross-border opportunities from the US.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.com.mx" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon US</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Primary Seller Central portal for the United States marketplace.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.com" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
       <div class="mkt-group-label">Europe</div>
       <div class="mkt-grid">
-        <a href="https://sellercentral-europe.amazon.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon EU (UK/DE/FR/ES/IT)</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.nl" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon NL</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.pl" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon PL</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.se" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon SE</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.com.tr" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon TR</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon EU (UK/DE/FR/ES/IT)</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Unified Seller Central covering UK, Germany, France, Spain, and Italy.</p>
+          <a class="resource-card-link" href="https://sellercentral-europe.amazon.com" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon NL</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for the Netherlands marketplace.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.nl" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon PL</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Poland.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.pl" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon SE</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Sweden.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.se" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon TR</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Turkey.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.com.tr" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
       <div class="mkt-group-label">Middle East &amp; Africa</div>
       <div class="mkt-grid">
-        <a href="https://sellercentral.amazon.eg" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon EG</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.com.sa" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon SA</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.ae" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon UAE</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon EG</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Egypt.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.eg" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon SA</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Saudi Arabia — fastest-growing Amazon market in the region.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.com.sa" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon UAE</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for the United Arab Emirates.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.ae" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
       <div class="mkt-group-label">Asia-Pacific</div>
       <div class="mkt-grid">
-        <a href="https://sellercentral.amazon.com.au" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon AU</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.in" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon IN</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.co.jp" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon JP</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://sellercentral.amazon.sg" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon SG</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon AU</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Australia.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.com.au" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon IN</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for India — large and competitive marketplace with local fulfillment options.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.in" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon JP</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Japan — second-largest Amazon marketplace globally.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.co.jp" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon SG</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Seller Central for Singapore.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.sg" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
       </div>
     </div>
   </div>
@@ -521,143 +1019,1179 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <div class="mkt-group">
       <div class="mkt-group-label">Europe</div>
       <div class="mkt-grid">
-        <a href="https://allegro.pl/dla-sprzedajacych" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=allegro.pl" class="mkt-favicon" alt="">
-          <span class="mkt-name">Allegro</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.cdiscount.com/vendre-sur-cdiscount.html" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=cdiscount.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Cdiscount</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.onbuy.com/gb/sell-on-onbuy/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=onbuy.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">OnBuy</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.otto.de/shoppages/partner/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=otto.de" class="mkt-favicon" alt="">
-          <span class="mkt-name">Otto</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://www.zalando.co.uk/partner-program/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=zalando.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Zalando</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=allegro.pl" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Allegro</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Poland's dominant marketplace and one of the largest in Central and Eastern Europe.</p>
+          <a class="resource-card-link" href="https://allegro.pl/dla-sprzedajacych" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=cdiscount.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Cdiscount</span>
+            </div>
+          </div>
+          <p class="resource-card-note">France's leading domestic marketplace covering a broad range of categories.</p>
+          <a class="resource-card-link" href="https://www.cdiscount.com/vendre-sur-cdiscount.html" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=onbuy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">OnBuy</span>
+            </div>
+          </div>
+          <p class="resource-card-note">UK-based open marketplace with a strong cashback-driven buyer base.</p>
+          <a class="resource-card-link" href="https://www.onbuy.com/gb/sell-on-onbuy/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=otto.de" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Otto</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Germany's second-largest online marketplace; strong for home, fashion, and electronics.</p>
+          <a class="resource-card-link" href="https://www.otto.de/shoppages/partner/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=zalando.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Zalando</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Europe's leading fashion and lifestyle platform; partner program for brands and retailers.</p>
+          <a class="resource-card-link" href="https://www.zalando.co.uk/partner-program/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
       <div class="mkt-group-label">Latin America</div>
       <div class="mkt-grid">
-        <a href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Amazon BR</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.mercadolibre.com/sell" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=mercadolibre.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Mercado Libre</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://shopee.com.br/m/sell-on-shopee" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=shopee.com.br" class="mkt-favicon" alt="">
-          <span class="mkt-name">Shopee BR</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amazon BR</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Amazon's Brazilian marketplace — the country's second-largest e-commerce platform.</p>
+          <a class="resource-card-link" href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener">Seller Central ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=mercadolibre.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Mercado Libre</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Latin America's largest marketplace and payments ecosystem, operating across 18 countries.</p>
+          <a class="resource-card-link" href="https://www.mercadolibre.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shopee.com.br" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Shopee BR</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Shopee's rapidly growing Brazilian marketplace with strong mobile commerce adoption.</p>
+          <a class="resource-card-link" href="https://shopee.com.br/m/sell-on-shopee" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
       <div class="mkt-group-label">Far East — China, Japan, Korea</div>
       <div class="mkt-grid">
-        <a href="https://wing.coupang.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=coupang.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Coupang</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://global.jd.com/merchant.html" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=jd.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">JD Worldwide</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://www.rakuten.co.jp/ec/partner/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=rakuten.co.jp" class="mkt-favicon" alt="">
-          <span class="mkt-name">Rakuten JP</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
-        <a href="https://seller.tmall.hk/index.htm" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=tmall.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Tmall Global</span>
-          <span class="badge badge-invite">Invite / curated</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=coupang.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Coupang</span>
+            </div>
+          </div>
+          <p class="resource-card-note">South Korea's dominant e-commerce platform known for ultra-fast Rocket Delivery.</p>
+          <a class="resource-card-link" href="https://wing.coupang.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=jd.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">JD Worldwide</span>
+            </div>
+          </div>
+          <p class="resource-card-note">JD.com's cross-border platform for overseas brands selling into China.</p>
+          <a class="resource-card-link" href="https://global.jd.com/merchant.html" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=rakuten.co.jp" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Rakuten JP</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Japan's leading domestic marketplace with a loyalty-driven shopping ecosystem.</p>
+          <a class="resource-card-link" href="https://www.rakuten.co.jp/ec/partner/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-invite">Curated</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=tmall.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Tmall Global</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Alibaba's cross-border marketplace for international brands entering the Chinese market.</p>
+          <a class="resource-card-link" href="https://seller.tmall.hk/index.htm" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
       <div class="mkt-group-label">Southeast Asia</div>
       <div class="mkt-grid">
-        <a href="https://sellercenter.lazada.sg/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=lazada.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Lazada</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://seller.shopee.sg/edu/article/register" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=shopee.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Shopee</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://tiki.vn/seller" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=tiki.vn" class="mkt-favicon" alt="">
-          <span class="mkt-name">Tiki</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.tokopedia.com/seller" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=tokopedia.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Tokopedia</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=lazada.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Lazada</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Major Southeast Asian marketplace backed by Alibaba; operates across six countries.</p>
+          <a class="resource-card-link" href="https://sellercenter.lazada.sg/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shopee.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Shopee</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Southeast Asia's largest marketplace by orders; strong across SG, MY, ID, TH, PH, and VN.</p>
+          <a class="resource-card-link" href="https://seller.shopee.sg/edu/article/register" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=tiki.vn" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Tiki</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Vietnam's leading domestic marketplace with a strong focus on authentic product guarantees.</p>
+          <a class="resource-card-link" href="https://tiki.vn/seller" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=tokopedia.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Tokopedia</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Indonesia's largest domestic marketplace, now part of the GoTo Group.</p>
+          <a class="resource-card-link" href="https://www.tokopedia.com/seller" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
       </div>
     </div>
 
     <div class="mkt-group">
       <div class="mkt-group-label">Middle East &amp; Africa</div>
       <div class="mkt-grid">
-        <a href="https://seller.flipkart.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=flipkart.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Flipkart</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.jumia.com/sp/sell-on-jumia/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=jumia.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Jumia</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://supplier.meesho.com" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=meesho.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Meesho</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
-        <a href="https://www.noon.com/seller/" target="_blank" rel="noopener" class="mkt-card">
-          <img src="https://www.google.com/s2/favicons?sz=64&domain=noon.com" class="mkt-favicon" alt="">
-          <span class="mkt-name">Noon</span>
-          <span class="badge badge-open">Open signup</span>
-        </a>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=flipkart.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Flipkart</span>
+            </div>
+          </div>
+          <p class="resource-card-note">India's largest domestic marketplace; dominant in fashion, electronics, and large appliances.</p>
+          <a class="resource-card-link" href="https://seller.flipkart.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=jumia.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Jumia</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Africa's largest e-commerce platform operating across 11 countries.</p>
+          <a class="resource-card-link" href="https://www.jumia.com/sp/sell-on-jumia/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=meesho.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Meesho</span>
+            </div>
+          </div>
+          <p class="resource-card-note">India's fastest-growing social commerce and reseller marketplace, focused on Tier 2 and 3 cities.</p>
+          <a class="resource-card-link" href="https://supplier.meesho.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="mkt-card resource-card">
+          <span class="badge badge-open">Open</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=noon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Noon</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Leading Middle Eastern marketplace operating across UAE, Saudi Arabia, and Egypt.</p>
+          <a class="resource-card-link" href="https://www.noon.com/seller/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
       </div>
     </div>
   </div>
 
 </div>
 
-<!-- ══ TAB 3: Setup & Compliance ══ -->
-<div id="uw-tab-3" style="display:none">
-  <div class="uw-placeholder">
-    <div class="uw-placeholder-box">
-      <div class="uw-placeholder-eyebrow">Coming soon</div>
-      <p>Coming soon — guides and official portals for business registration, trademark filing, brand protection, compliance requirements, product safety standards, and regulatory resources by market.</p>
+<!-- ══ TAB 2: Business Management ══ -->
+<div id="uw-tab-2" style="display:none">
+  <div style="max-width:1100px;margin:0 auto;padding:40px 48px 56px">
+
+    <!-- Company Formation -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Company Formation</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Company Formation" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=clerky.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Clerky</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Startup incorporation &amp; equity document automation</p>
+          <a class="resource-card-link" href="https://www.clerky.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Company Formation" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=docusign.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">DocuSign</span>
+            </div>
+          </div>
+          <p class="resource-card-note">eSignature &amp; contract management</p>
+          <a class="resource-card-link" href="https://www.docusign.com/esignature/free-trial-global" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Company Formation" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=irs.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">IRS EIN</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Employer ID number required for US banking &amp; payroll</p>
+          <a class="resource-card-link" href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Company Formation" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=legalzoom.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">LegalZoom</span>
+            </div>
+          </div>
+          <p class="resource-card-note">LLC &amp; Corp formation for US entities</p>
+          <a class="resource-card-link" href="https://www.legalzoom.com/business/business-formation/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Company Formation" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=northwestregisteredagent.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Northwest Registered Agent</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Registered agent service required per US state</p>
+          <a class="resource-card-link" href="https://www.northwestregisteredagent.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Company Formation" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=pandadoc.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">PandaDoc</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Proposal, quote &amp; contract signing platform</p>
+          <a class="resource-card-link" href="https://app.pandadoc.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Company Formation" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=stripe.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Stripe Atlas</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Delaware C-Corp formation built for startups</p>
+          <a class="resource-card-link" href="https://stripe.com/atlas" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Domain & Hosting -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Domain &amp; Hosting</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=aws.amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">AWS</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Scalable cloud hosting when you outgrow Shopify/Wix</p>
+          <a class="resource-card-link" href="https://aws.amazon.com/free/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=cloudflare.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Cloudflare</span>
+            </div>
+          </div>
+          <p class="resource-card-note">DNS, CDN &amp; DDoS protection for your domain</p>
+          <a class="resource-card-link" href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=godaddy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">GoDaddy</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Domain registration — widely used, adequate pricing</p>
+          <a class="resource-card-link" href="https://www.godaddy.com/domains" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=cloud.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Google Cloud</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Managed cloud infra with strong data &amp; ML tooling</p>
+          <a class="resource-card-link" href="https://cloud.google.com/free" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=namecheap.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Namecheap</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Popular registrar with free WhoisGuard privacy</p>
+          <a class="resource-card-link" href="https://www.namecheap.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=porkbun.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Porkbun</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Budget-friendly registrar with clean UX</p>
+          <a class="resource-card-link" href="https://porkbun.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Website Builder -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Website Builder</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Website Builder" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=bigcommerce.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">BigCommerce</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Strong Shopify alternative for larger product catalogs</p>
+          <a class="resource-card-link" href="https://www.bigcommerce.com/essentials/free-trial/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Website Builder" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shopify.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Shopify</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Best-in-class e-commerce platform — recommended primary</p>
+          <a class="resource-card-link" href="https://www.shopify.com/free-trial" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Website Builder" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=squarespace.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Squarespace</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Design-forward builder; limited e-commerce depth</p>
+          <a class="resource-card-link" href="https://www.squarespace.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Website Builder" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=wix.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Wix</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Good for non-commerce sites; weaker for inventory</p>
+          <a class="resource-card-link" href="https://www.wix.com/upgrade/website" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Website Builder" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=woo.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">WooCommerce</span>
+            </div>
+          </div>
+          <p class="resource-card-note">E-commerce plugin for WordPress sites</p>
+          <a class="resource-card-link" href="https://woo.com/start/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Website Builder" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=wordpress.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">WordPress</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Most flexible CMS; requires more technical setup</p>
+          <a class="resource-card-link" href="https://wordpress.com/start/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product & Analytics -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Product &amp; Analytics</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=amplitude.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Amplitude</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Deep behavioral analytics for product &amp; growth teams</p>
+          <a class="resource-card-link" href="https://amplitude.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=figma.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Figma</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Collaborative design tool for UI, assets &amp; prototypes</p>
+          <a class="resource-card-link" href="https://www.figma.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=lookerstudio.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Looker Studio</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Free BI dashboards connecting GA4, Sheets &amp; Shopify</p>
+          <a class="resource-card-link" href="https://lookerstudio.google.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=mixpanel.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Mixpanel</span>
+            </div>
+          </div>
+          <p class="resource-card-note">User funnel &amp; product event analytics</p>
+          <a class="resource-card-link" href="https://mixpanel.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=triplewhale.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Triple Whale</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Unified e-commerce analytics across all ad channels</p>
+          <a class="resource-card-link" href="https://www.triplewhale.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marketing & Growth -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Marketing &amp; Growth</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=attentive.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Attentive</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Enterprise SMS &amp; email with AI-driven personalization</p>
+          <a class="resource-card-link" href="https://www.attentive.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=brevo.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Brevo</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Email &amp; SMS — better value than Mailchimp at scale</p>
+          <a class="resource-card-link" href="https://app.brevo.com/account/register" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=ads.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Google Ads</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Search &amp; shopping ads for high-intent buyers</p>
+          <a class="resource-card-link" href="https://ads.google.com/intl/en_us/home/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=analytics.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Google Analytics</span>
+            </div>
+          </div>
+          <p class="resource-card-note">GA4 standard for site traffic &amp; funnel tracking</p>
+          <a class="resource-card-link" href="https://analytics.google.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=hotjar.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Hotjar</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Session recordings &amp; heatmaps to complement GA4</p>
+          <a class="resource-card-link" href="https://www.hotjar.com/sign-up/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=justuno.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Justuno</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Conversion optimization &amp; lead capture for e-commerce</p>
+          <a class="resource-card-link" href="https://app.justuno.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=klaviyo.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Klaviyo</span>
+            </div>
+          </div>
+          <p class="resource-card-note">E-commerce email/SMS; deep Shopify integration</p>
+          <a class="resource-card-link" href="https://www.klaviyo.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=mailchimp.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Mailchimp</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Email marketing — solid free tier for early stage</p>
+          <a class="resource-card-link" href="https://login.mailchimp.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=facebook.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Meta Ads</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Facebook &amp; Instagram paid acquisition — core DTC channel</p>
+          <a class="resource-card-link" href="https://www.facebook.com/business/ads" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=clarity.microsoft.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Microsoft Clarity</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Free heatmap &amp; session recording tool by Microsoft</p>
+          <a class="resource-card-link" href="https://clarity.microsoft.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=postscript.io" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Postscript</span>
+            </div>
+          </div>
+          <p class="resource-card-note">SMS marketing platform built for Shopify brands</p>
+          <a class="resource-card-link" href="https://postscript.io/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=privy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Privy</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Email capture popups &amp; exit-intent flows for Shopify</p>
+          <a class="resource-card-link" href="https://dashboard.privy.com/users/sign_up" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=ads.tiktok.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">TikTok Ads</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Growing product-discovery channel, especially for DTC</p>
+          <a class="resource-card-link" href="https://ads.tiktok.com/i18n/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collaboration -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Collaboration</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=asana.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Asana</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Task &amp; project management for cross-functional teams</p>
+          <a class="resource-card-link" href="https://app.asana.com/r/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=workspace.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Google Workspace</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Gmail, Docs &amp; Drive — standard productivity suite</p>
+          <a class="resource-card-link" href="https://workspace.google.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=larksuite.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Lark</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Messaging + docs suite — preferred for China-side teams</p>
+          <a class="resource-card-link" href="https://www.larksuite.com/en_us/campaign/sign-up" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=linear.app" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Linear</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Fast, structured issue tracking for product &amp; ops teams</p>
+          <a class="resource-card-link" href="https://linear.app/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=notion.so" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Notion</span>
+            </div>
+          </div>
+          <p class="resource-card-note">All-in-one docs, wikis &amp; project notes</p>
+          <a class="resource-card-link" href="https://www.notion.so/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=slack.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Slack</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Internal messaging &amp; channel-based team communication</p>
+          <a class="resource-card-link" href="https://slack.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=voovmeeting.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">VooV Meeting</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Tencent video call tool for China-based team meetings</p>
+          <a class="resource-card-link" href="https://voovmeeting.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=wechat.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">WeChat</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Essential for day-to-day China supplier communication</p>
+          <a class="resource-card-link" href="https://www.wechat.com/en/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Collaboration" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=zoom.us" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Zoom</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Video conferencing for internal &amp; external calls</p>
+          <a class="resource-card-link" href="https://zoom.us/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRM -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">CRM</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="CRM" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=freshdesk.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Freshdesk</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Affordable support CRM with strong e-commerce integrations</p>
+          <a class="resource-card-link" href="https://freshdesk.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="CRM" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=gorgias.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Gorgias</span>
+            </div>
+          </div>
+          <p class="resource-card-note">E-commerce customer support CRM; built for DTC brands</p>
+          <a class="resource-card-link" href="https://www.gorgias.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="CRM" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=hubspot.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">HubSpot</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Strong free CRM tier for early-stage teams</p>
+          <a class="resource-card-link" href="https://app.hubspot.com/signup-hubspot/crm" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="CRM" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=salesforce.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Salesforce</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Enterprise CRM — consider only at $5M+ revenue scale</p>
+          <a class="resource-card-link" href="https://www.salesforce.com/form/signup/freetrial-sales/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="CRM" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=zendesk.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Zendesk</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Scalable support platform with broad integration options</p>
+          <a class="resource-card-link" href="https://www.zendesk.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logistics & Ops -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Logistics &amp; Ops</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=customscity.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Customs City</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Import customs filing &amp; trade compliance tools</p>
+          <a class="resource-card-link" href="https://www.customscity.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=easypost.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">EasyPost</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Multi-carrier shipping API for rate shopping &amp; labels</p>
+          <a class="resource-card-link" href="https://www.easypost.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=flexport.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Flexport</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Digital freight forwarding — merged with Shopify Logistics</p>
+          <a class="resource-card-link" href="https://www.flexport.com/contact/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=freightos.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Freightos</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Online freight rate marketplace for air, sea &amp; rail</p>
+          <a class="resource-card-link" href="https://www.freightos.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=inventoryplanner.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Inventory Planner</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Demand forecasting &amp; purchase order management</p>
+          <a class="resource-card-link" href="https://inventoryplanner.com" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=netsuite.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">NetSuite</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Oracle&#39;s ERP platform for inventory, financials &amp; order management at scale</p>
+          <a class="resource-card-link" href="https://www.netsuite.com/portal/products/erp.shtml" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shipbob.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">ShipBob</span>
+            </div>
+          </div>
+          <p class="resource-card-note">US-based 3PL fulfillment network for DTC brands</p>
+          <a class="resource-card-link" href="https://www.shipbob.com/get-started/" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shipmonk.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">ShipMonk</span>
+            </div>
+          </div>
+          <p class="resource-card-note">3PL fulfillment with strong subscription box support</p>
+          <a class="resource-card-link" href="https://www.shipmonk.com/get-started/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=shipstation.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">ShipStation</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Order management &amp; label printing across all carriers</p>
+          <a class="resource-card-link" href="https://www.shipstation.com/step1/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=skubana.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Skubana</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Omnichannel inventory &amp; operations platform</p>
+          <a class="resource-card-link" href="https://www.skubana.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finance & Payments -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">Finance &amp; Payments</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=avalara.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Avalara</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Enterprise-grade tax compliance &amp; filing automation</p>
+          <a class="resource-card-link" href="https://www.avalara.com/us/en/get-started.html" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=brex.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Brex</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Corporate cards &amp; expense management for startups</p>
+          <a class="resource-card-link" href="https://www.brex.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=coverwallet.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">CoverWallet</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Online broker for small business insurance including general liability and product liability COI</p>
+          <a class="resource-card-link" href="https://www.coverwallet.com/business-insurance/general-liability" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=hiscox.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Hiscox</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Small business insurer with fast online COI issuance — strong for product liability and e-commerce sellers</p>
+          <a class="resource-card-link" href="https://www.hiscox.com/small-business-insurance" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=mercury.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Mercury Bank</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Startup-friendly US bank; free ACH &amp; wires</p>
+          <a class="resource-card-link" href="https://mercury.com/r/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=nextinsurance.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Next Insurance</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Digital-first small business insurer with instant COI — widely accepted by retailers and platforms</p>
+          <a class="resource-card-link" href="https://www.nextinsurance.com" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=payoneer.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Payoneer</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Cross-border payments — essential for China supplier payouts</p>
+          <a class="resource-card-link" href="https://www.payoneer.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=quickbooks.intuit.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">QuickBooks</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Accounting standard for US small &amp; mid-size businesses</p>
+          <a class="resource-card-link" href="https://quickbooks.intuit.com/buy-now/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=ramp.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Ramp</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Expense management with automated savings insights</p>
+          <a class="resource-card-link" href="https://ramp.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=stripe.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Stripe</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Best-in-class payment processing &amp; developer APIs</p>
+          <a class="resource-card-link" href="https://dashboard.stripe.com/register" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=taxjar.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">TaxJar</span>
+            </div>
+          </div>
+          <p class="resource-card-note">US sales tax automation — critical for multi-state selling</p>
+          <a class="resource-card-link" href="https://app.taxjar.com/sign_up/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=thimble.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Thimble</span>
+            </div>
+          </div>
+          <p class="resource-card-note">On-demand business insurance with flexible short-term policies — useful for early-stage sellers</p>
+          <a class="resource-card-link" href="https://www.thimble.com/get-a-quote" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=xero.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Xero</span>
+            </div>
+          </div>
+          <p class="resource-card-note">QuickBooks alternative with strong bank feed sync</p>
+          <a class="resource-card-link" href="https://www.xero.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HR & Hiring -->
+    <div class="resource-cat-section">
+      <div class="resource-cat-head">HR &amp; Hiring</div>
+      <div class="resource-card-grid">
+        <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=adp.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">ADP</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Payroll &amp; HR for established businesses</p>
+          <a class="resource-card-link" href="https://www.adp.com/contact-us/get-pricing.aspx" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=deel.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Deel</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Contractor &amp; EOR platform for cross-border hiring</p>
+          <a class="resource-card-link" href="https://www.deel.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="startup">
+          <span class="resource-stage-badge startup">startup</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=gusto.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Gusto</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Payroll &amp; benefits built for startups &amp; SMBs</p>
+          <a class="resource-card-link" href="https://gusto.com/go/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=indeed.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Indeed</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Broad job board with high applicant volume</p>
+          <a class="resource-card-link" href="https://employers.indeed.com/post-job" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=linkedin.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">LinkedIn</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Primary channel for professional hiring &amp; sourcing</p>
+          <a class="resource-card-link" href="https://www.linkedin.com/talent/post-a-job" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+        <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="both">
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=remote.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Remote</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Global payroll &amp; compliance for international contractors</p>
+          <a class="resource-card-link" href="https://remote.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+        </div>
+        <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="established">
+          <span class="resource-stage-badge established">established</span>
+          <div class="resource-card-top">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <img src="https://www.google.com/s2/favicons?sz=32&domain=rippling.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
+              <span class="resource-card-name">Rippling</span>
+            </div>
+          </div>
+          <p class="resource-card-note">Unified HR, IT &amp; payroll — better for tech-forward teams</p>
+          <a class="resource-card-link" href="https://www.rippling.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -708,6 +2242,7 @@ document.addEventListener('click', function(e) {
     document.querySelectorAll('.nav-dropdown').forEach(function(d) { d.classList.remove('open'); });
   }
 });
+
 </script>
 </body>
 </html>
