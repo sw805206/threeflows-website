@@ -38,7 +38,10 @@
       font-size: var(--font-body);
       line-height: var(--line-height);
       color: var(--dark);
-      background: var(--white);
+      background: var(--off-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── NAV ── */
@@ -85,52 +88,27 @@
       height: 8px;
     }
 
-    /* ── PAGE HERO ── */
-    .page-hero {
-      background: var(--off-white);
-      border-bottom: 1px solid var(--border);
-      padding: 56px 32px 48px;
-      text-align: center;
-    }
-    .breadcrumb {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      margin-bottom: 20px;
-      transition: color var(--transition);
-    }
-    .breadcrumb:hover { color: var(--dark); }
-    .page-hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 400;
-      color: var(--dark);
-      margin-bottom: 16px;
-    }
-    .page-hero p {
-      font-size: 17px;
-      color: var(--mid);
-      max-width: 520px;
-      margin: 0 auto;
-    }
+    /* ── PAGE LAYOUT ── */
+    .page-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 56px 24px 80px; }
+    .breadcrumb { width: 100%; max-width: 740px; margin-bottom: 32px; }
+    .breadcrumb a { font-size: 13.5px; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color .15s; }
+    .breadcrumb a:hover { color: var(--dark); }
+    .breadcrumb a::before { content: '←'; font-size: 14px; }
 
-    /* ── FORM LAYOUT ── */
-    .form-section {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 60px 32px 80px;
-    }
-
+    /* ── FORM CARD ── */
     .form-card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 40px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 740px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     }
+    .form-header { padding: 40px 48px 28px; border-bottom: 1px solid var(--border); }
+    .form-header h1 { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.2; color: var(--dark); margin-bottom: 8px; }
+    .form-header p { font-size: 14.5px; color: var(--mid); line-height: 1.6; }
+    .form-card form { padding: 36px 48px 32px; }
 
     .form-group {
       margin-bottom: 28px;
@@ -249,8 +227,9 @@
     /* ── TRUST STRIP ── */
     .trust-strip {
       display: flex;
+      flex-direction: column;
       align-items: flex-start;
-      gap: 32px;
+      gap: 0;
       background: var(--off-white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -262,7 +241,10 @@
       align-items: flex-start;
       gap: 12px;
       flex: 1;
+      width: 100%;
+      padding: 10px 0;
     }
+    .trust-item + .trust-item { border-top: 1px solid var(--border); }
     .trust-icon {
       width: 36px;
       height: 36px;
@@ -275,14 +257,15 @@
     }
     .trust-icon svg { width: 18px; height: 18px; }
     .trust-text strong {
-      display: block;
+      display: inline;
       font-size: 13px;
       font-weight: 600;
       color: var(--dark);
       margin-bottom: 2px;
     }
     .trust-text span {
-      font-size: 12px;
+      font-size: 11px;
+      line-height: 1.4;
       color: var(--muted);
     }
 
@@ -330,7 +313,7 @@
       background: var(--red-light);
       border: 1px solid rgba(214,59,59,0.18);
       border-left: 3px solid var(--red);
-      border-radius: var(--radius-sm);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       padding: 16px 20px;
       margin-bottom: 24px;
     }
@@ -419,11 +402,9 @@
       .nav-links { display: none; }
     }
 
-    @media (max-width: 600px) {
-      .page-hero { padding: 40px 16px 32px; }
-      .form-section { padding: 32px 16px 60px; }
-      .form-card { padding: 24px 20px; }
-      .trust-strip { flex-direction: column; gap: 20px; padding: 20px; }
+    @media (max-width: 640px) {
+      .form-header, .form-card form { padding-left: 24px; padding-right: 24px; }
+      .form-header h1 { font-size: 22px; }
     }
   </style>
 </head>
@@ -466,66 +447,18 @@
   <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
 </nav>
 
-  <!-- PAGE HERO -->
-  <div class="page-hero">
-    <a href="index.html#contact-anchor" class="breadcrumb">← Back</a>
-    <h1>Business Inquiry</h1>
-    <p>Have a question or ready to get started? Fill in this quick form and we'll get back to you within 1 business day.</p>
-  </div>
-
-  <!-- FORM -->
-  <section class="form-section">
-
-    <!-- Trust indicators -->
-    <div class="trust-strip">
-      <div class="trust-item">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <div class="trust-text">
-          <strong>Reply within 1 business day</strong>
-          <span>We review every inquiry personally</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <div class="trust-text">
-          <strong>Your information is secure</strong>
-          <span>Never shared with third parties</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
-        </div>
-        <div class="trust-text">
-          <strong>No commitment required</strong>
-          <span>Just a conversation to start</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Intake nudge -->
-    <div class="intake-nudge">
-      <div class="intake-nudge-icon">💡</div>
-      <div class="intake-nudge-body">
-        <strong>Already know what you need?</strong>
-        If you have a specific service in mind, use our <a href="intake.html">detailed intake form</a> instead — it helps us understand your situation upfront so we can hit the ground running on our first call.
-      </div>
-    </div>
+  <main class="page-wrap">
+    <div class="breadcrumb"><a href="index.html">Home</a></div>
 
     <div class="form-card">
-      <div id="form-status" class="form-status"></div>
+      <div class="form-header">
+        <h1>General business inquiry</h1>
+        <p>Have a question or ready to get started? Fill in this quick form and we'll get back to you within 1 business day.</p>
+      </div>
 
       <form id="inquiry-form" novalidate>
+        <div id="form-status" class="form-status"></div>
+
 
         <div class="form-group">
           <label for="name">Name<span class="required">*</span></label>
@@ -547,6 +480,15 @@
         <div class="form-group">
           <label for="message">Question / Message<span class="required">*</span></label>
           <textarea id="message" name="message" placeholder="Tell us what you're working on, or ask us anything…" required></textarea>
+        </div>
+
+        <!-- Intake nudge -->
+        <div class="intake-nudge">
+          <div class="intake-nudge-icon">💡</div>
+          <div class="intake-nudge-body">
+            <strong>Already know what you need?</strong>
+            If you have a specific service in mind, use our <a href="intake.html">detailed intake form</a> instead — it helps us understand your situation upfront so we can hit the ground running on our first call.
+          </div>
         </div>
 
         <button type="submit" class="btn-red" id="submit-btn">
@@ -572,7 +514,7 @@
       </div>
     </div>
 
-  </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
