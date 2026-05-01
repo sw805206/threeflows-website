@@ -647,7 +647,8 @@
         setLoading(true);
         await new Promise(r => setTimeout(r, 900));
         setLoading(false);
-        window.location.href = 'inquiry-confirmation.html';
+        showStatus('success', '✓ Your inquiry has been submitted! We\'ll be in touch within 1 business day.');
+        form.reset();
         return;
       }
 
@@ -670,7 +671,8 @@
         });
 
         // no-cors means we can't read the response — assume success if no error thrown
-        window.location.href = 'inquiry-confirmation.html';
+        showStatus('success', '✓ Your inquiry has been submitted! We\'ll be in touch within 1 business day.');
+        form.reset();
       } catch (err) {
         showStatus('error', 'Something went wrong. Please try again or email us at contact@threeflows.com');
         console.error(err);
