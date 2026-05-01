@@ -410,6 +410,60 @@
     }
     .intake-nudge-body a:hover { border-color: var(--red); }
 
+    /* ── SUCCESS STATE ── */
+    .success-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+    .success-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--green);
+    }
+    .success-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .success-card p {
+      font-size: 15px;
+      color: var(--mid);
+      margin-bottom: 32px;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .success-card .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--dark);
+      border: 1.5px solid var(--border-dark);
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .success-card .btn-outline:hover { border-color: var(--dark); background: var(--off-white); }
+
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
       .nav-links { display: none; }
@@ -559,6 +613,20 @@
       </form>
     </div>
 
+    <!-- Success state (hidden until submission) -->
+    <div id="success-state" style="display:none;">
+      <div class="success-card">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2>Inquiry submitted</h2>
+        <p>Thank you — we've received your inquiry and will be in touch within 1 business day.</p>
+        <a href="index.html" class="btn-outline">Back to home</a>
+      </div>
+    </div>
+
   </section>
 
   <!-- FOOTER -->
@@ -617,6 +685,14 @@
     const statusEl = document.getElementById('form-status');
     const submitBtn = document.getElementById('submit-btn');
 
+    function showSuccess() {
+      document.querySelector('.trust-strip').style.display = 'none';
+      document.querySelector('.intake-nudge').style.display = 'none';
+      document.querySelector('.form-card').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     function showStatus(type, message) {
       statusEl.className = 'form-status ' + type;
       statusEl.textContent = message;
@@ -647,8 +723,7 @@
         setLoading(true);
         await new Promise(r => setTimeout(r, 900));
         setLoading(false);
-        showStatus('success', '✓ Your inquiry has been submitted! We\'ll be in touch within 1 business day.');
-        form.reset();
+        showSuccess();
         return;
       }
 
@@ -671,8 +746,7 @@
         });
 
         // no-cors means we can't read the response — assume success if no error thrown
-        showStatus('success', '✓ Your inquiry has been submitted! We\'ll be in touch within 1 business day.');
-        form.reset();
+        showSuccess();
       } catch (err) {
         showStatus('error', 'Something went wrong. Please try again or email us at contact@threeflows.com');
         console.error(err);
