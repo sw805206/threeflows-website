@@ -107,6 +107,13 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .blog-body { padding: 20px 20px 22px; }
   footer { padding: 20px; }
 }
+
+/* POST TAGS — 8-pill fixed-column grid */
+.post-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.post-tag-pill { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: none; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.4; }
+.post-tag-pill.primary { background: var(--red); color: white; font-weight: 600; }
+.post-tag-pill.secondary { background: var(--dark); color: white; font-weight: 500; }
+.post-tag-pill.empty { background: #E8E8E8; color: #909090; font-weight: 400; }
 </style>
 </head>
 <body>
@@ -169,7 +176,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 <section class="posts-section">
   <div class="blog-list" id="post-grid">
 
-    <a class="blog-card" href="blog-009.html" data-tag="Launch" data-date="2026-02-02">
+    <a class="blog-card" href="blog-009.html" data-tag="Launch Data" data-date="2026-02-02">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">009</div>
@@ -177,7 +184,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Launch</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill empty">Source</span>
+              <span class="post-tag-pill primary">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill secondary">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Feb 2, 2026</span>
         </div>
@@ -187,7 +203,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-006.html" data-tag="Scale" data-date="2026-01-16">
+    <a class="blog-card" href="blog-006.html" data-tag="Scale Data" data-date="2026-01-16">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">006</div>
@@ -195,7 +211,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Scale</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill empty">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill primary">Scale</span>
+              <span class="post-tag-pill secondary">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Jan 16, 2026</span>
         </div>
@@ -205,7 +230,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-008.html" data-tag="Plan" data-date="2025-09-12">
+    <a class="blog-card" href="blog-008.html" data-tag="Plan Source" data-date="2025-09-12">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">008</div>
@@ -213,7 +238,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Plan</span>
+            <div class="post-tags">
+              <span class="post-tag-pill primary">Plan</span>
+              <span class="post-tag-pill secondary">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill empty">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Sep 12, 2025</span>
         </div>
@@ -223,7 +257,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-005.html" data-tag="Source" data-date="2025-08-25">
+    <a class="blog-card" href="blog-005.html" data-tag="Source Plan Data" data-date="2025-08-25">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">005</div>
@@ -231,7 +265,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
+            <div class="post-tags">
+              <span class="post-tag-pill secondary">Plan</span>
+              <span class="post-tag-pill primary">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill secondary">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Aug 25, 2025</span>
         </div>
@@ -241,7 +284,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-003.html" data-tag="Source" data-date="2025-08-02">
+    <a class="blog-card" href="blog-003.html" data-tag="Source Data" data-date="2025-08-02">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">003</div>
@@ -249,7 +292,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill primary">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill secondary">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Aug 2, 2025</span>
         </div>
@@ -259,7 +311,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-007.html" data-tag="Scale" data-date="2025-07-18">
+    <a class="blog-card" href="blog-007.html" data-tag="Scale Plan Data" data-date="2025-07-18">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">007</div>
@@ -267,7 +319,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Scale</span>
+            <div class="post-tags">
+              <span class="post-tag-pill secondary">Plan</span>
+              <span class="post-tag-pill empty">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill primary">Scale</span>
+              <span class="post-tag-pill secondary">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Jul 18, 2025</span>
         </div>
@@ -277,7 +338,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-010b.html" data-tag="Scale" data-date="2025-07-15">
+    <a class="blog-card" href="blog-010b.html" data-tag="Scale Data" data-date="2025-07-15">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">010B</div>
@@ -285,7 +346,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Scale</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill empty">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill primary">Scale</span>
+              <span class="post-tag-pill secondary">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Jul 15, 2025</span>
         </div>
@@ -295,7 +365,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-004.html" data-tag="Source" data-date="2025-06-23">
+    <a class="blog-card" href="blog-004.html" data-tag="Source Compliance" data-date="2025-06-23">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">004</div>
@@ -303,7 +373,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill primary">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill empty">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill secondary">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Jun 23, 2025</span>
         </div>
@@ -313,7 +392,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-010a.html" data-tag="Launch" data-date="2025-06-05">
+    <a class="blog-card" href="blog-010a.html" data-tag="Launch Data Setup" data-date="2025-06-05">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">010A</div>
@@ -321,7 +400,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Launch</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill empty">Source</span>
+              <span class="post-tag-pill primary">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill secondary">Data</span>
+              <span class="post-tag-pill secondary">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">Jun 5, 2025</span>
         </div>
@@ -331,7 +419,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       </div>
     </a>
 
-    <a class="blog-card" href="blog-002.html" data-tag="Source" data-date="2025-05-26">
+    <a class="blog-card" href="blog-002.html" data-tag="Source Compliance" data-date="2025-05-26">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">002</div>
@@ -339,7 +427,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill primary">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill empty">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill secondary">Compliance</span>
+              <span class="post-tag-pill empty">Others</span>
+            </div>
           </div>
           <span class="blog-date">May 26, 2025</span>
         </div>
@@ -357,7 +454,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="blog-body">
         <div class="blog-row-top">
           <div class="blog-tags-left">
-            <span class="blog-cat">Others</span>
+            <div class="post-tags">
+              <span class="post-tag-pill empty">Plan</span>
+              <span class="post-tag-pill empty">Source</span>
+              <span class="post-tag-pill empty">Launch</span>
+              <span class="post-tag-pill empty">Scale</span>
+              <span class="post-tag-pill empty">Data</span>
+              <span class="post-tag-pill empty">Setup</span>
+              <span class="post-tag-pill empty">Compliance</span>
+              <span class="post-tag-pill primary">Others</span>
+            </div>
           </div>
           <span class="blog-date">Mar 5, 2025</span>
         </div>
@@ -410,8 +516,8 @@ document.addEventListener('click', function(e) {
       cards.forEach(c => { c.classList.remove('hidden'); visible++; });
     } else {
       cards.forEach(c => {
-        const tag = c.getAttribute('data-tag');
-        const show = active.indexOf(tag) !== -1;
+        const tags = (c.getAttribute('data-tag') || '').split(/\s+/).filter(Boolean);
+        const show = tags.some(t => active.indexOf(t) !== -1);
         c.classList.toggle('hidden', !show);
         if (show) visible++;
       });
