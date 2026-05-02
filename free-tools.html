@@ -124,7 +124,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 /* BLACK BANNER BOTTOM CTA — copied verbatim from svc1.html */
 .svc-bottom-cta { background: var(--dark); }
 .svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
-.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 480px; line-height: 1.25; }
+.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
 .svc-bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
 .bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -139,6 +139,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .signup-bar form { grid-template-columns: 1fr 1fr; gap: 14px; }
   .signup-bar .submit-cell { grid-column: 1 / -1; }
 }
+@media (max-width: 800px) {
+  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+}
 @media (max-width: 768px) {
   .carousel-item { width: 260px; }
 }
@@ -151,7 +154,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .res-section { padding: 28px 20px; }
   .signup-bar { padding: 20px; }
   .signup-bar form { grid-template-columns: 1fr; }
-  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
   footer { padding: 20px; }
 }
 </style>
