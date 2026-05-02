@@ -120,21 +120,18 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   footer { padding: 20px; }
 }
 
-.calendar-wrap { background: var(--off-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
-.calendar-wrap iframe { width: 100%; height: 500px; border: 0; border-radius: var(--radius-sm); background: var(--white); display: block; }
-.calendar-note { font-size: 12px; color: var(--muted); margin-top: 12px; font-style: italic; }
-.calendar-legend { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 18px; font-size: 13px; color: var(--mid); }
-.calendar-legend span { display: inline-flex; align-items: center; gap: 8px; }
-
-.session-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.session-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
-.session-badge { align-self: flex-start; font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 20px; letter-spacing: 0.04em; }
-.session-badge.open { background: var(--green); color: var(--green-light); }
-.session-badge.invite { background: var(--off-white); color: var(--muted); }
-.session-title { font-family: 'DM Serif Display', serif; font-size: 19px; line-height: 1.25; }
-.session-date { font-size: 13px; color: var(--mid); }
-.session-cta { font-size: 13px; color: var(--red); font-weight: 500; text-decoration: none; margin-top: auto; padding-top: 8px; }
-@media (max-width: 800px) { .session-grid { grid-template-columns: 1fr; } }
+/* COMING SOON ROW — illustration left, message right */
+.cs-row { display: flex; align-items: center; gap: 56px; max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.cs-illustration { width: 320px; flex-shrink: 0; }
+.cs-illustration svg { width: 100%; height: auto; display: block; }
+.cs-content { flex: 1; min-width: 0; }
+.cs-content h2 { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.cs-content p { font-size: 16px; color: var(--mid); line-height: 1.7; font-weight: 300; margin-bottom: 28px; max-width: 540px; }
+.cs-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 768px) {
+  .cs-row { flex-direction: column; align-items: flex-start; gap: 36px; padding: 56px 20px; }
+  .cs-illustration { width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -184,43 +181,42 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   <p class="lead">Join our live sessions on e-commerce operations, sourcing, and launch strategy — open to all or by invitation.</p>
 </section>
 
-<section class="res-section">
-  <h2 class="section-title" style="font-size:28px;margin-bottom:18px;">Upcoming Sessions</h2>
-  <div class="calendar-wrap">
-    <iframe src="REPLACE_WITH_GOOGLE_CALENDAR_EMBED_URL" title="Three Flows Solutions livestream calendar"></iframe>
-    <div class="calendar-note">Replace the src above with your Google Calendar embed URL.</div>
-    <div class="calendar-legend">
-      <span>🟢 Open — anyone can join</span>
-      <span>🔒 Invitation only — contact us to request access</span>
-    </div>
+<section class="cs-row">
+  <div class="cs-illustration">
+    <svg width="320" height="240" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- broadcasting signal arcs (left + right, radiating up) -->
+      <g fill="none" stroke="var(--red)" stroke-width="3.5" stroke-linecap="round">
+        <path d="M 70 110 Q 55 90 55 70"/>
+        <path d="M 55 120 Q 30 95 30 60"/>
+        <path d="M 40 130 Q 5 100 5 50"/>
+        <path d="M 230 110 Q 245 90 245 70"/>
+        <path d="M 245 120 Q 270 95 270 60"/>
+        <path d="M 260 130 Q 295 100 295 50"/>
+      </g>
+      <!-- top handle -->
+      <rect x="125" y="86" width="50" height="16" rx="4" fill="var(--mid)"/>
+      <!-- camera body -->
+      <rect x="80" y="100" width="140" height="78" rx="8" fill="var(--dark)"/>
+      <!-- viewfinder small box on right side of body -->
+      <rect x="180" y="118" width="32" height="32" rx="3" fill="var(--off-white)"/>
+      <!-- camera lens -->
+      <circle cx="125" cy="139" r="26" fill="var(--off-white)"/>
+      <circle cx="125" cy="139" r="18" fill="var(--red-light)"/>
+      <circle cx="125" cy="139" r="9" fill="var(--red)"/>
+      <!-- LIVE badge to the right of the camera -->
+      <rect x="240" y="155" width="58" height="24" rx="12" fill="var(--red)"/>
+      <text x="269" y="172" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="700" fill="var(--off-white)" letter-spacing="2">LIVE</text>
+      <!-- tripod stem and legs -->
+      <line x1="150" y1="178" x2="150" y2="208" stroke="var(--dark)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="150" y1="208" x2="125" y2="225" stroke="var(--dark)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="150" y1="208" x2="175" y2="225" stroke="var(--dark)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
   </div>
-</section>
-
-<section class="res-section" style="padding-top:0;">
-  <div class="session-grid">
-    <div class="session-card">
-      <span class="session-badge open">🟢 Open</span>
-      <div class="session-title">Office hours: ask us about sourcing</div>
-      <div class="session-date">June 2026 — TBC</div>
-      <a class="session-cta" href="#">Join →</a>
-    </div>
-    <div class="session-card">
-      <span class="session-badge open">🟢 Open</span>
-      <div class="session-title">Founder Q&amp;A: launch readiness deep dive</div>
-      <div class="session-date">June 2026 — TBC</div>
-      <a class="session-cta" href="#">Join →</a>
-    </div>
-    <div class="session-card">
-      <span class="session-badge invite">🔒 Invitation only</span>
-      <div class="session-title">Operator roundtable: scaling past first PO</div>
-      <div class="session-date">June 2026 — TBC</div>
-      <a class="session-cta" href="#">Request access →</a>
-    </div>
-    <div class="session-card">
-      <span class="session-badge invite">🔒 Invitation only</span>
-      <div class="session-title">Investor briefing: retail brand metrics that matter</div>
-      <div class="session-date">June 2026 — TBC</div>
-      <a class="session-cta" href="#">Request access →</a>
+  <div class="cs-content">
+    <h2>Coming Soon</h2>
+    <p>We're planning a series of live discussions on e-commerce operations, sourcing, and launch strategy — some open to all, some by invitation. Check back for the schedule or contact us to be added to the invitation list.</p>
+    <div class="cs-actions">
+      <a href="inquiry.html" class="btn-outline">Contact us →</a>
     </div>
   </div>
 </section>
