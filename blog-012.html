@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon's Two New Policies: What They Mean for Sellers — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  .review-banner {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .review-banner strong { color: #f0c060; }
+
+  .layout {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .post-date { font-size: 13px; color: var(--muted); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .post-meta .post-tags { margin-left: auto; }
+  .post-tag-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: none;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .post-tag-pill.primary   { background: #FDE8F0; color: #B5256A; }
+  .post-tag-pill.secondary { background: #E8E8E8; color: #3A3A3A; }
+  .post-tag-pill.empty     { background: #F8F8F8; color: #C8C8C8; }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--mid);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    margin: 40px 0 12px;
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 28px 0 8px;
+  }
+  p { margin-bottom: 18px; color: var(--mid); }
+  ul, ol { margin: 12px 0 20px 22px; color: var(--mid); }
+  li { margin-bottom: 8px; }
+  strong { color: var(--dark); font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -10px; margin-bottom: 18px; }
+
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout p { color: var(--dark); margin: 0; }
+
+  .callout-grey {
+    background: var(--off-white);
+    border-left: 3px solid var(--border-dark);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout-grey p { color: var(--mid); margin: 0; font-size: 14px; }
+
+  /* Policy image blocks */
+  .policy-image {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 24px 0;
+    display: block;
+  }
+
+  /* Source link */
+  .source-link {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: -12px;
+    margin-bottom: 24px;
+  }
+  .source-link a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .source-link a:hover { color: var(--dark); }
+
+  /* Impact cards */
+  .impact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .impact-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .impact-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .impact-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .impact-card p {
+    font-size: 13px;
+    color: var(--mid);
+    margin: 0;
+  }
+
+  /* Stat row */
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1;
+    min-width: 130px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--red);
+    display: block;
+  }
+  .stat .label { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* Policy section divider */
+  .policy-divider {
+    border: none;
+    border-top: 2px solid var(--border-dark);
+    margin: 48px 0 40px;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px; font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px auto 0; max-width: 820px; padding: 0 24px; }
+  .post-nav-tile { background: var(--white); border: 1px solid var(--border-dark); border-radius: 10px; padding: 18px 22px; text-decoration: none; color: inherit; transition: border-color 0.18s; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .post-nav-tile:hover { border-color: var(--dark); }
+  .post-nav-tile.next { text-align: right; align-items: flex-end; }
+  .post-nav-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .post-nav-title { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.3; color: var(--dark); }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    footer { padding: 20px; }
+    .post-nav { grid-template-columns: 1fr; padding: 0 20px; }
+    .post-nav-tile.next { text-align: left; align-items: flex-start; }
+    h1 { font-size: 26px; }
+    .stat-row { flex-direction: column; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">01 — Business Planning</a>
+        <a href="svc2.html">02 — Sourcing Consultation</a>
+        <a href="svc3.html">03 — Launch Hypercare</a>
+        <a href="svc4.html">04 — Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li><a href="index.html#contact-anchor">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
+</nav>
+
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="blog.html">← Blog</a>
+</div>
+
+<div class="post-nav">
+  <a class="post-nav-tile prev" href="blog-003.html">
+    <span class="post-nav-label">← Previous</span>
+    <span class="post-nav-title">Factory Data Problems Are Costing You More Than You Think</span>
+  </a>
+  <a class="post-nav-tile next" href="blog-005.html">
+    <span class="post-nav-label">Next →</span>
+    <span class="post-nav-title">Why Data Integrity Is the Foundation of a Scalable Supply Chain</span>
+  </a>
+</div>
+
+<div class="layout">
+
+  <div class="post-meta">
+    <span class="post-date">Publish: August 4, 2025</span>
+    <div class="post-tags">
+      <span class="post-tag-pill empty">Plan</span>
+      <span class="post-tag-pill empty">Source</span>
+      <span class="post-tag-pill empty">Launch</span>
+      <span class="post-tag-pill primary">Scale</span>
+      <span class="post-tag-pill empty">Data</span>
+      <span class="post-tag-pill empty">Setup</span>
+      <span class="post-tag-pill empty">Compliance</span>
+      <span class="post-tag-pill empty">Others</span>
+    </div>
+  </div>
+
+  <h1>Amazon's Two New Policies: What They Mean for Sellers</h1>
+  <p class="subtitle">Within weeks of each other, Amazon announced two platform changes that quietly shift the ground beneath sellers. One pulls a major external traffic source. The other makes negative feedback harder to contest. Neither is catastrophic on its own — but together, they reward sellers who already have their operations in order.</p>
+
+  <h2>Policy 1 — Amazon pulls out of Google Shopping ads</h2>
+
+  <img
+    class="policy-image"
+    src="https://static.wixstatic.com/media/c06101_ff05acf287e74d1692878c5e7efeef33~mv2.png/v1/fill/w_933,h_498,al_c,q_90,enc_auto/c06101_ff05acf287e74d1692878c5e7efeef33~mv2.png"
+    alt="Amazon Google Shopping ads withdrawal"
+    onerror="this.style.display='none'"
+  />
+  <p class="source-link">Source: <a href="https://www.ainvest.com/news/amazon-stops-spending-google-shopping-ads-boosts-rivals-2508/" target="_blank" rel="noopener">AInvest — Amazon Stops Spending on Google Shopping Ads, Boosts Rivals</a></p>
+
+  <h3>What happened</h3>
+
+  <p>Between July 21 and 23, 2025, Amazon's Google Shopping ad presence dropped to zero across eight major markets. In the US, UK, and Germany alone, its impression share fell from 60%, 55%, and 38% respectively — to nothing, within 48 hours. Digital marketing firms including Merkle and Tinuiti were among the first to detect the change.</p>
+
+  <p>This applies specifically to Google Shopping ads — the image-and-price comparison units that appear at the top of search results. Amazon continues to run standard Google text search ads. The Shopping withdrawal, however, is complete and appears deliberate.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <span class="num">60% → 0</span>
+      <span class="label">Amazon's US Google Shopping impression share, before and after</span>
+    </div>
+    <div class="stat">
+      <span class="num">8</span>
+      <span class="label">Major global markets where Shopping ads were pulled</span>
+    </div>
+    <div class="stat">
+      <span class="num">48 hrs</span>
+      <span class="label">Time it took for Amazon's presence to reach zero</span>
+    </div>
+  </div>
+
+  <h3>Why Amazon likely did this</h3>
+
+  <p>Amazon has not formally explained the decision, but the strategic logic is readable. Its advertising business has grown at over 30% annually for five years and is on track to surpass $60 billion in 2024 revenue. The platform's own ad ecosystem has reached a scale where external channels are no longer necessary to drive traffic — and may actively work against Amazon's interests.</p>
+
+  <p>Two considerations stand out. First, running Shopping ads on Google exposes category-level demand signals and user search behaviour to a platform that is increasingly a competitor in commerce search. Second, cost-per-click on Google Shopping has been rising steadily, while the return on Amazon's own on-site advertising already exceeds 1:5. Pulling external spend and redirecting it internally is, at this stage, straightforward margin optimisation.</p>
+
+  <p>There is also a third possibility: this is a negotiation tactic. Amazon's sudden exit gives it significant leverage over Google on data access, pricing terms, or both. Whether the withdrawal is permanent or a pressure play remains to be seen.</p>
+
+  <h3>What this means for sellers</h3>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">📉</div>
+      <div>
+        <h4>External traffic to your listings will decline</h4>
+        <p>A meaningful share of organic discovery on Amazon has historically flowed through Google Shopping. That pipeline is now closed. Sellers who relied on it — often without realising it — will see lower impression counts and, over time, softer sales where external traffic was a meaningful input.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">⚔️</div>
+      <div>
+        <h4>On-site ad competition will intensify</h4>
+        <p>With external traffic routes narrowing, more sellers will compete for the same internal ad placements. Sponsored Products and Sponsored Brands costs are likely to rise as a result. Larger sellers with deeper ad budgets will absorb this more easily. For small and mid-sized sellers, the margin on paid traffic will compress further.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🔍</div>
+      <div>
+        <h4>Organic rank becomes more valuable</h4>
+        <p>If paid traffic costs more and external discovery is reduced, the economics of strong organic ranking improve. Sellers with well-optimised listings, healthy conversion rates, and consistent review velocity will have a structural advantage over those relying primarily on paid amplification.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="policy-divider" />
+
+  <h2>Policy 2 — Star ratings without written feedback, effective August 4</h2>
+
+  <img
+    class="policy-image"
+    src="https://static.wixstatic.com/media/c06101_5905fa7676ab41b6835c15d1c0bc9681~mv2.png/v1/fill/w_900,h_600,al_c,q_90,enc_auto/c06101_5905fa7676ab41b6835c15d1c0bc9681~mv2.png"
+    alt="Amazon feedback policy update August 2025"
+    onerror="this.style.display='none'"
+  />
+  <p class="source-link">Source: <a href="https://sellercentral-europe.amazon.com/seller-forums/discussions/t/5bbbbcb3-aef7-4d81-99e6-178e425c6c46" target="_blank" rel="noopener">Amazon Seller Central Europe — Feedback mechanism update</a></p>
+
+  <h3>What changed</h3>
+
+  <p>Starting August 4, 2025, buyers can submit seller feedback using only a star rating — no written comment required. This lowers the friction for leaving feedback, which Amazon likely expects will increase overall feedback volume.</p>
+
+  <p>The consequential part is what sellers lose: feedback consisting only of a star rating cannot be contested through Feedback Manager using the standard dispute process. A buyer can leave a one-star rating with no explanation, and the seller has no conventional removal pathway. The only recourse is to report the feedback as a policy violation and wait for Amazon's review — a process that is not guaranteed to result in removal.</p>
+
+  <div class="callout">
+    <p>💡 A one-star rating with no written content still counts against your feedback percentage, order defect rate, Buy Box eligibility, and overall performance score — the same as a fully documented negative review.</p>
+  </div>
+
+  <h3>What this means for sellers</h3>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">⚠️</div>
+      <div>
+        <h4>Exposure to uncontestable negative ratings increases</h4>
+        <p>Previously, a negative feedback entry required written content, which gave sellers a basis to identify policy violations and request removal. Silent one-star ratings remove that basis entirely. Bad actors — whether buyers with complaints or competitors engaging in sabotage — now have a lower-effort, harder-to-reverse tool available to them.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">📦</div>
+      <div>
+        <h4>FBA fulfilment issues become a blind spot</h4>
+        <p>When an FBA shipment arrives late, damaged, or goes missing, the fulfilment failure belongs to Amazon — not the seller. Under the old system, a buyer who wrote "package never arrived" gave the seller grounds to request removal as an FBA-related issue. A silent one-star rating provides no such grounds, even if the cause was entirely outside the seller's control.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🔀</div>
+      <div>
+        <h4>Feedback and product reviews will blur further</h4>
+        <p>Buyers already confuse seller feedback with product reviews. With no written comment to analyse, sellers lose the ability to even assess which category the rating belongs to — let alone route it to the right resolution process.</p>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🚪</div>
+      <div>
+        <h4>The standard appeals channel is closed for these cases</h4>
+        <p>Sellers accustomed to using Feedback Manager to dispute and remove problematic entries will find that tool unavailable for rating-only submissions. The only remaining option — reporting as a policy violation — relies entirely on Amazon's judgement and offers no guarantee of removal.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>The bigger picture</h2>
+
+  <p>Taken separately, each policy is manageable. Taken together, they point in the same direction: Amazon is consolidating control over its platform ecosystem while reducing the levers sellers have to influence their own standing.</p>
+
+  <p>The Google Shopping withdrawal means Amazon is less dependent on external traffic sources — and by extension, less willing to share discovery with channels it does not own. The feedback change means buyer sentiment can now affect seller metrics without generating the kind of written record that sellers can act on.</p>
+
+  <p>Neither change is a crisis for a well-run operation. Sellers with strong organic listings, healthy conversion rates, clean fulfilment track records, and proactive customer communication are largely insulated from both. The pressure falls disproportionately on sellers who have been relying on paid external traffic to compensate for weak organic performance, or who have been managing feedback reactively rather than building the kind of pre-purchase experience that reduces complaints in the first place.</p>
+
+  <div class="callout-grey">
+    <p>The underlying message from Amazon is consistent with a pattern we have observed across platform updates over the past several years: operational excellence is not optional — it is the only durable competitive advantage on a platform that controls the rules.</p>
+  </div>
+
+</div><!-- /.layout -->
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+</body>
+</html>
