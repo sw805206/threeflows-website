@@ -121,11 +121,11 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .carousel::-webkit-scrollbar { display: none; }
 .carousel-item { flex: 0 0 auto; width: 300px; scroll-snap-align: start; }
 
-/* BLACK BANNER BOTTOM CTA — copied verbatim from svc1.html */
-.svc-bottom-cta { background: var(--dark); }
-.svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
-.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
-.svc-bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
+/* BLACK BANNER BOTTOM CTA — copied verbatim from svc2.html */
+.bottom-cta { background: var(--dark); }
+.bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 400px; line-height: 1.25; }
+.bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
 .bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* FOOTER */
@@ -140,7 +140,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .signup-bar .submit-cell { grid-column: 1 / -1; }
 }
 @media (max-width: 800px) {
-  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 768px) {
   .carousel-item { width: 260px; }
@@ -347,8 +347,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   </div>
 </section>
 
-<div class="svc-bottom-cta">
-  <div class="svc-bottom-inner">
+<div class="bottom-cta">
+  <div class="bottom-inner">
     <div>
       <h2>Need something more tailored?</h2>
       <p>Our dedicated services include bespoke templates and calculators built around your specific operations.</p>
@@ -356,7 +356,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <div class="bottom-actions">
       <a href="inquiry.html" target="_blank" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
       <a href="intake.html" class="btn-outline" style="font-size:14px;font-weight:400;padding:11px 24px;color:white;border-color:rgba(255,255,255,0.4);text-decoration:none">Fill in an intake form</a>
-      <a href="#" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
+      <a href="#" target="_blank" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
     </div>
   </div>
 </div>
