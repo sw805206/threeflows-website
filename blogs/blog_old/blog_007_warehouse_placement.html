@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Draft — Where Should Your Third US Warehouse Be? | Three Flows Solutions (Pre-Read Review)</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  .review-banner {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .review-banner strong { color: #f0c060; }
+
+  .layout {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .post-num {
+    background: var(--red);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .post-date { font-size: 13px; color: var(--muted); }
+  .post-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--red);
+    background: var(--red-light);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-left: auto;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--mid);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    margin: 40px 0 12px;
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 28px 0 8px;
+  }
+  p { margin-bottom: 18px; color: var(--mid); }
+  ul, ol { margin: 12px 0 20px 22px; color: var(--mid); }
+  li { margin-bottom: 8px; }
+  strong { color: var(--dark); font-weight: 600; }
+
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout p { color: var(--dark); margin: 0; }
+
+  /* Placement classification cards */
+  .placement-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .placement-row {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .placement-badge {
+    width: 44px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+  }
+  .badge-1 { background: #2e7d32; }
+  .badge-2 { background: #558b2f; }
+  .badge-3 { background: #f9a825; }
+  .badge-4 { background: #ef6c00; }
+  .badge-5 { background: #c62828; }
+
+  .placement-content {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .placement-content .label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .label-best    { color: #2e7d32; }
+  .label-good    { color: #558b2f; }
+  .label-neutral { color: #f9a825; }
+  .label-poor    { color: #ef6c00; }
+  .label-bad     { color: #c62828; }
+  .placement-content p { margin: 0; font-size: 14px; }
+
+  /* Warehouse sequence table */
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  th.left { text-align: left; }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--mid);
+    text-align: center;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  td.left { text-align: left; color: var(--dark); font-weight: 500; }
+  tr:hover td { background: var(--off-white); }
+  .wh-tag {
+    display: inline-block;
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 1px;
+  }
+  .highlight-row td { background: var(--green-light); color: #1a4a1a; font-weight: 600; }
+
+  /* Stat boxes */
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1;
+    min-width: 130px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--red);
+    display: block;
+  }
+  .stat .label { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* Result comparison */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-box h4 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .compare-box .metric {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-box .metric:last-child { border-bottom: none; }
+  .compare-box .metric span:first-child { color: var(--mid); }
+  .compare-box .metric span:last-child { font-weight: 600; color: var(--dark); }
+  .compare-box.optimized { border-color: var(--green); }
+  .compare-box.optimized h4 { color: var(--green); }
+
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -10px; margin-bottom: 18px; }
+
+  .post-footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .author-line { font-size: 13px; color: var(--muted); }
+  .author-line strong { color: var(--dark); }
+  .cta-inline {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 26px; }
+    .stat-row, .compare { flex-direction: column; grid-template-columns: 1fr; }
+    .placement-row { flex-direction: column; }
+    .placement-badge { width: 100%; height: 36px; border-radius: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="review-banner">
+  📋 <strong>PRE-READ REVIEW COPY</strong> — Blog Post 07 for Three Flows Solutions. Translated and adapted from original Chinese article. Please review before publishing.
+</div>
+
+<div class="layout">
+
+  <div class="post-meta">
+    <span class="post-num">POST 07</span>
+    <span class="post-date">Publish: June 25, 2025</span>
+    <span class="post-tag">Ongoing Management</span>
+  </div>
+
+  <h1>Where Should Your Third US Warehouse Be?</h1>
+  <p class="subtitle">Most e-commerce brands pick their first two warehouse locations based on conventional wisdom — Los Angeles, then New Jersey. That logic is reasonable. But deciding where to go next requires something conventional wisdom can't provide: your own fulfillment data.</p>
+
+  <p>The pattern is almost universal among e-commerce sellers sourcing from Asia. The first overseas warehouse goes in Los Angeles — low ocean freight costs, abundant 3PL options, a well-established logistics ecosystem. As volume grows and the limitations of a single West Coast node become apparent, the second warehouse goes in New Jersey, capturing the roughly 70% of US population and purchasing power that sits east of the Rockies.</p>
+
+  <p>Neither of these decisions is wrong. They're sensible defaults, and for most brands at an early stage, they hold up. But the third warehouse is a different kind of decision — one where defaults are no longer good enough, and where the right answer varies significantly from brand to brand.</p>
+
+  <p>This post shares the analytical framework we used with a well-established overseas warehousing operator to help them plan their warehouse expansion roadmap — and the surprisingly costly inventory placement patterns we uncovered along the way.</p>
+
+  <h2>Starting From the Customer's Perspective</h2>
+
+  <p>When we were engaged to help plan this operator's warehouse expansion strategy, the temptation was to approach it as a real estate question: which markets have the best capacity, cost, and labor availability? But that frames the problem from the wrong direction.</p>
+
+  <p>The right starting point is the customer's core requirement: <strong>get my products to consumers as fast as possible, at the lowest possible cost</strong>. In fulfillment terms, this is an inventory placement problem — keeping stock geographically close to demand. Before you can decide where to add warehouse capacity, you need to understand where your customers' actual demand is, and whether their current inventory is positioned to serve it efficiently.</p>
+
+  <p>We asked the operator to share fulfillment data from their key accounts. What we found was striking.</p>
+
+  <h2>A Five-Category Placement Framework</h2>
+
+  <p>We classified every outbound shipment across three major accounts into five placement categories, based on the relationship between the shipping origin and the delivery destination:</p>
+
+  <div class="placement-grid">
+    <div class="placement-row">
+      <div class="placement-badge badge-1">1</div>
+      <div class="placement-content">
+        <div class="label label-best">Best — In-Region</div>
+        <p>Goods shipped to a Zone 2–3 address within the same region. Delivery in 1–2 days. Ideal consumer experience at the lowest unit freight cost.</p>
+      </div>
+    </div>
+    <div class="placement-row">
+      <div class="placement-badge badge-2">2</div>
+      <div class="placement-content">
+        <div class="label label-good">Good — Next-Door Region</div>
+        <p>Goods shipped to an adjacent region. Delivery in 2–4 days. Still a strong consumer experience with manageable freight cost.</p>
+      </div>
+    </div>
+    <div class="placement-row">
+      <div class="placement-badge badge-3">3</div>
+      <div class="placement-content">
+        <div class="label label-neutral">Neutral — Near Cross-Country (from LA)</div>
+        <p>Goods that could ship from either LA or NJ, taking 5–10 days regardless. Shipping from LA carries a lower inbound freight cost to the warehouse, making it marginally preferable.</p>
+      </div>
+    </div>
+    <div class="placement-row">
+      <div class="placement-badge badge-4">4</div>
+      <div class="placement-content">
+        <div class="label label-poor">Poor — Near Cross-Country (from NJ)</div>
+        <p>Same delivery window as Category 3 (5–10 days), but shipped from the NJ node at higher inbound cost. Avoidable with better inventory placement.</p>
+      </div>
+    </div>
+    <div class="placement-row">
+      <div class="placement-badge badge-5">5</div>
+      <div class="placement-content">
+        <div class="label label-bad">Bad — Full Cross-Country (8–15 days)</div>
+        <p>Goods shipped across the entire country. Worst-case: <strong>Category 5b</strong> — inbound stock sent from Asia to the NJ warehouse, then outbound orders fulfilled to West Coast consumers. A complete U-turn: maximum freight cost, maximum delivery time, minimum consumer satisfaction.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-widget" style="background: var(--off-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 24px 20px; margin: 32px 0;">
+    <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px;">Interactive map — toggle shipping origin</p>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;">
+      <span style="font-size: 13px; color: var(--mid); margin-right: 4px;">Ship from:</span>
+      <button onclick="setOrigin('LAX')" id="btn-LAX" style="font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1.5px solid #D63B3B; background: #D63B3B; color: #fff; cursor: pointer; font-family: inherit;">LAX only</button>
+      <button onclick="setOrigin('EWR')" id="btn-EWR" style="font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.18); background: transparent; color: #5C5C5C; cursor: pointer; font-family: inherit;">EWR only</button>
+      <button onclick="setOrigin('BOTH')" id="btn-BOTH" style="font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.18); background: transparent; color: #5C5C5C; cursor: pointer; font-family: inherit;">LAX + EWR</button>
+      <button onclick="setOrigin('5NODE')" id="btn-5NODE" style="font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.18); background: transparent; color: #5C5C5C; cursor: pointer; font-family: inherit;">5-node optimized</button>
+    </div>
+
+    <div id="map-container" style="width: 100%; position: relative;"></div>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; color: var(--mid);">
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#2e7d32;display:inline-block;"></span> Cat 1 — in-region (1–2 days)</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#7cb342;display:inline-block;"></span> Cat 2 — next-door (2–4 days)</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#f9a825;display:inline-block;"></span> Cat 3 — near cross-country (5–10 days)</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#ef6c00;display:inline-block;"></span> Cat 4 — poor placement (5–10 days)</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#c62828;display:inline-block;"></span> Cat 5 — cross-country (8–15 days)</span>
+    </div>
+
+    <div id="map-tooltip" style="position:fixed;background:white;border:1px solid rgba(0,0,0,0.12);border-radius:8px;padding:8px 12px;font-size:13px;pointer-events:none;display:none;z-index:999;font-family:'DM Sans',sans-serif;"></div>
+
+    <div style="margin-top:16px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;" id="map-stat-cards"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script>
+  (function() {
+    const CAT_COLORS = {1:'#2e7d32',2:'#7cb342',3:'#f9a825',4:'#ef6c00',5:'#c62828'};
+    const CAT_LABELS = {1:'1–2 days',2:'2–4 days',3:'5–10 days',4:'5–10 days',5:'8–15 days'};
+    const CAT_NAMES  = {1:'In-region',2:'Next-door',3:'Near cross-country',4:'Poor placement',5:'Cross-country'};
+    const WAREHOUSE_COORDS = {LAX:[34.05,-118.25],EWR:[40.69,-74.17],SAV:[32.08,-81.09],DAL:[32.78,-96.80],CHI:[41.88,-87.63]};
+    const stateCats = {
+      LAX:{'California':1,'Oregon':1,'Washington':1,'Nevada':1,'Arizona':1,'Idaho':2,'Montana':2,'Wyoming':2,'Utah':2,'Colorado':3,'New Mexico':3,'Alaska':3,'Hawaii':3,'North Dakota':3,'South Dakota':3,'Nebraska':3,'Kansas':3,'Oklahoma':3,'Texas':3,'Minnesota':4,'Iowa':4,'Missouri':4,'Arkansas':4,'Louisiana':4,'Wisconsin':4,'Illinois':4,'Michigan':4,'Indiana':4,'Ohio':4,'Kentucky':4,'Tennessee':4,'Mississippi':4,'Alabama':4,'Georgia':4,'Florida':4,'South Carolina':5,'North Carolina':5,'Virginia':5,'West Virginia':5,'Maryland':5,'Delaware':5,'Pennsylvania':5,'New Jersey':5,'New York':5,'Connecticut':5,'Rhode Island':5,'Massachusetts':5,'Vermont':5,'New Hampshire':5,'Maine':5},
+      EWR:{'New Jersey':1,'New York':1,'Connecticut':1,'Rhode Island':1,'Massachusetts':1,'Pennsylvania':1,'Delaware':1,'Maryland':1,'Vermont':2,'New Hampshire':2,'Maine':2,'Virginia':2,'West Virginia':2,'North Carolina':2,'South Carolina':2,'Ohio':2,'Michigan':2,'Georgia':3,'Florida':3,'Tennessee':3,'Kentucky':3,'Indiana':3,'Alabama':3,'Mississippi':3,'Wisconsin':3,'Illinois':3,'Minnesota':3,'Iowa':4,'Missouri':4,'Arkansas':4,'Louisiana':4,'North Dakota':4,'South Dakota':4,'Nebraska':4,'Kansas':4,'Oklahoma':4,'Texas':4,'Colorado':5,'New Mexico':5,'Wyoming':5,'Montana':5,'Idaho':5,'Utah':5,'Arizona':5,'Nevada':5,'California':5,'Oregon':5,'Washington':5,'Alaska':5,'Hawaii':5},
+      BOTH:{'California':1,'Oregon':1,'Washington':1,'Nevada':1,'Arizona':1,'New Jersey':1,'New York':1,'Connecticut':1,'Rhode Island':1,'Massachusetts':1,'Pennsylvania':1,'Delaware':1,'Maryland':1,'Idaho':2,'Montana':2,'Wyoming':2,'Utah':2,'Vermont':2,'New Hampshire':2,'Maine':2,'Virginia':2,'West Virginia':2,'North Carolina':2,'South Carolina':2,'Ohio':2,'Michigan':2,'Colorado':3,'New Mexico':3,'Alaska':3,'Hawaii':3,'North Dakota':3,'South Dakota':3,'Nebraska':3,'Kansas':3,'Oklahoma':3,'Texas':3,'Minnesota':3,'Iowa':3,'Missouri':3,'Arkansas':3,'Louisiana':3,'Wisconsin':3,'Illinois':3,'Indiana':3,'Georgia':3,'Florida':3,'Tennessee':3,'Kentucky':3,'Alabama':3,'Mississippi':3},
+      '5NODE':{'California':1,'Oregon':1,'Washington':1,'Nevada':1,'Arizona':1,'New Jersey':1,'New York':1,'Connecticut':1,'Rhode Island':1,'Massachusetts':1,'Pennsylvania':1,'Delaware':1,'Maryland':1,'Georgia':1,'South Carolina':1,'North Carolina':1,'Florida':1,'Texas':1,'Oklahoma':1,'Arkansas':1,'Louisiana':1,'Illinois':1,'Wisconsin':1,'Minnesota':1,'Iowa':1,'Indiana':1,'Michigan':1,'Idaho':2,'Montana':2,'Wyoming':2,'Utah':2,'Colorado':2,'New Mexico':2,'Vermont':2,'New Hampshire':2,'Maine':2,'Virginia':2,'West Virginia':2,'Ohio':2,'Kentucky':2,'Tennessee':2,'Alabama':2,'Mississippi':2,'Missouri':2,'Kansas':2,'Nebraska':2,'South Dakota':2,'North Dakota':2,'Alaska':3,'Hawaii':3}
+    };
+    let currentOrigin = 'LAX';
+    let svgEl, projection;
+    const tooltip = document.getElementById('map-tooltip');
+
+    function catForState(name, origin) { return stateCats[origin][name] || 3; }
+
+    function setOrigin(o) {
+      currentOrigin = o;
+      ['LAX','EWR','BOTH','5NODE'].forEach(k => {
+        const b = document.getElementById('btn-' + k);
+        if (k === o) { b.style.background = '#D63B3B'; b.style.color = '#fff'; b.style.borderColor = '#D63B3B'; b.style.borderWidth = '1.5px'; }
+        else { b.style.background = 'transparent'; b.style.color = '#5C5C5C'; b.style.borderColor = 'rgba(0,0,0,0.18)'; b.style.borderWidth = '1px'; }
+      });
+      updateMap();
+    }
+
+    function updateMap() {
+      if (!svgEl) return;
+      svgEl.selectAll('path.state').attr('fill', d => CAT_COLORS[catForState(d.properties.name, currentOrigin)]);
+      updateStats();
+      updateWarehouses();
+    }
+
+    function updateStats() {
+      const counts = {1:0,2:0,3:0,4:0,5:0};
+      Object.keys(stateCats.LAX).forEach(s => { counts[catForState(s, currentOrigin)]++; });
+      document.getElementById('map-stat-cards').innerHTML = [1,2,3,4,5].map(c => `
+        <div style="background:white;border:1px solid rgba(0,0,0,0.09);border-radius:8px;padding:10px;text-align:center;">
+          <div style="width:8px;height:8px;border-radius:50%;background:${CAT_COLORS[c]};display:inline-block;margin-bottom:4px;"></div>
+          <div style="font-size:20px;font-weight:500;color:#1A1A1A;">${counts[c]}</div>
+          <div style="font-size:11px;color:#909090;">Cat ${c} states</div>
+        </div>`).join('');
+    }
+
+    function updateWarehouses() {
+      if (!svgEl || !projection) return;
+      svgEl.selectAll('.wh-node').remove();
+      const active = currentOrigin === '5NODE' ? ['LAX','EWR','SAV','DAL','CHI'] : currentOrigin === 'BOTH' ? ['LAX','EWR'] : [currentOrigin];
+      active.forEach(key => {
+        const [lat, lng] = WAREHOUSE_COORDS[key];
+        const proj = projection([lng, lat]);
+        if (!proj) return;
+        const g = svgEl.append('g').attr('class', 'wh-node');
+        g.append('circle').attr('cx', proj[0]).attr('cy', proj[1]).attr('r', 7).attr('fill', '#1A1A1A').attr('stroke', '#fff').attr('stroke-width', 2);
+        g.append('text').attr('x', proj[0]).attr('y', proj[1] - 11).attr('text-anchor', 'middle').attr('font-size', '10').attr('font-weight', '600').attr('fill', '#1A1A1A').attr('font-family', 'DM Sans, sans-serif').text(key);
+      });
+    }
+
+    d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(us => {
+      const W = 660, H = 400;
+      projection = d3.geoAlbersUsa().scale(860).translate([W/2, H/2]);
+      const pathFn = d3.geoPath(projection);
+      svgEl = d3.select('#map-container').append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').style('display', 'block');
+      svgEl.selectAll('path.state').data(topojson.feature(us, us.objects.states).features).join('path')
+        .attr('class','state').attr('d', pathFn).attr('stroke','#fff').attr('stroke-width', 0.6)
+        .attr('fill', d => CAT_COLORS[catForState(d.properties.name, currentOrigin)])
+        .on('mousemove', function(event, d) {
+          const cat = catForState(d.properties.name, currentOrigin);
+          tooltip.style.display = 'block';
+          tooltip.style.left = (event.clientX + 14) + 'px';
+          tooltip.style.top  = (event.clientY - 32) + 'px';
+          tooltip.innerHTML = `<strong style="color:#1A1A1A">${d.properties.name}</strong><br><span style="color:${CAT_COLORS[cat]};font-weight:600;">Cat ${cat} — ${CAT_NAMES[cat]}</span><br><span style="color:#909090;font-size:12px;">${CAT_LABELS[cat]}</span>`;
+        })
+        .on('mouseleave', () => { tooltip.style.display = 'none'; });
+      updateStats();
+      updateWarehouses();
+    });
+  })();
+  </script>
+
+  <h2>What the Data Revealed</h2>
+
+  <p>After analyzing shipment data across the operator's three largest accounts, the breakdown was sobering:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Account</th>
+          <th>Total CBM</th>
+          <th>Cat 1 ✅</th>
+          <th>Cat 2 ✅</th>
+          <th>Cat 3 ⚠️</th>
+          <th>Cat 4 ⚠️</th>
+          <th>Cat 5 ❌</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">Account A</td>
+          <td>32,955</td>
+          <td>39%</td><td>17%</td><td>11%</td><td>7%</td><td>26%</td>
+        </tr>
+        <tr>
+          <td class="left">Account B</td>
+          <td>13,741</td>
+          <td>32%</td><td>18%</td><td>10%</td><td>6%</td><td>33%</td>
+        </tr>
+        <tr>
+          <td class="left">Account C</td>
+          <td>37,689</td>
+          <td>40%</td><td>18%</td><td>13%</td><td>7%</td><td>21%</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="left">Total / Average</td>
+          <td>84,384</td>
+          <td>39%</td><td>18%</td><td>12%</td><td>7%</td><td>25%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">FEU equivalent: ~1,241 containers. Category 4+5 combined: 32% of total volume.</p>
+
+  <div class="callout">
+    <p>💡 <strong>The headline finding:</strong> Across these three accounts, <strong>32% of total outbound volume</strong> fell into Categories 4 or 5 — inefficient placement patterns that generate excess freight cost, longer delivery times, and worse consumer experience. This isn't a marginal problem. It represents nearly one-third of all shipments operating below the standard that the current two-node network could theoretically support with better planning.</p>
+  </div>
+
+  <p>The consequences of poor placement extend beyond the brand owner. The 3PL operator also bears indirect costs: handling out-of-region freight adds operational complexity, creates capacity distortion when expanding warehouse footprint, and can mislead expansion planning if the underlying volume patterns aren't understood.</p>
+
+  <h2>The Impact of Adding Warehouse Nodes: A Product-Level Case Study</h2>
+
+  <p>To quantify the opportunity, we modeled a single SKU across one of the accounts — tracing how inventory and freight metrics change as the network expands from 2 warehouse nodes to 5.</p>
+
+  <div class="compare">
+    <div class="compare-box">
+      <h4>Current State — 2 Warehouses (LA + NJ)</h4>
+      <div class="metric"><span>Beginning Inventory</span><span>837 units</span></div>
+      <div class="metric"><span>Ordered/Inbound</span><span>2,011 units</span></div>
+      <div class="metric"><span>Inbound Replenishment</span><span>3,691 units</span></div>
+      <div class="metric"><span>Ending Inventory</span><span>2,517 units</span></div>
+      <div class="metric"><span>Months of Supply (MOS)</span><span>7.51 months</span></div>
+    </div>
+    <div class="compare-box optimized">
+      <h4>Optimized — 5 Warehouses</h4>
+      <div class="metric"><span>Beginning Inventory</span><span>837 units</span></div>
+      <div class="metric"><span>Ordered/Inbound</span><span>2,011 units</span></div>
+      <div class="metric"><span>Inbound Replenishment</span><span>2,750 units</span></div>
+      <div class="metric"><span>Ending Inventory</span><span>1,576 units</span></div>
+      <div class="metric"><span>Months of Supply (MOS)</span><span>4.70 months</span></div>
+    </div>
+  </div>
+
+  <p>By redistributing stock across five strategically located nodes — with inventory sent to each location in smaller, more frequent replenishment quantities based on regional demand — two things happen simultaneously. Total replenishment volume decreases (because less buffer stock is needed to hedge against cross-country shipping delays). And average inventory holding drops from 7.5 months to 4.7 months of supply.</p>
+
+  <p>The combined financial impact — lower procurement volume, reduced inventory carrying costs, and meaningfully lower per-unit outbound freight — is substantial at scale.</p>
+
+  <h2>The Recommended Warehouse Expansion Sequence</h2>
+
+  <p>Based on the full dataset analysis across all target accounts, our recommendation was a phased build-out of five warehouse nodes to meet current inventory placement needs within budget. The optimal sequence, ranked by impact per dollar of warehouse cost, was:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Step</th>
+          <th class="left">Avg Delivery Days</th>
+          <th colspan="8">Warehouse Network</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">1</td>
+          <td class="left">4.6 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td colspan="7"></td>
+        </tr>
+        <tr>
+          <td class="left">2</td>
+          <td class="left">4.4 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td><span class="wh-tag">EWR</span></td>
+          <td colspan="6"></td>
+        </tr>
+        <tr>
+          <td class="left">3</td>
+          <td class="left">4.1 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td><span class="wh-tag">EWR</span></td>
+          <td><span class="wh-tag">SAV</span></td>
+          <td colspan="5"></td>
+        </tr>
+        <tr>
+          <td class="left">4</td>
+          <td class="left">3.9 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td><span class="wh-tag">EWR</span></td>
+          <td><span class="wh-tag">SAV</span></td>
+          <td><span class="wh-tag">DAL</span></td>
+          <td colspan="4"></td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="left">5</td>
+          <td class="left">3.2 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td><span class="wh-tag">EWR</span></td>
+          <td><span class="wh-tag">SAV</span></td>
+          <td><span class="wh-tag">DAL</span></td>
+          <td><span class="wh-tag">CHI</span></td>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <td class="left">6</td>
+          <td class="left">2.9 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td><span class="wh-tag">EWR</span></td>
+          <td><span class="wh-tag">SAV</span></td>
+          <td><span class="wh-tag">DAL</span></td>
+          <td><span class="wh-tag">CHI</span></td>
+          <td><span class="wh-tag">OAK</span></td>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+          <td class="left">7</td>
+          <td class="left">2.6 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td><span class="wh-tag">EWR</span></td>
+          <td><span class="wh-tag">SAV</span></td>
+          <td><span class="wh-tag">DAL</span></td>
+          <td><span class="wh-tag">CHI</span></td>
+          <td><span class="wh-tag">OAK</span></td>
+          <td><span class="wh-tag">MIA</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="left">8</td>
+          <td class="left">2.0 days</td>
+          <td><span class="wh-tag">LAX</span></td>
+          <td><span class="wh-tag">EWR</span></td>
+          <td><span class="wh-tag">SAV</span></td>
+          <td><span class="wh-tag">DAL</span></td>
+          <td><span class="wh-tag">CHI</span></td>
+          <td><span class="wh-tag">OAK</span></td>
+          <td><span class="wh-tag">MIA</span></td>
+          <td><span class="wh-tag">SEA</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Node codes: LAX = Los Angeles, EWR = Newark/New Jersey, SAV = Savannah, DAL = Dallas, CHI = Chicago, OAK = Oakland, MIA = Miami, SEA = Seattle. Sequence derived from fulfillment data analysis; optimal nodes will vary by brand.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <span class="num">32%</span>
+      <span class="label">Of shipments in avoidable Category 4–5 placement</span>
+    </div>
+    <div class="stat">
+      <span class="num">4.7 mo</span>
+      <span class="label">Average months of supply at 5 nodes, vs. 7.5 at 2 nodes</span>
+    </div>
+    <div class="stat">
+      <span class="num">3.2 days</span>
+      <span class="label">Average delivery time with 5-node network</span>
+    </div>
+    <div class="stat">
+      <span class="num">2.0 days</span>
+      <span class="label">Average delivery time at full 8-node network</span>
+    </div>
+  </div>
+
+  <h2>Key Implications for Brand Owners</h2>
+
+  <p>The warehouse expansion analysis was conducted for a 3PL operator, but the underlying logic applies directly to brand owners making their own fulfillment network decisions.</p>
+
+  <p>A few principles worth internalizing:</p>
+
+  <ul>
+    <li><strong>The third warehouse decision cannot be made generically.</strong> Unlike the first two nodes, the third location should be derived from your specific order geography — where your customers actually are, relative to where your inventory currently sits. The answer for a brand selling primarily to the Southeast is different from one selling primarily to the Midwest.</li>
+    <li><strong>Inventory and freight costs are linked.</strong> More warehouse nodes means smaller per-node inventory buffers, faster replenishment cycles, and lower safety stock requirements. The freight savings from shorter delivery zones often more than offset the operational overhead of managing an additional location — but only after the volume threshold justifies it.</li>
+    <li><strong>Timing matters as much as location.</strong> Opening a third warehouse too early ties up capital in inventory and increases operational complexity without enough volume to justify it. Opening it too late means continued overspend on cross-country freight. The right timing can be modeled from your fulfillment data — it shouldn't be a gut call.</li>
+    <li><strong>Category 5b is always avoidable.</strong> If your inbound freight strategy is routing stock to the wrong coast relative to where demand sits, that is a planning failure — and an expensive one. Correcting it costs nothing except the analysis time to identify it.</li>
+  </ul>
+
+  <h2>The Analytical Toolkit</h2>
+
+  <p>The analysis behind this work used a deliberately simple stack. Conceptual modeling and dynamic scenario planning (warehouse layout, inventory impact by node) was done in Excel. Large-scale shipment data processing was handled in SQL. Results were visualized back in Excel using US map heatmaps to make geographic patterns immediately interpretable to non-technical stakeholders.</p>
+
+  <p>The US heatmap Excel template used in this analysis is available to share. If you're interested in applying this framework to your own fulfillment network, reach out to us directly.</p>
+
+  <div class="post-footer">
+    <span class="author-line">By <strong>Three Flows Solutions</strong> · Inventory & Fulfillment</span>
+    <a href="#" class="cta-inline">Submit an inquiry</a>
+  </div>
+
+</div>
+</body>
+</html>

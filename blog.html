@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Insights and guides for retail founders and e-commerce operators — sourcing, launch, and beyond.">
+<meta name="description" content="Notes from the Field — analyses, frameworks, and real-world thinking on supply chain, fulfillment, and retail operations from Three Flows Solutions.">
 <link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
-<title>Blog & Articles — Three Flows Solutions</title>
+<title>Blogs &amp; Articles — Three Flows Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -35,7 +35,7 @@ html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
 /* NAV */
-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
 .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
 .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
@@ -45,7 +45,6 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
 .nav-cta:hover { background: #333; }
 
-/* NAV DROPDOWNS */
 .nav-dropdown { position: relative; }
 .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
 .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
@@ -53,73 +52,71 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .nav-dropdown.open .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
 
-/* SHARED HELPERS */
-.eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
-.section-title { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-.section-sub { font-size: 16px; color: var(--mid); line-height: 1.75; font-weight: 300; max-width: 620px; margin-bottom: 36px; }
-.btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
-.btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
-.btn-dark { background: var(--dark); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
-.btn-dark:hover { opacity: 0.85; }
-.btn-outline { background: transparent; color: var(--dark); border: 1px solid var(--border-dark); padding: 13px 28px; border-radius: 6px; font-size: 15px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; display: inline-block; text-decoration: none; }
-.btn-outline:hover { border-color: var(--dark); }
-.btn-outline.disabled { color: var(--muted); border-color: var(--border); pointer-events: none; cursor: default; }
-
-/* BREADCRUMB */
-.breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; }
-.breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
-.breadcrumb:hover { color: var(--dark); }
-
 /* HERO */
-.res-hero { max-width: 1100px; margin: 0 auto; padding: 48px 48px 32px; }
-.res-hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 14px; }
-.res-hero p.lead { font-size: 17px; color: var(--mid); line-height: 1.7; font-weight: 300; max-width: 680px; }
+.hero { max-width: 1100px; margin: 0 auto; padding: 72px 48px 32px; }
+.eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+.hero p.lead { font-size: 17px; color: var(--mid); line-height: 1.7; font-weight: 300; max-width: 720px; }
 
-/* CONTAINER */
-.res-section { max-width: 1100px; margin: 0 auto; padding: 48px; }
+/* TAG FILTER BAR */
+.filter-wrap { max-width: 1100px; margin: 0 auto; padding: 16px 48px 0; }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 0 24px; border-bottom: 1px solid var(--border); }
+.tag-btn { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border-dark); background: var(--white); color: var(--mid); cursor: pointer; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+.tag-btn:hover { border-color: var(--dark); color: var(--dark); }
+.tag-btn.active { background: var(--red); color: var(--white); border-color: var(--red); }
 
-/* SIGNUP */
-.field-label { font-size: 13px; font-weight: 500; color: var(--dark); display: flex; align-items: center; gap: 4px; margin-bottom: 6px; }
-.req { color: var(--red); }
-.signup-actions { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
-.signup-note { font-size: 12px; color: var(--muted); }
-/* BOTTOM CTA */
-.svc-bottom-cta { background: var(--dark); }
-.svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
-.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 28px; color: white; max-width: 480px; line-height: 1.25; }
-.svc-bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
-.bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+/* POST LIST — vertical, one card per row */
+.posts-section { max-width: 1100px; margin: 0 auto; padding: 32px 48px 80px; }
+.blog-list { display: flex; flex-direction: column; gap: 18px; }
+.blog-card { display: flex; gap: 28px; align-items: stretch; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s; }
+.blog-card:hover { border-color: var(--dark); box-shadow: 0 6px 24px rgba(0,0,0,0.05); transform: translateY(-1px); }
+.blog-card.hidden { display: none; }
+
+.blog-img-wrap { width: 260px; min-width: 260px; height: 180px; background: var(--off-white); flex-shrink: 0; position: relative; overflow: hidden; }
+.blog-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.blog-img-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); background: var(--red); letter-spacing: 0.02em; }
+
+.blog-body { flex: 1; padding: 22px 28px 22px 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.blog-row-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.blog-tags-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.blog-cat { display: inline-block; font-size: 11px; font-weight: 600; color: var(--red); background: var(--red-light); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase; }
+.blog-extra-tags { display: none; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--off-white); border: 1px solid var(--border); color: var(--mid); font-size: 14px; line-height: 1; cursor: help; position: relative; }
+.blog-card[data-extra-tags]:not([data-extra-tags=""]) .blog-extra-tags { display: inline-flex; }
+.blog-extra-tags::after {
+  content: attr(data-tooltip);
+  position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%);
+  background: var(--dark); color: var(--white); font-size: 11px; padding: 5px 10px; border-radius: 6px;
+  white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.blog-extra-tags:hover::after { opacity: 1; }
+.blog-date { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.blog-title { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: var(--dark); margin-top: 4px; }
+.blog-card:hover .blog-title { color: var(--red); }
+.blog-excerpt { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; }
+.blog-readmore { font-size: 13px; color: var(--red); font-weight: 500; margin-top: auto; }
+
+.blog-empty { font-size: 14px; color: var(--muted); padding: 40px 0; text-align: center; display: none; }
+.blog-empty.show { display: block; }
 
 /* FOOTER */
-footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { color: var(--muted); text-decoration: none; }
 .footer-links a:hover { color: var(--dark); }
 
-/* RESPONSIVE */
 @media (max-width: 800px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .breadcrumb-wrap { padding: 20px 20px 0; }
-  .res-hero { padding: 32px 20px 24px; }
-  .res-hero h1 { font-size: 32px; }
-  .res-section { padding: 40px 20px; }
-  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  .hero { padding: 48px 20px 24px; }
+  .hero h1 { font-size: 34px; }
+  .filter-wrap { padding: 12px 20px 0; }
+  .posts-section { padding: 24px 20px 64px; }
+  .blog-card { flex-direction: column; }
+  .blog-img-wrap { width: 100%; min-width: 0; height: 200px; }
+  .blog-body { padding: 20px 20px 22px; }
   footer { padding: 20px; }
 }
-
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.blog-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
-.blog-img { height: 180px; background: var(--red-light); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--muted); font-weight: 500; }
-.blog-body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; gap: 10px; }
-.blog-cat { display: inline-block; align-self: flex-start; font-size: 11px; font-weight: 600; color: var(--red); background: var(--red-light); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase; }
-.blog-title { font-family: 'DM Serif Display', serif; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; }
-.blog-excerpt { font-size: 14px; color: var(--mid); line-height: 1.6; font-weight: 300; }
-.blog-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; }
-.blog-date { font-size: 12px; color: var(--muted); }
-.blog-readmore { font-size: 12px; color: var(--red); font-weight: 500; text-decoration: none; }
-@media (max-width: 1000px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 700px)  { .blog-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -159,73 +156,240 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
 </nav>
 
-<div class="breadcrumb-wrap">
-  <a class="breadcrumb" href="index.html#resources-anchor">← Resources</a>
-</div>
-
-<section class="res-hero">
+<section class="hero">
   <div class="eyebrow">Blogs &amp; articles</div>
-  <h1>Insights &amp; Guides</h1>
-  <p class="lead">Practical advice for retail founders and e-commerce operators — sourcing, launch, and beyond.</p>
+  <h1>Notes from the Field</h1>
+  <p class="lead">Analyses, frameworks, and real-world thinking on supply chain, fulfillment, and retail operations.</p>
 </section>
 
-<section class="res-section" style="padding-top:0;">
-  <div class="blog-grid">
-    <article class="blog-card">
-      <div class="blog-img">Image coming soon</div>
-      <div class="blog-body">
-        <span class="blog-cat">Sourcing</span>
-        <div class="blog-title">How to evaluate a factory before placing your first order</div>
-        <p class="blog-excerpt">A practical 8-point checklist for first-time importers — from facility visits to sample audits. We cover what to look for, what to ask, and how to walk away when the numbers don't add up.</p>
-        <div class="blog-meta"><span class="blog-date">May 2026</span><a class="blog-readmore" href="#">Read more →</a></div>
-      </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-img">Image coming soon</div>
-      <div class="blog-body">
-        <span class="blog-cat">Launch</span>
-        <div class="blog-title">The 5 documents every new importer needs</div>
-        <p class="blog-excerpt">From commercial invoices to certificates of origin — the paperwork that keeps your first shipment moving and out of customs limbo. Templates included.</p>
-        <div class="blog-meta"><span class="blog-date">May 2026</span><a class="blog-readmore" href="#">Read more →</a></div>
-      </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-img">Image coming soon</div>
-      <div class="blog-body">
-        <span class="blog-cat">Operations</span>
-        <div class="blog-title">Setting up your back office before you launch</div>
-        <p class="blog-excerpt">Accounting, inventory, fulfillment, and customer service — the four systems you should pick before your first order, not after. Our framework for evaluating each one.</p>
-        <div class="blog-meta"><span class="blog-date">May 2026</span><a class="blog-readmore" href="#">Read more →</a></div>
-      </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-img">Image coming soon</div>
-      <div class="blog-body">
-        <span class="blog-cat">Planning</span>
-        <div class="blog-title">Unit economics for first-time founders</div>
-        <p class="blog-excerpt">Landed cost, contribution margin, and the simple math that tells you whether your idea works. We walk through a real example end-to-end.</p>
-        <div class="blog-meta"><span class="blog-date">May 2026</span><a class="blog-readmore" href="#">Read more →</a></div>
-      </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-img">Image coming soon</div>
-      <div class="blog-body">
-        <span class="blog-cat">Sourcing</span>
-        <div class="blog-title">Alibaba vs trade shows vs your own scout</div>
-        <p class="blog-excerpt">Three ways to find a supplier — what each one costs, what each one tells you, and when each one is the right call for your stage.</p>
-        <div class="blog-meta"><span class="blog-date">May 2026</span><a class="blog-readmore" href="#">Read more →</a></div>
-      </div>
-    </article>
-    <article class="blog-card">
-      <div class="blog-img">Image coming soon</div>
-      <div class="blog-body">
-        <span class="blog-cat">Launch</span>
-        <div class="blog-title">Marketplace first or DTC first?</div>
-        <p class="blog-excerpt">The trade-offs between launching on Amazon, Shopify, or both — and how to decide based on category, margin, and the team you have on day one.</p>
-        <div class="blog-meta"><span class="blog-date">May 2026</span><a class="blog-readmore" href="#">Read more →</a></div>
-      </div>
-    </article>
+<div class="filter-wrap">
+  <div class="filter-bar" id="filter-bar">
+    <button class="tag-btn active" data-filter="__all__">All</button>
+    <button class="tag-btn" data-filter="Plan">Plan</button>
+    <button class="tag-btn" data-filter="Source">Source</button>
+    <button class="tag-btn" data-filter="Launch">Launch</button>
+    <button class="tag-btn" data-filter="Scale">Scale</button>
+    <button class="tag-btn" data-filter="Data">Data</button>
+    <button class="tag-btn" data-filter="Setup">Setup</button>
+    <button class="tag-btn" data-filter="Compliance">Compliance</button>
+    <button class="tag-btn" data-filter="Others">Others</button>
   </div>
+</div>
+
+<section class="posts-section">
+  <div class="blog-list" id="post-grid">
+
+    <a class="blog-card" href="blog-001.html" data-tag="Others" data-extra-tags="" data-date="2025-03-05">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">001</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Others</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Mar 5, 2025</span>
+        </div>
+        <div class="blog-title">Welcome to Three Flows Solutions: Where Education Meets Execution</div>
+        <p class="blog-excerpt">An introduction to Three Flows Solutions — what we do, and why we believe education and entrepreneurship belong together.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-002.html" data-tag="Source" data-extra-tags="" data-date="2025-05-26">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">002</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">May 26, 2025</span>
+        </div>
+        <div class="blog-title">How to Legally Cut Import Costs by Up to 48%</div>
+        <p class="blog-excerpt">A practical breakdown of tariff engineering strategies available to importers operating under current US trade rules.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-010a.html" data-tag="Launch" data-extra-tags="" data-date="2025-06-05">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">010A</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Launch</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Jun 5, 2025</span>
+        </div>
+        <div class="blog-title">Dedicated 3PL Service Can Cost $23.33 Per Order — or $5.71</div>
+        <p class="blog-excerpt">How system integration, packaging method, and box assortment combine to determine per-order fulfillment cost.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-004.html" data-tag="Source" data-extra-tags="" data-date="2025-06-23">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">004</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Jun 23, 2025</span>
+        </div>
+        <div class="blog-title">Navigating the US-China Tariff War</div>
+        <p class="blog-excerpt">A practical guide to the current tariff landscape and the options available to brands sourcing from Asia.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-010b.html" data-tag="Scale" data-extra-tags="" data-date="2025-07-15">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">010B</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Scale</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Jul 15, 2025</span>
+        </div>
+        <div class="blog-title">The Fifth M: Why Measurement Is the One That Makes All the Others Work</div>
+        <p class="blog-excerpt">Measurement is not a step at the end of the 5M framework — it is the discipline that runs through all of it.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-007.html" data-tag="Scale" data-extra-tags="" data-date="2025-07-18">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">007</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Scale</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Jul 18, 2025</span>
+        </div>
+        <div class="blog-title">Where Should Your Third US Warehouse Be?</div>
+        <p class="blog-excerpt">A data-driven analysis of US warehouse placement using shipment heatmaps.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-003.html" data-tag="Source" data-extra-tags="" data-date="2025-08-02">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">003</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Aug 2, 2025</span>
+        </div>
+        <div class="blog-title">Factory Data Problems Are Costing You More Than You Think</div>
+        <p class="blog-excerpt">Inconsistent SKU data, mismatched barcodes, and ASN errors are systematic cost drivers hiding in plain sight.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-005.html" data-tag="Source" data-extra-tags="" data-date="2025-08-25">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">005</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Aug 25, 2025</span>
+        </div>
+        <div class="blog-title">Why Data Integrity Is the Foundation of a Scalable Supply Chain</div>
+        <p class="blog-excerpt">Before you can optimize a supply chain, you need to be able to trust the data it runs on.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-008.html" data-tag="Plan" data-extra-tags="" data-date="2025-09-12">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">008</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Plan</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Sep 12, 2025</span>
+        </div>
+        <div class="blog-title">Is a $1.40 Product Worth Selling in the US?</div>
+        <p class="blog-excerpt">The 7–10x factory-to-retail rule explained, with an interactive cost stack.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-006.html" data-tag="Scale" data-extra-tags="" data-date="2026-01-16">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">006</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Scale</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Jan 16, 2026</span>
+        </div>
+        <div class="blog-title">Is FedEx's 2026 Rate Increase Really Just 5.9%?</div>
+        <p class="blog-excerpt">The stated 5.9% GRI understates the real impact — a zone-by-zone surcharge analysis.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-009.html" data-tag="Launch" data-extra-tags="" data-date="2026-02-02">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">009</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Launch</span>
+            <span class="blog-extra-tags" data-tooltip="">+</span>
+          </div>
+          <span class="blog-date">Feb 2, 2026</span>
+        </div>
+        <div class="blog-title">Why Your Whatnot Livestream Needs a Sell-Through Model</div>
+        <p class="blog-excerpt">An interactive breakeven simulator showing how sell-through rate determines profitability.</p>
+        <span class="blog-readmore">Read →</span>
+      </div>
+    </a>
+
+  </div>
+  <div class="blog-empty" id="blog-empty">No posts match the selected tags. <button class="tag-btn" style="margin-left:8px" onclick="resetFilter()">Reset</button></div>
 </section>
 
 <footer>
@@ -234,7 +398,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
   </div>
   <div class="footer-links">
-    
     <a href="#">Privacy</a><a href="#">Terms</a>
   </div>
 </footer>
@@ -253,6 +416,51 @@ document.addEventListener('click', function(e) {
   }
 });
 
+(function() {
+  const filterBar = document.getElementById('filter-bar');
+  const cards = Array.from(document.querySelectorAll('#post-grid .blog-card'));
+  const emptyMsg = document.getElementById('blog-empty');
+  const buttons = Array.from(filterBar.querySelectorAll('.tag-btn'));
+  const allBtn = buttons.find(b => b.dataset.filter === '__all__');
+  const tagBtns = buttons.filter(b => b.dataset.filter !== '__all__');
+
+  function applyFilter() {
+    const active = tagBtns.filter(b => b.classList.contains('active')).map(b => b.dataset.filter);
+    let visible = 0;
+    if (active.length === 0) {
+      cards.forEach(c => { c.classList.remove('hidden'); visible++; });
+    } else {
+      cards.forEach(c => {
+        const tag = c.getAttribute('data-tag');
+        const show = active.indexOf(tag) !== -1;
+        c.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+    }
+    emptyMsg.classList.toggle('show', visible === 0);
+  }
+
+  tagBtns.forEach(b => {
+    b.addEventListener('click', function() {
+      b.classList.toggle('active');
+      const anyActive = tagBtns.some(x => x.classList.contains('active'));
+      allBtn.classList.toggle('active', !anyActive);
+      applyFilter();
+    });
+  });
+
+  allBtn.addEventListener('click', function() {
+    tagBtns.forEach(b => b.classList.remove('active'));
+    allBtn.classList.add('active');
+    applyFilter();
+  });
+
+  window.resetFilter = function() {
+    tagBtns.forEach(b => b.classList.remove('active'));
+    allBtn.classList.add('active');
+    applyFilter();
+  };
+})();
 </script>
 </body>
 </html>
