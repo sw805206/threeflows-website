@@ -80,16 +80,6 @@ nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.96)
 .blog-row-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .blog-tags-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .blog-cat { display: inline-block; font-size: 11px; font-weight: 600; color: var(--red); background: var(--red-light); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase; }
-.blog-extra-tags { display: none; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--off-white); border: 1px solid var(--border); color: var(--mid); font-size: 14px; line-height: 1; cursor: help; position: relative; }
-.blog-card[data-extra-tags]:not([data-extra-tags=""]) .blog-extra-tags { display: inline-flex; }
-.blog-extra-tags::after {
-  content: attr(data-tooltip);
-  position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%);
-  background: var(--dark); color: var(--white); font-size: 11px; padding: 5px 10px; border-radius: 6px;
-  white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s;
-  font-family: 'DM Sans', sans-serif;
-}
-.blog-extra-tags:hover::after { opacity: 1; }
 .blog-date { font-size: 12px; color: var(--muted); white-space: nowrap; }
 .blog-title { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: var(--dark); margin-top: 4px; }
 .blog-card:hover .blog-title { color: var(--red); }
@@ -179,197 +169,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 <section class="posts-section">
   <div class="blog-list" id="post-grid">
 
-    <a class="blog-card" href="blog-001.html" data-tag="Others" data-extra-tags="" data-date="2025-03-05">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">001</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Others</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Mar 5, 2025</span>
-        </div>
-        <div class="blog-title">Welcome to Three Flows Solutions: Where Education Meets Execution</div>
-        <p class="blog-excerpt">An introduction to Three Flows Solutions — what we do, and why we believe education and entrepreneurship belong together.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-002.html" data-tag="Source" data-extra-tags="" data-date="2025-05-26">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">002</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">May 26, 2025</span>
-        </div>
-        <div class="blog-title">How to Legally Cut Import Costs by Up to 48%</div>
-        <p class="blog-excerpt">A practical breakdown of tariff engineering strategies available to importers operating under current US trade rules.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-010a.html" data-tag="Launch" data-extra-tags="" data-date="2025-06-05">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">010A</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Launch</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Jun 5, 2025</span>
-        </div>
-        <div class="blog-title">Dedicated 3PL Service Can Cost $23.33 Per Order — or $5.71</div>
-        <p class="blog-excerpt">How system integration, packaging method, and box assortment combine to determine per-order fulfillment cost.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-004.html" data-tag="Source" data-extra-tags="" data-date="2025-06-23">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">004</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Jun 23, 2025</span>
-        </div>
-        <div class="blog-title">Navigating the US-China Tariff War</div>
-        <p class="blog-excerpt">A practical guide to the current tariff landscape and the options available to brands sourcing from Asia.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-010b.html" data-tag="Scale" data-extra-tags="" data-date="2025-07-15">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">010B</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Scale</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Jul 15, 2025</span>
-        </div>
-        <div class="blog-title">The Fifth M: Why Measurement Is the One That Makes All the Others Work</div>
-        <p class="blog-excerpt">Measurement is not a step at the end of the 5M framework — it is the discipline that runs through all of it.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-007.html" data-tag="Scale" data-extra-tags="" data-date="2025-07-18">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">007</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Scale</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Jul 18, 2025</span>
-        </div>
-        <div class="blog-title">Where Should Your Third US Warehouse Be?</div>
-        <p class="blog-excerpt">A data-driven analysis of US warehouse placement using shipment heatmaps.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-003.html" data-tag="Source" data-extra-tags="" data-date="2025-08-02">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">003</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Aug 2, 2025</span>
-        </div>
-        <div class="blog-title">Factory Data Problems Are Costing You More Than You Think</div>
-        <p class="blog-excerpt">Inconsistent SKU data, mismatched barcodes, and ASN errors are systematic cost drivers hiding in plain sight.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-005.html" data-tag="Source" data-extra-tags="" data-date="2025-08-25">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">005</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Source</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Aug 25, 2025</span>
-        </div>
-        <div class="blog-title">Why Data Integrity Is the Foundation of a Scalable Supply Chain</div>
-        <p class="blog-excerpt">Before you can optimize a supply chain, you need to be able to trust the data it runs on.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-008.html" data-tag="Plan" data-extra-tags="" data-date="2025-09-12">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">008</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Plan</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Sep 12, 2025</span>
-        </div>
-        <div class="blog-title">Is a $1.40 Product Worth Selling in the US?</div>
-        <p class="blog-excerpt">The 7–10x factory-to-retail rule explained, with an interactive cost stack.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-006.html" data-tag="Scale" data-extra-tags="" data-date="2026-01-16">
-      <div class="blog-img-wrap">
-        <img class="blog-img" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="blog-img-fallback" style="display:none">006</div>
-      </div>
-      <div class="blog-body">
-        <div class="blog-row-top">
-          <div class="blog-tags-left">
-            <span class="blog-cat">Scale</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
-          </div>
-          <span class="blog-date">Jan 16, 2026</span>
-        </div>
-        <div class="blog-title">Is FedEx's 2026 Rate Increase Really Just 5.9%?</div>
-        <p class="blog-excerpt">The stated 5.9% GRI understates the real impact — a zone-by-zone surcharge analysis.</p>
-        <span class="blog-readmore">Read →</span>
-      </div>
-    </a>
-
-    <a class="blog-card" href="blog-009.html" data-tag="Launch" data-extra-tags="" data-date="2026-02-02">
+    <a class="blog-card" href="blog-009.html" data-tag="Launch" data-date="2026-02-02">
       <div class="blog-img-wrap">
         <img class="blog-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="blog-img-fallback" style="display:none">009</div>
@@ -378,13 +178,192 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         <div class="blog-row-top">
           <div class="blog-tags-left">
             <span class="blog-cat">Launch</span>
-            <span class="blog-extra-tags" data-tooltip="">+</span>
           </div>
           <span class="blog-date">Feb 2, 2026</span>
         </div>
         <div class="blog-title">Why Your Whatnot Livestream Needs a Sell-Through Model</div>
         <p class="blog-excerpt">An interactive breakeven simulator showing how sell-through rate determines profitability.</p>
-        <span class="blog-readmore">Read →</span>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-006.html" data-tag="Scale" data-date="2026-01-16">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">006</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Scale</span>
+          </div>
+          <span class="blog-date">Jan 16, 2026</span>
+        </div>
+        <div class="blog-title">Is FedEx's 2026 Rate Increase Really Just 5.9%?</div>
+        <p class="blog-excerpt">The stated 5.9% GRI understates the real impact — a zone-by-zone surcharge analysis.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-008.html" data-tag="Plan" data-date="2025-09-12">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">008</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Plan</span>
+          </div>
+          <span class="blog-date">Sep 12, 2025</span>
+        </div>
+        <div class="blog-title">Is a $1.40 Product Worth Selling in the US?</div>
+        <p class="blog-excerpt">The 7–10x factory-to-retail rule explained, with an interactive cost stack.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-005.html" data-tag="Source" data-date="2025-08-25">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">005</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+          </div>
+          <span class="blog-date">Aug 25, 2025</span>
+        </div>
+        <div class="blog-title">Why Data Integrity Is the Foundation of a Scalable Supply Chain</div>
+        <p class="blog-excerpt">Before you can optimize a supply chain, you need to be able to trust the data it runs on.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-003.html" data-tag="Source" data-date="2025-08-02">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">003</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+          </div>
+          <span class="blog-date">Aug 2, 2025</span>
+        </div>
+        <div class="blog-title">Factory Data Problems Are Costing You More Than You Think</div>
+        <p class="blog-excerpt">Inconsistent SKU data, mismatched barcodes, and ASN errors are systematic cost drivers hiding in plain sight.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-007.html" data-tag="Scale" data-date="2025-07-18">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">007</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Scale</span>
+          </div>
+          <span class="blog-date">Jul 18, 2025</span>
+        </div>
+        <div class="blog-title">Where Should Your Third US Warehouse Be?</div>
+        <p class="blog-excerpt">A data-driven analysis of US warehouse placement using shipment heatmaps.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-010b.html" data-tag="Scale" data-date="2025-07-15">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">010B</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Scale</span>
+          </div>
+          <span class="blog-date">Jul 15, 2025</span>
+        </div>
+        <div class="blog-title">The Fifth M: Why Measurement Is the One That Makes All the Others Work</div>
+        <p class="blog-excerpt">Measurement is not a step at the end of the 5M framework — it is the discipline that runs through all of it.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-004.html" data-tag="Source" data-date="2025-06-23">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">004</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+          </div>
+          <span class="blog-date">Jun 23, 2025</span>
+        </div>
+        <div class="blog-title">Navigating the US-China Tariff War</div>
+        <p class="blog-excerpt">A practical guide to the current tariff landscape and the options available to brands sourcing from Asia.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-010a.html" data-tag="Launch" data-date="2025-06-05">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">010A</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Launch</span>
+          </div>
+          <span class="blog-date">Jun 5, 2025</span>
+        </div>
+        <div class="blog-title">Dedicated 3PL Service Can Cost $23.33 Per Order — or $5.71</div>
+        <p class="blog-excerpt">How system integration, packaging method, and box assortment combine to determine per-order fulfillment cost.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-002.html" data-tag="Source" data-date="2025-05-26">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">002</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Source</span>
+          </div>
+          <span class="blog-date">May 26, 2025</span>
+        </div>
+        <div class="blog-title">How to Legally Cut Import Costs by Up to 48%</div>
+        <p class="blog-excerpt">A practical breakdown of tariff engineering strategies available to importers operating under current US trade rules.</p>
+        <span class="blog-readmore">Read ↗</span>
+      </div>
+    </a>
+
+    <a class="blog-card" href="blog-001.html" data-tag="Others" data-date="2025-03-05">
+      <div class="blog-img-wrap">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=520&amp;h=360&amp;fit=crop&amp;auto=format" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="blog-img-fallback" style="display:none">001</div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-row-top">
+          <div class="blog-tags-left">
+            <span class="blog-cat">Others</span>
+          </div>
+          <span class="blog-date">Mar 5, 2025</span>
+        </div>
+        <div class="blog-title">Welcome to Three Flows Solutions: Where Education Meets Execution</div>
+        <p class="blog-excerpt">An introduction to Three Flows Solutions — what we do, and why we believe education and entrepreneurship belong together.</p>
+        <span class="blog-readmore">Read ↗</span>
       </div>
     </a>
 
