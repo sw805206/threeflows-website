@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Free checklists and calculators for retail founders — launch planning, landed cost, SKU tracking, budgets, and supplier comparison.">
+<meta name="description" content="Checklists and calculators for retail founders — launch planning, landed cost, SKU tracking, budgets, and supplier comparison.">
 <link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
-<title>Free Checklists & Calculators — Three Flows Solutions</title>
+<title>Checklists & Calculators — Three Flows Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -58,6 +58,10 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .section-title { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 18px; }
 .btn-outline { background: transparent; color: var(--dark); border: 1px solid var(--border-dark); padding: 13px 28px; border-radius: 6px; font-size: 15px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; display: inline-block; text-decoration: none; }
 .btn-outline:hover { border-color: var(--dark); }
+.btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-dark { background: var(--dark); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
+.btn-dark:hover { opacity: 0.85; }
 
 /* BREADCRUMB */
 .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; }
@@ -86,10 +90,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .signup-success { display: none; background: var(--green-light); color: var(--green); border: 1px solid rgba(0,176,80,0.25); border-radius: var(--radius-sm); padding: 16px 18px; font-size: 14px; font-weight: 600; }
 .signup-success.show { display: block; }
 
-/* TOOL CARD GRIDS — Knowledge Bank visual style */
-.tool-grid { display: grid; gap: 16px; }
-.tool-grid.three { grid-template-columns: repeat(3, 1fr); }
-.tool-grid.two   { grid-template-columns: repeat(2, 1fr); }
+/* CAROUSEL — Resources card visual style, horizontally scrollable */
 .tool-card { position: relative; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; }
 .tool-card .preview-tag { position: absolute; top: 16px; right: 16px; font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; background: var(--off-white); border: 1px solid var(--border); padding: 3px 10px; border-radius: 20px; }
 .tool-title { font-family: 'DM Serif Display', serif; font-size: 19px; line-height: 1.25; margin-bottom: 14px; padding-right: 90px; }
@@ -97,8 +98,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--mid); line-height: 1.55; }
 .check-list li::before { content: '✓'; color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
-/* CALCULATOR CARD CONTENT */
-.calc-card { display: flex; gap: 20px; align-items: flex-start; padding: 28px; }
+/* CALCULATOR CARD CONTENT — vertical layout inside carousel for 300px width */
+.calc-card { display: flex; flex-direction: column; gap: 14px; padding: 28px 24px; }
 .calc-icon { width: 48px; height: 48px; background: var(--red-light); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
 .calc-body { flex: 1; }
 .calc-body .tool-title { padding-right: 0; margin-bottom: 8px; font-size: 19px; }
@@ -107,9 +108,25 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .calc-download { font-size: 13px; color: var(--muted); font-weight: 500; text-decoration: none; pointer-events: none; cursor: default; }
 .calc-tag { font-size: 11px; color: var(--muted); font-style: italic; }
 
-/* BOTTOM FOOTNOTE */
-.bottom-footnote { max-width: 1100px; margin: 0 auto; padding: 32px 48px 64px; text-align: center; }
-.bottom-footnote p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 680px; margin: 0 auto 18px; font-weight: 300; }
+/* CAROUSEL HEADER + ARROWS */
+.carousel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 16px; }
+.carousel-header .section-title { margin-bottom: 0; }
+.carousel-arrows { display: flex; gap: 8px; flex-shrink: 0; }
+.carousel-arrow { width: 36px; height: 36px; background: var(--off-white); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; font-size: 18px; line-height: 1; color: var(--dark); display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; padding: 0; transition: background 0.15s, border-color 0.15s; }
+.carousel-arrow:hover { background: var(--white); border-color: var(--border-dark); }
+.carousel-arrow:active { background: var(--off-white); }
+
+/* CAROUSEL TRACK */
+.carousel { display: flex; flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding-bottom: 12px; scrollbar-width: none; -ms-overflow-style: none; }
+.carousel::-webkit-scrollbar { display: none; }
+.carousel-item { flex: 0 0 auto; width: 300px; scroll-snap-align: start; }
+
+/* BLACK BANNER BOTTOM CTA — copied verbatim from svc1.html */
+.svc-bottom-cta { background: var(--dark); }
+.svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 480px; line-height: 1.25; }
+.svc-bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
+.bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* FOOTER */
 footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
@@ -121,7 +138,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 @media (max-width: 1000px) {
   .signup-bar form { grid-template-columns: 1fr 1fr; gap: 14px; }
   .signup-bar .submit-cell { grid-column: 1 / -1; }
-  .tool-grid.three, .tool-grid.two { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .carousel-item { width: 260px; }
 }
 @media (max-width: 700px) {
   nav { padding: 0 20px; }
@@ -132,9 +151,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .res-section { padding: 28px 20px; }
   .signup-bar { padding: 20px; }
   .signup-bar form { grid-template-columns: 1fr; }
-  .tool-grid.three, .tool-grid.two { grid-template-columns: 1fr; }
-  .calc-card { flex-direction: column; }
-  .bottom-footnote { padding: 28px 20px 56px; }
+  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
   footer { padding: 20px; }
 }
 </style>
@@ -162,11 +179,11 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     </li>
     <li><a href="index.html#about-anchor">About</a></li>
     <li class="nav-dropdown" id="dd-resources">
-      <a onclick="toggleDropdown('dd-resources', event)">Knowledge Bank ▾</a>
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
       <div class="nav-dropdown-menu">
         <a href="blog.html">Blogs &amp; articles</a>
         <a href="useful-websites.html">Useful websites</a>
-        <a href="free-tools.html">Free checklists &amp; calculators</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
         <a href="webinars.html">Recorded webinars &amp; seminars</a>
         <a href="livestream.html">Livestream discussions</a>
       </div>
@@ -177,12 +194,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 </nav>
 
 <div class="breadcrumb-wrap">
-  <a class="breadcrumb" href="index.html#resources-anchor">← Knowledge Bank</a>
+  <a class="breadcrumb" href="index.html#resources-anchor">← Resources</a>
 </div>
 
 <section class="res-hero">
-  <div class="eyebrow">Free checklists &amp; calculators</div>
-  <h1>Free Checklists &amp; Calculators</h1>
+  <div class="eyebrow">Checklists &amp; Calculators</div>
+  <h1>Checklists &amp; Calculators</h1>
   <p class="lead">Practical tools to help you plan, source, and launch your retail brand — free with your details.</p>
 </section>
 
@@ -225,9 +242,15 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 </section>
 
 <section class="res-section">
-  <h2 class="section-title">Checklists</h2>
-  <div class="tool-grid three">
-    <div class="tool-card">
+  <div class="carousel-header">
+    <h2 class="section-title">Checklists</h2>
+    <div class="carousel-arrows">
+      <button type="button" class="carousel-arrow" data-target="carousel-checklists" data-dir="-1" aria-label="Scroll checklists left">‹</button>
+      <button type="button" class="carousel-arrow" data-target="carousel-checklists" data-dir="1" aria-label="Scroll checklists right">›</button>
+    </div>
+  </div>
+  <div class="carousel" id="carousel-checklists">
+    <div class="tool-card carousel-item">
       <span class="preview-tag">Preview only</span>
       <div class="tool-title">Pre-Launch Planning</div>
       <ul class="check-list">
@@ -239,7 +262,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         <li>Set a 12-month operating budget you can defend</li>
       </ul>
     </div>
-    <div class="tool-card">
+    <div class="tool-card carousel-item">
       <span class="preview-tag">Preview only</span>
       <div class="tool-title">Sourcing &amp; Production</div>
       <ul class="check-list">
@@ -251,7 +274,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         <li>Place first PO with a clear QC checkpoint</li>
       </ul>
     </div>
-    <div class="tool-card">
+    <div class="tool-card carousel-item">
       <span class="preview-tag">Preview only</span>
       <div class="tool-title">Go-to-Market &amp; Launch</div>
       <ul class="check-list">
@@ -267,9 +290,15 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 </section>
 
 <section class="res-section">
-  <h2 class="section-title">Calculators</h2>
-  <div class="tool-grid two">
-    <div class="tool-card calc-card">
+  <div class="carousel-header">
+    <h2 class="section-title">Calculators</h2>
+    <div class="carousel-arrows">
+      <button type="button" class="carousel-arrow" data-target="carousel-calculators" data-dir="-1" aria-label="Scroll calculators left">‹</button>
+      <button type="button" class="carousel-arrow" data-target="carousel-calculators" data-dir="1" aria-label="Scroll calculators right">›</button>
+    </div>
+  </div>
+  <div class="carousel" id="carousel-calculators">
+    <div class="tool-card calc-card carousel-item">
       <div class="calc-icon">📊</div>
       <div class="calc-body">
         <div class="tool-title">Landed Cost Calculator</div>
@@ -280,7 +309,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         </div>
       </div>
     </div>
-    <div class="tool-card calc-card">
+    <div class="tool-card calc-card carousel-item">
       <div class="calc-icon">📊</div>
       <div class="calc-body">
         <div class="tool-title">SKU Tracker</div>
@@ -291,7 +320,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         </div>
       </div>
     </div>
-    <div class="tool-card calc-card">
+    <div class="tool-card calc-card carousel-item">
       <div class="calc-icon">📊</div>
       <div class="calc-body">
         <div class="tool-title">Launch Budget Planner</div>
@@ -302,7 +331,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         </div>
       </div>
     </div>
-    <div class="tool-card calc-card">
+    <div class="tool-card calc-card carousel-item">
       <div class="calc-icon">📊</div>
       <div class="calc-body">
         <div class="tool-title">Supplier Comparison Sheet</div>
@@ -316,9 +345,18 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   </div>
 </section>
 
-<div class="bottom-footnote">
-  <p>Need a customized tool built for your business? Our dedicated services include bespoke templates and calculators tailored to your operations.</p>
-  <a href="intake.html" class="btn-outline">Fill in an intake form</a>
+<div class="svc-bottom-cta">
+  <div class="svc-bottom-inner">
+    <div>
+      <h2>Need something more tailored?</h2>
+      <p>Our dedicated services include bespoke templates and calculators built around your specific operations.</p>
+    </div>
+    <div class="bottom-actions">
+      <a href="inquiry.html" target="_blank" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
+      <a href="intake.html" class="btn-outline" style="font-size:14px;font-weight:400;padding:11px 24px;color:white;border-color:rgba(255,255,255,0.4);text-decoration:none">Fill in an intake form</a>
+      <a href="#" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
+    </div>
+  </div>
 </div>
 
 <footer>
@@ -361,6 +399,21 @@ document.addEventListener('click', function(e) {
     fetch(form.action, { method: 'POST', mode: 'no-cors', body: data })
       .catch(function() { /* placeholder URL — ignore network failure */ })
       .finally(showSuccess);
+  });
+})();
+
+(function() {
+  // Each arrow knows which carousel to scroll via data-target. Buttons are
+  // collected with querySelectorAll only to attach handlers; each click
+  // scrolls one specific carousel by ID — never both at once.
+  document.querySelectorAll('.carousel-arrow').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = btn.getAttribute('data-target');
+      var dir = parseInt(btn.getAttribute('data-dir'), 10);
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      el.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    });
   });
 })();
 </script>
