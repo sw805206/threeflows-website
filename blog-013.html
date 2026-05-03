@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Which Marketplace Actually Costs Less? A 2026 Fee Breakdown — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --red-mid: rgba(214, 59, 59, 0.12);
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font-body: 16px;
+    --line-height: 1.7;
+    --transition: 0.18s ease;
+    --warm: #F8F8F8;
+    --warm-border: rgba(180,150,100,0.2);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  .review-banner {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .review-banner strong { color: #f0c060; }
+
+  .layout {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .post-date { font-size: 13px; color: var(--muted); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .post-meta .post-tags { margin-left: auto; }
+  .post-tag-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: none;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .post-tag-pill.primary   { background: #FDE8F0; color: #B5256A; }
+  .post-tag-pill.secondary { background: #E8E8E8; color: #3A3A3A; }
+  .post-tag-pill.empty     { background: #F8F8F8; color: #C8C8C8; }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--mid);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    margin: 40px 0 12px;
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 28px 0 8px;
+  }
+  p { margin-bottom: 18px; color: var(--mid); }
+  ul, ol { margin: 12px 0 20px 22px; color: var(--mid); }
+  li { margin-bottom: 8px; }
+  strong { color: var(--dark); font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -10px; margin-bottom: 18px; }
+
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout p { color: var(--dark); margin: 0; }
+
+  .callout-grey {
+    background: var(--off-white);
+    border-left: 3px solid var(--border-dark);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout-grey p { color: var(--mid); margin: 0; }
+
+  /* ── Section label banner ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 52px 0 4px;
+  }
+  .section-label-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-starter { background: var(--green-light); color: #007A3D; }
+  .badge-mature  { background: #EEF2FF; color: #3B52CE; }
+  .section-label-line { flex: 1; height: 1px; background: var(--border-dark); }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--dark);
+    color: white;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--mid);
+    text-align: left;
+    font-size: 13px;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  td.platform {
+    color: var(--dark);
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 100px;
+  }
+  tr:hover td { background: rgba(0,0,0,0.012); }
+  .group-header td {
+    background: var(--off-white);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* inline tag chips */
+  .tag-green { display: inline-block; background: var(--green-light); color: #007A3D; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .tag-red   { display: inline-block; background: var(--red-light);   color: var(--red);   font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .tag-grey  { display: inline-block; background: #E8E8E8;             color: #3A3A3A;       font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .tag-none  { display: inline-block; background: #F0F0F0;             color: #909090;       font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+
+  /* sub-note inside table cells */
+  .sub { display: block; font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px auto 0; max-width: 820px; padding: 0 24px; }
+  .post-nav-tile { background: var(--white); border: 1px solid var(--border-dark); border-radius: 10px; padding: 18px 22px; text-decoration: none; color: inherit; transition: border-color 0.18s; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .post-nav-tile:hover { border-color: var(--dark); }
+  .post-nav-tile.next { text-align: right; align-items: flex-end; }
+  .post-nav-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .post-nav-title { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.3; color: var(--dark); }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    footer { padding: 20px; }
+    .post-nav { grid-template-columns: 1fr; padding: 0 20px; }
+    .post-nav-tile.next { text-align: left; align-items: flex-start; }
+    h1 { font-size: 26px; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">01 — Business Planning</a>
+        <a href="svc2.html">02 — Sourcing Consultation</a>
+        <a href="svc3.html">03 — Launch Hypercare</a>
+        <a href="svc4.html">04 — Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li><a href="index.html#contact-anchor">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
+</nav>
+
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="blog.html">← Blog</a>
+</div>
+
+<div class="post-nav">
+  <a class="post-nav-tile prev" href="blog-009.html">
+    <span class="post-nav-label">← Previous</span>
+    <span class="post-nav-title">Why Your Whatnot Livestream Needs a Sell-Through Model</span>
+  </a>
+  <div class="post-nav-spacer"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     POST CONTENT
+════════════════════════════════════════════ -->
+<div class="layout">
+
+  <div class="post-meta">
+    <span class="post-date">Publish: Feb 25, 2026</span>
+    <div class="post-tags">
+      <span class="post-tag-pill primary">Plan</span>
+      <span class="post-tag-pill secondary">Source</span>
+      <span class="post-tag-pill empty">Launch</span>
+      <span class="post-tag-pill secondary">Scale</span>
+      <span class="post-tag-pill empty">Data</span>
+      <span class="post-tag-pill secondary">Setup</span>
+      <span class="post-tag-pill empty">Compliance</span>
+      <span class="post-tag-pill empty">Others</span>
+    </div>
+  </div>
+
+  <h1>Which Marketplace Actually Costs Less? A 2026 Fee Breakdown</h1>
+  <p class="subtitle">Amazon, eBay, Walmart, Etsy, Newegg, Wayfair, Temu, TikTok Shop, and Shopify all structure their fees differently — and most of them are designed to be difficult to compare directly. This post breaks them into two levels: the minimum cost to start selling, and what a realistic mid-volume operation actually pays. Two tables, same nine platforms, no mixed-level comparisons.</p>
+
+  <h2>Why the level distinction matters</h2>
+
+  <p>A new seller with a free Etsy account and ten listings is operating under different economics than a brand dispatching 500 orders a month on a Professional Amazon account with FBA. Comparing those two in the same table misleads in both directions — it makes entry-level costs look higher than they are, and it obscures the step-changes that happen as a business grows.</p>
+
+  <p>The entry-level table below uses the cheapest available configuration on each platform: the free or lowest-tier account, no paid tools, no advertising. The mature-level table uses a realistic mid-volume setup — not the enterprise version, but the way most active sellers who have found product-market fit actually operate. The goal is an apples-to-apples comparison within each level, not between them.</p>
+
+  <p>Both tables share the same four-column structure throughout:</p>
+  <ul>
+    <li><strong>① Fixed charges</strong> — monthly subscriptions, annual fees, or per-listing charges that apply regardless of whether you make a sale</li>
+    <li><strong>② Mandatory transactional charges</strong> — the percentage or per-order fees you pay on every sale and cannot avoid</li>
+    <li><strong>③ Optional charges</strong> — primarily advertising, which is technically avoidable but practically necessary for visibility on most platforms</li>
+    <li><strong>④ Notes</strong> — anything that materially changes the real cost, including thresholds, rate changes, or hidden mechanics</li>
+  </ul>
+
+  <div class="callout-grey">
+    <p><strong>What these tables exclude.</strong> Fulfillment fees (FBA, WFS, FBT, 3PL costs) are not included in either table. They are a logistics decision that exists independently of which marketplace you choose, and the comparison becomes uncontrollable without fixing product weight, size, and destination. We cover fulfillment economics separately in our post on <a href="blog-010a.html" style="color:var(--red);">dedicated 3PL vs FBA costs</a>. Rates as of Q2 2026 — verify your specific category in the relevant seller portal before pricing decisions.</p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       TABLE 1 — ENTRY LEVEL
+  ══════════════════════════════════════ -->
+
+  <div class="section-label">
+    <span class="section-label-badge badge-starter">Entry Level — Starters</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <h2 style="margin-top:0;">Minimum cost to start selling</h2>
+  <p>The cheapest available configuration on each platform. No paid subscriptions (where avoidable), no premium tools, no advertising. This answers the first question every new seller asks: <em>what does it actually cost to list something and make a sale?</em></p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:105px;">Platform<br><span style="font-weight:400;font-size:11px;">Entry config</span></th>
+          <th style="min-width:148px;">① Fixed charges<br><span style="font-weight:400;font-size:11px;">Regardless of sales</span></th>
+          <th style="min-width:165px;">② Mandatory transactional<br><span style="font-weight:400;font-size:11px;">Per sale, unavoidable</span></th>
+          <th style="min-width:138px;">③ Optional charges<br><span style="font-weight:400;font-size:11px;">Ads &amp; add-ons</span></th>
+          <th style="min-width:175px;">④ Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="group-header"><td colspan="5">General marketplaces</td></tr>
+
+        <tr>
+          <td class="platform">Amazon<br><span class="sub">Individual plan</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">No monthly fee on Individual plan</span>
+          </td>
+          <td>
+            <strong>$0.99</strong> per item sold<br>
+            + <strong>8–15%</strong> referral fee by category
+            <span class="sub">15% on most consumer goods; payment processing included in referral fee; $0.30 minimum per order</span>
+          </td>
+          <td>
+            Not available
+            <span class="sub">Sponsored Ads and Buy Box require upgrade to Professional plan</span>
+          </td>
+          <td>No advertising access and limited Buy Box eligibility on Individual. Once you sell 40+ items/month, the $39.99 Professional plan is cheaper than $0.99/item. Individual is a true entry point — not a long-term setup.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">eBay<br><span class="sub">No store plan</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">250 free listings/month included; $0.35/listing after 250</span>
+          </td>
+          <td>
+            <strong>13.25%</strong> final value fee (most categories)
+            <span class="sub">+ ~2.7% + $0.25 via Managed Payments; charged on item price + shipping; capped at $750/order</span>
+          </td>
+          <td>
+            Promoted Listings
+            <span class="sub">% of sale charged only when item sells — minimum ~2% for boosted placement</span>
+          </td>
+          <td>Combined base fee ~15.9% — higher than Amazon's headline rate, but includes card processing. Free insertion limit of 250/month is adequate for most starters. No monthly commitment required.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Walmart<br><span class="sub">Standard seller</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">No monthly fee, no listing fee, no setup fee at any volume level</span>
+          </td>
+          <td>
+            <strong>6–20%</strong> referral fee by category
+            <span class="sub">~8% electronics, ~15% apparel, ~8–10% home goods; avg ~10%; payment processing included</span>
+          </td>
+          <td>
+            Walmart Connect (CPC)
+            <span class="sub">Available from day one, no minimum spend</span>
+          </td>
+          <td>Cleanest entry-level fee structure of any general marketplace. 2026 New-Seller Savings: up to 75% off referral fees for first $75,000 in accumulated savings — effectively halves the cost during ramp-up. Approval process is selective; not open signup.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Temu<br><span class="sub">Consignment model</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">No fees of any kind charged to the supplier</span>
+          </td>
+          <td>
+            <span class="tag-none">None (implicit)</span>
+            <span class="sub">Temu negotiates your wholesale supply price and retains ~15–30% margin at retail — no line-item fee charged to you</span>
+          </td>
+          <td>
+            None
+            <span class="sub">Temu manages all marketing and promotions on your behalf</span>
+          </td>
+          <td>Zero direct costs, but zero pricing control. Temu sets the retail price and can request price reductions at any time. Not suitable for differentiated or premium products. Best treated as a volume-clearance channel or demand-testing vehicle.</td>
+        </tr>
+
+        <tr class="group-header"><td colspan="5">Niche &amp; specialist marketplaces</td></tr>
+
+        <tr>
+          <td class="platform">Etsy<br><span class="sub">Free account</span></td>
+          <td>
+            <strong>$0.20</strong> per listing
+            <span class="sub">Active for 4 months; $0.20 auto-renewal if unsold at expiry; +$0.20 per quantity unit sold on multi-quantity listings</span>
+          </td>
+          <td>
+            <strong>6.5%</strong> transaction fee (item + shipping)<br>
+            + <strong>3% + $0.25</strong> Etsy Payments (US sellers)
+            <span class="sub">Combined: ~9.5% + $0.25 per sale</span>
+          </td>
+          <td>
+            Etsy Ads (on-platform CPC, fully optional)<br>
+            Offsite Ads: <strong>15%</strong> of attributed sale
+            <span class="sub">Opt-out available below $10,000/year in Etsy revenue — opt out if you are not ready for the additional cost</span>
+          </td>
+          <td>Offsite Ads is the key variable. At entry level it is opt-out — disable it. The listing fee applies per SKU per 4-month window even with zero sales, so a large catalogue has real carrying cost. One of the few platforms where fees apply before any sale occurs.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Newegg<br><span class="sub">Non-Elite tier</span></td>
+          <td>
+            <span class="tag-none">No monthly fee</span>
+            <span class="sub">$0.49 charged per item sold instead of a monthly subscription; $0.005/SKU/month for any SKU listed 12+ months without a sale</span>
+          </td>
+          <td>
+            <strong>8–12%</strong> referral fee by subcategory<br>
+            + <strong>$0.29</strong> order processing fee per order
+            <span class="sub">Computers 8–10%; peripherals/accessories 10–12%</span>
+          </td>
+          <td>
+            Sponsored Product Ads (CPC)
+            <span class="sub">Available on Non-Elite; no minimum spend</span>
+          </td>
+          <td>Non-Elite suits very low volume — the $0.49/item fee replaces a monthly subscription and is favourable under ~60 orders/month. New-seller promo (April 2026): effective 6% commission rate for 90 days. Capped at 5,000 active SKUs. Tech category only.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Wayfair<br><span class="sub">Partner program</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">No setup, monthly, or listing fee of any kind</span>
+          </td>
+          <td>
+            <span class="tag-none">None (wholesale model)</span>
+            <span class="sub">Wayfair pays your agreed wholesale price per order; retains the retail margin (~15–25% of retail price)</span>
+          </td>
+          <td>
+            Sponsored placements (optional, invitation-based)
+          </td>
+          <td>Zero direct fees — Wayfair's cost is embedded in the wholesale-to-retail spread you negotiate. Requires dropship capability and product liability insurance ($1M per occurrence / $2M aggregate). Invitation-only. Home goods and furniture only.</td>
+        </tr>
+
+        <tr class="group-header"><td colspan="5">Social commerce</td></tr>
+
+        <tr>
+          <td class="platform">TikTok Shop<br><span class="sub">Standard seller</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">No monthly fee, no listing fee at any tier</span>
+          </td>
+          <td>
+            <strong>6%</strong> referral fee (US standard rate)
+            <span class="sub">New sellers: 3% promotional rate for first 90 days; payment processing ~1–2.2% included or added; combined base: ~7–8% per sale</span>
+          </td>
+          <td>
+            Creator affiliate commissions: <strong>10–30%</strong> (seller-set, optional)
+            <span class="sub">TikTok Ads (CPC/CPM) also available but not required</span>
+          </td>
+          <td>The 6% base rate is among the lowest in this comparison. Affiliates are optional but organic reach without creator involvement is minimal — most sellers budget affiliate commissions from the start. Effective total with a 10–15% affiliate rate: ~16–21%.</td>
+        </tr>
+
+        <tr class="group-header"><td colspan="5">Own-store platform</td></tr>
+
+        <tr>
+          <td class="platform">Shopify<br><span class="sub">Starter plan</span></td>
+          <td>
+            <strong>$5/month</strong>
+            <span class="sub">Social/link-in-bio selling only — no full storefront, no custom domain checkout</span>
+          </td>
+          <td>
+            <strong>5%</strong> transaction fee per order<br>
+            + <strong>2.9% + $0.30</strong> payment processing
+            <span class="sub">Combined: ~7.9% + $0.30 per sale on Starter plan</span>
+          </td>
+          <td>
+            External ad spend only (Meta, Google, etc.)
+            <span class="sub">No on-platform advertising tools on Starter</span>
+          </td>
+          <td>Starter is limited to selling via links and social posts — no full storefront. For a standalone store, the minimum is Basic ($39/month). No marketplace audience: you generate all traffic yourself. The 5% transaction fee on Starter is higher than Basic's 2% third-party rate or 0% with Shopify Payments.</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Referral/commission fees apply to total sale value including shipping unless noted. Fulfillment fees excluded. Rates Q2 2026.</p>
+
+
+  <!-- ══════════════════════════════════════
+       TABLE 2 — MATURE LEVEL
+  ══════════════════════════════════════ -->
+
+  <div class="section-label">
+    <span class="section-label-badge badge-mature">Mature Level — Active Sellers</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <h2 style="margin-top:0;">A working operation, on par across platforms</h2>
+  <p>What a mid-volume seller (roughly 200–500 orders/month) would realistically pay — not the cheapest possible setup, and not the enterprise tier. Each platform is configured the way an active seller who has found product-market fit would actually run it: the account tier with the tools needed to operate properly and compete for visibility.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:105px;">Platform<br><span style="font-weight:400;font-size:11px;">Mature config</span></th>
+          <th style="min-width:148px;">① Fixed charges<br><span style="font-weight:400;font-size:11px;">Regardless of sales</span></th>
+          <th style="min-width:165px;">② Mandatory transactional<br><span style="font-weight:400;font-size:11px;">Per sale, unavoidable</span></th>
+          <th style="min-width:138px;">③ Optional charges<br><span style="font-weight:400;font-size:11px;">Ads &amp; add-ons</span></th>
+          <th style="min-width:175px;">④ Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="group-header"><td colspan="5">General marketplaces</td></tr>
+
+        <tr>
+          <td class="platform">Amazon<br><span class="sub">Professional plan</span></td>
+          <td>
+            <strong>$39.99/month</strong>
+            <span class="sub">Flat regardless of SKU count or order volume; required for advertising access and Buy Box eligibility</span>
+          </td>
+          <td>
+            <strong>8–15%</strong> referral fee by category
+            <span class="sub">15% most consumer goods; 8% electronics; payment processing included; $0.30 minimum/order; referral fee unchanged through 2026</span>
+          </td>
+          <td>
+            Sponsored Products / Brands / Display (CPC)
+            <span class="sub">Industry avg 8–15% ACoS; effectively required for new listings to gain traction</span>
+          </td>
+          <td>Professional plan breaks even vs Individual at 40+ orders/month. FBA fees increased by avg $0.08/unit effective Jan 15, 2026 (small standard items $10–$50: +$0.25/unit; items over $50: +$0.31/unit). Amazon's referral fee bundles payment processing — unlike most other platforms, there is no separate card fee on top.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">eBay<br><span class="sub">Starter Store</span></td>
+          <td>
+            <strong>$7.95/month</strong>
+            <span class="sub">Includes 250 zero-insertion-fee listings; additional listings $0.25 each; also unlocks seller analytics dashboard</span>
+          </td>
+          <td>
+            <strong>13.25%</strong> final value fee (most categories)<br>
+            + <strong>~2.7% + $0.25</strong> Managed Payments
+            <span class="sub">Charged on item price + shipping; capped at $750/order; combined ~15.9% effective base</span>
+          </td>
+          <td>
+            Promoted Listings Standard (% of sale, charged only on sale)
+            <span class="sub">Typical 5–8% rate for competitive placement; cost is zero if item does not sell via promotion</span>
+          </td>
+          <td>Higher store tiers (Basic $27.95, Premium $74.95) reduce final value fees by 1–2% in most categories — meaningful at volume. The $750/order cap benefits high-ticket sellers. Managed Payments processes all transactions directly; no third-party processor needed.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Walmart<br><span class="sub">Standard seller</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">No subscription at any volume level — Walmart's structural advantage over Amazon</span>
+          </td>
+          <td>
+            <strong>6–20%</strong> by category; avg ~10%
+            <span class="sub">Electronics 8%, home 8–10%, apparel 15%; payment processing included; no per-item or per-order flat fee</span>
+          </td>
+          <td>
+            Walmart Connect sponsored products (CPC)
+            <span class="sub">Typical effective spend 5–10% of revenue for meaningful visibility; organic reach builds over time with sales history</span>
+          </td>
+          <td>No subscription at any tier is Walmart's clearest structural advantage. Electronics and home goods categories cost 20–50% less than equivalent Amazon rates. Organic search visibility builds slowly — new sellers typically need 3–6 months of ad spend before meaningful organic traction.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Temu<br><span class="sub">Semi-managed model</span></td>
+          <td>
+            <strong>$39/month</strong>
+            <span class="sub">Business seller subscription required for semi-managed access; gives seller control over pricing</span>
+          </td>
+          <td>
+            <strong>8–15%</strong> referral fee by category<br>
+            + payment processing fee (separate, varies)
+            <span class="sub">Semi-managed: seller sets own retail price, unlike consignment model</span>
+          </td>
+          <td>
+            Temu promotional programs
+            <span class="sub">Not technically mandatory, but platform routinely expects participation in discount events; effective revenue impact ~5–10%</span>
+          </td>
+          <td>Semi-managed restores pricing control that consignment removes. The $39/month subscription is comparable to Amazon Professional. The real hidden cost is promotional participation — Temu's algorithm rewards discounting, and sellers who resist see suppressed placement. Model a 5–10% promotional reserve into your pricing.</td>
+        </tr>
+
+        <tr class="group-header"><td colspan="5">Niche &amp; specialist marketplaces</td></tr>
+
+        <tr>
+          <td class="platform">Etsy<br><span class="sub">Free account, active seller</span></td>
+          <td>
+            <strong>$0.20</strong> per listing (recurring)
+            <span class="sub">Every 4 months per SKU until sold; +$0.20 per additional unit sold on multi-quantity listings; scales with catalogue size</span>
+          </td>
+          <td>
+            <strong>6.5%</strong> transaction fee (item + shipping)<br>
+            + <strong>3% + $0.25</strong> Etsy Payments<br>
+            + <strong>12%</strong> Offsite Ads fee (mandatory above $10k/year)
+            <span class="sub">Offsite Ads fee applies only to sales attributed to an Offsite Ad click — not all sales; effective total on an attributed sale: ~21.5% + $0.25</span>
+          </td>
+          <td>
+            Etsy Ads (on-platform CPC)
+            <span class="sub">Many active sellers run $1–$5/day for search placement; separate from and in addition to Offsite Ads</span>
+          </td>
+          <td>The Offsite Ads threshold is the critical planning point for Etsy. Below $10k/year it is opt-out; above it, the 12% on attributed offsite sales is mandatory. Sellers with strong Google Shopping presence through Etsy's program will see this fee regularly. It does not apply uniformly to all sales — only traced attributed clicks — but it should be modelled into your pricing before you cross the threshold.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Newegg<br><span class="sub">Professional plan</span></td>
+          <td>
+            <strong>$29.95/month</strong>
+            <span class="sub">Up to 25,000 active SKUs; includes premium seller store, curated marketing access, and no per-item-sold fee</span>
+          </td>
+          <td>
+            <strong>8–12%</strong> referral fee by subcategory<br>
+            + <strong>$0.29</strong> order processing fee per order
+            <span class="sub">No per-item-sold fee at Professional tier; $0.005/SKU/month for SKUs listed 12+ months without a sale</span>
+          </td>
+          <td>
+            Sponsored Product Ads (CPC)<br>
+            Promotional placements and email marketing features
+          </td>
+          <td>Professional breaks even versus Non-Elite at ~60 orders/month. At 200+ orders/month, it is materially cheaper. Newegg's 8–10% tech category rates are 33–50% lower than Amazon's 15% standard — for electronics-focused sellers, the delta compounds significantly at volume. Enterprise plan ($99.95/month) adds unlimited SKUs and shipping discounts for higher volumes.</td>
+        </tr>
+
+        <tr>
+          <td class="platform">Wayfair<br><span class="sub">Partner + CastleGate</span></td>
+          <td>
+            <span class="tag-none">None (platform fees)</span>
+            <span class="sub">CastleGate storage fees apply (cubic-foot/month, similar structure to FBA); no subscription or listing fee</span>
+          </td>
+          <td>
+            <span class="tag-none">None (wholesale model)</span>
+            <span class="sub">Wayfair pays your wholesale price per order; retains the retail spread (~15–25%); you receive your agreed cost price regardless of Wayfair's promotional activity</span>
+          </td>
+          <td>
+            Sponsored placements (optional CPC)<br>
+            Co-funded promotions
+            <span class="sub">Wayfair regularly requests seller contribution to sitewide sale events — budget a 5–10% promotional reserve into your wholesale cost</span>
+          </td>
+          <td>CastleGate improves delivery speed and listing visibility — important for furniture and large items where two-day delivery significantly affects conversion. Co-funded promotion requests are frequent and can compress your effective wholesale margin during sale events. Build a 20–30% buffer above landed COGS in your wholesale price to remain profitable across promotion scenarios.</td>
+        </tr>
+
+        <tr class="group-header"><td colspan="5">Social commerce</td></tr>
+
+        <tr>
+          <td class="platform">TikTok Shop<br><span class="sub">Standard seller + affiliates</span></td>
+          <td>
+            <span class="tag-none">None</span>
+            <span class="sub">No monthly fee at any seller tier; no listing fee</span>
+          </td>
+          <td>
+            <strong>6–8%</strong> referral fee (US, 2026 standard)<br>
+            + <strong>~1–2.2%</strong> payment processing
+            <span class="sub">Effective base without affiliates: ~7–10% per sale</span>
+          </td>
+          <td>
+            Creator affiliate commissions: <strong>10–20%</strong> (seller-set)
+            <span class="sub">TikTok Ads (CPC/CPM) for broader reach; combined effective cost with affiliates: ~17–28%</span>
+          </td>
+          <td>Affiliate commissions are the primary distribution mechanism — sellers who do not offer competitive rates (10%+) see sharply lower creator participation. TikTok's Commission Protection Period locks active creators into existing rates for 30 days on decreases — plan rate changes carefully. Return rates tend to run higher than search-intent marketplaces; budget 15–25% return reserve for impulse-category products.</td>
+        </tr>
+
+        <tr class="group-header"><td colspan="5">Own-store platform</td></tr>
+
+        <tr>
+          <td class="platform">Shopify<br><span class="sub">Basic plan + Shopify Payments</span></td>
+          <td>
+            <strong>$39/month</strong>
+            <span class="sub">Includes full storefront, unlimited products, basic analytics, and abandoned cart recovery; apps sold separately</span>
+          </td>
+          <td>
+            <strong>2.9% + $0.30</strong> per transaction (Shopify Payments)
+            <span class="sub">No additional transaction surcharge when using Shopify Payments; 2% surcharge applies if using a third-party processor instead</span>
+          </td>
+          <td>
+            All customer acquisition (Meta, Google, TikTok Ads, etc.)<br>
+            Apps: email, reviews, subscriptions, etc.
+            <span class="sub">Typical app stack: $50–$150/month; customer acquisition cost is the dominant variable — not platform fees</span>
+          </td>
+          <td>Shopify has the lowest per-transaction cost in this comparison (~3%) — but that number must be read alongside customer acquisition cost. A seller spending 20% of revenue on Meta ads plus 3% on processing is at 23% effective cost, comparable to Amazon with FBA. Shopify makes sense when you have a reason to own the customer relationship: repeat purchase, subscription, B2B, or a brand with existing audience equity it no longer needs to buy from a marketplace.</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Mature level assumes ~200–500 orders/month. Monthly fixed fee impact is prorated across that volume. Fulfillment fees excluded. Rates Q2 2026.</p>
+
+
+  <h2>What the two tables tell you together</h2>
+
+  <h3>The platforms with no fixed costs reward low-volume sellers disproportionately</h3>
+  <p>Walmart, TikTok Shop, and Wayfair charge nothing until a sale happens. For a seller at 20–30 orders a month, this is genuinely valuable — there is no overhead to cover before breaking even. Amazon's $39.99/month is trivial at 500 orders but meaningful at 20. At entry level, Walmart has the most straightforward value proposition of any general marketplace: nothing to pay until you sell, and among the lowest referral rates available to open sellers.</p>
+
+  <h3>TikTok Shop's advertised rate and its real rate are furthest apart</h3>
+  <p>The 6% headline is the number most often cited when describing TikTok Shop as a low-fee platform. But virtually no established TikTok Shop seller operates without affiliates, and a 12–15% affiliate commission on top produces an effective cost of 18–21% — comparable to Amazon with FBA, before the FBA fee itself. TikTok Shop is not cheap at scale; it is different. The value proposition is discovery and viral reach, not fee savings.</p>
+
+  <h3>Etsy's Offsite Ads threshold is the most significant hidden step-change in any platform here</h3>
+  <p>A seller who builds their Etsy pricing model around a 9.5% effective rate needs to completely remodel it above $10,000/year in platform revenue, when the mandatory 12% Offsite Ads fee kicks in on attributed sales. It does not apply to all sales — only those traced to an Offsite Ad click — but for sellers with significant Google Shopping exposure through Etsy's program, the impact on per-sale cost can be substantial. Plan for it before you cross the threshold, not after.</p>
+
+  <h3>Shopify's fees are low; its total costs are not</h3>
+  <p>The 2.9% + $0.30 processing rate is the lowest transactional cost in this comparison. But the correct comparison for a Shopify seller is not processing fees versus referral fees — it is (processing + customer acquisition cost) versus (marketplace referral fee + organic discovery value). Once you add realistic advertising spend, Shopify's effective cost per acquired order often meets or exceeds what Amazon or Walmart charges. Shopify makes financial sense when you have a reason to own the customer relationship that offsets the cost of building your own audience.</p>
+
+  <div class="callout">
+    <p><strong>The question that matters most is not which platform has the lowest fee rate — it is which channel produces the highest contribution margin per unit at your current stage.</strong> A channel with a 15% referral fee and strong organic traffic can outperform one with 3% processing and 25% ad spend. Build the model by product by channel, with fixed costs prorated, transactional costs at your expected volume, and a realistic customer acquisition cost on each side. If you're working through that analysis for your own business, it's the kind of structured review we run with clients in our <a href="svc1.html" style="color:var(--red);">Business Planning</a> and <a href="svc4.html" style="color:var(--red);">Ongoing Management</a> engagements.</p>
+  </div>
+
+</div><!-- /.layout -->
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+</body>
+</html>
