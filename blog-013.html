@@ -153,7 +153,12 @@
 
   /* ── Table ── */
   .table-wrap { overflow-x: auto; margin: 20px 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+  col.col-platform  { width: 9%; }
+  col.col-fixed     { width: 16%; }
+  col.col-mandatory { width: 21%; }
+  col.col-optional  { width: 16%; }
+  col.col-notes     { width: 38%; }
   th {
     background: var(--dark);
     color: white;
@@ -179,14 +184,14 @@
   }
   tr:hover td { background: rgba(0,0,0,0.012); }
   .group-header td {
-    background: var(--off-white);
-    color: var(--muted);
+    background: var(--red-light);
+    color: var(--red);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.07em;
     text-transform: uppercase;
     padding: 7px 12px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(214,59,59,0.15);
   }
 
   /* inline tag chips */
@@ -357,13 +362,20 @@
 
   <div class="table-wrap">
     <table>
+      <colgroup>
+        <col class="col-platform">
+        <col class="col-fixed">
+        <col class="col-mandatory">
+        <col class="col-optional">
+        <col class="col-notes">
+      </colgroup>
       <thead>
         <tr>
-          <th style="min-width:105px;">Platform<br><span style="font-weight:400;font-size:11px;">Entry config</span></th>
-          <th style="min-width:148px;">① Fixed charges<br><span style="font-weight:400;font-size:11px;">Regardless of sales</span></th>
-          <th style="min-width:165px;">② Mandatory transactional<br><span style="font-weight:400;font-size:11px;">Per sale, unavoidable</span></th>
-          <th style="min-width:138px;">③ Optional charges<br><span style="font-weight:400;font-size:11px;">Ads &amp; add-ons</span></th>
-          <th style="min-width:175px;">④ Notes</th>
+          <th>Platform<br><span style="font-weight:400;font-size:11px;">Entry config</span></th>
+          <th>① Fixed charges<br><span style="font-weight:400;font-size:11px;">Regardless of sales</span></th>
+          <th>② Mandatory transactional<br><span style="font-weight:400;font-size:11px;">Per sale, unavoidable</span></th>
+          <th>③ Optional charges<br><span style="font-weight:400;font-size:11px;">Ads &amp; add-ons</span></th>
+          <th>④ Notes</th>
         </tr>
       </thead>
       <tbody>
@@ -553,13 +565,20 @@
 
   <div class="table-wrap">
     <table>
+      <colgroup>
+        <col class="col-platform">
+        <col class="col-fixed">
+        <col class="col-mandatory">
+        <col class="col-optional">
+        <col class="col-notes">
+      </colgroup>
       <thead>
         <tr>
-          <th style="min-width:105px;">Platform<br><span style="font-weight:400;font-size:11px;">Mature config</span></th>
-          <th style="min-width:148px;">① Fixed charges<br><span style="font-weight:400;font-size:11px;">Regardless of sales</span></th>
-          <th style="min-width:165px;">② Mandatory transactional<br><span style="font-weight:400;font-size:11px;">Per sale, unavoidable</span></th>
-          <th style="min-width:138px;">③ Optional charges<br><span style="font-weight:400;font-size:11px;">Ads &amp; add-ons</span></th>
-          <th style="min-width:175px;">④ Notes</th>
+          <th>Platform<br><span style="font-weight:400;font-size:11px;">Mature config</span></th>
+          <th>① Fixed charges<br><span style="font-weight:400;font-size:11px;">Regardless of sales</span></th>
+          <th>② Mandatory transactional<br><span style="font-weight:400;font-size:11px;">Per sale, unavoidable</span></th>
+          <th>③ Optional charges<br><span style="font-weight:400;font-size:11px;">Ads &amp; add-ons</span></th>
+          <th>④ Notes</th>
         </tr>
       </thead>
       <tbody>
