@@ -151,8 +151,17 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .clients-grid > a { min-width: 220px; max-width: 220px; flex-shrink: 0; }
 .client-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; display: flex; flex-direction: column; gap: 10px; transition: var(--transition); flex: 1; }
 .client-card:hover { border-color: var(--border-dark); }
-.client-logo-wrap { height: 40px; display: flex; align-items: center; }
-.client-logo { height: 32px; width: auto; max-width: 140px; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: var(--transition); }
+.client-logo-wrap { height: 48px; display: flex; align-items: center; }
+.client-logo { width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: var(--transition); }
+.client-logo[src*="client-ferment-pro"]    { height: 28px; }
+.client-logo[src*="client-be-vigor"]       { height: 26px; }
+.client-logo[src*="client-lefy-health"]    { height: 30px; }
+.client-logo[src*="client-kanu"]           { height: 36px; }
+.client-logo[src*="client-best-bike-corp"] { height: 34px; }
+.client-logo[src*="client-gevi"]           { height: 44px; }
+.client-logo[src*="client-whizangel"]      { height: 24px; }
+.client-logo[src*="client-nyc-sbs"]        { height: 42px; }
+.client-logo[src*="client-nybf"]           { height: 38px; }
 .client-card:hover .client-logo { filter: grayscale(0); opacity: 1; }
 .client-name { font-size: 14px; font-weight: 500; color: var(--dark); }
 .client-desc { font-size: 13px; color: var(--muted); line-height: 1.55; font-weight: 300; flex: 1; }
