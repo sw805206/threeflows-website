@@ -154,7 +154,7 @@
   /* ── Table ── */
   .table-wrap { overflow-x: auto; margin: 20px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
-  col.col-platform  { width: 9%; }
+  col.col-platform  { width: 140px; }
   col.col-fixed     { width: 16%; }
   col.col-mandatory { width: 21%; }
   col.col-optional  { width: 16%; }
@@ -179,8 +179,13 @@
   td.platform {
     color: var(--dark);
     font-weight: 600;
-    white-space: nowrap;
-    min-width: 100px;
+  }
+  th:first-child, td:first-child {
+    white-space: normal;
+    word-wrap: break-word;
+    min-width: 120px;
+    max-width: 160px;
+    vertical-align: top;
   }
   tr:hover td { background: rgba(0,0,0,0.012); }
   .group-header td {
