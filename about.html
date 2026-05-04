@@ -145,14 +145,14 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .brand-desc { font-size: 13px; color: var(--mid); line-height: 1.6; font-weight: 300; }
 
 /* CLIENTS */
-.clients-section { max-width: 1100px; margin: 0 auto; padding: 80px 48px; border-top: 1px solid var(--border); }
-.clients-intro { font-size: 14px; color: var(--mid); font-weight: 300; margin-bottom: 36px; }
-.clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
-.client-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; display: flex; flex-direction: column; gap: 10px; }
+.clients-section { max-width: 1100px; margin: 3rem auto 0; padding: 3rem 48px 80px; border-top: 1px solid var(--border); }
+.clients-intro { font-size: 15px; color: var(--muted); font-weight: 300; margin-bottom: 2rem; }
+.clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.client-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; display: flex; flex-direction: column; gap: 10px; transition: var(--transition); flex: 1; }
+.client-card:hover { border-color: var(--border-dark); }
 .client-logo-wrap { height: 40px; display: flex; align-items: center; }
-.client-logo { max-height: 32px; max-width: 100%; filter: grayscale(1); opacity: 0.65; transition: filter 0.2s, opacity 0.2s; }
+.client-logo { max-height: 32px; max-width: 100%; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: var(--transition); }
 .client-card:hover .client-logo { filter: grayscale(0); opacity: 1; }
-.client-logo-fallback { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--dark); }
 .client-name { font-size: 14px; font-weight: 500; color: var(--dark); }
 .client-desc { font-size: 13px; color: var(--muted); line-height: 1.55; font-weight: 300; flex: 1; }
 .client-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
@@ -341,134 +341,136 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   <div class="clients-intro">Brands and organizations we've worked with across sourcing, logistics, compliance, and beyond.</div>
   <div class="clients-grid">
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://ferment-pro.com/cdn/shop/files/ferment-pro-logo.png" alt="Ferment Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">Ferment Pro</div>
+    <a href="https://ferment-pro.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-ferment-pro.png" alt="Ferment Pro"></div>
+        <div class="client-name">Ferment Pro</div>
+        <p class="client-desc">End-to-end buildout: P&amp;L, cash flow, sourcing, launch hypercare, and sales on Shopify and Amazon.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+          <span class="client-tag source">Source</span>
+          <span class="client-tag launch">Launch</span>
+        </div>
       </div>
-      <div class="client-name">Ferment Pro</div>
-      <p class="client-desc">End-to-end buildout: P&amp;L, cash flow, sourcing, launch hypercare, and sales on Shopify and Amazon.</p>
-      <div class="client-tags">
-        <span class="client-tag plan">Plan</span>
-        <span class="client-tag source">Source</span>
-        <span class="client-tag launch">Launch</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://www.toshmakeup.com/cdn/shop/files/tosh-logo.png" alt="Tosh Makeup" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">Tosh Makeup</div>
+    <a href="https://www.toshmakeup.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><span style="font-size: 20px; font-weight: 700; letter-spacing: 0.05em; color: var(--dark);">TOSH</span></div>
+        <div class="client-name">Tosh Makeup</div>
+        <p class="client-desc">P&amp;L and cash flow modeling, premium manufacturer connections, FDA compliance, and sales commission strategy.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+          <span class="client-tag source">Source</span>
+          <span class="client-tag scale">Scale</span>
+        </div>
       </div>
-      <div class="client-name">Tosh Makeup</div>
-      <p class="client-desc">P&amp;L and cash flow modeling, premium manufacturer connections, FDA compliance, and sales commission strategy.</p>
-      <div class="client-tags">
-        <span class="client-tag plan">Plan</span>
-        <span class="client-tag source">Source</span>
-        <span class="client-tag scale">Scale</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://bevigor.com/cdn/shop/files/bevigor-logo.png" alt="Be Vigor" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">Be Vigor</div>
+    <a href="https://bevigor.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-be-vigor.png" alt="Be Vigor"></div>
+        <div class="client-name">Be Vigor</div>
+        <p class="client-desc">Market research to validate product-market fit and identify growth opportunities.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+        </div>
       </div>
-      <div class="client-name">Be Vigor</div>
-      <p class="client-desc">Market research to validate product-market fit and identify growth opportunities.</p>
-      <div class="client-tags">
-        <span class="client-tag plan">Plan</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://artsabers.com/cdn/shop/files/artsabers-logo.png" alt="ArtSabers" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">ArtSabers</div>
+    <a href="https://artsabers.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><span style="font-size: 16px; font-weight: 700; letter-spacing: 0.08em; color: var(--dark); text-transform: uppercase;">ArtSabers</span></div>
+        <div class="client-name">ArtSabers</div>
+        <p class="client-desc">Launch hypercare, tariff compliance, and 3PL oversight.</p>
+        <div class="client-tags">
+          <span class="client-tag launch">Launch</span>
+          <span class="client-tag scale">Scale</span>
+        </div>
       </div>
-      <div class="client-name">ArtSabers</div>
-      <p class="client-desc">Launch hypercare, tariff compliance, and 3PL oversight.</p>
-      <div class="client-tags">
-        <span class="client-tag launch">Launch</span>
-        <span class="client-tag scale">Scale</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://www.lefyhealth.com/cdn/shop/files/lefy-logo.png" alt="Lefy Health" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">Lefy Health</div>
+    <a href="https://www.lefyhealth.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-lefy-health.png" alt="Lefy Health"></div>
+        <div class="client-name">Lefy Health</div>
+        <p class="client-desc">Market research to define positioning and category opportunity.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+        </div>
       </div>
-      <div class="client-name">Lefy Health</div>
-      <p class="client-desc">Market research to define positioning and category opportunity.</p>
-      <div class="client-tags">
-        <span class="client-tag plan">Plan</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://info.kanu.us/wp-content/uploads/kanu-logo.png" alt="KANU" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">KANU</div>
+    <a href="https://info.kanu.us" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-kanu.png" alt="KANU"></div>
+        <div class="client-name">KANU</div>
+        <p class="client-desc">Business strategy, product development, and entrepreneurship education for young founders.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+          <span class="client-tag collab">Collab</span>
+        </div>
       </div>
-      <div class="client-name">KANU</div>
-      <p class="client-desc">Business strategy, product development, and entrepreneurship education for young founders.</p>
-      <div class="client-tags">
-        <span class="client-tag plan">Plan</span>
-        <span class="client-tag collab">Collab</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://bestbikecorp.com/cdn/shop/files/bestbike-logo.png" alt="Best Bike Corp" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">Best Bike Corp</div>
+    <a href="https://bestbikecorp.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-best-bike-corp.png" alt="Best Bike Corp"></div>
+        <div class="client-name">Best Bike Corp</div>
+        <p class="client-desc">Full-scope ongoing management: P&amp;L, sourcing, online store, supply chain, and bookkeeping.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+          <span class="client-tag source">Source</span>
+          <span class="client-tag scale">Scale</span>
+        </div>
       </div>
-      <div class="client-name">Best Bike Corp</div>
-      <p class="client-desc">Full-scope ongoing management: P&amp;L, sourcing, online store, supply chain, and bookkeeping.</p>
-      <div class="client-tags">
-        <span class="client-tag plan">Plan</span>
-        <span class="client-tag source">Source</span>
-        <span class="client-tag scale">Scale</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://gevi.com/cdn/shop/files/gevi-logo.png" alt="GEVI" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">GEVI</div>
+    <a href="https://gevi.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-gevi.png" alt="GEVI"></div>
+        <div class="client-name">GEVI</div>
+        <p class="client-desc">Market research and channel development consultation.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+          <span class="client-tag scale">Scale</span>
+        </div>
       </div>
-      <div class="client-name">GEVI</div>
-      <p class="client-desc">Market research and channel development consultation.</p>
-      <div class="client-tags">
-        <span class="client-tag plan">Plan</span>
-        <span class="client-tag scale">Scale</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://www.whizangel.com/logo.png" alt="WhizAngel" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">WhizAngel</div>
+    <a href="https://www.whizangel.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-whizangel.png" alt="WhizAngel"></div>
+        <div class="client-name">WhizAngel</div>
+        <p class="client-desc">Strategic collaboration to deliver entrepreneurship education to young founders.</p>
+        <div class="client-tags">
+          <span class="client-tag collab">Collab</span>
+        </div>
       </div>
-      <div class="client-name">WhizAngel</div>
-      <p class="client-desc">Strategic collaboration to deliver entrepreneurship education to young founders.</p>
-      <div class="client-tags">
-        <span class="client-tag collab">Collab</span>
-      </div>
-    </div>
+    </a>
 
-    <div class="client-card">
-      <div class="client-logo-wrap">
-        <img class="client-logo" src="https://www1.nyc.gov/assets/sbs/images/content/pages/logo.png" alt="NYC Small Business Services" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <div class="client-logo-fallback" style="display:none;">NYC Small Business Services</div>
+    <a href="https://www.nyc.gov/site/sbs/index.page" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-nyc-sbs.png" alt="NYC Small Business Services"></div>
+        <div class="client-name">NYC Small Business Services</div>
+        <p class="client-desc">Strategic collaboration to provide business education to NYC small business owners.</p>
+        <div class="client-tags">
+          <span class="client-tag collab">Collab</span>
+        </div>
       </div>
-      <div class="client-name">NYC Small Business Services</div>
-      <p class="client-desc">Strategic collaboration to provide business education to NYC small business owners.</p>
-      <div class="client-tags">
-        <span class="client-tag collab">Collab</span>
+    </a>
+
+    <a href="https://newyorkbusinessfellowship.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+      <div class="client-card">
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-nybf.png" alt="New York Business Fellowship"></div>
+        <div class="client-name">New York Business Fellowship</div>
+        <p class="client-desc">US market introduction and sourcing support for Italian startups entering New York.</p>
+        <div class="client-tags">
+          <span class="client-tag plan">Plan</span>
+          <span class="client-tag source">Source</span>
+        </div>
       </div>
-    </div>
+    </a>
 
   </div>
 </div>
