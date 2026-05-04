@@ -144,6 +144,25 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .brand-name { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 8px; }
 .brand-desc { font-size: 13px; color: var(--mid); line-height: 1.6; font-weight: 300; }
 
+/* CLIENTS */
+.clients-section { max-width: 1100px; margin: 0 auto; padding: 80px 48px; border-top: 1px solid var(--border); }
+.clients-intro { font-size: 14px; color: var(--mid); font-weight: 300; margin-bottom: 36px; }
+.clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+.client-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; display: flex; flex-direction: column; gap: 10px; }
+.client-logo-wrap { height: 40px; display: flex; align-items: center; }
+.client-logo { max-height: 32px; max-width: 100%; filter: grayscale(1); opacity: 0.65; transition: filter 0.2s, opacity 0.2s; }
+.client-card:hover .client-logo { filter: grayscale(0); opacity: 1; }
+.client-logo-fallback { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--dark); }
+.client-name { font-size: 14px; font-weight: 500; color: var(--dark); }
+.client-desc { font-size: 13px; color: var(--muted); line-height: 1.55; font-weight: 300; flex: 1; }
+.client-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.client-tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+.client-tag.plan { background: var(--red-light); color: var(--red-dark); }
+.client-tag.source { background: var(--green-light); color: var(--green); }
+.client-tag.launch { background: #E6F1FB; color: #185FA5; }
+.client-tag.scale { background: #FAEEDA; color: #854F0B; }
+.client-tag.collab { background: #EEEDFE; color: #534AB7; }
+
 /* BOTTOM CTA (matches svc1.html) */
 .svc-bottom-cta { background: var(--dark); }
 .svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
@@ -166,7 +185,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   nav { padding: 0 20px; }
   .nav-links { display: none; }
   .breadcrumb-wrap { padding: 20px 20px 0; }
-  .team-section, .brands-section { padding: 56px 20px; }
+  .team-section, .brands-section, .clients-section { padding: 56px 20px; }
   .our-team-inner { padding: 56px 20px; }
   .team-grid { grid-template-columns: 1fr; gap: 16px; }
   .member-grid { grid-template-columns: 1fr; gap: 14px; }
@@ -315,60 +334,140 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   </div>
 </div>
 
-<!-- SECTION 3: BRANDS WE'VE WORKED WITH -->
-<!-- HIDDEN: placeholder content — remove display:none when ready -->
-<div class="brands-section" style="display:none;">
+<!-- SECTION 3: SOME OF OUR CLIENTS -->
+<div class="clients-section">
   <div class="eyebrow">Selected work</div>
-  <div class="section-title">Brands We've Worked With</div>
-  <div class="brands-intro">A selection of companies and brands we have supported across planning, sourcing, and launch.</div>
-  <div class="brands-grid">
+  <div class="section-title">Some of our clients</div>
+  <div class="clients-intro">Brands and organizations we've worked with across sourcing, logistics, compliance, and beyond.</div>
+  <div class="clients-grid">
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 1</div>
-      <p class="brand-desc">We partnered with Brand 1 to shape their go-to-market plan and supplier strategy. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://ferment-pro.com/cdn/shop/files/ferment-pro-logo.png" alt="Ferment Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">Ferment Pro</div>
+      </div>
+      <div class="client-name">Ferment Pro</div>
+      <p class="client-desc">End-to-end buildout: P&amp;L, cash flow, sourcing, launch hypercare, and sales on Shopify and Amazon.</p>
+      <div class="client-tags">
+        <span class="client-tag plan">Plan</span>
+        <span class="client-tag source">Source</span>
+        <span class="client-tag launch">Launch</span>
+      </div>
     </div>
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 2</div>
-      <p class="brand-desc">We partnered with Brand 2 to design and validate their unit economics ahead of launch. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://www.toshmakeup.com/cdn/shop/files/tosh-logo.png" alt="Tosh Makeup" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">Tosh Makeup</div>
+      </div>
+      <div class="client-name">Tosh Makeup</div>
+      <p class="client-desc">P&amp;L and cash flow modeling, premium manufacturer connections, FDA compliance, and sales commission strategy.</p>
+      <div class="client-tags">
+        <span class="client-tag plan">Plan</span>
+        <span class="client-tag source">Source</span>
+        <span class="client-tag scale">Scale</span>
+      </div>
     </div>
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 3</div>
-      <p class="brand-desc">We partnered with Brand 3 to source overseas suppliers and run quality assurance through first production. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://bevigor.com/cdn/shop/files/bevigor-logo.png" alt="Be Vigor" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">Be Vigor</div>
+      </div>
+      <div class="client-name">Be Vigor</div>
+      <p class="client-desc">Market research to validate product-market fit and identify growth opportunities.</p>
+      <div class="client-tags">
+        <span class="client-tag plan">Plan</span>
+      </div>
     </div>
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 4</div>
-      <p class="brand-desc">We partnered with Brand 4 to stand up their marketplace presence and run the first 90 days of trading. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://artsabers.com/cdn/shop/files/artsabers-logo.png" alt="ArtSabers" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">ArtSabers</div>
+      </div>
+      <div class="client-name">ArtSabers</div>
+      <p class="client-desc">Launch hypercare, tariff compliance, and 3PL oversight.</p>
+      <div class="client-tags">
+        <span class="client-tag launch">Launch</span>
+        <span class="client-tag scale">Scale</span>
+      </div>
     </div>
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 5</div>
-      <p class="brand-desc">We partnered with Brand 5 to rebuild their fulfillment and back-office workflow as orders scaled. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://www.lefyhealth.com/cdn/shop/files/lefy-logo.png" alt="Lefy Health" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">Lefy Health</div>
+      </div>
+      <div class="client-name">Lefy Health</div>
+      <p class="client-desc">Market research to define positioning and category opportunity.</p>
+      <div class="client-tags">
+        <span class="client-tag plan">Plan</span>
+      </div>
     </div>
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 6</div>
-      <p class="brand-desc">We partnered with Brand 6 to translate a long-running offline retail concept into a viable e-commerce business. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://info.kanu.us/wp-content/uploads/kanu-logo.png" alt="KANU" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">KANU</div>
+      </div>
+      <div class="client-name">KANU</div>
+      <p class="client-desc">Business strategy, product development, and entrepreneurship education for young founders.</p>
+      <div class="client-tags">
+        <span class="client-tag plan">Plan</span>
+        <span class="client-tag collab">Collab</span>
+      </div>
     </div>
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 7</div>
-      <p class="brand-desc">We partnered with Brand 7 to refresh their assortment strategy and rebuild category planning from the ground up. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://bestbikecorp.com/cdn/shop/files/bestbike-logo.png" alt="Best Bike Corp" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">Best Bike Corp</div>
+      </div>
+      <div class="client-name">Best Bike Corp</div>
+      <p class="client-desc">Full-scope ongoing management: P&amp;L, sourcing, online store, supply chain, and bookkeeping.</p>
+      <div class="client-tags">
+        <span class="client-tag plan">Plan</span>
+        <span class="client-tag source">Source</span>
+        <span class="client-tag scale">Scale</span>
+      </div>
     </div>
 
-    <div class="brand-card">
-      <div class="brand-logo">Logo</div>
-      <div class="brand-name">Brand 8</div>
-      <p class="brand-desc">We partnered with Brand 8 to coach their founders through their first year of trading and growth decisions. More details coming soon.</p>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://gevi.com/cdn/shop/files/gevi-logo.png" alt="GEVI" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">GEVI</div>
+      </div>
+      <div class="client-name">GEVI</div>
+      <p class="client-desc">Market research and channel development consultation.</p>
+      <div class="client-tags">
+        <span class="client-tag plan">Plan</span>
+        <span class="client-tag scale">Scale</span>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://www.whizangel.com/logo.png" alt="WhizAngel" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">WhizAngel</div>
+      </div>
+      <div class="client-name">WhizAngel</div>
+      <p class="client-desc">Strategic collaboration to deliver entrepreneurship education to young founders.</p>
+      <div class="client-tags">
+        <span class="client-tag collab">Collab</span>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img class="client-logo" src="https://www1.nyc.gov/assets/sbs/images/content/pages/logo.png" alt="NYC Small Business Services" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="client-logo-fallback" style="display:none;">NYC Small Business Services</div>
+      </div>
+      <div class="client-name">NYC Small Business Services</div>
+      <p class="client-desc">Strategic collaboration to provide business education to NYC small business owners.</p>
+      <div class="client-tags">
+        <span class="client-tag collab">Collab</span>
+      </div>
     </div>
 
   </div>
