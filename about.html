@@ -147,7 +147,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 /* CLIENTS */
 .clients-section { max-width: 1100px; margin: 3rem auto 0; padding: 3rem 48px 80px; border-top: 1px solid var(--border); }
 .clients-intro { font-size: 15px; color: var(--muted); font-weight: 300; margin-bottom: 2rem; }
-.clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.clients-grid { display: flex; flex-direction: row; overflow-x: auto; gap: 16px; padding-bottom: 12px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.clients-grid > a { min-width: 220px; max-width: 220px; flex-shrink: 0; }
 .client-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; display: flex; flex-direction: column; gap: 10px; transition: var(--transition); flex: 1; }
 .client-card:hover { border-color: var(--border-dark); }
 .client-logo-wrap { height: 40px; display: flex; align-items: center; }
@@ -343,7 +344,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://ferment-pro.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-ferment-pro.png" alt="Ferment Pro"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-ferment-pro.png" alt=""></div>
         <div class="client-name">Ferment Pro</div>
         <p class="client-desc">End-to-end buildout: P&amp;L, cash flow, sourcing, launch hypercare, and sales on Shopify and Amazon.</p>
         <div class="client-tags">
@@ -369,7 +370,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://bevigor.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-be-vigor.png" alt="Be Vigor"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-be-vigor.png" alt=""></div>
         <div class="client-name">Be Vigor</div>
         <p class="client-desc">Market research to validate product-market fit and identify growth opportunities.</p>
         <div class="client-tags">
@@ -392,7 +393,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://www.lefyhealth.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-lefy-health.png" alt="Lefy Health"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-lefy-health.png" alt=""></div>
         <div class="client-name">Lefy Health</div>
         <p class="client-desc">Market research to define positioning and category opportunity.</p>
         <div class="client-tags">
@@ -403,7 +404,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://info.kanu.us" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-kanu.png" alt="KANU"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-kanu.png" alt=""></div>
         <div class="client-name">KANU</div>
         <p class="client-desc">Business strategy, product development, and entrepreneurship education for young founders.</p>
         <div class="client-tags">
@@ -415,7 +416,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://bestbikecorp.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-best-bike-corp.png" alt="Best Bike Corp"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-best-bike-corp.png" alt=""></div>
         <div class="client-name">Best Bike Corp</div>
         <p class="client-desc">Full-scope ongoing management: P&amp;L, sourcing, online store, supply chain, and bookkeeping.</p>
         <div class="client-tags">
@@ -428,7 +429,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://gevi.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-gevi.png" alt="GEVI"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-gevi.png" alt=""></div>
         <div class="client-name">GEVI</div>
         <p class="client-desc">Market research and channel development consultation.</p>
         <div class="client-tags">
@@ -440,7 +441,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://www.whizangel.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-whizangel.png" alt="WhizAngel"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-whizangel.png" alt=""></div>
         <div class="client-name">WhizAngel</div>
         <p class="client-desc">Strategic collaboration to deliver entrepreneurship education to young founders.</p>
         <div class="client-tags">
@@ -451,7 +452,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://www.nyc.gov/site/sbs/index.page" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-nyc-sbs.png" alt="NYC Small Business Services"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-nyc-sbs.png" alt=""></div>
         <div class="client-name">NYC Small Business Services</div>
         <p class="client-desc">Strategic collaboration to provide business education to NYC small business owners.</p>
         <div class="client-tags">
@@ -462,7 +463,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
     <a href="https://newyorkbusinessfellowship.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: flex; flex-direction: column;">
       <div class="client-card">
-        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-nybf.png" alt="New York Business Fellowship"></div>
+        <div class="client-logo-wrap"><img class="client-logo" src="assets/images/client-nybf.png" alt=""></div>
         <div class="client-name">New York Business Fellowship</div>
         <p class="client-desc">US market introduction and sourcing support for Italian startups entering New York.</p>
         <div class="client-tags">
