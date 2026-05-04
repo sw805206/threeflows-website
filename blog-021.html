@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Before You List: The Case for Pre-Launch Market Research — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --red-mid: rgba(214, 59, 59, 0.12);
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font-body: 16px;
+    --line-height: 1.7;
+    --transition: 0.18s ease;
+    --warm: #F8F8F8;
+    --warm-border: rgba(180,150,100,0.2);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  .review-banner {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .review-banner strong { color: #f0c060; }
+
+  .layout {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .post-date { font-size: 13px; color: var(--muted); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .post-meta .post-tags { margin-left: auto; }
+  .post-tag-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: none;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .post-tag-pill.primary   { background: #FDE8F0; color: #B5256A; }
+  .post-tag-pill.secondary { background: #E8E8E8; color: #3A3A3A; }
+  .post-tag-pill.empty     { background: #F8F8F8; color: #C8C8C8; }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--mid);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    margin: 40px 0 12px;
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 28px 0 8px;
+  }
+  p { margin-bottom: 18px; color: var(--mid); }
+  ul, ol { margin: 12px 0 20px 22px; color: var(--mid); }
+  li { margin-bottom: 8px; }
+  strong { color: var(--dark); font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -10px; margin-bottom: 18px; }
+
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout p { color: var(--dark); margin: 0; }
+
+  .callout-grey {
+    background: var(--off-white);
+    border-left: 3px solid var(--border-dark);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout-grey p { color: var(--mid); margin: 0; }
+
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  th.left { text-align: left; }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--mid);
+    text-align: center;
+    font-size: 13px;
+  }
+  td.left { text-align: left; color: var(--dark); font-weight: 500; }
+  tr:hover td { background: var(--off-white); }
+  .highlight-row td { background: var(--green-light); color: #1a4a1a; font-weight: 600; }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1;
+    min-width: 130px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--red);
+    display: block;
+  }
+  .stat .label { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .compare-box h4 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .compare-box .metric {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-box .metric:last-child { border-bottom: none; }
+  .compare-box .metric span:first-child { color: var(--mid); }
+  .compare-box .metric span:last-child { font-weight: 600; color: var(--dark); }
+  .compare-box.optimized { border-color: var(--green); }
+  .compare-box.optimized h4 { color: var(--green); }
+
+  .tag-green { display: inline-block; background: var(--green-light); color: var(--green); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+  .tag-red   { display: inline-block; background: var(--red-light);   color: var(--red);   font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+  .tag-grey  { display: inline-block; background: #E8E8E8;             color: #3A3A3A;       font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+
+  /* Process steps */
+  .process-steps { margin: 28px 0; display: flex; flex-direction: column; }
+  .process-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--dark);
+    color: white;
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .step-body { flex: 1; }
+  .step-body h3 { margin: 0 0 6px; font-size: 15px; font-weight: 600; color: var(--dark); }
+  .step-body p { margin: 0; font-size: 14px; color: var(--mid); }
+
+  /* Risk grid */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .risk-box {
+    border-radius: var(--radius-sm);
+    padding: 20px;
+  }
+  .risk-box.bad  { background: var(--red-light);  border: 1px solid rgba(214,59,59,0.2); }
+  .risk-box.good { background: var(--green-light); border: 1px solid rgba(0,176,80,0.2); }
+  .risk-box h4 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 12px;
+  }
+  .risk-box.bad  h4 { color: var(--red); }
+  .risk-box.good h4 { color: var(--green); }
+  .risk-box ul { margin: 0; padding-left: 16px; }
+  .risk-box li { font-size: 13px; margin-bottom: 7px; color: var(--mid); }
+  .risk-box li:last-child { margin-bottom: 0; }
+
+  /* CTA card */
+  .cta-card {
+    background: var(--dark);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin: 48px 0 0;
+    text-align: center;
+  }
+  .cta-card h2 {
+    color: white;
+    margin: 0 0 10px;
+    font-size: 26px;
+  }
+  .cta-card p {
+    color: rgba(255,255,255,0.65);
+    margin: 0 0 24px;
+    font-size: 15px;
+  }
+  .cta-card .btn-red {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background var(--transition);
+  }
+  .cta-card .btn-red:hover { background: var(--red-dark); }
+  .cta-card .sub-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin: 14px 0 0;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px auto 0; max-width: 820px; padding: 0 24px; }
+  .post-nav-tile { background: var(--white); border: 1px solid var(--border-dark); border-radius: 10px; padding: 18px 22px; text-decoration: none; color: inherit; transition: border-color 0.18s, background 0.18s; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .post-nav-tile:hover { border-color: var(--dark); }
+  .post-nav-tile.next { text-align: right; align-items: flex-end; }
+  .post-nav-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .post-nav-title { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.3; color: var(--dark); }
+  .post-nav-spacer { }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    footer { padding: 20px; }
+    .post-nav { grid-template-columns: 1fr; padding: 0 20px; }
+    .post-nav-tile.next { text-align: left; align-items: flex-start; }
+    h1 { font-size: 26px; }
+    .compare { grid-template-columns: 1fr; }
+    .risk-grid { grid-template-columns: 1fr; }
+    .cta-card { padding: 28px 24px; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">01 — Business Planning</a>
+        <a href="svc2.html">02 — Sourcing Consultation</a>
+        <a href="svc3.html">03 — Launch Hypercare</a>
+        <a href="svc4.html">04 — Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li><a href="index.html#contact-anchor">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="blog.html">← Blog</a>
+</div>
+
+<!-- PREV / NEXT NAV -->
+<div class="post-nav">
+  <a class="post-nav-tile prev" href="blog-020.html">
+    <span class="post-nav-label">← Previous</span>
+    <span class="post-nav-title">The Culture That Built Amazon: Leadership Principles, Bar Raisers, and What It Really Takes</span>
+  </a>
+  <div class="post-nav-spacer"></div>
+</div>
+
+<!-- POST CONTENT -->
+<div class="layout">
+
+  <div class="post-meta">
+    <span class="post-date">Publish: May 1, 2026</span>
+    <div class="post-tags">
+      <span class="post-tag-pill empty">Plan</span>
+      <span class="post-tag-pill empty">Source</span>
+      <span class="post-tag-pill primary">Launch</span>
+      <span class="post-tag-pill secondary">Scale</span>
+      <span class="post-tag-pill empty">Data</span>
+      <span class="post-tag-pill empty">Setup</span>
+      <span class="post-tag-pill empty">Compliance</span>
+      <span class="post-tag-pill empty">Others</span>
+    </div>
+  </div>
+
+  <h1>Test Before You List: The Case for Pre-Launch Market Research</h1>
+  <p class="subtitle">Most Amazon sellers receive their first real customer feedback in the form of a one-star review. There's a better way — and it starts before your first unit ships to a real buyer.</p>
+
+  <h2>The Problem with Launching Blind</h2>
+
+  <p>Here's how most product launches unfold. A seller identifies a niche, sources a product, invests in inventory, builds a listing, and goes live. Sales come in — maybe with a promotional push or an early reviewer program — and then the feedback starts. Some of it is positive. Some of it surfaces problems that were always there: the packaging feels cheap, the price is too high relative to competitors, the assembly instructions are confusing, a key feature is missing.</p>
+
+  <p>By that point, the seller is already committed. The inventory is in the warehouse. The listing is live under the brand's name. Every negative review that accumulates in the first few weeks is a permanent, visible record that every future buyer will see. Fixing the product means going back to the factory — a new production run, additional tooling costs, and potentially discounting or destroying existing stock while the fix is in flight.</p>
+
+  <p>This is the real cost of skipping validation. It's not a hypothetical risk. It's the standard outcome for sellers who learn about their product's weaknesses from customers instead of from testing.</p>
+
+  <div class="risk-grid">
+    <div class="risk-box bad">
+      <h4>Launching Without Testing</h4>
+      <ul>
+        <li>First feedback arrives as public reviews — permanently visible to future buyers</li>
+        <li>Brand and store rating absorbs the learning period</li>
+        <li>Product and packaging fixes require new production runs after inventory is committed</li>
+        <li>Cash already deployed; margin already locked in at the wrong price point</li>
+        <li>Listing optimization is reactive, not proactive</li>
+        <li>Price calibration based on guesswork, not stated willingness to pay</li>
+      </ul>
+    </div>
+    <div class="risk-box good">
+      <h4>Launching After Testing</h4>
+      <ul>
+        <li>Feedback is private — no public record, no review impact</li>
+        <li>Brand enters the market with a listing already calibrated to buyer language</li>
+        <li>Product and packaging refinements happen before production is confirmed</li>
+        <li>Inventory decisions are informed, not speculative</li>
+        <li>Price is set against real stated willingness to pay, not internal margin math</li>
+        <li>Known issues are resolved before any real buyer encounters them</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Why the Timing of Feedback Is Everything</h2>
+
+  <p>It's tempting to think of negative reviews as useful data — and in isolation, they are. A pattern of complaints about assembly quality is actionable. Repeated mentions of price sensitivity tell you something real. The problem isn't the information. The problem is when you receive it.</p>
+
+  <p>Feedback received before launch costs nothing to act on. The fixes happen in private, before any buyer has formed or published an opinion about your brand. Feedback received after launch is a tax. Every negative review is a visible liability that influences conversion for every future buyer who sees it. The product may be fixed — but the rating history stays.</p>
+
+  <div class="callout">
+    <p><strong>The compounding effect:</strong> A listing that enters the market at 4.2 stars converts at a meaningfully higher rate than one that starts at 3.5 and climbs. That early conversion gap affects ranking, which affects organic visibility, which affects the total sales trajectory of the launch. Getting the product right before the first review is posted is worth far more than any post-launch optimization spend.</p>
+  </div>
+
+  <p>There's a second, less visible cost: the capital already committed. By the time a production run lands in a fulfillment center, the seller has made a significant financial bet at a specific price, margin, and positioning. If testing reveals that buyers won't pay more than $20 for a product priced at $35, or that the packaging generates confusion that drives returns, those discoveries are no longer free to act on. They require writing off margin on existing stock while the fix is in progress.</p>
+
+  <p>Pre-launch testing converts those potential write-offs into design decisions — made before the money is spent.</p>
+
+  <h2>What Pre-Launch Testing Actually Covers</h2>
+
+  <p>The goal of a pre-launch market test is to collect Voice of Customer (VOC) data across the full buyer journey — from the moment a potential buyer sees your listing, through purchase, unboxing, assembly, and ongoing use. Each stage surfaces a different category of risk.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Stage</th>
+          <th class="left">What You're Testing</th>
+          <th class="left">What Can Go Wrong Without Testing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">Listing discovery</td>
+          <td class="left">Are buyers using the same language you are?</td>
+          <td class="left">Title uses category terms buyers don't actually search for</td>
+        </tr>
+        <tr>
+          <td class="left">Listing evaluation</td>
+          <td class="left">Does the listing build confidence and answer key questions?</td>
+          <td class="left">Missing specs, unclear size or scale, weak quality signals</td>
+        </tr>
+        <tr>
+          <td class="left">Price perception</td>
+          <td class="left">What is the actual willingness to pay?</td>
+          <td class="left">Price set above buyer ceiling; low value scores; poor conversion</td>
+        </tr>
+        <tr>
+          <td class="left">Unboxing</td>
+          <td class="left">Does the first impression match the price paid?</td>
+          <td class="left">Packaging feels cheap; product smaller or flimsier than expected</td>
+        </tr>
+        <tr>
+          <td class="left">Assembly &amp; setup</td>
+          <td class="left">Can a typical buyer complete setup without frustration?</td>
+          <td class="left">Confusing instructions; missing diagrams; high early return rate</td>
+        </tr>
+        <tr>
+          <td class="left">Extended use</td>
+          <td class="left">Does the product hold up and meet use-case expectations over time?</td>
+          <td class="left">Durability complaints; feature gaps; unmet expectations after first use</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>No single instrument captures all of this. The listing evaluation requires a different format than the assembly experience. A survey filled out at a desk doesn't replicate the frustration of following confusing instructions with physical components in front of you. Effective pre-launch testing uses multiple formats across the buyer journey — which is exactly why our methodology is structured the way it is.</p>
+
+  <h2>Our Approach: Five Steps from Sample to Report</h2>
+
+  <p>We've developed a pre-launch evaluation methodology that mirrors the actual buyer journey. It's designed to surface the issues that matter most — before they become public — and to produce a decision-ready report a seller can act on before the first unit ships.</p>
+
+  <div class="process-steps">
+
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Recruit 5–10 target buyers and send product samples</h3>
+        <p>We identify participants who match the demographic and psychographic profile of the product's intended buyer — not generic survey respondents. Participants receive actual product samples, the same way a real buyer would. This is the critical difference between a concept test and a real-world evaluation: people react differently when they're holding a physical product than when they're looking at a photo of one. Sample sourcing and participant logistics are coordinated as part of the engagement.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Administer a structured pre-experience questionnaire</h3>
+        <p>Before participants interact with the physical product, we run a structured survey covering category awareness, purchase decision factors, price expectations, and first impressions of the listing. Our questionnaire designers convert the client's question list into a validated survey instrument — one that produces quantitative data alongside open-ended responses. This baseline captures what buyers think before they touch the product, which is essential for isolating the effect of the physical experience.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Conduct a live unboxing and assembly session</h3>
+        <p>We run a recorded live session — typically via video call — where participants open the product for the first time while narrating their experience in real time. This captures the unboxing impression, the assembly process, and the moment-by-moment reaction to instructions, packaging quality, and physical construction. Live observation catches issues that participants wouldn't think to mention in a written survey: the hesitation before a confusing step, the moment they give up on the instructions and start guessing, the expression when the product turns out to be larger or smaller than expected.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Collect follow-up feedback after extended use</h3>
+        <p>First impressions matter — but they don't capture durability, long-term usability, or whether the product performs as expected across its actual use cases. We ask participants to use the product for two to four weeks and then complete a follow-up questionnaire covering functionality, stability, maintenance, and purchase recommendation. This extended-use phase surfaces issues that only appear over time: adhesives that fail, finishes that wear, battery life that disappoints, or use cases the seller didn't anticipate that turn out to be the most common.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Synthesize findings into a structured report</h3>
+        <p>We combine the survey data, session recordings, and follow-up responses with secondary market research — competitor listing analysis, category search term data, and pricing benchmarks — to produce a structured report. The findings are mapped to the original question set and sequenced in the order of the buyer journey: search, evaluate, purchase, unbox, assemble, use. Each section closes with prioritized recommendations covering product, packaging, listing, and pricing. The goal is not a summary of what participants said — it's a document the seller can act on before the next production run.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>What a Good Report Changes</h2>
+
+  <p>The output of pre-launch testing is not a pass/fail verdict on your product. Very few products are so fundamentally flawed that testing recommends against launching — and those cases are actually the most valuable outcomes a seller can have, because they prevent a much larger financial commitment. More commonly, testing reveals a specific, addressable set of changes that move a product from "probably fine" to "ready to scale."</p>
+
+  <p>The categories of change most often driven by pre-launch research fall into two buckets:</p>
+
+  <div class="compare">
+    <div class="compare-box">
+      <h4>Product &amp; Packaging</h4>
+      <div class="metric"><span>Assembly instructions</span><span>Simplify + add diagrams</span></div>
+      <div class="metric"><span>Packaging protection</span><span>Add buffer at stress points</span></div>
+      <div class="metric"><span>Hardware / component consistency</span><span>Pre-apply; don't bag loose</span></div>
+      <div class="metric"><span>Structural weak points</span><span>Reinforce before production lock</span></div>
+      <div class="metric"><span>Accessory quality</span><span>Upgrade (battery pack, cords, etc.)</span></div>
+    </div>
+    <div class="compare-box optimized">
+      <h4>Listing &amp; Positioning</h4>
+      <div class="metric"><span>Product title</span><span>Match actual buyer search language</span></div>
+      <div class="metric"><span>Hero image</span><span>Add scale reference; show context</span></div>
+      <div class="metric"><span>Price architecture</span><span>Bundle vs. single unit; reframe value</span></div>
+      <div class="metric"><span>Description copy</span><span>Lead with top purchase decision factors</span></div>
+      <div class="metric"><span>Video content</span><span>Prioritize assembly + use-case demos</span></div>
+    </div>
+  </div>
+
+  <p>None of these changes are exotic. They're the refinements that experienced sellers eventually make after a few months of reading their reviews. Pre-launch testing compresses that timeline from months to weeks — and moves the learning from public to private.</p>
+
+  <h2>A Note on Sample Size</h2>
+
+  <p>Five to ten participants is not a statistically representative sample of the general population, and we don't position it as one. What it is: a structured, qualitative-quantitative mix that consistently surfaces the issues that matter most. In practice, the critical problems with a product's listing, packaging, or assembly experience are almost always visible within the first five or six responses — not because the sample is large, but because the issues are real and consistent across buyers.</p>
+
+  <p>For brands that want higher confidence before committing to a large production run or significant ad spend, we can design expanded research programs with larger panels and more rigorous quantitative analysis. The five-to-ten participant format is our core offering: fast enough to fit into a standard pre-launch timeline, affordable enough that the cost is a fraction of the inventory investment it's informing.</p>
+
+  <div class="callout-grey">
+    <p>The goal is not perfect research — it's informed decision-making. A report based on eight real buyers gives you more signal than zero buyers, and it costs a fraction of the production run you're about to commit to.</p>
+  </div>
+
+  <h2>When to Run Pre-Launch Testing</h2>
+
+  <p>The right window is after samples are available but before your production order is confirmed — typically four to eight weeks before your target go-live date. That's when findings are still free to act on. Factory conversations about instruction redesign, packaging changes, or component modifications are routine at this stage. They become expensive rework once the production run is signed off.</p>
+
+  <p>If your samples aren't ready yet, the process can still begin. Listing evaluation and pricing research can run on competitor products and category data while you wait for samples. The two phases run partly in parallel, so the physical evaluation layers in as soon as product is available.</p>
+
+  <p>If you've already launched and you're seeing patterns in your reviews that point to structural product or listing issues, post-launch research serves a different but equally valuable purpose: it prioritizes your fix list and gives you data to bring back to your supplier. The methodology is the same. What changes is what you do with the output.</p>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <h2>See What a Report Looks Like</h2>
+    <p>We've prepared a sample pre-launch evaluation report that walks through our methodology, report format, and the types of findings a typical engagement surfaces. Submit an inquiry to request your copy — no commitment required.</p>
+    <a class="btn-red" href="inquiry.html">Submit an inquiry</a>
+    <p class="sub-note">We'll follow up within one business day to share the sample report and discuss whether a pre-launch evaluation is a fit for your product timeline.</p>
+  </div>
+
+</div><!-- /.layout -->
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+</body>
+</html>
