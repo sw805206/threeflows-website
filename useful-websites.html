@@ -138,28 +138,21 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .uw-placeholder-eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px; }
 .uw-placeholder-box p { font-size: 16px; color: var(--mid); font-weight: 300; line-height: 1.75; max-width: 520px; margin: 0 auto; }
 
-/* ── LEGEND STRIP ── */
-.legend-strip { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.legend-inner { max-width: 1100px; margin: 0 auto; padding: 18px 48px; }
-.legend-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
-.legend-items-row { display: flex; align-items: center; gap: 22px; flex-wrap: nowrap; }
-.legend-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-.legend-item-text { font-size: 12px; color: var(--mid); font-weight: 300; white-space: nowrap; }
-
-/* ── BADGES ── */
+/* ── BADGES (inline; placed in card bottom row) ── */
 .badge { display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.02em; white-space: nowrap; line-height: 1.4; }
-.badge-open   { background: var(--green-light); color: var(--green-text); position: absolute; top: 12px; right: 12px; border: none; }
-.badge-invite { background: var(--amber-light); color: var(--amber); position: absolute; top: 12px; right: 12px; border: none; }
-.badge-supplier { background: var(--off-white); color: var(--mid); position: absolute; top: 12px; right: 12px; border: none; }
+.badge-open   { background: var(--green-light); color: var(--green-text); border: none; }
+.badge-invite { background: var(--amber-light); color: var(--amber); border: none; }
+.badge-supplier { background: #E8E8E8; color: var(--mid); border: none; }
 
 /* ── MARKETPLACE CARDS ── */
-.mkt-section { max-width: 1100px; margin: 0 auto; padding: 48px 48px 0; }
-.mkt-section + .mkt-section { border-top: 1px solid var(--border); padding-top: 40px; }
+#uw-tab-3 { overflow-x: hidden; }
+.mkt-section { max-width: 1100px; margin: 0 auto; padding: 40px 48px 0; }
+.mkt-section + .mkt-section { padding-top: 16px; }
 .mkt-section:last-of-type { padding-bottom: 56px; }
-.mkt-section-heading { font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 32px; padding-bottom: 14px; border-bottom: 1.5px solid var(--dark); }
-.mkt-group { margin-bottom: 36px; }
-.mkt-group:last-child { margin-bottom: 0; }
-.mkt-group-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+.mkt-section-heading { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 500; color: var(--dark); line-height: 1.3; letter-spacing: 0; margin-bottom: 16px; padding-bottom: 0; border-bottom: none; }
+.mkt-group { background: var(--off-white); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; }
+.mkt-group:last-child { margin-bottom: 24px; }
+.mkt-group-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px; }
 .mkt-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 .mkt-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 12px 14px; display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s; position: relative; }
 .mkt-card:hover { border-color: var(--dark); transform: translateY(-1px); }
@@ -188,7 +181,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .uw-tab-bar { padding: 0 20px; }
   .uw-placeholder { padding: 48px 20px; }
   .uw-placeholder-box { padding: 36px 24px; }
-  .legend-inner { padding: 18px 20px; gap: 14px; }
   .mkt-section { padding: 40px 20px 0; }
   .mkt-grid { grid-template-columns: repeat(2, 1fr); }
   .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
@@ -196,19 +188,20 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 }
 
 /* ── RESOURCE FILTER & CARDS ── */
-.resource-cat-section { margin-bottom: 8px; }
-.resource-cat-head { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--border); margin: 28px 0 12px; }
+.resource-cat-section { background: var(--off-white); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; }
+.resource-cat-head { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0; border-bottom: none; margin: 0 0 16px; }
 .resource-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
 .resource-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; transition: border-color var(--transition); position: relative; }
 .resource-card:hover { border-color: var(--border-dark); }
 .resource-card-top { display: flex; align-items: flex-start; gap: 8px; }
 .resource-card-name { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.3; }
-.resource-stage-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; position: absolute; top: 12px; right: 12px; }
+.resource-stage-badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; line-height: 1.4; white-space: nowrap; }
 .resource-stage-badge.startup { background: #FDE8F0; color: #B5256A; }
 .resource-stage-badge.established { background: #E8E8E8; color: #3A3A3A; }
 .resource-card-note { font-size: 12px; color: var(--mid); line-height: 1.45; }
-.resource-card-link { font-size: 11px; color: var(--red); text-decoration: none; margin-top: auto; display: inline-block; }
+.resource-card-link { font-size: 11px; color: var(--red); text-decoration: none; display: inline-block; }
 .resource-card-link:hover { text-decoration: underline; }
+.card-bottom-row { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 4px; }
 </style>
 </head>
 <body>
@@ -323,7 +316,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.emarketer.com" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Market Research" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=trends.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -331,7 +323,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Free search trend signals by keyword &amp; region</p>
-          <a class="resource-card-link" href="https://trends.google.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://trends.google.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Market Research" data-stage="both">
           <div class="resource-card-top">
@@ -344,7 +339,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://members.helium10.com/user/signup" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Market Research" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=junglescout.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -352,7 +346,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Amazon product &amp; keyword research tool</p>
-          <a class="resource-card-link" href="https://www.junglescout.com/get-started/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.junglescout.com/get-started/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Market Research" data-stage="both">
           <div class="resource-card-top">
@@ -375,7 +372,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.semrush.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Market Research" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=similarweb.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -383,7 +379,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Benchmarks your web traffic vs. competitors</p>
-          <a class="resource-card-link" href="https://www.similarweb.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.similarweb.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Market Research" data-stage="both">
           <div class="resource-card-top">
@@ -423,7 +422,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://ace.cbp.dhs.gov" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=cnipa.gov.cn" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -431,7 +429,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">China trademark filing — register before your factory does</p>
-          <a class="resource-card-link" href="https://www.cnipa.gov.cn" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.cnipa.gov.cn" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
           <div class="resource-card-top">
@@ -474,7 +475,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.ftc.gov/business-guidance" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=gs1us.org" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -482,7 +482,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Official UPC/GTIN barcode licensing — required by Amazon &amp; major retailers</p>
-          <a class="resource-card-link" href="https://store.gs1us.org/gs1-company-prefix/p" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://store.gs1us.org/gs1-company-prefix/p" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Compliance &amp; IP" data-stage="both">
           <div class="resource-card-top">
@@ -513,26 +516,13 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 <!-- ══ TAB 3: Top E-Commerce Marketplaces ══ -->
 <div id="uw-tab-3" style="display:none">
 
-  <div class="legend-strip">
-    <div class="legend-inner">
-      <div class="legend-label">Access types</div>
-      <div class="legend-items-row">
-        <div class="legend-item"><span class="badge badge-open">Open</span><span class="legend-item-text">any qualifying seller can self-register</span></div>
-        <div class="legend-item"><span class="badge badge-invite">Curated</span><span class="legend-item-text">application, invite-only, or retailer-selected</span></div>
-        <div class="legend-item"><span class="badge badge-supplier">Vendor</span><span class="legend-item-text">no open marketplace; direct vendor relationship required</span></div>
-      </div>
-    </div>
-  </div>
-
   <!-- SECTION 1 -->
   <div class="mkt-section">
     <h2 class="mkt-section-heading">Top US e-commerce marketplaces</h2>
 
     <div class="mkt-group">
-      <div class="mkt-group-label">Open</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -540,10 +530,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">The world's largest online marketplace; dominant channel for product discovery and DTC sales in the US.</p>
-          <a class="resource-card-link" href="https://sell.amazon.com/sell" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sell.amazon.com/sell" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=ebay.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -551,10 +543,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Pioneer auction and fixed-price marketplace; strong for refurbished, collectibles, and niche categories.</p>
-          <a class="resource-card-link" href="https://www.ebay.com/sellercenter/selling/start-selling-on-ebay" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.ebay.com/sellercenter/selling/start-selling-on-ebay" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=etsy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -562,10 +556,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Curated marketplace for handmade, vintage, and craft goods; loyal buyer community.</p>
-          <a class="resource-card-link" href="https://www.etsy.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.etsy.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=facebook.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -573,10 +569,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Social commerce channel via Facebook Shops; broad reach across demographics.</p>
-          <a class="resource-card-link" href="https://www.facebook.com/business/shopping" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.facebook.com/business/shopping" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=faire.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -584,10 +582,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Wholesale marketplace connecting indie brands with independent retailers across the US and Canada.</p>
-          <a class="resource-card-link" href="https://www.faire.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.faire.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=instagram.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -595,10 +595,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Visual-first social commerce via Instagram Shops; strong for lifestyle, fashion, and beauty brands.</p>
-          <a class="resource-card-link" href="https://www.facebook.com/business/shopping" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.facebook.com/business/shopping" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=newegg.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -606,10 +608,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Specialist marketplace for electronics, components, and tech accessories.</p>
-          <a class="resource-card-link" href="https://www.newegg.com/sellers/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.newegg.com/sellers/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=shopify.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -617,10 +621,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Leading e-commerce platform for building your own storefront; not a marketplace but the standard for DTC brands.</p>
-          <a class="resource-card-link" href="https://www.shopify.com" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.shopify.com" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=temu.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -628,10 +634,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">High-volume discount marketplace; open to US sellers with competitive pricing requirements.</p>
-          <a class="resource-card-link" href="https://seller.temu.com" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://seller.temu.com" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=tiktok.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -639,10 +647,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Fastest-growing social commerce channel in the US; strong for impulse and lifestyle product categories.</p>
-          <a class="resource-card-link" href="https://seller-us.tiktok.com/homepage?shop_region=US" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://seller-us.tiktok.com/homepage?shop_region=US" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=walmart.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -650,16 +660,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">The #2 US marketplace by GMV; strong for everyday goods, groceries, and value-oriented categories.</p>
-          <a class="resource-card-link" href="https://marketplace.walmart.com/about-walmart-marketplace/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://marketplace.walmart.com/about-walmart-marketplace/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="mkt-group">
-      <div class="mkt-group-label">Curated &amp; vendor</div>
-      <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=bedbathandbeyond.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -667,10 +673,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Marketplace for home, bath, and lifestyle products; application-based.</p>
-          <a class="resource-card-link" href="https://www.bedbathandbeyond.com/partner" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://www.bedbathandbeyond.com/partner" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-supplier">Vendor</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=bestbuy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -678,10 +686,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Consumer electronics and appliance retailer; vendor onboarding initiated by category leads.</p>
-          <a class="resource-card-link" href="https://partners.bestbuy.com/-/onboarding-activity-guides-new-bby-vendors" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-supplier">Vendor</span>
+            <a class="resource-card-link" href="https://partners.bestbuy.com/-/onboarding-activity-guides-new-bby-vendors" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-supplier">Vendor</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=bloomingdales.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -689,10 +699,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Premium department store vendor program; application via Macy's Inc. vendor portal.</p>
-          <a class="resource-card-link" href="https://www.macysinc.com/work-with-us/vendors/Become-a-Vendor-Partner/default.aspx" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-supplier">Vendor</span>
+            <a class="resource-card-link" href="https://www.macysinc.com/work-with-us/vendors/Become-a-Vendor-Partner/default.aspx" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-supplier">Vendor</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=costco.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -700,10 +712,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Membership warehouse club; vendor relationships are negotiated directly with category buyers.</p>
-          <a class="resource-card-link" href="https://www.costco.com/supplier-diversity.html" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-supplier">Vendor</span>
+            <a class="resource-card-link" href="https://www.costco.com/supplier-diversity.html" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-supplier">Vendor</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=homedepot.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -711,10 +725,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Home improvement retailer; new suppliers apply via SupplierGATEWAY.</p>
-          <a class="resource-card-link" href="https://supplierhub-prospective.homedepot.com/hc/en-us/articles/360034558452" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-supplier">Vendor</span>
+            <a class="resource-card-link" href="https://supplierhub-prospective.homedepot.com/hc/en-us/articles/360034558452" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=kohls.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -722,10 +738,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Mass-market department store with a certified partner program for apparel, home, and footwear brands.</p>
-          <a class="resource-card-link" href="https://www.kohls.com/feature/certifiedpartners.jsp" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://www.kohls.com/feature/certifiedpartners.jsp" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-supplier">Vendor</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=lowes.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -733,10 +751,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Home improvement retailer vendor portal; direct supplier relationship required.</p>
-          <a class="resource-card-link" href="https://vendor.lowes.com/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-supplier">Vendor</span>
+            <a class="resource-card-link" href="https://vendor.lowes.com/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=macys.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -744,10 +764,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Department store marketplace open to third-party sellers in fashion, home, and beauty.</p>
-          <a class="resource-card-link" href="https://marketplace.macys.com/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://marketplace.macys.com/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-supplier">Vendor</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=nordstrom.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -755,10 +777,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Upscale fashion and lifestyle vendor program; strong for premium and contemporary brands.</p>
-          <a class="resource-card-link" href="http://nordstromsupplier.com/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-supplier">Vendor</span>
+            <a class="resource-card-link" href="http://nordstromsupplier.com/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=shein.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -766,10 +790,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Fast-fashion marketplace with massive Gen Z reach; application-based with volume and pricing requirements.</p>
-          <a class="resource-card-link" href="https://marketplace.shein.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://marketplace.shein.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=target.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -777,10 +803,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Curated extension of Target.com; invite-only with a focus on quality, trend-forward assortments.</p>
-          <a class="resource-card-link" href="https://plus.target.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://plus.target.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=wayfair.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -788,10 +816,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Home goods and furniture marketplace; application-based with strict imagery and content standards.</p>
-          <a class="resource-card-link" href="https://sell.wayfair.com/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://sell.wayfair.com/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=whatnot.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -799,7 +829,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Live-stream selling platform for collectibles, trading cards, and niche enthusiast categories.</p>
-          <a class="resource-card-link" href="https://www.whatnot.com/seller" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://www.whatnot.com/seller" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -813,7 +846,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">North America</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -821,10 +853,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Brazil — largest e-commerce market in Latin America.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -832,10 +866,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Canada — separate listings and fulfillment from the US.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.ca" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.ca" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -843,10 +879,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Mexico — growing marketplace with cross-border opportunities from the US.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.com.mx" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.com.mx" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -854,7 +892,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Primary Seller Central portal for the United States marketplace.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.com" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.com" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -863,7 +904,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Europe</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -871,10 +911,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Unified Seller Central covering UK, Germany, France, Spain, and Italy.</p>
-          <a class="resource-card-link" href="https://sellercentral-europe.amazon.com" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral-europe.amazon.com" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -882,10 +924,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for the Netherlands marketplace.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.nl" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.nl" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -893,10 +937,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Poland.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.pl" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.pl" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -904,10 +950,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Sweden.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.se" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.se" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -915,7 +963,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Turkey.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.com.tr" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.com.tr" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -924,7 +975,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Middle East &amp; Africa</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -932,10 +982,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Egypt.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.eg" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.eg" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -943,10 +995,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Saudi Arabia — fastest-growing Amazon market in the region.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.com.sa" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.com.sa" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -954,7 +1008,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for the United Arab Emirates.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.ae" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.ae" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -963,7 +1020,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Asia-Pacific</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -971,10 +1027,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Australia.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.com.au" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.com.au" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -982,10 +1040,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for India — large and competitive marketplace with local fulfillment options.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.in" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.in" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -993,10 +1053,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Japan — second-largest Amazon marketplace globally.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.co.jp" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.co.jp" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1004,7 +1066,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Seller Central for Singapore.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.sg" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.sg" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1018,7 +1083,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Europe</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=allegro.pl" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1026,10 +1090,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Poland's dominant marketplace and one of the largest in Central and Eastern Europe.</p>
-          <a class="resource-card-link" href="https://allegro.pl/dla-sprzedajacych" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://allegro.pl/dla-sprzedajacych" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=cdiscount.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1037,10 +1103,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">France's leading domestic marketplace covering a broad range of categories.</p>
-          <a class="resource-card-link" href="https://www.cdiscount.com/vendre-sur-cdiscount.html" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.cdiscount.com/vendre-sur-cdiscount.html" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=onbuy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1048,10 +1116,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">UK-based open marketplace with a strong cashback-driven buyer base.</p>
-          <a class="resource-card-link" href="https://www.onbuy.com/gb/sell-on-onbuy/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.onbuy.com/gb/sell-on-onbuy/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=otto.de" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1059,10 +1129,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Germany's second-largest online marketplace; strong for home, fashion, and electronics.</p>
-          <a class="resource-card-link" href="https://www.otto.de/shoppages/partner/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://www.otto.de/shoppages/partner/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=zalando.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1070,7 +1142,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Europe's leading fashion and lifestyle platform; partner program for brands and retailers.</p>
-          <a class="resource-card-link" href="https://www.zalando.co.uk/partner-program/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://www.zalando.co.uk/partner-program/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1079,7 +1154,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Latin America</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1087,10 +1161,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Amazon's Brazilian marketplace — the country's second-largest e-commerce platform.</p>
-          <a class="resource-card-link" href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener">Seller Central ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercentral.amazon.com.br" target="_blank" rel="noopener">Seller Central ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=mercadolibre.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1098,10 +1174,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Latin America's largest marketplace and payments ecosystem, operating across 18 countries.</p>
-          <a class="resource-card-link" href="https://www.mercadolibre.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.mercadolibre.com/sell" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=shopee.com.br" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1109,7 +1187,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Shopee's rapidly growing Brazilian marketplace with strong mobile commerce adoption.</p>
-          <a class="resource-card-link" href="https://shopee.com.br/m/sell-on-shopee" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://shopee.com.br/m/sell-on-shopee" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1118,7 +1199,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Far East — China, Japan, Korea</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=coupang.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1126,10 +1206,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">South Korea's dominant e-commerce platform known for ultra-fast Rocket Delivery.</p>
-          <a class="resource-card-link" href="https://wing.coupang.com" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://wing.coupang.com" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=jd.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1137,10 +1219,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">JD.com's cross-border platform for overseas brands selling into China.</p>
-          <a class="resource-card-link" href="https://global.jd.com/merchant.html" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://global.jd.com/merchant.html" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=rakuten.co.jp" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1148,10 +1232,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Japan's leading domestic marketplace with a loyalty-driven shopping ecosystem.</p>
-          <a class="resource-card-link" href="https://www.rakuten.co.jp/ec/partner/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://www.rakuten.co.jp/ec/partner/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-invite">Curated</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=tmall.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1159,7 +1245,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Alibaba's cross-border marketplace for international brands entering the Chinese market.</p>
-          <a class="resource-card-link" href="https://seller.tmall.hk/index.htm" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-invite">Curated</span>
+            <a class="resource-card-link" href="https://seller.tmall.hk/index.htm" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1168,7 +1257,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Southeast Asia</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=lazada.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1176,10 +1264,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Major Southeast Asian marketplace backed by Alibaba; operates across six countries.</p>
-          <a class="resource-card-link" href="https://sellercenter.lazada.sg/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://sellercenter.lazada.sg/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=shopee.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1187,10 +1277,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Southeast Asia's largest marketplace by orders; strong across SG, MY, ID, TH, PH, and VN.</p>
-          <a class="resource-card-link" href="https://seller.shopee.sg/edu/article/register" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://seller.shopee.sg/edu/article/register" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=tiki.vn" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1198,10 +1290,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Vietnam's leading domestic marketplace with a strong focus on authentic product guarantees.</p>
-          <a class="resource-card-link" href="https://tiki.vn/seller" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://tiki.vn/seller" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=tokopedia.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1209,7 +1303,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Indonesia's largest domestic marketplace, now part of the GoTo Group.</p>
-          <a class="resource-card-link" href="https://www.tokopedia.com/seller" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.tokopedia.com/seller" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1218,7 +1315,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="mkt-group-label">Middle East &amp; Africa</div>
       <div class="mkt-grid">
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=flipkart.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1226,10 +1322,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">India's largest domestic marketplace; dominant in fashion, electronics, and large appliances.</p>
-          <a class="resource-card-link" href="https://seller.flipkart.com" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://seller.flipkart.com" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=jumia.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1237,10 +1335,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Africa's largest e-commerce platform operating across 11 countries.</p>
-          <a class="resource-card-link" href="https://www.jumia.com/sp/sell-on-jumia/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.jumia.com/sp/sell-on-jumia/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=meesho.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1248,10 +1348,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">India's fastest-growing social commerce and reseller marketplace, focused on Tier 2 and 3 cities.</p>
-          <a class="resource-card-link" href="https://supplier.meesho.com" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://supplier.meesho.com" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="mkt-card resource-card">
-          <span class="badge badge-open">Open</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=noon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1259,7 +1361,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Leading Middle Eastern marketplace operating across UAE, Saudi Arabia, and Egypt.</p>
-          <a class="resource-card-link" href="https://www.noon.com/seller/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="badge badge-open">Open</span>
+            <a class="resource-card-link" href="https://www.noon.com/seller/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1276,7 +1381,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">Company Formation</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="Company Formation" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=clerky.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1284,7 +1388,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Startup incorporation &amp; equity document automation</p>
-          <a class="resource-card-link" href="https://www.clerky.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.clerky.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Company Formation" data-stage="both">
           <div class="resource-card-top">
@@ -1297,7 +1404,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.docusign.com/esignature/free-trial-global" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Company Formation" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=irs.gov" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1305,10 +1411,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Employer ID number required for US banking &amp; payroll</p>
-          <a class="resource-card-link" href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Company Formation" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=legalzoom.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1316,10 +1424,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">LLC &amp; Corp formation for US entities</p>
-          <a class="resource-card-link" href="https://www.legalzoom.com/business/business-formation/" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.legalzoom.com/business/business-formation/" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Company Formation" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=northwestregisteredagent.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1327,7 +1437,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Registered agent service required per US state</p>
-          <a class="resource-card-link" href="https://www.northwestregisteredagent.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.northwestregisteredagent.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Company Formation" data-stage="both">
           <div class="resource-card-top">
@@ -1340,7 +1453,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://app.pandadoc.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Company Formation" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=stripe.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1348,7 +1460,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Delaware C-Corp formation built for startups</p>
-          <a class="resource-card-link" href="https://stripe.com/atlas" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://stripe.com/atlas" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1358,7 +1473,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">Domain &amp; Hosting</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=aws.amazon.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1366,7 +1480,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Scalable cloud hosting when you outgrow Shopify/Wix</p>
-          <a class="resource-card-link" href="https://aws.amazon.com/free/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://aws.amazon.com/free/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="both">
           <div class="resource-card-top">
@@ -1379,7 +1496,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=godaddy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1387,10 +1503,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Domain registration — widely used, adequate pricing</p>
-          <a class="resource-card-link" href="https://www.godaddy.com/domains" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.godaddy.com/domains" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=cloud.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1398,10 +1516,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Managed cloud infra with strong data &amp; ML tooling</p>
-          <a class="resource-card-link" href="https://cloud.google.com/free" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://cloud.google.com/free" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=namecheap.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1409,10 +1529,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Popular registrar with free WhoisGuard privacy</p>
-          <a class="resource-card-link" href="https://www.namecheap.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.namecheap.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Domain &amp; Hosting" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=porkbun.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1420,7 +1542,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Budget-friendly registrar with clean UX</p>
-          <a class="resource-card-link" href="https://porkbun.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://porkbun.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1430,7 +1555,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">Website Builder</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="Website Builder" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=bigcommerce.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1438,7 +1562,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Strong Shopify alternative for larger product catalogs</p>
-          <a class="resource-card-link" href="https://www.bigcommerce.com/essentials/free-trial/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.bigcommerce.com/essentials/free-trial/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Website Builder" data-stage="both">
           <div class="resource-card-top">
@@ -1451,7 +1578,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.shopify.com/free-trial" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Website Builder" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=squarespace.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1459,10 +1585,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Design-forward builder; limited e-commerce depth</p>
-          <a class="resource-card-link" href="https://www.squarespace.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.squarespace.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Website Builder" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=wix.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1470,7 +1598,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Good for non-commerce sites; weaker for inventory</p>
-          <a class="resource-card-link" href="https://www.wix.com/upgrade/website" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.wix.com/upgrade/website" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Website Builder" data-stage="both">
           <div class="resource-card-top">
@@ -1500,7 +1631,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">Product &amp; Analytics</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=amplitude.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1508,7 +1638,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Deep behavioral analytics for product &amp; growth teams</p>
-          <a class="resource-card-link" href="https://amplitude.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://amplitude.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="both">
           <div class="resource-card-top">
@@ -1521,7 +1654,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.figma.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=lookerstudio.google.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1529,7 +1661,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Free BI dashboards connecting GA4, Sheets &amp; Shopify</p>
-          <a class="resource-card-link" href="https://lookerstudio.google.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://lookerstudio.google.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="both">
           <div class="resource-card-top">
@@ -1542,7 +1677,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://mixpanel.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Product &amp; Analytics" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=triplewhale.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1550,7 +1684,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Unified e-commerce analytics across all ad channels</p>
-          <a class="resource-card-link" href="https://www.triplewhale.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.triplewhale.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1560,7 +1697,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">Marketing &amp; Growth</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=attentive.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1568,7 +1704,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Enterprise SMS &amp; email with AI-driven personalization</p>
-          <a class="resource-card-link" href="https://www.attentive.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.attentive.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
           <div class="resource-card-top">
@@ -1601,7 +1740,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://analytics.google.com" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=hotjar.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1609,10 +1747,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Session recordings &amp; heatmaps to complement GA4</p>
-          <a class="resource-card-link" href="https://www.hotjar.com/sign-up/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.hotjar.com/sign-up/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=justuno.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1620,7 +1760,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Conversion optimization &amp; lead capture for e-commerce</p>
-          <a class="resource-card-link" href="https://app.justuno.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://app.justuno.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
           <div class="resource-card-top">
@@ -1633,7 +1776,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.klaviyo.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=mailchimp.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1641,7 +1783,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Email marketing — solid free tier for early stage</p>
-          <a class="resource-card-link" href="https://login.mailchimp.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://login.mailchimp.com/signup/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
           <div class="resource-card-top">
@@ -1654,7 +1799,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.facebook.com/business/ads" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=clarity.microsoft.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1662,7 +1806,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Free heatmap &amp; session recording tool by Microsoft</p>
-          <a class="resource-card-link" href="https://clarity.microsoft.com" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://clarity.microsoft.com" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
           <div class="resource-card-top">
@@ -1675,7 +1822,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://postscript.io/get-started" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=privy.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1683,7 +1829,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Email capture popups &amp; exit-intent flows for Shopify</p>
-          <a class="resource-card-link" href="https://dashboard.privy.com/users/sign_up" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://dashboard.privy.com/users/sign_up" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Marketing &amp; Growth" data-stage="both">
           <div class="resource-card-top">
@@ -1733,7 +1882,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.larksuite.com/en_us/campaign/sign-up" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Collaboration" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=linear.app" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1741,7 +1889,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Fast, structured issue tracking for product &amp; ops teams</p>
-          <a class="resource-card-link" href="https://linear.app/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://linear.app/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Collaboration" data-stage="both">
           <div class="resource-card-top">
@@ -1801,7 +1952,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">CRM</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="CRM" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=freshdesk.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1809,7 +1959,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Affordable support CRM with strong e-commerce integrations</p>
-          <a class="resource-card-link" href="https://freshdesk.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://freshdesk.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="CRM" data-stage="both">
           <div class="resource-card-top">
@@ -1822,7 +1975,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.gorgias.com/get-started" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="CRM" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=hubspot.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1830,10 +1982,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Strong free CRM tier for early-stage teams</p>
-          <a class="resource-card-link" href="https://app.hubspot.com/signup-hubspot/crm" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://app.hubspot.com/signup-hubspot/crm" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="CRM" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=salesforce.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1841,10 +1995,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Enterprise CRM — consider only at $5M+ revenue scale</p>
-          <a class="resource-card-link" href="https://www.salesforce.com/form/signup/freetrial-sales/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.salesforce.com/form/signup/freetrial-sales/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="CRM" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=zendesk.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1852,7 +2008,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Scalable support platform with broad integration options</p>
-          <a class="resource-card-link" href="https://www.zendesk.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.zendesk.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1892,7 +2051,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.flexport.com/contact/" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=freightos.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1900,10 +2058,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Online freight rate marketplace for air, sea &amp; rail</p>
-          <a class="resource-card-link" href="https://www.freightos.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.freightos.com/register/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=inventoryplanner.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1911,10 +2071,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Demand forecasting &amp; purchase order management</p>
-          <a class="resource-card-link" href="https://inventoryplanner.com" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://inventoryplanner.com" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=netsuite.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1922,7 +2084,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Oracle&#39;s ERP platform for inventory, financials &amp; order management at scale</p>
-          <a class="resource-card-link" href="https://www.netsuite.com/portal/products/erp.shtml" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.netsuite.com/portal/products/erp.shtml" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="both">
           <div class="resource-card-top">
@@ -1935,7 +2100,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.shipbob.com/get-started/" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=shipmonk.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1943,7 +2107,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">3PL fulfillment with strong subscription box support</p>
-          <a class="resource-card-link" href="https://www.shipmonk.com/get-started/" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.shipmonk.com/get-started/" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="both">
           <div class="resource-card-top">
@@ -1956,7 +2123,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.shipstation.com/step1/" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Logistics &amp; Ops" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=skubana.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1964,7 +2130,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Omnichannel inventory &amp; operations platform</p>
-          <a class="resource-card-link" href="https://www.skubana.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.skubana.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1974,7 +2143,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">Finance &amp; Payments</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=avalara.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1982,10 +2150,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Enterprise-grade tax compliance &amp; filing automation</p>
-          <a class="resource-card-link" href="https://www.avalara.com/us/en/get-started.html" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.avalara.com/us/en/get-started.html" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=brex.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -1993,7 +2163,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Corporate cards &amp; expense management for startups</p>
-          <a class="resource-card-link" href="https://www.brex.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.brex.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
           <div class="resource-card-top">
@@ -2016,7 +2189,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.hiscox.com/small-business-insurance" target="_blank" rel="noopener">Intro ↗</a>
         </div>
         <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=mercury.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -2024,7 +2196,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Startup-friendly US bank; free ACH &amp; wires</p>
-          <a class="resource-card-link" href="https://mercury.com/r/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://mercury.com/r/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
           <div class="resource-card-top">
@@ -2087,7 +2262,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://app.taxjar.com/sign_up/" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=thimble.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -2095,7 +2269,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">On-demand business insurance with flexible short-term policies — useful for early-stage sellers</p>
-          <a class="resource-card-link" href="https://www.thimble.com/get-a-quote" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://www.thimble.com/get-a-quote" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="Finance &amp; Payments" data-stage="both">
           <div class="resource-card-top">
@@ -2115,7 +2292,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="resource-cat-head">HR &amp; Hiring</div>
       <div class="resource-card-grid">
         <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=adp.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -2123,7 +2299,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Payroll &amp; HR for established businesses</p>
-          <a class="resource-card-link" href="https://www.adp.com/contact-us/get-pricing.aspx" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.adp.com/contact-us/get-pricing.aspx" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="both">
           <div class="resource-card-top">
@@ -2136,7 +2315,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://www.deel.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="startup">
-          <span class="resource-stage-badge startup">startup</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=gusto.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -2144,7 +2322,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Payroll &amp; benefits built for startups &amp; SMBs</p>
-          <a class="resource-card-link" href="https://gusto.com/go/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge startup">startup</span>
+            <a class="resource-card-link" href="https://gusto.com/go/signup" target="_blank" rel="noopener">Sign up ↗</a>
+          </div>
         </div>
         <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="both">
           <div class="resource-card-top">
@@ -2177,7 +2358,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <a class="resource-card-link" href="https://remote.com/signup" target="_blank" rel="noopener">Sign up ↗</a>
         </div>
         <div class="resource-card" data-cat="HR &amp; Hiring" data-stage="established">
-          <span class="resource-stage-badge established">established</span>
           <div class="resource-card-top">
             <div style="display:flex;align-items:center;gap:8px;">
               <img src="https://www.google.com/s2/favicons?sz=32&domain=rippling.com" width="16" height="16" style="flex-shrink:0;" onerror="this.style.display='none'">
@@ -2185,7 +2365,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             </div>
           </div>
           <p class="resource-card-note">Unified HR, IT &amp; payroll — better for tech-forward teams</p>
-          <a class="resource-card-link" href="https://www.rippling.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+          <div class="card-bottom-row">
+            <span class="resource-stage-badge established">established</span>
+            <a class="resource-card-link" href="https://www.rippling.com/demo" target="_blank" rel="noopener">Intro ↗</a>
+          </div>
         </div>
       </div>
     </div>
