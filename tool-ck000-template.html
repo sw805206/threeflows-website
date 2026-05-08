@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Checklist Name] — Three Flows Solutions</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  /* ── SITE SHELL: nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  /* ── SITE SHELL: breadcrumb ── */
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  /* ── Layout (wider than blog posts to fit the checklist table) ── */
+  .layout {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  /* ── Tool header ── */
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .tool-desc { font-size: 17px; color: var(--mid); line-height: 1.6; margin-bottom: 14px; }
+  .tool-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+  .post-date { font-size: 12px; color: var(--muted); }
+  .type-badge {
+    display: inline-block;
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Slim info banner ── */
+  .info-banner {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 0 0 36px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--dark);
+  }
+  .info-banner p { margin: 0; padding: 4px 0; color: var(--dark); }
+  .info-banner a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
+  .info-banner a:hover { color: var(--red); }
+
+  /* ── Email gate form ── */
+  .gate { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 26px; margin-bottom: 40px; }
+  .gate h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--dark); margin-bottom: 6px; }
+  .gate .gate-sub { font-size: 14px; color: var(--mid); margin-bottom: 22px; }
+  .gate .field { margin-bottom: 16px; }
+  .gate label.field-label { display: block; font-size: 12px; font-weight: 500; color: var(--mid); margin-bottom: 6px; }
+  .gate label.field-label .req { color: var(--red); }
+  .gate input[type=text], .gate input[type=email] {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark);
+    background: var(--white); border: 1.5px solid var(--border-dark);
+    border-radius: 8px; padding: 11px 14px; width: 100%; outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .gate input[type=text]:focus, .gate input[type=email]:focus {
+    border-color: var(--red); box-shadow: 0 0 0 3px rgba(214,59,59,0.12);
+  }
+  .gate .consent { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--mid); margin: 6px 0 18px; line-height: 1.5; }
+  .gate .consent input { margin-top: 3px; flex-shrink: 0; }
+  .gate .gate-error { display: none; font-size: 13px; color: var(--red-dark); background: var(--red-light); border-radius: 6px; padding: 9px 12px; margin-bottom: 14px; }
+  .gate .gate-error.show { display: block; }
+
+  /* ── Buttons ── */
+  .btn-red { background: var(--red); color: white; border: none; padding: 12px 26px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s, transform 0.15s; display: inline-block; text-decoration: none; }
+  .btn-red:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  .btn-red:disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn-outline { background: transparent; color: var(--dark); border: 1px solid var(--border-dark); padding: 12px 22px; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+  .btn-outline:hover { border-color: var(--dark); }
+
+  /* ── Tool content area ── */
+  .tool-content { display: none; }
+  .tool-content.show { display: block; }
+
+  /* ── Project name field ── */
+  .project-field { margin-bottom: 24px; }
+  .project-field label { display: block; font-size: 12px; font-weight: 500; color: var(--mid); margin-bottom: 6px; }
+  .project-field input {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark);
+    background: var(--white); border: 1.5px solid var(--border-dark);
+    border-radius: 8px; padding: 10px 14px; width: 100%; outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .project-field input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(214,59,59,0.12); }
+
+  /* ── Progress bar ── */
+  .progress-wrap { margin-bottom: 28px; }
+  .progress-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .progress-track {
+    position: relative;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: visible;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+  .gate-flag {
+    position: absolute;
+    top: -10px;
+    transform: translateX(-50%);
+    font-size: 16px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .gate-labels { position: relative; height: 16px; margin-top: 8px; }
+  .gate-label {
+    position: absolute;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* ── Checklist table ── */
+  .checklist-wrap { margin-bottom: 18px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  table.checklist {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    table-layout: fixed;
+  }
+  table.checklist col.col-check  { width: 28px; }
+  table.checklist col.col-num    { width: 24px; }
+  table.checklist col.col-task   { width: 32%; }
+  table.checklist col.col-tip    { width: 30%; }
+  table.checklist col.col-weeks  { width: 9%; }
+  table.checklist col.col-owner  { width: 10%; }
+  table.checklist col.col-start  { width: 10%; }
+  table.checklist col.col-finish { width: 10%; }
+
+  table.checklist thead th {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border-dark);
+    background: var(--white);
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+  table.checklist th.col-check, table.checklist th.col-num,
+  table.checklist th.col-weeks, table.checklist th.col-owner,
+  table.checklist th.col-start, table.checklist th.col-finish { text-align: center; }
+
+  table.checklist td { padding: 8px 10px; vertical-align: top; border-bottom: 0.5px solid var(--border); }
+
+  /* Phase header row */
+  table.checklist tr.phase-header td {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--off-white);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 9px 10px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* Task row */
+  table.checklist tr.task td.col-check { text-align: center; padding-top: 7px; }
+  table.checklist tr.task td.col-check input[type=checkbox] { accent-color: var(--red); cursor: pointer; }
+  table.checklist tr.task td.col-num { text-align: center; font-size: 11px; color: var(--muted); padding-top: 9px; }
+  table.checklist tr.task td.col-task { font-size: 12px; color: var(--dark); line-height: 1.5; }
+  table.checklist tr.task td.col-tip { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  table.checklist tr.task .tip-xref { display: block; margin-top: 2px; font-size: 11px; color: var(--red); font-style: italic; }
+  table.checklist tr.task input[type=text] {
+    width: 100%; font-family: 'DM Sans', sans-serif; font-size: 11px;
+    color: var(--dark); border: 1px solid var(--border);
+    border-radius: 4px; padding: 5px 6px; background: var(--white); outline: none;
+  }
+  table.checklist tr.task input[type=text]:focus { border-color: var(--red); }
+  table.checklist tr.task:hover td { background: var(--off-white); }
+  table.checklist tr.task:hover td.col-check { background: var(--off-white); }
+
+  /* Gate row */
+  table.checklist tr.gate td { background: var(--red-light); border-bottom: 0.5px solid var(--border); }
+  table.checklist tr.gate:hover td { background: var(--red-light); }
+  table.checklist tr.gate td.col-num { text-align: center; font-size: 11px; color: var(--red); font-weight: 500; padding-top: 10px; }
+  table.checklist tr.gate td.gate-cell { padding: 10px 10px; }
+  table.checklist tr.gate .gate-badge {
+    display: inline-block; background: var(--red-light); color: var(--red);
+    font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px;
+    border: 1px solid var(--red); line-height: 1.4;
+  }
+  table.checklist tr.gate .gate-tip { display: block; margin-top: 3px; font-size: 11px; color: var(--red); line-height: 1.4; }
+  table.checklist tr.gate input[type=text] {
+    width: 100%; font-family: 'DM Sans', sans-serif; font-size: 11px;
+    color: var(--red); border: 1px solid var(--red);
+    border-radius: 4px; padding: 5px 6px; background: var(--red-light); outline: none;
+  }
+
+  /* ── Action row below table ── */
+  .below-table { display: flex; flex-direction: column; gap: 6px; margin-bottom: 40px; }
+  .below-table .download-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .below-table .download-row .icon-download::before {
+    content: ''; display: inline-block; width: 14px; height: 14px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v12m0 0l-4-4m4 4l4-4M5 21h14' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v12m0 0l-4-4m4 4l4-4M5 21h14' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .below-table .inline-cta { font-size: 12px; color: var(--muted); }
+  .below-table .inline-cta a { color: var(--red); text-decoration: underline; font-weight: 500; }
+  .below-table .inline-cta a:hover { color: var(--red-dark); }
+
+  /* ── Bottom CTA ── */
+  .bottom-cta { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 26px; margin-top: 8px; }
+  .bottom-cta h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--dark); margin-bottom: 10px; }
+  .bottom-cta p { font-size: 14px; color: var(--mid); margin-bottom: 18px; line-height: 1.6; }
+  .bottom-cta .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .bottom-cta .cta-line { font-size: 13px; color: var(--muted); }
+  .bottom-cta .cta-line a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
+  .bottom-cta .cta-line a:hover { color: var(--red); }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    .layout { padding: 24px 20px 56px; }
+    h1 { font-size: 28px; }
+    footer { padding: 20px; }
+    .checklist-wrap { overflow-x: auto; }
+    table.checklist { min-width: 720px; }
+  }
+
+  /* ─────────── PRINT ─────────── */
+  @media print {
+    nav, footer, .breadcrumb-wrap, .info-banner, .gate, .progress-wrap,
+    .bottom-cta, .below-table, .tool-meta { display: none !important; }
+    body { background: white; color: #000; }
+    .layout { max-width: none; padding: 0; margin: 0; }
+    .tool-content { display: block !important; }
+    h1 { color: #000; font-size: 22px; margin-bottom: 6px; }
+    .tool-desc { color: #000; font-size: 12px; margin-bottom: 16px; }
+
+    /* Project name renders as a blank underlined line */
+    .project-field label { color: #000; }
+    .project-field input {
+      border: none; border-bottom: 1px solid #000; border-radius: 0;
+      background: transparent; color: transparent; padding: 0 0 2px;
+      width: 100%;
+    }
+
+    .checklist-wrap { border: none; border-radius: 0; overflow: visible; }
+    table.checklist { font-size: 10px; }
+    table.checklist thead th {
+      color: #000; background: white;
+      border-bottom: 1px solid #000; padding: 6px 6px;
+    }
+    table.checklist td { padding: 5px 6px; border-bottom: 0.5px solid #ccc; color: #000; }
+
+    /* Phase header — keep with first task row */
+    table.checklist tr.phase-header td {
+      background: #eee; color: #000; border-bottom: 1px solid #000;
+    }
+    table.checklist tr.phase-header { page-break-after: avoid; break-after: avoid; }
+
+    /* Inputs in print: plain underlined text, no boxes */
+    table.checklist tr.task input[type=text],
+    table.checklist tr.gate input[type=text] {
+      border: none; border-bottom: 1px solid #000; border-radius: 0;
+      background: transparent; padding: 0; font-size: 10px;
+    }
+    /* Weeks: print pre-populated value */
+    table.checklist tr.task td.col-weeks input[type=text],
+    table.checklist tr.gate td.col-weeks input[type=text] { color: #000; border: none; }
+    /* Owner / Start / Finish: print as blank underlined lines */
+    table.checklist tr.task td.col-owner input[type=text],
+    table.checklist tr.task td.col-start input[type=text],
+    table.checklist tr.task td.col-finish input[type=text] { color: transparent; }
+
+    table.checklist tr.task td.col-check input[type=checkbox] {
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    table.checklist tr.gate td { background: #f4dada !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    table.checklist tr.gate .gate-badge { color: #000; border-color: #000; background: white; }
+    table.checklist tr.gate .gate-tip { color: #000; }
+    table.checklist tr.task .tip-xref { color: #000; }
+    table.checklist tr.task td.col-tip { color: #000; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">01 — Business Planning</a>
+        <a href="svc2.html">02 — Sourcing Consultation</a>
+        <a href="svc3.html">03 — Launch Hypercare</a>
+        <a href="svc4.html">04 — Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact-anchor">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
+</nav>
+
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="free-tools.html">← Free Tools</a>
+</div>
+
+<div class="layout">
+
+  <!-- Section 1: Tool header (always visible) -->
+  <!-- CHECKLIST: update h1 title -->
+  <h1>[Checklist Name]</h1>
+  <p class="tool-desc">[One-line description of what this checklist helps you do.]</p>
+  <div class="tool-meta">
+    <span class="type-badge">Checklist</span>
+    <!-- CHECKLIST: update last revised date -->
+    <span class="post-date">Last revised: [Month D, YYYY]</span>
+  </div>
+
+  <div class="info-banner">
+    <p>These tools are free and simplified. For a version built around your actual numbers, <a href="svc1.html">contact us</a>.</p>
+    <p>To access this tool, provide your email and consent to receive updates from Three Flows Solutions.</p>
+    <p>Every business is different. <a href="svc1.html">Let us build this</a> <a href="intake.html">for you →</a></p>
+  </div>
+
+  <!-- Section 2: Email gate -->
+  <div class="gate" id="gate">
+    <h2>Get instant access</h2>
+    <p class="gate-sub">Enter your details to unlock the checklist. Free, no payment required.</p>
+    <div class="gate-error" id="gate-error">Please enter a valid business or personal email address.</div>
+    <form id="gate-form" novalidate>
+      <div class="field">
+        <label class="field-label" for="first_name">First name <span class="req">*</span></label>
+        <input type="text" id="first_name" name="first_name" required autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label class="field-label" for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" required>
+        <span>I agree to receive updates and promotional materials from Three Flows Solutions.</span>
+      </label>
+      <button type="submit" class="btn-red" id="gate-submit" disabled>Access Tool →</button>
+    </form>
+  </div>
+
+  <!-- Section 3: Tool content (hidden until gate cleared) -->
+  <div class="tool-content" id="tool-content">
+
+    <!-- Project name field -->
+    <div class="project-field">
+      <label for="project_name">This checklist is for:</label>
+      <input type="text" id="project_name" placeholder="Enter your project or business name">
+    </div>
+
+    <!-- Progress bar -->
+    <!-- CHECKLIST: update progress bar total task count -->
+    <!-- CHECKLIST: update gate flag positions -->
+    <div class="progress-wrap">
+      <div class="progress-row">
+        <span>Progress</span>
+        <span><span id="progress-count">0</span> of <span id="progress-total">6</span> tasks complete</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+        <!-- Gate 1 flag: left = (tasks_before_gate1 / total_tasks * 100)% -->
+        <span class="gate-flag" style="left: 33.33%;">🚩</span>
+        <!-- Gate 2 flag: left = (tasks_before_gate2 / total_tasks * 100)% -->
+        <span class="gate-flag" style="left: 83.33%;">🚩</span>
+      </div>
+      <div class="gate-labels">
+        <span class="gate-label" style="left: 33.33%;">Gate 1</span>
+        <span class="gate-label" style="left: 83.33%;">Gate 2</span>
+      </div>
+    </div>
+
+    <!-- Checklist table -->
+    <!-- CHECKLIST: replace table rows below with actual checklist content -->
+    <div class="checklist-wrap">
+      <table class="checklist">
+        <colgroup>
+          <col class="col-check"><col class="col-num"><col class="col-task">
+          <col class="col-tip"><col class="col-weeks"><col class="col-owner">
+          <col class="col-start"><col class="col-finish">
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="col-check">✓</th>
+            <th class="col-num">#</th>
+            <th class="col-task">Task</th>
+            <th class="col-tip">Tip</th>
+            <th class="col-weeks">Weeks</th>
+            <th class="col-owner">Owner</th>
+            <th class="col-start">Start</th>
+            <th class="col-finish">Finish</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- ── Phase header ── -->
+          <tr class="phase-header"><td colspan="8">Phase 1 — Validate</td></tr>
+
+          <!-- ── Task ── -->
+          <tr class="task">
+            <td class="col-check"><input type="checkbox" class="task-check"></td>
+            <td class="col-num">1</td>
+            <td class="col-task">[First task description goes here.]</td>
+            <td class="col-tip">
+              [Short practical tip for this task.]
+              <span class="tip-xref">See CA001 — Landed Cost (coming soon)</span>
+            </td>
+            <td class="col-weeks"><input type="text" value="1"></td>
+            <td class="col-owner"><input type="text" placeholder="Name"></td>
+            <td class="col-start"><input type="text" placeholder="MM/DD"></td>
+            <td class="col-finish"><input type="text" placeholder="MM/DD"></td>
+          </tr>
+          <tr class="task">
+            <td class="col-check"><input type="checkbox" class="task-check"></td>
+            <td class="col-num">2</td>
+            <td class="col-task">[Second task description.]</td>
+            <td class="col-tip">[Short practical tip for this task.]</td>
+            <td class="col-weeks"><input type="text" value="2"></td>
+            <td class="col-owner"><input type="text" placeholder="Name"></td>
+            <td class="col-start"><input type="text" placeholder="MM/DD"></td>
+            <td class="col-finish"><input type="text" placeholder="MM/DD"></td>
+          </tr>
+
+          <!-- ── Gate ── -->
+          <tr class="gate">
+            <td class="col-check"></td>
+            <td class="col-num">G1</td>
+            <td class="gate-cell" colspan="2">
+              <span class="gate-badge">🚩 Go / No-Go gate 1</span>
+              <span class="gate-tip">[Decision criteria for moving past this gate.]</span>
+            </td>
+            <td class="col-weeks"><input type="text" value="1"></td>
+            <td class="col-owner"></td>
+            <td class="col-start"></td>
+            <td class="col-finish"></td>
+          </tr>
+
+          <tr class="task">
+            <td class="col-check"><input type="checkbox" class="task-check"></td>
+            <td class="col-num">3</td>
+            <td class="col-task">[Third task description.]</td>
+            <td class="col-tip">[Short practical tip for this task.]</td>
+            <td class="col-weeks"><input type="text" value="2"></td>
+            <td class="col-owner"><input type="text" placeholder="Name"></td>
+            <td class="col-start"><input type="text" placeholder="MM/DD"></td>
+            <td class="col-finish"><input type="text" placeholder="MM/DD"></td>
+          </tr>
+
+          <!-- ── Phase header ── -->
+          <tr class="phase-header"><td colspan="8">Phase 2 — Build</td></tr>
+
+          <tr class="task">
+            <td class="col-check"><input type="checkbox" class="task-check"></td>
+            <td class="col-num">4</td>
+            <td class="col-task">[Fourth task description.]</td>
+            <td class="col-tip">[Short practical tip for this task.]</td>
+            <td class="col-weeks"><input type="text" value="2"></td>
+            <td class="col-owner"><input type="text" placeholder="Name"></td>
+            <td class="col-start"><input type="text" placeholder="MM/DD"></td>
+            <td class="col-finish"><input type="text" placeholder="MM/DD"></td>
+          </tr>
+          <tr class="task">
+            <td class="col-check"><input type="checkbox" class="task-check"></td>
+            <td class="col-num">5</td>
+            <td class="col-task">[Fifth task description.]</td>
+            <td class="col-tip">[Short practical tip for this task.]</td>
+            <td class="col-weeks"><input type="text" value="3"></td>
+            <td class="col-owner"><input type="text" placeholder="Name"></td>
+            <td class="col-start"><input type="text" placeholder="MM/DD"></td>
+            <td class="col-finish"><input type="text" placeholder="MM/DD"></td>
+          </tr>
+
+          <!-- ── Gate ── -->
+          <tr class="gate">
+            <td class="col-check"></td>
+            <td class="col-num">G2</td>
+            <td class="gate-cell" colspan="2">
+              <span class="gate-badge">🚩 Go / No-Go gate 2</span>
+              <span class="gate-tip">[Decision criteria for moving past this gate.]</span>
+            </td>
+            <td class="col-weeks"><input type="text" value="1"></td>
+            <td class="col-owner"></td>
+            <td class="col-start"></td>
+            <td class="col-finish"></td>
+          </tr>
+
+          <tr class="task">
+            <td class="col-check"><input type="checkbox" class="task-check"></td>
+            <td class="col-num">6</td>
+            <td class="col-task">[Sixth task description.]</td>
+            <td class="col-tip">[Short practical tip for this task.]</td>
+            <td class="col-weeks"><input type="text" value="2"></td>
+            <td class="col-owner"><input type="text" placeholder="Name"></td>
+            <td class="col-start"><input type="text" placeholder="MM/DD"></td>
+            <td class="col-finish"><input type="text" placeholder="MM/DD"></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Below table: download + inline CTA -->
+    <div class="below-table">
+      <div class="download-row">
+        <button type="button" class="btn-outline" onclick="window.print()">
+          <span class="icon-download" aria-hidden="true"></span>Download blank PDF
+        </button>
+      </div>
+      <p class="inline-cta">Need a customized version built for your business? <a href="inquiry.html">Submit an inquiry →</a></p>
+    </div>
+  </div>
+
+  <!-- Section 4: Bottom service CTA (always visible) -->
+  <div class="bottom-cta">
+    <h2>Need a version built for your business?</h2>
+    <p>This free checklist uses simplified assumptions about phasing and ownership. Our consulting builds the same structure around your actual team, suppliers, and timeline.</p>
+    <div class="cta-actions">
+      <a class="btn-red" href="inquiry.html">Submit an inquiry</a>
+      <a class="btn-outline" href="intake.html">Fill in an intake form</a>
+    </div>
+    <p class="cta-line">Or start with our <a href="svc1.html">Business Planning service →</a></p>
+  </div>
+
+</div><!-- /.layout -->
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+<script>
+// ═══════════════════════════════════════════
+//  TOOL GATE — duplicate this block per checklist page
+//  Filename pattern:  tool-ckNNN.html  (e.g. tool-ck001.html)
+//  Cookie pattern:    tf_tool_ckNNN
+// ═══════════════════════════════════════════
+(function () {
+  // CHECKLIST: update cookie name (TOOL_ID drives COOKIE_NAME below)
+  // CHECKLIST: update tool_id and tool_name in Apps Script POST
+  const TOOL_ID   = 'ck000';                                        // e.g. 'ck001', 'ck001a'
+  const TOOL_NAME = '[Checklist Name]';                             // human-readable
+  const APPS_SCRIPT_URL = 'REPLACE_WITH_GOOGLE_APPS_SCRIPT_URL';    // from FREE_TOOLS_APPS_SCRIPT.md
+  const COOKIE_NAME = 'tf_tool_' + TOOL_ID;                         // e.g. tf_tool_ck001
+  const COOKIE_DAYS = 14;
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  const gate     = document.getElementById('gate');
+  const content  = document.getElementById('tool-content');
+  const form     = document.getElementById('gate-form');
+  const firstEl  = document.getElementById('first_name');
+  const emailEl  = document.getElementById('email');
+  const consentEl = document.getElementById('consent');
+  const submit   = document.getElementById('gate-submit');
+  const errorBox = document.getElementById('gate-error');
+
+  function getCookie(name) {
+    return document.cookie.split('; ').reduce(function (acc, row) {
+      const idx = row.indexOf('=');
+      if (idx === -1) return acc;
+      const k = row.slice(0, idx);
+      if (k === name) return decodeURIComponent(row.slice(idx + 1));
+      return acc;
+    }, null);
+  }
+  function setCookie(name, value, days) {
+    const exp = new Date(Date.now() + days * 86400 * 1000).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) +
+      '; expires=' + exp + '; path=/; SameSite=Lax';
+  }
+
+  function unlock() {
+    if (gate)    gate.style.display = 'none';
+    if (content) content.classList.add('show');
+    initProgress();
+  }
+
+  if (getCookie(COOKIE_NAME)) { unlock(); return; }
+
+  function validClientSide() {
+    return firstEl.value.trim().length > 0 &&
+           EMAIL_RE.test(emailEl.value.trim()) &&
+           consentEl.checked;
+  }
+  function refreshSubmit() { submit.disabled = !validClientSide(); }
+  ['input', 'change'].forEach(function (ev) { form.addEventListener(ev, refreshSubmit); });
+  refreshSubmit();
+
+  async function isEmailReal(email) {
+    try {
+      const res = await fetch('https://api.mailcheck.ai/email/' + encodeURIComponent(email));
+      if (!res.ok) return true;
+      const j = await res.json();
+      if (j && (j.disposable === true || j.valid === false)) return false;
+      return true;
+    } catch (e) { return true; }
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errorBox.classList.remove('show');
+    if (!validClientSide()) return;
+    submit.disabled = true;
+    submit.textContent = 'Checking…';
+
+    const ok = await isEmailReal(emailEl.value.trim());
+    if (!ok) {
+      errorBox.classList.add('show');
+      submit.disabled = false;
+      submit.textContent = 'Access Tool →';
+      return;
+    }
+
+    const payload = new FormData();
+    payload.append('tool_id', TOOL_ID);                              // e.g. 'ck001'
+    payload.append('tool_name', TOOL_NAME);                          // e.g. '[Checklist Name]'
+    payload.append('first_name', firstEl.value.trim());
+    payload.append('email', emailEl.value.trim());
+    payload.append('consent', consentEl.checked ? 'true' : 'false');
+    payload.append('timestamp', new Date().toISOString());
+
+    try {
+      await fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: payload });
+    } catch (err) { /* fail open */ }
+    setCookie(COOKIE_NAME, '1', COOKIE_DAYS);
+    unlock();
+  });
+
+  // ── Progress bar ─────────────────────────────────────────────
+  function initProgress() {
+    const checks = document.querySelectorAll('.task-check');
+    const totalEl = document.getElementById('progress-total');
+    const countEl = document.getElementById('progress-count');
+    const fill = document.getElementById('progress-fill');
+    const total = checks.length;
+    if (totalEl) totalEl.textContent = total;
+    function update() {
+      const done = Array.prototype.filter.call(checks, c => c.checked).length;
+      if (countEl) countEl.textContent = done;
+      if (fill)    fill.style.width = (total === 0 ? 0 : (done / total * 100)) + '%';
+    }
+    checks.forEach(c => c.addEventListener('change', update));
+    update();
+  }
+})();
+</script>
+
+</body>
+</html>

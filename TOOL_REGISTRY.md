@@ -1,5 +1,11 @@
 # Three Flows Solutions — Tool Registry
 
+## Templates (never shown in free-tools.html)
+| File | Type | Purpose |
+|---|---|---|
+| tool-ck000-template.html | Checklist | Master template for all CK tools |
+| tool-ca000-template.html | Calculator | Master template for all CA tools |
+
 ## Active Tools
 (none yet)
 
