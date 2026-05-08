@@ -19,6 +19,7 @@
   --dark: #1A1A1A;
   --mid: #5C5C5C;
   --muted: #909090;
+  --grey: #AAA;
   --off-white: #F8F8F8;
   --white: #FFFFFF;
 
@@ -29,6 +30,11 @@
   /* Semantic — keep green as-is per brief */
   --green: #00B050;
   --green-light: #EAF3DE;
+  --green-dark: #3B6D11;
+
+  /* Tag accents (info-blue) */
+  --blue: #185FA5;
+  --blue-light: #E6F1FB;
 
   /* Layout */
   --radius: 12px;
@@ -83,7 +89,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .pillar-card { background: var(--off-white); border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); }
 .pillar-card.red-border { border-color: var(--red); border-width: 2px; }
 .pillar-card.dark-border { border-color: var(--dark); border-width: 1.5px; }
-.pillar-card.grey-border { border-color: #AAA; border-width: 1.5px; }
+.pillar-card.grey-border { border-color: var(--grey); border-width: 1.5px; }
 
 /* ══ HERO ══ */
 .hero-wrap { border-bottom: 1px solid var(--border); }
@@ -199,18 +205,18 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 .footer-links a:hover { color: var(--dark); }
 
 /* ══ SERVICE PAGES ══ */
-.svc-hero-wrap { border-bottom: 1px solid var(--border); }
-.svc-hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
+.hero-wrap { border-bottom: 1px solid var(--border); }
+.hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
 .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 .breadcrumb:hover { color: var(--dark); }
-.svc-hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 18px; }
-.svc-hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 32px; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 18px; }
+.hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 32px; }
 .svc-for { background: var(--off-white); border-left: 3px solid var(--dark); border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 40px; }
 .svc-for-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
 .svc-for ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .svc-for ul li { font-size: 14px; color: var(--mid); display: flex; gap: 8px; }
 .svc-for ul li::before { content: '·'; color: var(--dark); font-size: 18px; line-height: 1.2; }
-.svc-hero-img { width: 100%; height: 420px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
+.hero-img { width: 100%; height: 420px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
 .svc-cta-sticky { position: sticky; top: 80px; background: var(--white); border: none; border-radius: var(--radius); padding: 28px; }
 .svc-cta-sticky h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 10px; }
 .svc-cta-sticky p { font-size: 14px; color: var(--mid); margin-bottom: 20px; line-height: 1.6; }
@@ -260,17 +266,17 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 .faq-item.open .faq-a { display: block; }
 .faq-item.open .faq-icon { transform: rotate(45deg); }
 
-.svc-bottom-cta { background: var(--dark); }
-.svc-bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
-.svc-bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
-.svc-bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
+.bottom-cta { background: var(--dark); }
+.bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+.bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
+.bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
 
 /* Responsive */
 @media (max-width: 800px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero, .svc-hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
-  .hero h1, .svc-hero h1 { font-size: 36px; }
+  .hero, .hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
+  .hero h1, .hero h1 { font-size: 36px; }
   .process-section, .team-section, .svc-section, .cta-section { padding: 56px 20px; }
   .services-inner, .resources-inner, .proof-inner { padding: 56px 20px; }
   .flow-container { grid-template-columns: 1fr 1fr; }
@@ -279,7 +285,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .proof-inner { grid-template-columns: 1fr; }
   .proof-metrics { grid-template-columns: repeat(3,1fr); }
   .partner-strip { padding: 14px 20px; }
-  .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
   footer { padding: 20px; }
 }
 
@@ -306,19 +312,19 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .divider { border: none; border-top: 1px solid var(--border); }
 
 /* HERO */
-.svc-hero-wrap { border-bottom: 1px solid var(--border); }
-.svc-hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
+.hero-wrap { border-bottom: 1px solid var(--border); }
+.hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; }
 .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 .breadcrumb:hover { color: var(--dark); }
-.svc-hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px; }
-.svc-hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 28px; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px; }
+.hero-sub { font-size: 17px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 28px; }
 .svc-for { background: var(--off-white); border-left: 3px solid var(--dark); border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 40px; }
 .svc-for-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
 .svc-for ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .svc-for ul li { font-size: 14px; color: var(--mid); display: flex; gap: 8px; }
 .svc-for ul li::before { content: '·'; color: var(--dark); font-size: 18px; line-height: 1.2; }
 .hero-img-stack { position: relative; }
-.svc-hero-img { width: 100%; height: 400px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
+.hero-img { width: 100%; height: 400px; object-fit: cover; border-radius: 14px 14px 0 0; display: block; }
 .cta-box { background: var(--white); border: none; padding: 28px; }
 .cta-box h3 { font-family: 'DM Serif Display', serif; font-size: 21px; margin-bottom: 10px; }
 .cta-box p { font-size: 14px; color: var(--mid); margin-bottom: 20px; line-height: 1.6; }
@@ -460,8 +466,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .itin-act-desc { font-size: 13px; color: var(--mid); line-height: 1.5; }
 .itin-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 4px; }
 .itin-tag.biz { background: var(--red-light); color: var(--red); }
-.itin-tag.leisure { background: #EAF3DE; color: #3B6D11; }
-.itin-tag.oncall { background: #E6F1FB; color: #185FA5; }
+.itin-tag.leisure { background: var(--green-light); color: var(--green-dark); }
+.itin-tag.oncall { background: var(--blue-light); color: var(--blue); }
 .itin-note { font-size: 13px; color: var(--muted); margin-top: 20px; font-style: italic; }
 
 /* PRICING TABLE */
@@ -501,8 +507,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
 @media (max-width: 800px) {
   nav { padding: 0 20px; }
-  .svc-hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
-  .svc-hero h1 { font-size: 36px; }
+  .hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
+  .hero h1 { font-size: 36px; }
   .section, .mob-section, .itinerary { padding: 48px 20px; }
   .section.two-col, .mob-intro, .trip-concept, .itin-grid { grid-template-columns: 1fr; gap: 36px; }
   .overview-inner { grid-template-columns: 1fr; }
@@ -631,9 +637,9 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .week-content p { font-size: 13px; color: var(--mid); line-height: 1.6; }
 .week-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
 .wtag { font-size: 11px; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
-.wtag.client { background: #EAF3DE; color: #3B6D11; }
+.wtag.client { background: var(--green-light); color: var(--green-dark); }
 .wtag.tf { background: var(--red-light); color: var(--red); }
-.wtag.shared { background: #E6F1FB; color: #185FA5; }
+.wtag.shared { background: var(--blue-light); color: var(--blue); }
 
 /* SYSTEM INTEGRATION */
 .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
@@ -827,7 +833,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .growth-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
 .gtag { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
 .gtag.tf { background: var(--red-light); color: var(--red); }
-.gtag.client { background: #EAF3DE; color: #3B6D11; }
+.gtag.client { background: var(--green-light); color: var(--green-dark); }
 
 /* PRICING */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -915,6 +921,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 /* ── UNIFIED PAGE SYSTEM ── */
 .page { display: none !important; }
 .page.active { display: block !important; }
+/* ── ON-DARK BUTTON MODIFIERS ── */
+.btn-dark.on-dark { background: #333; }
+.btn-outline.on-dark { color: white; border-color: rgba(255,255,255,0.4); }
 </style>
 </head>
 <body>
@@ -957,13 +966,13 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
 <!-- ══ SVC1 PAGE CONTENT ══ -->
 
-  <div class="svc-hero-wrap">
-    <div class="svc-hero">
+  <div class="hero-wrap">
+    <div class="hero">
       <div>
         <a class="breadcrumb" href="index.html#services-anchor" style="text-decoration:none;color:inherit">← Services</a>
         <div class="eyebrow red">Stage 01 — Plan</div>
         <h1>Business Planning</h1>
-        <p class="svc-hero-sub">Make data-driven decisions before you commit a single dollar. We use the most recent Amazon and TikTok market data combined with real financial modeling — so you know your idea works before you invest.</p>
+        <p class="hero-sub">Make data-driven decisions before you commit a single dollar. We use the most recent Amazon and TikTok market data combined with real financial modeling — so you know your idea works before you invest.</p>
         <div class="svc-for">
           <div class="svc-for-label">Best for</div>
           <ul>
@@ -975,11 +984,11 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         </div>
       </div>
       <div>
-        <img class="svc-hero-img" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=700&q=80" alt="Market research and data">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=700&q=80" alt="Market research and data">
         <div class="svc-cta-sticky" style="border-radius:0 0 var(--radius) var(--radius);position:static;margin-top:0">
           <h3>Start with a free conversation</h3>
           <p>Tell us about your idea and we'll recommend the right package.</p>
-          <a href="inquiry.html" target="_blank" class="btn-red" style="text-align:center;display:block;padding:14px;width:100%;text-decoration:none">Submit an inquiry</a>
+          <a href="inquiry.html" class="btn-red" style="text-align:center;display:block;padding:14px;width:100%;text-decoration:none">Submit an inquiry</a>
         </div>
       </div>
     </div>
@@ -1048,16 +1057,16 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     </div>
   </div>
 
-  <div class="svc-bottom-cta">
-    <div class="svc-bottom-inner">
+  <div class="bottom-cta">
+    <div class="bottom-inner">
       <div>
         <h2>Ready to validate your idea?</h2>
         <p>Start with a free conversation — we'll recommend the right package.</p>
       </div>
       <div class="bottom-actions">
-        <a href="inquiry.html" target="_blank" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
-        <a href="intake.html" class="btn-outline" style="font-size:14px;font-weight:400;padding:11px 24px;color:white;border-color:rgba(255,255,255,0.4);text-decoration:none">Fill in an intake form</a>
-        <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
+        <a href="inquiry.html" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
+        <a href="intake.html" class="btn-outline on-dark" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Fill in an intake form</a>
+        <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" rel="noopener" class="btn-dark on-dark" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Book a call</a>
       </div>
     </div>
   </div>

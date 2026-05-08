@@ -19,6 +19,7 @@
   --dark: #1A1A1A;
   --mid: #5C5C5C;
   --muted: #909090;
+  --grey: #AAA;
   --off-white: #F8F8F8;
   --white: #FFFFFF;
 
@@ -29,6 +30,11 @@
   /* Semantic — keep green as-is per brief */
   --green: #00B050;
   --green-light: #EAF3DE;
+  --green-dark: #3B6D11;
+
+  /* Tag accents (info-blue) */
+  --blue: #185FA5;
+  --blue-light: #E6F1FB;
 
   /* Layout */
   --radius: 12px;
@@ -83,7 +89,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .pillar-card { background: var(--off-white); border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); }
 .pillar-card.red-border { border-color: var(--red); border-width: 2px; }
 .pillar-card.dark-border { border-color: var(--dark); border-width: 1.5px; }
-.pillar-card.grey-border { border-color: #AAA; border-width: 1.5px; }
+.pillar-card.grey-border { border-color: var(--grey); border-width: 1.5px; }
 
 /* ══ HERO ══ */
 .hero-wrap { border-bottom: 1px solid var(--border); }
@@ -460,8 +466,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .itin-act-desc { font-size: 13px; color: var(--mid); line-height: 1.5; }
 .itin-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 4px; }
 .itin-tag.biz { background: var(--red-light); color: var(--red); }
-.itin-tag.leisure { background: #EAF3DE; color: #3B6D11; }
-.itin-tag.oncall { background: #E6F1FB; color: #185FA5; }
+.itin-tag.leisure { background: var(--green-light); color: var(--green-dark); }
+.itin-tag.oncall { background: var(--blue-light); color: var(--blue); }
 .itin-note { font-size: 13px; color: var(--muted); margin-top: 20px; font-style: italic; }
 
 /* PRICING TABLE */
@@ -631,9 +637,9 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .week-content p { font-size: 13px; color: var(--mid); line-height: 1.6; }
 .week-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
 .wtag { font-size: 11px; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
-.wtag.client { background: #EAF3DE; color: #3B6D11; }
+.wtag.client { background: var(--green-light); color: var(--green-dark); }
 .wtag.tf { background: var(--red-light); color: var(--red); }
-.wtag.shared { background: #E6F1FB; color: #185FA5; }
+.wtag.shared { background: var(--blue-light); color: var(--blue); }
 
 /* SYSTEM INTEGRATION */
 .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
@@ -827,7 +833,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .growth-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
 .gtag { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
 .gtag.tf { background: var(--red-light); color: var(--red); }
-.gtag.client { background: #EAF3DE; color: #3B6D11; }
+.gtag.client { background: var(--green-light); color: var(--green-dark); }
 
 /* PRICING */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -915,6 +921,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 /* ── UNIFIED PAGE SYSTEM ── */
 .page { display: none !important; }
 .page.active { display: block !important; }
+/* ── ON-DARK BUTTON MODIFIERS ── */
+.btn-dark.on-dark { background: #333; }
+.btn-outline.on-dark { color: white; border-color: rgba(255,255,255,0.4); }
 </style>
 </head>
 <body>
@@ -979,7 +988,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="cta-box">
         <h3>Let's talk about what you need</h3>
         <p>Back office support is custom-scoped. Tell us what's eating your time.</p>
-        <a href="inquiry.html" target="_blank" class="btn-red" style="text-align:center;display:block;padding:14px;width:100%;text-decoration:none">Submit an inquiry</a>
+        <a href="inquiry.html" class="btn-red" style="text-align:center;display:block;padding:14px;width:100%;text-decoration:none">Submit an inquiry</a>
       </div>
     </div>
   </div>
@@ -1217,9 +1226,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <p>Tell us what's eating your time — we'll design the right plan.</p>
     </div>
     <div class="bottom-actions">
-      <a href="inquiry.html" target="_blank" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
-      <a href="intake.html" class="btn-outline" style="font-size:14px;font-weight:400;padding:11px 24px;color:white;border-color:rgba(255,255,255,0.4);text-decoration:none">Fill in an intake form</a>
-      <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
+      <a href="inquiry.html" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
+      <a href="intake.html" class="btn-outline on-dark" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Fill in an intake form</a>
+      <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" rel="noopener" class="btn-dark on-dark" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Book a call</a>
     </div>
   </div>
 </div>

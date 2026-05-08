@@ -19,6 +19,7 @@
   --dark: #1A1A1A;
   --mid: #5C5C5C;
   --muted: #909090;
+  --grey: #AAA;
   --off-white: #F8F8F8;
   --white: #FFFFFF;
 
@@ -29,6 +30,11 @@
   /* Semantic — keep green as-is per brief */
   --green: #00B050;
   --green-light: #EAF3DE;
+  --green-dark: #3B6D11;
+
+  /* Tag accents (info-blue) */
+  --blue: #185FA5;
+  --blue-light: #E6F1FB;
 
   /* Layout */
   --radius: 12px;
@@ -83,7 +89,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .pillar-card { background: var(--off-white); border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); }
 .pillar-card.red-border { border-color: var(--red); border-width: 2px; }
 .pillar-card.dark-border { border-color: var(--dark); border-width: 1.5px; }
-.pillar-card.grey-border { border-color: #AAA; border-width: 1.5px; }
+.pillar-card.grey-border { border-color: var(--grey); border-width: 1.5px; }
 
 /* ══ HERO ══ */
 .hero-wrap { border-bottom: 1px solid var(--border); }
@@ -460,8 +466,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .itin-act-desc { font-size: 13px; color: var(--mid); line-height: 1.5; }
 .itin-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 4px; }
 .itin-tag.biz { background: var(--red-light); color: var(--red); }
-.itin-tag.leisure { background: #EAF3DE; color: #3B6D11; }
-.itin-tag.oncall { background: #E6F1FB; color: #185FA5; }
+.itin-tag.leisure { background: var(--green-light); color: var(--green-dark); }
+.itin-tag.oncall { background: var(--blue-light); color: var(--blue); }
 .itin-note { font-size: 13px; color: var(--muted); margin-top: 20px; font-style: italic; }
 
 /* PRICING TABLE */
@@ -580,9 +586,9 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .tab-btn { padding: 20px 16px; border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; text-align: left; border-bottom: 2px solid transparent; transition: border-color 0.2s; position: relative; }
 .tab-btn:hover { background: var(--off-white); }
 .tab-btn.active { border-bottom-color: var(--dark); }
-.svc3-tab-btn { padding: 20px 16px; border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; text-align: left; border-bottom: 2px solid transparent; transition: border-color 0.2s; position: relative; }
-.svc3-tab-btn:hover { background: var(--off-white); }
-.svc3-tab-btn.active { border-bottom-color: var(--dark); }
+.tab-btn { padding: 20px 16px; border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; text-align: left; border-bottom: 2px solid transparent; transition: border-color 0.2s; position: relative; }
+.tab-btn:hover { background: var(--off-white); }
+.tab-btn.active { border-bottom-color: var(--dark); }
 .tab-btn-num { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
 .tab-btn-title { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
 .tab-btn-sub { font-size: 12px; color: var(--muted); }
@@ -631,9 +637,9 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .week-content p { font-size: 13px; color: var(--mid); line-height: 1.6; }
 .week-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
 .wtag { font-size: 11px; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
-.wtag.client { background: #EAF3DE; color: #3B6D11; }
+.wtag.client { background: var(--green-light); color: var(--green-dark); }
 .wtag.tf { background: var(--red-light); color: var(--red); }
-.wtag.shared { background: #E6F1FB; color: #185FA5; }
+.wtag.shared { background: var(--blue-light); color: var(--blue); }
 
 /* SYSTEM INTEGRATION */
 .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
@@ -827,7 +833,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .growth-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
 .gtag { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
 .gtag.tf { background: var(--red-light); color: var(--red); }
-.gtag.client { background: #EAF3DE; color: #3B6D11; }
+.gtag.client { background: var(--green-light); color: var(--green-dark); }
 
 /* PRICING */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -915,6 +921,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 /* ── UNIFIED PAGE SYSTEM ── */
 .page { display: none !important; }
 .page.active { display: block !important; }
+/* ── ON-DARK BUTTON MODIFIERS ── */
+.btn-dark.on-dark { background: #333; }
+.btn-outline.on-dark { color: white; border-color: rgba(255,255,255,0.4); }
 </style>
 </head>
 <body>
@@ -979,7 +988,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="cta-box">
         <h3>Ready to launch?</h3>
         <p>Tell us where you are and what you need — we'll design the right engagement.</p>
-        <a href="inquiry.html" target="_blank" class="btn-red" style="text-align:center;display:block;padding:14px;width:100%;text-decoration:none">Submit an inquiry</a>
+        <a href="inquiry.html" class="btn-red" style="text-align:center;display:block;padding:14px;width:100%;text-decoration:none">Submit an inquiry</a>
       </div>
     </div>
   </div>
@@ -996,22 +1005,22 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 <!-- TAB STRIP -->
 <div class="tab-strip" id="svc3-tab-strip">
   <div class="tab-inner">
-    <button class="svc3-tab-btn active" onclick="setSvc3Tab(0)">
+    <button class="tab-btn active" onclick="setSvc3Tab(0)">
       <div class="tab-btn-num">3A</div>
       <div class="tab-btn-title">Brand assets</div>
       <div class="tab-btn-sub">Professional visual identity</div>
     </button>
-    <button class="svc3-tab-btn" onclick="setSvc3Tab(1)">
+    <button class="tab-btn" onclick="setSvc3Tab(1)">
       <div class="tab-btn-num">3B</div>
       <div class="tab-btn-title">Launch supply bootcamp</div>
       <div class="tab-btn-sub">First lot · bootcamp model</div>
     </button>
-    <button class="svc3-tab-btn" onclick="setSvc3Tab(2)">
+    <button class="tab-btn" onclick="setSvc3Tab(2)">
       <div class="tab-btn-num">3C</div>
       <div class="tab-btn-title">Process improvement</div>
       <div class="tab-btn-sub">Docs, flows & SOPs</div>
     </button>
-    <button class="svc3-tab-btn" onclick="setSvc3Tab(3)">
+    <button class="tab-btn" onclick="setSvc3Tab(3)">
       <div class="tab-btn-num">3D</div>
       <div class="tab-btn-title">System integration</div>
       <div class="tab-btn-sub">Marketplace & ops setup</div>
@@ -1131,7 +1140,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   <div class="section">
     <div class="eyebrow muted">Sample 6-week program</div>
     <div class="section-title">What happens each week</div>
-    <p style="font-size:14px;color:var(--mid);margin-bottom:8px">Color key: <span style="background:#EAF3DE;color:#3B6D11;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500">Client action</span> &nbsp;<span style="background:var(--red-light);color:var(--red);padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500">Three Flows</span> &nbsp;<span style="background:#E6F1FB;color:#185FA5;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500">Shared</span></p>
+    <p style="font-size:14px;color:var(--mid);margin-bottom:8px">Color key: <span style="background: var(--green-light);color: var(--green-dark);padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500">Client action</span> &nbsp;<span style="background:var(--red-light);color:var(--red);padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500">Three Flows</span> &nbsp;<span style="background: var(--blue-light);color: var(--blue);padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500">Shared</span></p>
     <div class="week-timeline">
       <div class="week-row">
         <div class="week-label">Week 1</div>
@@ -1186,6 +1195,87 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I know when the bootcamp is complete? <span class="faq-icon">+</span></div><div class="faq-a">The program is complete when your first production lot has been received, inspected, and cleared — and you've done a structured debrief with Three Flows covering what happened, what you learned, and what to do differently next time. That debrief is your graduation. By that point, you should be able to run the next batch independently. If you want continued support for the second lot, we offer an optional continuation at a reduced rate.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What if I've already arranged my first lot and just need help with part of it? <span class="faq-icon">+</span></div><div class="faq-a">That's fine — we can engage mid-process. Common entry points are: pre-shipment inspection briefing, customs and compliance review, or emergency support when something has already gone wrong. In this case we scope a targeted engagement rather than the full 6-week program. Contact us and describe where you are — we'll tell you what makes sense.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How is the launch lot supply program priced? <span class="faq-icon">+</span></div><div class="faq-a">The program is billed at a flat weekly rate — starting at $150/week for a standard single-origin shipment and $500/week for more complex engagements (multi-SKU, regulated products, cross-border complexity). The 6-week program runs $900–$3,000 depending on tier. Freight, inspection, and customs costs are separate and paid directly to vendors. Exact pricing is confirmed at the discovery call based on your product and shipment profile.</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 3C: PROCESS IMPROVEMENT ══ -->
+<div id="svc3-ws-2" class="ws-content">
+  <div class="bg-off">
+    <div class="section two-col">
+      <div>
+        <div class="eyebrow muted">Service 3C</div>
+        <div class="section-title">Process design &amp; documentation</div>
+        <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300;margin-bottom:16px">Throughout your launch journey, we observe, document, and analyze every operational flow — then deliver a structured post-mortem and process package so your business can scale, delegate, and improve systematically.</p>
+        <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300">And if you need a system to run those processes — from a Google Sheet to a fully custom app — we build that too.</p>
+      </div>
+      <ul class="pain-list" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <li class="pain-item"><span>🧠</span><span>Everything lives in the founder's head — impossible to delegate, impossible to scale</span></li>
+        <li class="pain-item"><span>🔄</span><span>The same problems keep recurring because the root cause was never documented or fixed</span></li>
+        <li class="pain-item"><span>📋</span><span>No standard operating procedures — every team member does things differently</span></li>
+        <li class="pain-item"><span>💻</span><span>Frankensteined systems — disconnected spreadsheets, manual workarounds, data everywhere</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow muted">The Three Flows framework</div>
+    <div class="threeflows-concept">
+      <div class="threeflows-concept-title">Every business runs on three flows</div>
+      <div class="threeflows-concept-sub">Our process documentation framework maps every operational activity to one of three fundamental flows. When all three are documented and optimized, your business can run — and scale — without you being the bottleneck.</div>
+      <div class="flow-types">
+        <div class="flow-type">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="flow-type-icon" style="margin-bottom:0">💰</span><div class="flow-type-title" style="margin-bottom:0">Cash flow</div></div>
+          <div class="flow-type-desc">Where money comes in, where it goes out, when it moves — purchase orders, invoices, payments, refunds, and reconciliation</div>
+        </div>
+        <div class="flow-type">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="flow-type-icon" style="margin-bottom:0">📦</span><div class="flow-type-title" style="margin-bottom:0">Material flow</div></div>
+          <div class="flow-type-desc">Where products move — from supplier to warehouse to customer and back. Every physical handoff, inspection point, and inventory event</div>
+        </div>
+        <div class="flow-type">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="flow-type-icon" style="margin-bottom:0">📡</span><div class="flow-type-title" style="margin-bottom:0">Information flow</div></div>
+          <div class="flow-type-desc">Where data moves — orders, tracking numbers, customer communications, supplier updates, reports. The nerve and brain of your operation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow muted" style="margin-top:40px">What we deliver</div>
+    <div class="section-title">Four deliverables. One operating foundation.</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px">
+      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
+        <div style="font-size:18px;margin-bottom:10px">📊</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Post-mortem report</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">A structured analysis of your first production run — what worked, what didn't, root causes of every issue, and specific recommendations for the next lot. Honest, data-driven, actionable.</p>
+      </div>
+      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
+        <div style="font-size:18px;margin-bottom:10px">📈</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Process improvement report</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">A prioritized improvement roadmap based on observed operations — identifying inefficiencies, manual workarounds, and process gaps, with recommended fixes ranked by impact and ease of implementation.</p>
+      </div>
+      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
+        <div style="font-size:18px;margin-bottom:10px">📋</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Worker's SOP documentation</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">Written standard operating procedures for every core workflow — order intake, fulfillment, returns, resupply, customer service — written for the people actually doing the work, not just management.</p>
+      </div>
+      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
+        <div style="font-size:18px;margin-bottom:10px">✅</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Vendor evaluation checklist</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">A reusable framework for evaluating suppliers, freight partners, and professional service providers — so every future vendor decision is made against consistent, documented criteria, not gut feel.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow muted">FAQ</div>
+    <div class="section-title">Common questions</div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Do I have to take all four workstreams (3A, 3B, 3C, 3D)? <span class="faq-icon">+</span></div><div class="faq-a">No — all four are optional and can be engaged individually or in any combination. That said, if you're launching for the first time, we recommend at least completing brand assets (3A) and launch lot supply (3B) together, as they have the most direct impact on launch success. Talk to us about which workstreams match your situation.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What exactly gets documented — is it just written SOPs? <span class="faq-icon">+</span></div><div class="faq-a">Written SOPs are the core deliverable, but we also create flow diagrams, decision trees, and where useful, short screen-recorded video walkthroughs for digital processes. The format depends on the complexity and intended audience — a process your supplier follows gets documented differently from one your VA runs. Everything is mapped to the Three Flows framework: cash flow, material flow, and information flow.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">When is the right time to do process improvement — before or after launch? <span class="faq-icon">+</span></div><div class="faq-a">The best time is alongside Service 3B (launch lot supply) — when your processes are being run for the first time and every step is visible. We observe as you operate, capture what actually happens (not what you planned), and document it in real time. Doing this retroactively after launch is harder, because informal workarounds tend to calcify before anyone notices them. That said, if you've already launched and have no documentation, it's never too late — we just start with an as-is audit.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Are there any prerequisites — does it require Service 3B? <span class="faq-icon">+</span></div><div class="faq-a">No hard prerequisites — but when bundled with 3B (launch lot supply), process documentation is included free of charge, because we're already observing your operations throughout the engagement. As a standalone, it starts at $1,000+ and requires an as-is observation period before we can document anything. Either way, we need access to your actual operations — not just how you think they work.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I keep SOPs up to date as my business evolves? <span class="faq-icon">+</span></div><div class="faq-a">SOPs are living documents — and treating them that way is part of what we call the continuity mindset. At handoff, we give you an editable format and a simple maintenance protocol: whenever a process changes, the SOP gets updated the same day. Three Flows clients on Service 04 (ongoing management) get quarterly SOP reviews built into the engagement. For standalone clients, we offer SOP maintenance retainers at an hourly rate.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How is process improvement priced? <span class="faq-icon">+</span></div><div class="faq-a">When bundled with Services 3B and 3D (system integration), process documentation is included free — you've already paid for the engagement and the observation happens naturally. As a standalone service, it starts at $1,000+ depending on the number of processes, business complexity, and depth of documentation required. Custom system builds (Google Sheets or web apps) are quoted separately based on scope.</div></div>
     </div>
   </div>
 </div>
@@ -1331,87 +1421,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 </div>
 
 
-<!-- ══ 3C: PROCESS IMPROVEMENT ══ -->
-<div id="svc3-ws-2" class="ws-content">
-  <div class="bg-off">
-    <div class="section two-col">
-      <div>
-        <div class="eyebrow muted">Service 3C</div>
-        <div class="section-title">Process design &amp; documentation</div>
-        <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300;margin-bottom:16px">Throughout your launch journey, we observe, document, and analyze every operational flow — then deliver a structured post-mortem and process package so your business can scale, delegate, and improve systematically.</p>
-        <p style="font-size:16px;color:var(--mid);line-height:1.75;font-weight:300">And if you need a system to run those processes — from a Google Sheet to a fully custom app — we build that too.</p>
-      </div>
-      <ul class="pain-list" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-        <li class="pain-item"><span>🧠</span><span>Everything lives in the founder's head — impossible to delegate, impossible to scale</span></li>
-        <li class="pain-item"><span>🔄</span><span>The same problems keep recurring because the root cause was never documented or fixed</span></li>
-        <li class="pain-item"><span>📋</span><span>No standard operating procedures — every team member does things differently</span></li>
-        <li class="pain-item"><span>💻</span><span>Frankensteined systems — disconnected spreadsheets, manual workarounds, data everywhere</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow muted">The Three Flows framework</div>
-    <div class="threeflows-concept">
-      <div class="threeflows-concept-title">Every business runs on three flows</div>
-      <div class="threeflows-concept-sub">Our process documentation framework maps every operational activity to one of three fundamental flows. When all three are documented and optimized, your business can run — and scale — without you being the bottleneck.</div>
-      <div class="flow-types">
-        <div class="flow-type">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="flow-type-icon" style="margin-bottom:0">💰</span><div class="flow-type-title" style="margin-bottom:0">Cash flow</div></div>
-          <div class="flow-type-desc">Where money comes in, where it goes out, when it moves — purchase orders, invoices, payments, refunds, and reconciliation</div>
-        </div>
-        <div class="flow-type">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="flow-type-icon" style="margin-bottom:0">📦</span><div class="flow-type-title" style="margin-bottom:0">Material flow</div></div>
-          <div class="flow-type-desc">Where products move — from supplier to warehouse to customer and back. Every physical handoff, inspection point, and inventory event</div>
-        </div>
-        <div class="flow-type">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="flow-type-icon" style="margin-bottom:0">📡</span><div class="flow-type-title" style="margin-bottom:0">Information flow</div></div>
-          <div class="flow-type-desc">Where data moves — orders, tracking numbers, customer communications, supplier updates, reports. The nerve and brain of your operation</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="eyebrow muted" style="margin-top:40px">What we deliver</div>
-    <div class="section-title">Four deliverables. One operating foundation.</div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px">
-      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
-        <div style="font-size:18px;margin-bottom:10px">📊</div>
-        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Post-mortem report</div>
-        <p style="font-size:13px;color:var(--mid);line-height:1.6">A structured analysis of your first production run — what worked, what didn't, root causes of every issue, and specific recommendations for the next lot. Honest, data-driven, actionable.</p>
-      </div>
-      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
-        <div style="font-size:18px;margin-bottom:10px">📈</div>
-        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Process improvement report</div>
-        <p style="font-size:13px;color:var(--mid);line-height:1.6">A prioritized improvement roadmap based on observed operations — identifying inefficiencies, manual workarounds, and process gaps, with recommended fixes ranked by impact and ease of implementation.</p>
-      </div>
-      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
-        <div style="font-size:18px;margin-bottom:10px">📋</div>
-        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Worker's SOP documentation</div>
-        <p style="font-size:13px;color:var(--mid);line-height:1.6">Written standard operating procedures for every core workflow — order intake, fulfillment, returns, resupply, customer service — written for the people actually doing the work, not just management.</p>
-      </div>
-      <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:22px">
-        <div style="font-size:18px;margin-bottom:10px">✅</div>
-        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Vendor evaluation checklist</div>
-        <p style="font-size:13px;color:var(--mid);line-height:1.6">A reusable framework for evaluating suppliers, freight partners, and professional service providers — so every future vendor decision is made against consistent, documented criteria, not gut feel.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow muted">FAQ</div>
-    <div class="section-title">Common questions</div>
-    <div class="faq-list">
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Do I have to take all four workstreams (3A, 3B, 3C, 3D)? <span class="faq-icon">+</span></div><div class="faq-a">No — all four are optional and can be engaged individually or in any combination. That said, if you're launching for the first time, we recommend at least completing brand assets (3A) and launch lot supply (3B) together, as they have the most direct impact on launch success. Talk to us about which workstreams match your situation.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What exactly gets documented — is it just written SOPs? <span class="faq-icon">+</span></div><div class="faq-a">Written SOPs are the core deliverable, but we also create flow diagrams, decision trees, and where useful, short screen-recorded video walkthroughs for digital processes. The format depends on the complexity and intended audience — a process your supplier follows gets documented differently from one your VA runs. Everything is mapped to the Three Flows framework: cash flow, material flow, and information flow.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">When is the right time to do process improvement — before or after launch? <span class="faq-icon">+</span></div><div class="faq-a">The best time is alongside Service 3B (launch lot supply) — when your processes are being run for the first time and every step is visible. We observe as you operate, capture what actually happens (not what you planned), and document it in real time. Doing this retroactively after launch is harder, because informal workarounds tend to calcify before anyone notices them. That said, if you've already launched and have no documentation, it's never too late — we just start with an as-is audit.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Are there any prerequisites — does it require Service 3B? <span class="faq-icon">+</span></div><div class="faq-a">No hard prerequisites — but when bundled with 3B (launch lot supply), process documentation is included free of charge, because we're already observing your operations throughout the engagement. As a standalone, it starts at $1,000+ and requires an as-is observation period before we can document anything. Either way, we need access to your actual operations — not just how you think they work.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I keep SOPs up to date as my business evolves? <span class="faq-icon">+</span></div><div class="faq-a">SOPs are living documents — and treating them that way is part of what we call the continuity mindset. At handoff, we give you an editable format and a simple maintenance protocol: whenever a process changes, the SOP gets updated the same day. Three Flows clients on Service 04 (ongoing management) get quarterly SOP reviews built into the engagement. For standalone clients, we offer SOP maintenance retainers at an hourly rate.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How is process improvement priced? <span class="faq-icon">+</span></div><div class="faq-a">When bundled with Services 3B and 3D (system integration), process documentation is included free — you've already paid for the engagement and the observation happens naturally. As a standalone service, it starts at $1,000+ depending on the number of processes, business complexity, and depth of documentation required. Custom system builds (Google Sheets or web apps) are quoted separately based on scope.</div></div>
-    </div>
-  </div>
-</div>
-
-
 <div class="bottom-cta">
   <div class="bottom-inner">
     <div>
@@ -1419,9 +1428,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <p>Tell us which workstreams you need — we'll design the right engagement.</p>
     </div>
     <div class="bottom-actions">
-      <a href="inquiry.html" target="_blank" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
-      <a href="intake.html" class="btn-outline" style="font-size:14px;font-weight:400;padding:11px 24px;color:white;border-color:rgba(255,255,255,0.4);text-decoration:none">Fill in an intake form</a>
-      <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" class="btn-dark" style="font-size:14px;font-weight:400;padding:11px 24px;background:#333;text-decoration:none">Book a call</a>
+      <a href="inquiry.html" class="btn-red" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Submit an inquiry</a>
+      <a href="intake.html" class="btn-outline on-dark" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Fill in an intake form</a>
+      <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" rel="noopener" class="btn-dark on-dark" style="font-size:14px;font-weight:400;padding:11px 24px;text-decoration:none">Book a call</a>
     </div>
   </div>
 </div>
@@ -1459,7 +1468,7 @@ function toggleFaq(el) {
 }
 
 function setSvc3Tab(idx) {
-  document.querySelectorAll('.svc3-tab-btn').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tab-btn').forEach((t, i) => t.classList.toggle('active', i === idx));
   const wsIds = ['svc3-ws-0', 'svc3-ws-1', 'svc3-ws-2', 'svc3-ws-3'];
   wsIds.forEach((id, i) => {
     const el = document.getElementById(id);
