@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Tool Name] — Three Flows Solutions</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  /* ── SITE SHELL: nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  /* ── SITE SHELL: breadcrumb ── */
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  /* ── Layout ── */
+  .layout {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  /* ── Tool header ── */
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .tool-desc {
+    font-size: 17px;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .post-date { font-size: 13px; color: var(--muted); display: block; margin-bottom: 22px; }
+
+  /* ── Slim info banner (--red-light) ── */
+  .info-banner {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 0 0 36px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--dark);
+  }
+  .info-banner p { margin: 0; padding: 4px 0; color: var(--dark); }
+  .info-banner a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
+  .info-banner a:hover { color: var(--red); }
+
+  /* ── Email gate form ── */
+  .gate {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    margin-bottom: 40px;
+  }
+  .gate h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .gate .gate-sub { font-size: 14px; color: var(--mid); margin-bottom: 22px; }
+  .gate .field { margin-bottom: 16px; }
+  .gate label.field-label { display: block; font-size: 12px; font-weight: 500; color: var(--mid); margin-bottom: 6px; }
+  .gate label.field-label .req { color: var(--red); }
+  .gate input[type=text], .gate input[type=email] {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark);
+    background: var(--white); border: 1.5px solid var(--border-dark);
+    border-radius: 8px; padding: 11px 14px; width: 100%; outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .gate input[type=text]:focus, .gate input[type=email]:focus {
+    border-color: var(--red); box-shadow: 0 0 0 3px rgba(214,59,59,0.12);
+  }
+  .gate .consent { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--mid); margin: 6px 0 18px; line-height: 1.5; }
+  .gate .consent input { margin-top: 3px; flex-shrink: 0; }
+  .gate .gate-error { display: none; font-size: 13px; color: var(--red-dark); background: var(--red-light); border-radius: 6px; padding: 9px 12px; margin-bottom: 14px; }
+  .gate .gate-error.show { display: block; }
+
+  /* ── Buttons ── */
+  .btn-red {
+    background: var(--red); color: white; border: none; padding: 12px 26px;
+    border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: opacity 0.2s, transform 0.15s;
+    display: inline-block; text-decoration: none;
+  }
+  .btn-red:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  .btn-red:disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn-outline {
+    background: transparent; color: var(--dark); border: 1px solid var(--border-dark);
+    padding: 12px 26px; border-radius: 6px; font-size: 15px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: border-color 0.2s;
+    display: inline-block; text-decoration: none;
+  }
+  .btn-outline:hover { border-color: var(--dark); }
+
+  /* ── Tool content area ── */
+  .tool-content { display: none; }
+  .tool-content.show { display: block; }
+  .tool-placeholder {
+    background: var(--white);
+    border: 2px dashed var(--border-dark);
+    border-radius: var(--radius);
+    padding: 60px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .tool-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+
+  /* ── Bottom CTA ── */
+  .bottom-cta {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    margin-top: 8px;
+  }
+  .bottom-cta h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .bottom-cta p { font-size: 14px; color: var(--mid); margin-bottom: 18px; line-height: 1.6; }
+  .bottom-cta .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .bottom-cta .cta-line { font-size: 13px; color: var(--muted); }
+  .bottom-cta .cta-line a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
+  .bottom-cta .cta-line a:hover { color: var(--red); }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    .layout { padding: 24px 20px 56px; }
+    h1 { font-size: 28px; }
+    footer { padding: 20px; }
+  }
+
+  /* ── Print: hide chrome, show only the tool content ── */
+  @media print {
+    nav, footer, .breadcrumb-wrap, .gate, .bottom-cta, .tool-actions { display: none !important; }
+    body { background: white; }
+    .layout { max-width: none; padding: 0; }
+    .info-banner { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">01 — Business Planning</a>
+        <a href="svc2.html">02 — Sourcing Consultation</a>
+        <a href="svc3.html">03 — Launch Hypercare</a>
+        <a href="svc4.html">04 — Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact-anchor">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     BREADCRUMB
+════════════════════════════════════════════ -->
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="free-tools.html">← Free Tools</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE CONTENT
+════════════════════════════════════════════ -->
+<div class="layout">
+
+  <!-- Section 1: Tool header (always visible) -->
+  <h1>[Tool Name]</h1>
+  <p class="tool-desc">[One-line description of what this tool does.]</p>
+  <span class="post-date">Last revised: [Month D, YYYY]</span>
+
+  <div class="info-banner">
+    <p>These tools are free and simplified. For a version built around your actual numbers, <a href="svc1.html">contact us</a>.</p>
+    <p>To access this tool, provide your email and consent to receive updates from Three Flows Solutions.</p>
+    <p>Every business is different. <a href="svc1.html">Let us build this</a> <a href="intake.html">for you →</a></p>
+  </div>
+
+  <!-- Section 2: Email gate -->
+  <div class="gate" id="gate">
+    <h2>Get instant access</h2>
+    <p class="gate-sub">Enter your details to unlock the tool. Free, no payment required.</p>
+
+    <div class="gate-error" id="gate-error">Please enter a valid business or personal email address.</div>
+
+    <form id="gate-form" novalidate>
+      <div class="field">
+        <label class="field-label" for="first_name">First name <span class="req">*</span></label>
+        <input type="text" id="first_name" name="first_name" required autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label class="field-label" for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" required>
+        <span>I agree to receive updates and promotional materials from Three Flows Solutions.</span>
+      </label>
+      <button type="submit" class="btn-red" id="gate-submit" disabled>Access Tool →</button>
+    </form>
+  </div>
+
+  <!-- Section 3: Tool content (hidden until gate cleared) -->
+  <div class="tool-content" id="tool-content">
+    <div class="tool-placeholder">[ Tool UI goes here ]</div>
+    <div class="tool-actions">
+      <button type="button" class="btn-outline" onclick="window.print()">Download Results (PDF)</button>
+    </div>
+  </div>
+
+  <!-- Section 4: Bottom CTA (always visible) -->
+  <div class="bottom-cta">
+    <h2>Need a version built for your business?</h2>
+    <p>This free tool uses fixed assumptions to give you a directional answer. We can build a tailored version that runs on your real costs, channels, and constraints.</p>
+    <div class="cta-actions">
+      <a class="btn-red" href="inquiry.html">Submit an inquiry</a>
+      <a class="btn-outline" href="intake.html">Fill in an intake form</a>
+    </div>
+    <p class="cta-line">Or start with our <a href="svc1.html">Business Planning service →</a></p>
+  </div>
+
+</div><!-- /.layout -->
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+<script>
+// ═══════════════════════════════════════════
+//  TOOL GATE — duplicate this block per tool page
+//  and update TOOL_ID, TOOL_NAME at the top.
+// ═══════════════════════════════════════════
+(function () {
+  const TOOL_ID   = '000';                                          // e.g. '001', '001a'
+  const TOOL_NAME = '[Tool Name]';                                  // human-readable
+  const APPS_SCRIPT_URL = 'REPLACE_WITH_GOOGLE_APPS_SCRIPT_URL';    // from FREE_TOOLS_APPS_SCRIPT.md
+  const COOKIE_NAME = 'tf_tool_' + TOOL_ID;
+  const COOKIE_DAYS = 14;
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  const gate     = document.getElementById('gate');
+  const content  = document.getElementById('tool-content');
+  const form     = document.getElementById('gate-form');
+  const firstEl  = document.getElementById('first_name');
+  const emailEl  = document.getElementById('email');
+  const consentEl = document.getElementById('consent');
+  const submit   = document.getElementById('gate-submit');
+  const errorBox = document.getElementById('gate-error');
+
+  function getCookie(name) {
+    return document.cookie.split('; ').reduce(function (acc, row) {
+      const idx = row.indexOf('=');
+      if (idx === -1) return acc;
+      const k = row.slice(0, idx);
+      if (k === name) return decodeURIComponent(row.slice(idx + 1));
+      return acc;
+    }, null);
+  }
+  function setCookie(name, value, days) {
+    const exp = new Date(Date.now() + days * 86400 * 1000).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) +
+      '; expires=' + exp + '; path=/; SameSite=Lax';
+  }
+
+  function unlock() {
+    if (gate)    gate.style.display = 'none';
+    if (content) content.classList.add('show');
+  }
+
+  // If a valid cookie already exists, skip the gate.
+  if (getCookie(COOKIE_NAME)) {
+    unlock();
+    return;
+  }
+
+  function validClientSide() {
+    const okName = firstEl.value.trim().length > 0;
+    const okEmail = EMAIL_RE.test(emailEl.value.trim());
+    const okConsent = consentEl.checked;
+    return okName && okEmail && okConsent;
+  }
+  function refreshSubmit() {
+    submit.disabled = !validClientSide();
+  }
+  ['input', 'change'].forEach(function (ev) {
+    form.addEventListener(ev, refreshSubmit);
+  });
+  refreshSubmit();
+
+  async function isEmailReal(email) {
+    try {
+      const url = 'https://api.mailcheck.ai/email/' + encodeURIComponent(email);
+      const res = await fetch(url, { method: 'GET' });
+      if (!res.ok) return true; // fail open
+      const j = await res.json();
+      // mailcheck returns { valid: bool, disposable: bool, ... } — block disposable + invalid
+      if (j && (j.disposable === true || j.valid === false)) return false;
+      return true;
+    } catch (e) {
+      return true; // fail open on network error
+    }
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errorBox.classList.remove('show');
+    if (!validClientSide()) return;
+
+    submit.disabled = true;
+    submit.textContent = 'Checking…';
+
+    const ok = await isEmailReal(emailEl.value.trim());
+    if (!ok) {
+      errorBox.classList.add('show');
+      submit.disabled = false;
+      submit.textContent = 'Access Tool →';
+      return;
+    }
+
+    const payload = new FormData();
+    payload.append('tool_id', TOOL_ID);
+    payload.append('tool_name', TOOL_NAME);
+    payload.append('first_name', firstEl.value.trim());
+    payload.append('email', emailEl.value.trim());
+    payload.append('consent', consentEl.checked ? 'true' : 'false');
+    payload.append('timestamp', new Date().toISOString());
+
+    // Always grant access — backend success or failure should not block the user.
+    try {
+      await fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: payload });
+    } catch (err) {
+      // swallow — see comment above
+    }
+    setCookie(COOKIE_NAME, '1', COOKIE_DAYS);
+    unlock();
+  });
+})();
+</script>
+
+</body>
+</html>
