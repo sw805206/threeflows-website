@@ -348,12 +348,16 @@ document.addEventListener('click', function(e) {
 // ═══════════════════════════════════════════
 //  TOOL GATE — duplicate this block per tool page
 //  and update TOOL_ID, TOOL_NAME at the top.
+//  Filenames follow tool-ckNNN.html (checklists)
+//  or tool-caNNN.html (calculators); revisions
+//  add a letter suffix, e.g. tool-ck001a.html.
+//  Cookies follow tf_tool_ck001 / tf_tool_ca001.
 // ═══════════════════════════════════════════
 (function () {
-  const TOOL_ID   = '000';                                          // e.g. '001', '001a'
+  const TOOL_ID   = '000';                                          // e.g. 'ck001', 'ca001', 'ck001a'
   const TOOL_NAME = '[Tool Name]';                                  // human-readable
   const APPS_SCRIPT_URL = 'REPLACE_WITH_GOOGLE_APPS_SCRIPT_URL';    // from FREE_TOOLS_APPS_SCRIPT.md
-  const COOKIE_NAME = 'tf_tool_' + TOOL_ID;
+  const COOKIE_NAME = 'tf_tool_' + TOOL_ID;                         // e.g. tf_tool_ck001 / tf_tool_ca001
   const COOKIE_DAYS = 14;
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -437,7 +441,7 @@ document.addEventListener('click', function(e) {
     }
 
     const payload = new FormData();
-    payload.append('tool_id', TOOL_ID);
+    payload.append('tool_id', TOOL_ID);                              // e.g. 'ck001' or 'ca001'
     payload.append('tool_name', TOOL_NAME);
     payload.append('first_name', firstEl.value.trim());
     payload.append('email', emailEl.value.trim());
