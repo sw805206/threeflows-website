@@ -220,7 +220,7 @@
 
 <section class="res-section" style="padding-top: 8px;">
   <div class="tools-grid" id="tools-grid">
-    <!-- Tool cards go here. Order is manually controlled. -->
+    <!-- Tool cards go here. Order: checklists first (CK ascending), then calculators (CA ascending). -->
     <!-- ════ TOOL CARD TEMPLATE ════
     <div class="tool-card" data-type="calculator">
       <div class="tool-meta">
@@ -235,9 +235,20 @@
       <p class="custom-line">Need a custom version? <a href="inquiry.html">Talk to us →</a></p>
     </div>
     ════════════════════════════ -->
-  </div>
-  <div class="tools-empty" id="tools-empty">
-    Tools coming soon. Check back shortly.
+
+    <div class="tool-card" data-type="checklist">
+      <div class="tool-meta">
+        <span class="tool-type-pill">Checklist</span>
+        <span class="tool-revised">Last revised: May 8, 2026</span>
+      </div>
+      <h3>Pre-launch planning checklist</h3>
+      <p class="tool-desc">A step-by-step checklist covering all 3 phases of pre-launch: research &amp; validation, MVP &amp; customer validation, and setup &amp; launch prep. Includes two go/no-go decision gates.</p>
+      <div class="tool-actions">
+        <a class="btn-red" href="tool-ck001.html">Launch Tool →</a>
+      </div>
+      <p class="custom-line">Need a custom version? <a href="inquiry.html">Talk to us →</a></p>
+    </div>
+
   </div>
 </section>
 
@@ -278,16 +289,6 @@ document.addEventListener('click', function(e) {
   }
 });
 
-(function () {
-  var grid = document.getElementById('tools-grid');
-  var empty = document.getElementById('tools-empty');
-  if (!grid || !empty) return;
-  if (grid.querySelectorAll('.tool-card').length > 0) {
-    empty.style.display = 'none';
-  } else {
-    grid.style.display = 'none';
-  }
-})();
 </script>
 </body>
 </html>

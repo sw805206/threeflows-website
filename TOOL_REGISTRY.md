@@ -7,7 +7,9 @@
 | tool-ca000-template.html | Calculator | Master template for all CA tools |
 
 ## Active Tools
-(none yet)
+| ID    | Type      | Tool Name                     | File             | Last Revised |
+|-------|-----------|-------------------------------|------------------|--------------|
+| CK001 | Checklist | Pre-Launch Planning Checklist | tool-ck001.html  | May 8, 2026  |
 
 ## Retired / Superseded Tools
 (none yet)
@@ -25,7 +27,7 @@
   removed from free-tools.html
 - Sort order in free-tools.html: checklists group first (CK001 ascending),
   calculators group second (CA001 ascending), manually overridden per deploy
-- Next available checklist ID: CK001
+- Next available checklist ID: CK002
 - Next available calculator ID: CA001
 
 ## Pre-Assigned IDs
