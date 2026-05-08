@@ -11,6 +11,7 @@
 |-------|-----------|-------------------------------|------------------|--------------|
 | CK001 | Checklist | Pre-Launch Planning Checklist | tool-ck001.html  | May 8, 2026  |
 | CK002 | Checklist | Sample Sourcing Checklist     | tool-ck002.html  | May 8, 2026  |
+| CK003 | Checklist | Voice of Customer Checklist   | tool-ck003.html  | May 8, 2026  |
 
 ## Retired / Superseded Tools
 (none yet)
@@ -28,7 +29,7 @@
   removed from free-tools.html
 - Sort order in free-tools.html: checklists group first (CK001 ascending),
   calculators group second (CA001 ascending), manually overridden per deploy
-- Next available checklist ID: CK003
+- Next available checklist ID: CK004
 - Next available calculator ID: CA001
 
 ## Pre-Assigned IDs
