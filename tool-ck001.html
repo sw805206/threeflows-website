@@ -462,18 +462,18 @@
     <div class="progress-wrap">
       <div class="progress-row">
         <span>Progress</span>
-        <span><span id="progress-count">0</span> of <span id="progress-total">18</span> tasks complete</span>
+        <span><span id="progress-count">0</span> of <span id="progress-total">16</span> tasks complete</span>
       </div>
       <div class="progress-track">
         <div class="progress-fill" id="progress-fill"></div>
-        <!-- Gate 1 flag: left = (5 / 18 * 100)% = 27.8% -->
-        <span class="gate-flag" style="left: 27.78%;">🚩</span>
-        <!-- Gate 2 flag: left = (12 / 18 * 100)% = 66.7% -->
-        <span class="gate-flag" style="left: 66.67%;">🚩</span>
+        <!-- Gate 1 flag: left = (5 / 16 * 100)% = 31.25% -->
+        <span class="gate-flag" style="left: 31.25%;">🚩</span>
+        <!-- Gate 2 flag: left = (12 / 16 * 100)% = 75.0% -->
+        <span class="gate-flag" style="left: 75%;">🚩</span>
       </div>
       <div class="gate-labels">
-        <span class="gate-label" style="left: 27.78%;">Gate 1</span>
-        <span class="gate-label" style="left: 66.67%;">Gate 2</span>
+        <span class="gate-label" style="left: 31.25%;">Gate 1</span>
+        <span class="gate-label" style="left: 75%;">Gate 2</span>
       </div>
     </div>
 
@@ -859,7 +859,7 @@ document.addEventListener('click', function(e) {
 
   // ── Progress bar ─────────────────────────────────────────────
   function initProgress() {
-    const TOTAL_TASKS = 18; // gate rows do not count
+    const TOTAL_TASKS = 16; // gate rows are decision points, not checkable tasks
     const checks = document.querySelectorAll('.task-check');
     const totalEl = document.getElementById('progress-total');
     const countEl = document.getElementById('progress-count');
