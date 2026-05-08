@@ -4,6 +4,15 @@ This script receives form submissions from `tool-NNN.html` pages and appends
 them to a Google Sheet. Deploy as a Web App and paste the resulting URL into
 the `APPS_SCRIPT_URL` constant in each tool page.
 
+## Live Endpoint
+
+```
+https://script.google.com/macros/s/AKfycbwEzk-yjtQHV43rF5RAi0dI57s8J3vEwopsc6V8bYwSZOTZWkS-CdegENA5B-ARzaL7Eg/exec
+```
+
+**Deployed: May 8, 2026.** Web app URL above is live. No redeployment
+needed unless the script logic changes.
+
 ## Deployment
 
 1. Open <https://sheets.google.com> and create (or open) a spreadsheet.
@@ -15,7 +24,8 @@ the `APPS_SCRIPT_URL` constant in each tool page.
    - Execute as: **Me**
    - Who has access: **Anyone**
 6. Authorize when prompted and copy the resulting **Web app URL**.
-7. In each `tool-NNN.html`, set `APPS_SCRIPT_URL` to that URL.
+7. In each `tool-NNN.html`, set `APPS_SCRIPT_URL` to that URL (the current
+   live URL is shown above under **Live Endpoint**).
 8. When the script changes, redeploy as **Manage deployments → New version**
    so the public URL stays stable.
 
