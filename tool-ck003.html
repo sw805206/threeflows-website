@@ -381,6 +381,7 @@
     table.checklist tr.task .tip-xref { color: #000; }
     table.checklist tr.task td.col-tip { color: #000; }
   }
+  .bug-report-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -435,27 +436,8 @@
   <div class="tool-meta">
     <span class="type-badge">Checklist</span>
     <span class="post-date">Last revised: May 8, 2026</span>
-    <a class="bug-report" href="mailto:contact@threeflows.com?subject=%5BTool%20Bug%5D%20%28user%20completes%20subject%29&amp;body=Page:%20https://threeflows.com/tool-ck003.html%0D%0ATool:%20Voice%20of%20Customer%20Checklist%0D%0A%0D%0ADescribe%20the%20issue:%0D%0A">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M9 9v-1a3 3 0 0 1 6 0v1"/>
-        <path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3z"/>
-        <path d="M3 13h4"/>
-        <path d="M17 13h4"/>
-        <path d="M12 20v-6"/>
-        <path d="M4 19l3.35 -2"/>
-        <path d="M20 19l-3.35 -2"/>
-        <path d="M4 7l3.75 2.4"/>
-        <path d="M20 7l-3.75 2.4"/>
-      </svg>
-      Report a bug or issue
-    </a>
   </div>
 
-  <div class="info-banner">
-    <p>These tools are free and simplified. For a version built around your actual numbers, <a href="svc1.html">contact us</a>.</p>
-    <p>To access this tool, provide your email and consent to receive updates from Three Flows Solutions.</p>
-    <p>Every business is different. <a href="svc1.html">Let us build this</a> <a href="intake.html">for you →</a></p>
-  </div>
 
   <!-- Section 2: Email gate -->
   <div class="gate" id="gate">
@@ -463,13 +445,15 @@
     <p class="gate-sub">Enter your details to unlock the checklist. Free, no payment required.</p>
     <div class="gate-error" id="gate-error">Please enter a valid business or personal email address.</div>
     <form id="gate-form" novalidate>
-      <div class="field">
+      <div class="field-row" style="display:flex;gap:12px;margin-bottom:1rem;">
+<div class="field" style="flex:1;margin-bottom:0;">
         <label class="field-label" for="first_name">First name <span class="req">*</span></label>
         <input type="text" id="first_name" name="first_name" required autocomplete="given-name">
       </div>
-      <div class="field">
+      <div class="field" style="flex:1;margin-bottom:0;">
         <label class="field-label" for="email">Email <span class="req">*</span></label>
         <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
       </div>
       <label class="consent">
         <input type="checkbox" id="consent" name="consent" required>
@@ -673,13 +657,8 @@
 
   <!-- Section 4: Bottom service CTA (always visible) -->
   <div class="bottom-cta">
-    <h2>Need a version built for your business?</h2>
-    <p>This free checklist uses simplified assumptions about phasing and ownership. Our consulting builds the same structure around your actual team, suppliers, and timeline.</p>
-    <div class="cta-actions">
-      <a class="btn-red" href="inquiry.html">Submit an inquiry</a>
-      <a class="btn-outline" href="intake.html">Fill in an intake form</a>
-    </div>
-    <p class="cta-line">Or start with our <a href="svc1.html">Business Planning service →</a></p>
+    <p style="font-size:14px;color:var(--mid);">Need a version built for your business? <a href="inquiry.html" style="color:var(--red);font-weight:600;text-decoration:none;">Submit an inquiry →</a></p>
+    <a class="bug-report-link" href="mailto:contact@threeflows.com?subject=Feedback&body=Page%20URL%3A%20%0ATool%20name%3A%20%0AFeedback%3A%20" style="display:block;margin-top:10px;font-size:12px;color:var(--muted);text-decoration:none;">Report a bug or suggest an improvement →</a>
   </div>
 
 </div><!-- /.layout -->
