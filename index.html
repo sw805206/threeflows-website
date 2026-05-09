@@ -856,10 +856,12 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .faq-item.open .faq-icon { transform: rotate(45deg); }
 
 .bottom-cta { background: var(--dark); }
-.bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
-.bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 420px; line-height: 1.25; }
-.bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
-.bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: grid; grid-template-columns: 60% 40%; gap: 40px; align-items: center; }
+.bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; line-height: 1.25; margin-bottom: 8px; }
+.bottom-inner p { font-size: 16px; color: var(--muted); line-height: 1.6; }
+.bottom-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.btn-red.on-dark { background: var(--red); color: white; }
+.btn-red.on-dark:hover { opacity: 0.9; }
 
 footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
 .footer-links { display: flex; gap: 24px; }
@@ -872,7 +874,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .section { padding: 48px 20px; }
   .two-col, .services-split, .philosophy-inner, .tower-inner { grid-template-columns: 1fr; gap: 36px; }
   .pricing-grid, .keep-grid { grid-template-columns: 1fr; gap: 12px; }
-  .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+  .bottom-inner { grid-template-columns: 1fr; padding: 48px 20px; gap: 24px; }
+  .bottom-actions { align-items: flex-start; }
   .continuity-inner { padding: 20px; }
   footer { padding: 20px; }
 }
@@ -965,7 +968,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         <p class="hero-sub">We help small retail entrepreneurs plan, source, launch, and grow — bringing startup flexibility and enterprise-level rigor to businesses at every stage.</p>
         <div class="hero-actions">
           
-          <a class="btn-dark" href="#services-anchor">See how we work →</a>
+          <a class="btn-dark" href="#services-anchor" style="text-decoration:none">See how we work →</a>
         </div>
       </div>
       <div class="hero-img-wrap">
@@ -1068,7 +1071,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             <li class="flow-detail-step"><div class="flow-detail-step-dot">5</div><span>30-day action plan if you're moving forward</span></li>
           </ul>
           <div class="flow-cta">
-            <a class="btn-dark" href="svc1.html">See full details →</a>
+            <a class="btn-dark" href="svc1.html" style="text-decoration:none">See full details →</a>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;height:100%;">
@@ -1093,7 +1096,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             <li class="flow-detail-step"><div class="flow-detail-step-dot">5</div><span>Professional services referrals — customs brokers, 3PLs, CPAs, legal, and more</span></li>
           </ul>
           <div class="flow-cta">
-            <a class="btn-dark" href="svc2.html">See full details →</a>
+            <a class="btn-dark" href="svc2.html" style="text-decoration:none">See full details →</a>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;height:100%;">
@@ -1118,7 +1121,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             <li class="flow-detail-step"><div class="flow-detail-step-dot">5</div><span>Process design and documentation for every core workflow</span></li>
           </ul>
           <div class="flow-cta">
-            <a class="btn-dark" href="svc3.html">See full details →</a>
+            <a class="btn-dark" href="svc3.html" style="text-decoration:none">See full details →</a>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;height:100%;">
@@ -1144,7 +1147,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
             <li class="flow-detail-step"><div class="flow-detail-step-dot">5</div><span>Cost optimization — find savings that cover our fee</span></li>
           </ul>
           <div class="flow-cta">
-            <a class="btn-dark" href="svc4.html">See full details →</a>
+            <a class="btn-dark" href="svc4.html" style="text-decoration:none">See full details →</a>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;height:100%;">
@@ -1181,9 +1184,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
           <p class="team-bio">20+ years across Fortune 100 companies and startups. Deep expertise in supply chain design, business modeling, and operations — from breaking-ground startups to Amazon-scale networks. Her superpower: finding the critical path in ambiguous environments.</p>
         </div>
       </div>
-    </div>
-    <div style="margin-top:36px;text-align:center;">
-      <a class="btn-outline" href="about.html">Meet the full team →</a>
     </div>
   </div>
 
@@ -1228,38 +1228,18 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
       </div>
 
-      <div style="margin-top:36px;padding:24px 28px;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius);display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:200px;">
-          <div style="font-size:15px;font-weight:500;color:var(--dark);margin-bottom:4px;">Stay notified when new resources drop</div>
-          <div style="font-size:13px;color:var(--mid);font-weight:300;">Enter your email and we'll reach out when new content is available.</div>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <input type="email" placeholder="your@email.com" style="padding:10px 14px;border:1px solid var(--border-dark);border-radius:6px;font-size:14px;width:220px;outline:none;">
-          <button class="btn-dark" style="padding:10px 20px;font-size:14px;">Notify me</button>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <div id="contact-anchor"></div>
-  <div class="cta-section">
-    <div class="eyebrow">Get started</div>
-    <div class="section-title" style="font-size:32px;white-space:nowrap;">Ready to build your e-commerce business?</div>
-    <div class="section-sub" style="margin-bottom:0">First conversation is always free. Choose how you'd like to connect.</div>
-    <div class="cta-grid" style="margin-top:36px">
-      <a href="inquiry.html" class="cta-tile" style="text-decoration:none;color:inherit;display:block;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;color:var(--red);">✉︎</span><div class="cta-tile-title" style="margin-bottom:0;">Submit an inquiry</div></div>
-        <div class="cta-tile-desc">Tell us about your business in a few quick questions — we'll follow up within 1 business day.</div>
-      </a>
-      <a href="intake.html" class="cta-tile" style="text-decoration:none;color:inherit;display:block;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;color:var(--red);">✎</span><div class="cta-tile-title" style="margin-bottom:0;">Fill in an intake form</div></div>
-        <div class="cta-tile-desc">A longer structured questionnaire — before we dive deep into a specific topic or build a sophisticated model.</div>
-      </a>
-      <a href="https://calendar.app.google/QQZtnAVNAnJET4616" target="_blank" class="cta-tile" style="text-decoration:none;color:inherit;display:block;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;color:var(--red);">☎︎</span><div class="cta-tile-title" style="margin-bottom:0;">Book a call</div></div>
-        <div class="cta-tile-desc">Schedule a live session with one of our experts to kick off the discussion, or review our proposals.</div>
-      </a>
+  <div class="bottom-cta">
+    <div class="bottom-inner">
+      <div>
+        <h2>Ready to build your e-commerce business?</h2>
+        <p>First conversation is always free. Choose how you'd like to connect.</p>
+      </div>
+      <div class="bottom-actions">
+        <a href="contact.html" class="btn-red on-dark" style="font-size:14px;font-weight:500;padding:12px 26px;text-decoration:none">Contact Us</a>
+      </div>
     </div>
   </div>
 
