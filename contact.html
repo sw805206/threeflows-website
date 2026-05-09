@@ -102,7 +102,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   color: var(--red);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .contact-h2 {
   font-family: 'DM Serif Display', serif;
@@ -119,30 +119,34 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   margin-bottom: 28px;
 }
 
-.contact-flow { display: flex; flex-direction: column; }
+/* Step strip — three cards, no connectors, shared collapsed borders */
+.contact-strip { display: flex; }
 
-/* Step strip — three cards with → arrow connectors */
-.contact-strip { display: flex; align-items: stretch; }
-
-.contact-tab-btn {
+.contact-tab-card {
   flex: 1;
-  background: var(--off-white);
   border: 1px solid var(--border);
-  padding: 18px 18px 16px;
-  text-align: left;
-  font-family: 'DM Sans', sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  transition: background 0.18s, border-color 0.18s;
-  color: var(--dark);
+  padding: 20px 18px;
+  background: var(--off-white);
+  transition: background var(--transition);
   cursor: pointer;
-  min-width: 0;
+  font-family: 'DM Sans', sans-serif;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
-.contact-tab-btn:first-child { border-top-left-radius: var(--radius); }
-.contact-strip > .contact-tab-btn:last-child { border-top-right-radius: var(--radius); }
+.contact-tab-card[data-tab="1"] { border-radius: var(--radius) 0 0 0; }
+.contact-tab-card[data-tab="2"] { border-radius: 0; border-left: none; }
+.contact-tab-card[data-tab="3"] { border-radius: 0 var(--radius) 0 0; border-left: none; }
 
-.contact-tab-btn .tab-num {
+/* Hover state on inactive clickable cards */
+.contact-tab-card:not(.active):hover { background: var(--white); }
+
+/* Active state */
+.contact-tab-card.active { background: var(--dark); border-color: var(--dark); }
+.contact-tab-card.active .tab-title { color: #fff; }
+.contact-tab-card.active .tab-sub { color: rgba(255,255,255,0.5); }
+
+/* Number circles */
+.tab-num {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -150,130 +154,54 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   align-items: center;
   justify-content: center;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-  border: 1px solid var(--border-dark);
-  background: transparent;
+  font-weight: 500;
+  margin-bottom: 10px;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
-.contact-tab-btn .tab-title { font-size: 14px; font-weight: 500; color: var(--dark); }
-.contact-tab-btn .tab-sub { font-size: 12px; color: var(--muted); line-height: 1.45; }
+.tab-num.num-filled { background: var(--red); color: #fff; }
+.tab-num.num-outlined { border: 1.5px solid var(--border-dark); color: var(--muted); background: transparent; }
 
-/* Active state — dark fill */
-.contact-tab-btn.active { background: #1A1A1A; border-color: #1A1A1A; }
-.contact-tab-btn.active .tab-num { background: var(--red); border-color: var(--red); color: white; }
-.contact-tab-btn.active .tab-title { color: white; }
-.contact-tab-btn.active .tab-sub { color: rgba(255,255,255,0.5); }
+/* Active state keeps red filled circle for card 1; outlined circles unchanged on activate */
+.contact-tab-card.active .tab-num.num-filled { background: var(--red); color: #fff; }
 
-/* Hover for clickable inactive cards */
-.contact-tab-btn:not(.active):not(.muted):hover { background: var(--white); border-color: var(--border-dark); }
-
-/* Muted / non-clickable — Card 3 */
-.contact-tab-btn.muted { opacity: 0.6; cursor: default; }
-.contact-tab-btn.muted:hover { background: var(--off-white); border-color: var(--border); }
-
-/* Arrow connector between cards */
-.contact-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--off-white);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 0 4px;
-  flex-shrink: 0;
-  font-size: 14px;
-  color: var(--muted);
-}
+/* Card text */
+.tab-title { display: block; font-size: 14px; font-weight: 500; color: var(--dark); margin: 0 0 4px; line-height: 1.3; }
+.tab-sub { display: block; font-size: 12px; color: var(--muted); margin: 0; line-height: 1.45; }
 
 /* Detail panels */
 .contact-panel {
-  background: var(--white);
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   padding: 22px;
+  background: var(--white);
   display: none;
 }
 .contact-panel.active { display: block; }
 .contact-panel-body { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; margin-bottom: 18px; }
-.contact-panel-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-.contact-panel-note { font-size: 12px; color: var(--muted); line-height: 1.4; }
-
-.btn-muted {
-  background: var(--off-white);
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 12px 24px;
-  font-size: 15px;
-  cursor: default;
-  pointer-events: none;
-  font-family: 'DM Sans', sans-serif;
-  text-decoration: none;
-  display: inline-block;
-}
-
-/* Divider below detail panels */
-.contact-divider {
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.contact-divider .line { flex: 1; height: 1px; background: var(--border); }
-.contact-divider .label { font-size: 13px; color: var(--muted); }
-
-/* Feedback card */
-.contact-feedback {
-  margin-top: 16px;
-  background: var(--off-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-}
-.contact-feedback .feedback-pill {
-  display: inline-block;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 3px 10px;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-.contact-feedback h3 { font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 6px; }
-.contact-feedback p { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; margin-bottom: 14px; }
+.contact-panel-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+.contact-panel-note { font-size: 12px; color: var(--muted); line-height: 1.4; margin: 8px 0 0; }
 
 /* MOBILE */
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero { padding: 56px 20px 40px; }
-  .hero h1 { font-size: 36px; }
   .contact-section { padding: 48px 0; }
   .contact-inner { padding: 0 20px; }
   .contact-h2 { font-size: 26px; }
 
-  /* Stack the strip vertically; arrow connectors become vertical ↓ */
+  /* Stack the strip vertically */
   .contact-strip { flex-direction: column; }
-  .contact-tab-btn,
-  .contact-strip > .contact-tab-btn:first-child,
-  .contact-strip > .contact-tab-btn:last-child { border-radius: var(--radius); }
-  .contact-tab-btn { width: 100%; }
-  .contact-arrow {
-    border: none;
-    background: transparent;
-    padding: 6px 0;
-    font-size: 0;
-    color: var(--border-dark);
-  }
-  .contact-arrow::before { content: '↓'; font-size: 18px; }
+  .contact-tab-card { width: 100%; }
+  .contact-tab-card[data-tab="1"] { border-radius: var(--radius) var(--radius) 0 0; }
+  .contact-tab-card[data-tab="2"] { border-radius: 0; border-left: 1px solid var(--border); border-top: none; }
+  .contact-tab-card[data-tab="2"].active { border-color: var(--dark); }
+  .contact-tab-card[data-tab="3"] { border-radius: 0; border-left: 1px solid var(--border); border-top: none; }
+  .contact-tab-card[data-tab="3"].active { border-color: var(--dark); }
 
-  /* Panel becomes a standalone full-width block on mobile */
-  .contact-panel { border-radius: var(--radius); border-top: 1px solid var(--border); margin-top: 8px; }
+  /* Panel: full width below the strip on mobile */
+  .contact-panel { border-radius: 0 0 var(--radius) var(--radius); }
 }
 
 /* ── BOTTOM CTA ── (matches new pattern from svc pages) */
@@ -368,93 +296,55 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   <a class="nav-cta" href="contact.html">Contact Us</a>
 </nav>
 
-<!-- ══ HERO ══ -->
-<section class="hero-wrap">
-  <div class="hero">
-    <div class="eyebrow red">CONTACT US</div>
-    <h1>How Can We Help?</h1>
-    <p class="hero-sub">Choose the right path below — we'll make sure you reach the right place.</p>
-  </div>
-</section>
-
 <!-- ══ CONTACT STEP STRIP ══ -->
 <section class="contact-section">
   <div class="contact-inner">
 
     <div class="contact-eyebrow">GET IN TOUCH</div>
     <h2 class="contact-h2">How should we connect?</h2>
-    <p class="contact-sub">Follow the steps — most clients move through 1 → 2 → 3 in sequence.</p>
+    <p class="contact-sub">Choose the right path below — we'll make sure you reach the right place.</p>
 
-    <div class="contact-flow">
-
-      <!-- Step strip: 3 cards with → arrow connectors -->
-      <div class="contact-strip">
-
-        <div id="inquiry" class="contact-tab-btn active" onclick="setContactTab(1)" role="button" tabindex="0">
-          <span class="tab-num">1</span>
-          <span class="tab-title">Submit an inquiry</span>
-          <span class="tab-sub">New here or have a general question? Start here.</span>
-        </div>
-
-        <div class="contact-arrow" aria-hidden="true">→</div>
-
-        <div id="intake" class="contact-tab-btn" onclick="setContactTab(2)" role="button" tabindex="0">
-          <span class="tab-num">2</span>
-          <span class="tab-title">Fill in intake form</span>
-          <span class="tab-sub">Share your business details so we can prepare.</span>
-        </div>
-
-        <div class="contact-arrow" aria-hidden="true">→</div>
-
-        <div id="call" class="contact-tab-btn muted" aria-disabled="true">
-          <span class="tab-num">3</span>
-          <span class="tab-title">Book a call</span>
-          <span class="tab-sub">We'll send a calendar invite when ready.</span>
-        </div>
-
+    <!-- 3-card step strip (no connectors, collapsed shared borders) -->
+    <div class="contact-strip">
+      <div id="inquiry" class="contact-tab-card active" data-tab="1" onclick="setContactTab(1)" role="button" tabindex="0">
+        <span class="tab-num num-filled">1</span>
+        <span class="tab-title">Submit an inquiry</span>
+        <span class="tab-sub">New here or have a general question?</span>
       </div>
-
-      <!-- Detail panels (one visible at a time) -->
-      <div class="contact-panel active" data-panel="1">
-        <p class="contact-panel-body">Not sure where to start? Send us a message and we'll get back to you within 2 business days.</p>
-        <div class="contact-panel-cta">
-          <a href="inquiry.html" class="btn-red">Submit an inquiry</a>
-          <span class="contact-panel-note">We'll reply within 2 business days</span>
-        </div>
+      <div id="intake" class="contact-tab-card" data-tab="2" onclick="setContactTab(2)" role="button" tabindex="0">
+        <span class="tab-num num-outlined">2</span>
+        <span class="tab-title">Fill in intake form</span>
+        <span class="tab-sub">Provide business details for our evaluation.</span>
       </div>
-
-      <div class="contact-panel" data-panel="2">
-        <p class="contact-panel-body">Use the intake form to share your business details so we can better understand your needs. You can fill this any time, though we typically ask for it after a discovery call or during our ongoing conversation.</p>
-        <div class="contact-panel-cta">
-          <a href="intake.html" class="btn-red">Fill in intake form</a>
-          <span class="contact-panel-note">Usually completed after your first call</span>
-        </div>
+      <div id="feedback" class="contact-tab-card" data-tab="3" onclick="setContactTab(3)" role="button" tabindex="0">
+        <span class="tab-num num-outlined">3</span>
+        <span class="tab-title">Send feedback</span>
+        <span class="tab-sub">Found an issue or have a suggestion?</span>
       </div>
-
-      <div class="contact-panel" data-panel="3">
-        <p class="contact-panel-body">Schedule a 30-minute discovery call with our team. We'll reach out with a calendar link once we've reviewed your inquiry.</p>
-        <div class="contact-panel-cta">
-          <a href="#" class="btn-muted" tabindex="-1" aria-disabled="true">Book a call</a>
-          <span class="contact-panel-note">Invite sent by our team — not self-serve</span>
-        </div>
-      </div>
-
     </div>
 
-    <!-- Divider + Feedback card -->
-    <div class="contact-divider">
-      <span class="line"></span>
-      <span class="label">Something else?</span>
-      <span class="line"></span>
-    </div>
-
-    <div id="feedback" class="contact-feedback">
-      <span class="feedback-pill">FEEDBACK</span>
-      <h3>Send feedback</h3>
-      <p>Found inaccurate information, a broken link, or have an improvement suggestion? Let us know — we read every submission.</p>
+    <!-- Detail panels (one visible at a time) -->
+    <div id="contact-panel-1" class="contact-panel active">
+      <p class="contact-panel-body">Not sure where to start? Send us a message and we'll get back to you within 2 business days, followed by a free 30-minute discovery call.</p>
       <div class="contact-panel-cta">
-        <a href="#" class="btn-outline">Send feedback</a>
-        <span class="contact-panel-note">Response not guaranteed, but always appreciated</span>
+        <a href="inquiry.html" class="btn-red">Submit an inquiry</a>
+        <p class="contact-panel-note">We'll reply within 2 business days</p>
+      </div>
+    </div>
+
+    <div id="contact-panel-2" class="contact-panel">
+      <p class="contact-panel-body">Use the intake form to share your business details so we can better understand your needs. You can fill this any time, though we typically ask for it after a discovery call or during our ongoing conversation.</p>
+      <div class="contact-panel-cta">
+        <a href="intake.html" class="btn-red">Fill in intake form</a>
+        <p class="contact-panel-note">Usually completed after your first call</p>
+      </div>
+    </div>
+
+    <div id="contact-panel-3" class="contact-panel">
+      <p class="contact-panel-body">Found inaccurate information, a broken link, or have an improvement suggestion? Let us know — we read every submission.</p>
+      <div class="contact-panel-cta">
+        <a href="mailto:contact@threeflows.com?subject=Feedback&body=Page%20URL%3A%20%0ATool%20name%20(if%20applicable)%3A%20%0AFeedback%3A%20" class="btn-outline">Send feedback</a>
+        <p class="contact-panel-note">Response not guaranteed, but always appreciated</p>
       </div>
     </div>
 
@@ -501,13 +391,15 @@ document.addEventListener('click', function(e) {
   }
 });
 
-function setContactTab(idx) {
-  document.querySelectorAll('.contact-tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.contact-panel').forEach(p => p.classList.remove('active'));
-  const cards = document.querySelectorAll('.contact-tab-btn');
-  if (cards[idx - 1]) cards[idx - 1].classList.add('active');
-  const panel = document.querySelector('.contact-panel[data-panel="' + idx + '"]');
-  if (panel) panel.classList.add('active');
+function setContactTab(n) {
+  document.querySelectorAll('.contact-tab-card').forEach(function(c) {
+    c.classList.remove('active');
+  });
+  document.querySelectorAll('.contact-panel').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  document.querySelector('.contact-tab-card[data-tab="'+n+'"]').classList.add('active');
+  document.getElementById('contact-panel-'+n).classList.add('active');
 }
 </script>
 
