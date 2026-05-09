@@ -145,8 +145,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .contact-tab-card.active .tab-title { color: #fff; }
 .contact-tab-card.active .tab-sub { color: rgba(255,255,255,0.5); }
 
-/* Number circles */
-.tab-num {
+/* Number circles — color follows active state */
+.contact-tab-card .num-circle {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -158,12 +158,15 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   margin-bottom: 10px;
   flex-shrink: 0;
   box-sizing: border-box;
+  background: transparent;
+  border: 1.5px solid var(--border-dark);
+  color: var(--muted);
 }
-.tab-num.num-filled { background: var(--red); color: #fff; }
-.tab-num.num-outlined { border: 1.5px solid var(--border-dark); color: var(--muted); background: transparent; }
-
-/* Active state keeps red filled circle for card 1; outlined circles unchanged on activate */
-.contact-tab-card.active .tab-num.num-filled { background: var(--red); color: #fff; }
+.contact-tab-card.active .num-circle {
+  background: var(--red);
+  border: none;
+  color: #fff;
+}
 
 /* Card text */
 .tab-title { display: block; font-size: 14px; font-weight: 500; color: var(--dark); margin: 0 0 4px; line-height: 1.3; }
@@ -307,17 +310,17 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <!-- 3-card step strip (no connectors, collapsed shared borders) -->
     <div class="contact-strip">
       <div id="inquiry" class="contact-tab-card active" data-tab="1" onclick="setContactTab(1)" role="button" tabindex="0">
-        <span class="tab-num num-filled">1</span>
+        <span class="num-circle">1</span>
         <span class="tab-title">Submit an inquiry</span>
         <span class="tab-sub">New here or have a general question?</span>
       </div>
       <div id="intake" class="contact-tab-card" data-tab="2" onclick="setContactTab(2)" role="button" tabindex="0">
-        <span class="tab-num num-outlined">2</span>
+        <span class="num-circle">2</span>
         <span class="tab-title">Fill in intake form</span>
         <span class="tab-sub">Provide business details for our evaluation.</span>
       </div>
       <div id="feedback" class="contact-tab-card" data-tab="3" onclick="setContactTab(3)" role="button" tabindex="0">
-        <span class="tab-num num-outlined">3</span>
+        <span class="num-circle">3</span>
         <span class="tab-title">Send feedback</span>
         <span class="tab-sub">Found an issue or have a suggestion?</span>
       </div>
@@ -328,7 +331,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <p class="contact-panel-body">Not sure where to start? Send us a message and we'll get back to you within 2 business days, followed by a free 30-minute discovery call.</p>
       <div class="contact-panel-cta">
         <a href="inquiry.html" class="btn-red">Submit an inquiry</a>
-        <p class="contact-panel-note">We'll reply within 2 business days</p>
       </div>
     </div>
 
@@ -336,15 +338,13 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <p class="contact-panel-body">Use the intake form to share your business details so we can better understand your needs. You can fill this any time, though we typically ask for it after a discovery call or during our ongoing conversation.</p>
       <div class="contact-panel-cta">
         <a href="intake.html" class="btn-red">Fill in intake form</a>
-        <p class="contact-panel-note">Usually completed after your first call</p>
       </div>
     </div>
 
     <div id="contact-panel-3" class="contact-panel">
       <p class="contact-panel-body">Found inaccurate information, a broken link, or have an improvement suggestion? Let us know — we read every submission.</p>
       <div class="contact-panel-cta">
-        <a href="mailto:contact@threeflows.com?subject=Feedback&body=Page%20URL%3A%20%0ATool%20name%20(if%20applicable)%3A%20%0AFeedback%3A%20" class="btn-outline">Send feedback</a>
-        <p class="contact-panel-note">Response not guaranteed, but always appreciated</p>
+        <a href="mailto:contact@threeflows.com?subject=Feedback&body=Page%20URL%3A%20%0ATool%20name%20(if%20applicable)%3A%20%0AFeedback%3A%20" class="btn-red">Send feedback</a>
       </div>
     </div>
 
