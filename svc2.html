@@ -75,7 +75,6 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
 .eyebrow.red { color: var(--red); }
 .serif { font-family: 'DM Serif Display', serif; }
-.section-title { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
 .section-sub { font-size: 16px; color: var(--mid); max-width: 540px; line-height: 1.75; font-weight: 300; margin-bottom: 48px; }
 .btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
 .btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
@@ -931,6 +930,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 .btn-outline.on-dark { color: white; border-color: rgba(255,255,255,0.4); }
 
 .contact-text-link:hover { text-decoration: underline; }
+.cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+.cta-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -993,7 +994,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
       <div class="cta-box">
         <h3>Not sure where to start?</h3>
         <p>Tell us about your product and sourcing situation — we'll recommend the right service.</p>
-        <a href="contact.html" class="contact-text-link" style="color:var(--red);font-weight:600;font-size:15px;text-decoration:none">Contact us →</a>
+        <a href="contact.html" class="cta-link">Contact us →</a>
       </div>
     </div>
   </div>

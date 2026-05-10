@@ -87,6 +87,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin-top: 8px;
+    align-items: stretch;
   }
   .tool-card {
     background: var(--white);
@@ -119,6 +120,7 @@
   }
   .tool-revised { font-size: 12px; color: var(--muted); }
   .tool-card .tool-actions { margin-top: auto; padding-top: 12px; }
+  .tool-card .cta-link { margin-top: auto; }
   .tool-card .tool-actions .btn-red { padding: 10px 20px; font-size: 14px; }
   .tool-card .custom-line { font-size: 12px; color: var(--muted); margin-top: 10px; }
   .tool-card .custom-line a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
@@ -164,6 +166,8 @@
   }
 
   .tool-launch-link:hover { text-decoration: underline; }
+.cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+.cta-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -181,10 +185,10 @@
     <li class="nav-dropdown" id="dd-services">
       <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
       <div class="nav-dropdown-menu">
-        <a href="svc1.html">01 — Business Planning</a>
-        <a href="svc2.html">02 — Sourcing Consultation</a>
-        <a href="svc3.html">03 — Launch Hypercare</a>
-        <a href="svc4.html">04 — Ongoing Management</a>
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
       </div>
     </li>
     <li class="nav-dropdown" id="dd-resources">
@@ -212,7 +216,7 @@
   <div class="info-banner">
     <p>100% free. These are simplified versions designed to help you explore, not replace expert advice.</p>
     <p>Access requires your email and consent to receive updates from Three Flows Solutions.</p>
-    <p>Every business is different. For a version built around your scenario, let's talk. <a href="contact.html" style="color:var(--red);font-weight:600;text-decoration:none;">Contact us →</a></p>
+    <p>Every business is different. For a version built around your scenario, let's talk. <a href="contact.html" class="cta-link">Contact us →</a></p>
   </div>
 </section>
 
@@ -228,7 +232,7 @@
       <h3>[Tool Name]</h3>
       <p class="tool-desc">[Two sentences max — what it does and who it helps.]</p>
       <div class="tool-actions">
-        <a class="tool-launch-link" href="tool-NNN.html" style="color:var(--red);font-weight:600;font-size:14px;text-decoration:none;">Get it for free →</a>
+        <a class="cta-link" href="tool-NNN.html">Get it for free →</a>
       </div>
     </div>
     ════════════════════════════ -->
@@ -241,7 +245,7 @@
       <h3>Pre-launch planning checklist</h3>
       <p class="tool-desc">A step-by-step checklist covering all 3 phases of pre-launch: research &amp; validation, MVP &amp; customer validation, and setup &amp; launch prep. Includes two go/no-go decision gates.</p>
       <div class="tool-actions">
-        <a class="tool-launch-link" href="tool-ck001.html" style="color:var(--red);font-weight:600;font-size:14px;text-decoration:none;">Get it for free →</a>
+        <a class="cta-link" href="tool-ck001.html">Get it for free →</a>
       </div>
     </div>
 
@@ -253,7 +257,7 @@
       <h3>Sample sourcing checklist</h3>
       <p class="tool-desc">A step-by-step checklist for e-commerce sellers sourcing products from Alibaba or 1688. Covers sample evaluation, compliance checks, supplier verification, and go/no-go gates before committing to a launch order.</p>
       <div class="tool-actions">
-        <a class="tool-launch-link" href="tool-ck002.html" style="color:var(--red);font-weight:600;font-size:14px;text-decoration:none;">Get it for free →</a>
+        <a class="cta-link" href="tool-ck002.html">Get it for free →</a>
       </div>
     </div>
 
@@ -265,7 +269,7 @@
       <h3>Voice of customer checklist</h3>
       <p class="tool-desc">A structured checklist for pre-launch product validation through real customer feedback. Covers questionnaire design, MVP testing, packaging validation, and listing review — with three go/no-go gates before declaring launch readiness.</p>
       <div class="tool-actions">
-        <a class="tool-launch-link" href="tool-ck003.html" style="color:var(--red);font-weight:600;font-size:14px;text-decoration:none;">Get it for free →</a>
+        <a class="cta-link" href="tool-ck003.html">Get it for free →</a>
       </div>
     </div>
 
@@ -277,7 +281,7 @@
       <h3>Company and brand setup checklist</h3>
       <p class="tool-desc">A step-by-step checklist for registering your US business entity and building your brand from scratch. Covers legal setup, EIN, banking, trademark, logo, website, and marketplace account — US-centric.</p>
       <div class="tool-actions">
-        <a class="tool-launch-link" href="tool-ck004.html" style="color:var(--red);font-weight:600;font-size:14px;text-decoration:none;">Get it for free →</a>
+        <a class="cta-link" href="tool-ck004.html">Get it for free →</a>
       </div>
     </div>
 
@@ -291,7 +295,7 @@
       <p>We build bespoke tools and plans tailored to your operations.</p>
     </div>
     <div class="bottom-actions">
-      <a href="contact.html" class="btn-red" style="font-size:14px;font-weight:500;padding:11px 24px;">Contact Us</a>
+      <a href="contact.html" class="btn-red on-dark" style="font-size:14px;font-weight:500;padding:11px 24px;">Contact Us</a>
     </div>
   </div>
 </div>
