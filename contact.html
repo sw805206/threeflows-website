@@ -96,15 +96,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .contact-section { background: var(--white); padding: 64px 0; }
 .contact-inner { max-width: 900px; margin: 0 auto; padding: 0 48px; }
 
-.contact-eyebrow {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
-.contact-h2 {
+.contact-h1 {
   font-family: 'DM Serif Display', serif;
   font-size: 32px;
   line-height: 1.2;
@@ -192,7 +184,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
   .nav-links { display: none; }
   .contact-section { padding: 48px 0; }
   .contact-inner { padding: 0 20px; }
-  .contact-h2 { font-size: 26px; }
+  .contact-h1 { font-size: 26px; }
 
   /* Stack the strip vertically */
   .contact-strip { flex-direction: column; }
@@ -277,10 +269,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <li class="nav-dropdown" id="dd-services">
       <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
       <div class="nav-dropdown-menu">
-        <a href="svc1.html">01 — Business Planning</a>
-        <a href="svc2.html">02 — Sourcing Consultation</a>
-        <a href="svc3.html">03 — Launch Hypercare</a>
-        <a href="svc4.html">04 — Ongoing Management</a>
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
       </div>
     </li>
     <li class="nav-dropdown" id="dd-resources">
@@ -302,8 +294,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 <section class="contact-section">
   <div class="contact-inner">
 
-    <div class="contact-eyebrow">GET IN TOUCH</div>
-    <h2 class="contact-h2">How should we connect?</h2>
+    <div class="eyebrow red">CONTACT US</div>
+    <h1 class="contact-h1">How should we connect?</h1>
     <p class="contact-sub">Choose the right path below — we'll make sure you reach the right place.</p>
 
     <!-- 3-card step strip (no connectors, collapsed shared borders) -->
@@ -343,7 +335,7 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     <div id="contact-panel-3" class="contact-panel">
       <p class="contact-panel-body">Found inaccurate information, a broken link, or have an improvement suggestion? Let us know — we read every submission.</p>
       <div class="contact-panel-cta">
-        <a href="mailto:contact@threeflows.com?subject=Feedback&body=Page%20URL%3A%20%0ATool%20name%20(if%20applicable)%3A%20%0AFeedback%3A%20" class="btn-red">Send feedback</a>
+        <a href="mailto:contact@threeflows.com?subject=Feedback&body=Page%20URL%3A%20%0ATool%20name%20(if%20applicable)%3A%20%0AFeedback%3A%20" class="btn-outline">Send feedback</a>
       </div>
     </div>
 
