@@ -297,13 +297,13 @@
   .below-table .inline-cta a:hover { color: var(--red-dark); }
 
   /* ── Bottom CTA ── */
-  .bottom-cta { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 26px; margin-top: 8px; }
-  .bottom-cta h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--dark); margin-bottom: 10px; }
-  .bottom-cta p { font-size: 14px; color: var(--mid); margin-bottom: 18px; line-height: 1.6; }
-  .bottom-cta .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
-  .bottom-cta .cta-line { font-size: 13px; color: var(--muted); }
-  .bottom-cta .cta-line a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
-  .bottom-cta .cta-line a:hover { color: var(--red); }
+  .tool-cta-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 26px; margin-top: 8px; }
+  .tool-cta-card h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--dark); margin-bottom: 10px; }
+  .tool-cta-card p { font-size: 14px; color: var(--mid); margin-bottom: 18px; line-height: 1.6; }
+  .tool-cta-card .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tool-cta-card .cta-line { font-size: 13px; color: var(--muted); }
+  .tool-cta-card .cta-line a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
+  .tool-cta-card .cta-line a:hover { color: var(--red); }
 
   /* ── Footer ── */
   footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
@@ -342,7 +342,7 @@
   /* ─────────── PRINT ─────────── */
   @media print {
     nav, footer, .breadcrumb-wrap, .info-banner, .gate, .progress-wrap,
-    .bottom-cta, .below-table, .tool-meta,
+    .tool-cta-card, .below-table, .tool-meta,
     table.checklist tr.sourcing-banner-row { display: none !important; }
     body { background: white; color: #000; }
     .layout { max-width: none; padding: 0; margin: 0; }
@@ -400,6 +400,8 @@
     table.checklist tr.task td.col-tip { color: #000; }
   }
   .bug-report-link:hover { text-decoration: underline; }
+.cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+.cta-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -420,10 +422,10 @@
     <li class="nav-dropdown" id="dd-services">
       <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
       <div class="nav-dropdown-menu">
-        <a href="svc1.html">01 — Business Planning</a>
-        <a href="svc2.html">02 — Sourcing Consultation</a>
-        <a href="svc3.html">03 — Launch Hypercare</a>
-        <a href="svc4.html">04 — Ongoing Management</a>
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
       </div>
     </li>
     <li class="nav-dropdown" id="dd-resources">
@@ -437,9 +439,8 @@
       </div>
     </li>
     <li><a href="about.html">About</a></li>
-    <li><a href="index.html#contact-anchor">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a class="nav-cta" href="inquiry.html">Submit an inquiry</a>
 </nav>
 
 <div class="breadcrumb-wrap">
@@ -673,13 +674,12 @@
           <span class="icon-download" aria-hidden="true"></span>Download blank PDF
         </button>
       </div>
-      <p class="inline-cta">Need a customized version built for your business? <a href="inquiry.html">Submit an inquiry →</a></p>
     </div>
   </div>
 
   <!-- Section 4: Bottom service CTA (always visible) -->
-  <div class="bottom-cta">
-    <p style="font-size:14px;color:var(--mid);">Need a version built for your business? <a href="inquiry.html" style="color:var(--red);font-weight:600;text-decoration:none;">Submit an inquiry →</a></p>
+  <div class="tool-cta-card">
+    <p style="font-size:14px;color:var(--mid);">Need a version built for your business? <a class="cta-link" href="inquiry.html">Submit an inquiry →</a></p>
     <a class="bug-report-link" href="mailto:contact@threeflows.com?subject=Feedback&body=Page%20URL%3A%20%0ATool%20name%3A%20%0AFeedback%3A%20" style="display:block;margin-top:10px;font-size:12px;color:var(--muted);text-decoration:none;">Report a bug or suggest an improvement →</a>
   </div>
 

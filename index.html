@@ -69,7 +69,6 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
 .eyebrow.red { color: var(--red); }
 .serif { font-family: 'DM Serif Display', serif; }
-.section-title { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
 .section-sub { font-size: 16px; color: var(--mid); max-width: 540px; line-height: 1.75; font-weight: 300; margin-bottom: 48px; }
 .btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; display: inline-block; text-decoration: none; }
 .btn-red:hover { opacity: 0.88; transform: translateY(-1px); }
@@ -173,7 +172,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .resources-section { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .resources-inner { max-width: 1100px; margin: 0 auto; padding: 72px 48px; }
 .resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 36px; }
-.resource-tile { background: var(--white); border: 1px solid var(--border); padding: 28px 24px; }
+.resource-tile { background: var(--white); border: 1px solid var(--border); padding: 28px 24px; display: flex; flex-direction: column; }
+.resource-tile .cta-link { margin-top: auto; padding-top: 12px; }
 .resource-tile:first-child { border-radius: var(--radius) 0 0 var(--radius); }
 .resource-tile:last-child { border-radius: 0 var(--radius) var(--radius) 0; opacity: 0.6; }
 .resource-icon { font-size: 24px; margin-bottom: 14px; }
@@ -918,6 +918,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 /* ── UNIFIED PAGE SYSTEM ── */
 .page { display: none !important; }
 .page.active { display: block !important; }
+.cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+.cta-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -1195,31 +1197,31 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
         <div class="resource-tile">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;">📝</span><div class="resource-title" style="margin-bottom:0;">Blogs &amp; articles</div></div>
           <div class="resource-desc">Practical guides on e-commerce, sourcing, operations, and what we've learned from real client journeys.</div>
-          <a href="blog.html" style="margin-top:12px;font-size:12px;color:var(--red);font-weight:500;text-decoration:none;display:block;">Go →</a>
+          <a href="blog.html" class="cta-link">Go →</a>
         </div>
 
         <div class="resource-tile">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;">🔗</span><div class="resource-title" style="margin-bottom:0;">Useful websites</div></div>
           <div class="resource-desc">Our curated list of tools, platforms, and references we use — from market research to logistics to compliance. Updated regularly.</div>
-          <a href="useful-websites.html" style="margin-top:12px;font-size:12px;color:var(--red);font-weight:500;text-decoration:none;display:block;">Go →</a>
+          <a href="useful-websites.html" class="cta-link">Go →</a>
         </div>
 
         <div class="resource-tile">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;">✅</span><div class="resource-title" style="margin-bottom:0;">Checklists &amp; Calculators</div></div>
           <div class="resource-desc">Step-by-step launch checklists plus calculators for landed cost, SKU tracking, budgets, and supplier comparison — all yours to download.</div>
-          <a href="free-tools.html" style="margin-top:12px;font-size:12px;color:var(--red);font-weight:500;text-decoration:none;display:block;">Go →</a>
+          <a href="free-tools.html" class="cta-link">Go →</a>
         </div>
 
         <div class="resource-tile">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;">🎥</span><div class="resource-title" style="margin-bottom:0;">Recorded webinars &amp; seminars</div></div>
           <div class="resource-desc">Watch past sessions on e-commerce launch, sourcing strategy, and back office operations on demand.</div>
-          <a href="webinars.html" style="margin-top:12px;font-size:12px;color:var(--red);font-weight:500;text-decoration:none;display:block;">Go →</a>
+          <a href="webinars.html" class="cta-link">Go →</a>
         </div>
 
         <div class="resource-tile">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><span style="font-size:28px;line-height:1;">💬</span><div class="resource-title" style="margin-bottom:0;">Livestream discussions</div></div>
           <div class="resource-desc">Join our next live Q&amp;A — ask us anything about launching, sourcing, or running a retail business.</div>
-          <a href="livestream.html" style="margin-top:12px;font-size:12px;color:var(--red);font-weight:500;text-decoration:none;display:block;">Go →</a>
+          <a href="livestream.html" class="cta-link">Go →</a>
         </div>
 
       </div>
