@@ -168,6 +168,40 @@
   .tool-launch-link:hover { text-decoration: underline; }
 .cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
 .cta-link:hover { text-decoration: underline; }
+.eyebrow.muted { color: var(--muted); }
+
+  /* CAROUSEL ROWS */
+  .tools-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-top: 8px;
+    padding-bottom: 8px;
+  }
+  .tools-row::-webkit-scrollbar { display: none; }
+  .tools-row .tool-card { flex: 0 0 320px; }
+  .tools-row + .eyebrow { margin-top: 40px; }
+
+  /* PLACEHOLDER CARDS */
+  .tool-card--placeholder { cursor: default; }
+  .tool-card--placeholder .placeholder-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .skeleton-bar {
+    background: var(--off-white);
+    border-radius: 4px;
+    height: 12px;
+    margin-bottom: 8px;
+  }
+  .skeleton-bar.title { height: 20px; width: 65%; margin-bottom: 16px; }
+  .skeleton-bar.short { width: 55%; }
 </style>
 </head>
 <body>
@@ -221,27 +255,11 @@
 </section>
 
 <section class="res-section" style="padding-top: 8px;">
-  <div class="tools-grid" id="tools-grid">
-    <!-- Tool cards go here. Order: checklists first (CK ascending), then calculators (CA ascending). -->
-    <!-- ════ TOOL CARD TEMPLATE ════
-    <div class="tool-card" data-type="calculator">
-      <div class="tool-meta">
-        <span class="tool-type-pill">Calculator</span>
-        <span class="tool-revised">Last revised: [Month D, YYYY]</span>
-      </div>
-      <h3>[Tool Name]</h3>
-      <p class="tool-desc">[Two sentences max — what it does and who it helps.]</p>
-      <div class="tool-actions">
-        <a class="cta-link" href="tool-NNN.html">Get it for free →</a>
-      </div>
-    </div>
-    ════════════════════════════ -->
+
+  <div class="eyebrow muted">Checklists</div>
+  <div class="tools-row" id="checklists-row">
 
     <div class="tool-card" data-type="checklist">
-      <div class="tool-meta">
-        <span class="tool-type-pill">Checklist</span>
-        <span class="tool-revised">Last revised: May 8, 2026</span>
-      </div>
       <h3>Pre-launch planning checklist</h3>
       <p class="tool-desc">A step-by-step checklist covering all 3 phases of pre-launch: research &amp; validation, MVP &amp; customer validation, and setup &amp; launch prep. Includes two go/no-go decision gates.</p>
       <div class="tool-actions">
@@ -250,10 +268,6 @@
     </div>
 
     <div class="tool-card" data-type="checklist">
-      <div class="tool-meta">
-        <span class="tool-type-pill">Checklist</span>
-        <span class="tool-revised">Last revised: May 8, 2026</span>
-      </div>
       <h3>Sample sourcing checklist</h3>
       <p class="tool-desc">A step-by-step checklist for e-commerce sellers sourcing products from Alibaba or 1688. Covers sample evaluation, compliance checks, supplier verification, and go/no-go gates before committing to a launch order.</p>
       <div class="tool-actions">
@@ -262,10 +276,6 @@
     </div>
 
     <div class="tool-card" data-type="checklist">
-      <div class="tool-meta">
-        <span class="tool-type-pill">Checklist</span>
-        <span class="tool-revised">Last revised: May 8, 2026</span>
-      </div>
       <h3>Voice of customer checklist</h3>
       <p class="tool-desc">A structured checklist for pre-launch product validation through real customer feedback. Covers questionnaire design, MVP testing, packaging validation, and listing review — with three go/no-go gates before declaring launch readiness.</p>
       <div class="tool-actions">
@@ -274,10 +284,6 @@
     </div>
 
     <div class="tool-card" data-type="checklist">
-      <div class="tool-meta">
-        <span class="tool-type-pill">Checklist</span>
-        <span class="tool-revised">Last revised: May 8, 2026</span>
-      </div>
       <h3>Company and brand setup checklist</h3>
       <p class="tool-desc">A step-by-step checklist for registering your US business entity and building your brand from scratch. Covers legal setup, EIN, banking, trademark, logo, website, and marketplace account — US-centric.</p>
       <div class="tool-actions">
@@ -286,6 +292,36 @@
     </div>
 
   </div>
+
+  <div class="eyebrow muted">Calculators</div>
+  <div class="tools-row" id="calculators-row">
+
+    <div class="tool-card tool-card--placeholder">
+      <div class="placeholder-label">Coming soon</div>
+      <div class="skeleton-bar title"></div>
+      <div class="skeleton-bar"></div>
+      <div class="skeleton-bar"></div>
+      <div class="skeleton-bar short"></div>
+    </div>
+
+    <div class="tool-card tool-card--placeholder">
+      <div class="placeholder-label">Coming soon</div>
+      <div class="skeleton-bar title"></div>
+      <div class="skeleton-bar"></div>
+      <div class="skeleton-bar"></div>
+      <div class="skeleton-bar short"></div>
+    </div>
+
+    <div class="tool-card tool-card--placeholder">
+      <div class="placeholder-label">Coming soon</div>
+      <div class="skeleton-bar title"></div>
+      <div class="skeleton-bar"></div>
+      <div class="skeleton-bar"></div>
+      <div class="skeleton-bar short"></div>
+    </div>
+
+  </div>
+
 </section>
 
 <div class="bottom-cta">
