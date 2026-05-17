@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashflow: Your Unit Economics Over a Time Horizon — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  /* ── Layout ── */
+  .layout {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── Post meta ── */
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .post-date { font-size: 13px; color: var(--muted); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .post-meta .post-tags { margin-left: auto; }
+  .post-tag-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: none;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .post-tag-pill.primary   { background: #FDE8F0; color: #B5256A; }
+  .post-tag-pill.secondary { background: #E8E8E8; color: #3A3A3A; }
+  .post-tag-pill.empty     { background: #F8F8F8; color: #C8C8C8; }
+
+  /* ── Typography ── */
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--mid);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    margin: 40px 0 12px;
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 28px 0 8px;
+  }
+  p { margin-bottom: 18px; color: var(--mid); }
+  ul, ol { margin: 12px 0 20px 22px; color: var(--mid); }
+  li { margin-bottom: 8px; }
+  strong { color: var(--dark); font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -10px; margin-bottom: 18px; }
+
+  /* ── Callout (red — default) ── */
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout p { color: var(--dark); margin: 0; }
+
+  /* ── Callout neutral (grey) ── */
+  .callout-grey {
+    background: var(--off-white);
+    border-left: 3px solid var(--border-dark);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout-grey p { color: var(--mid); margin: 0; }
+
+  /* ── Callout green ── */
+  .callout.green { background: var(--green-light); border-left-color: var(--green); }
+  .callout.green p { color: #174a17; }
+
+  /* ── Callout blue ── */
+  .callout.blue { background: #EEF4FB; border-left-color: #185FA5; }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  th.left { text-align: left; }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--mid);
+    text-align: center;
+    font-size: 13px;
+  }
+  td.left { text-align: left; color: var(--dark); font-weight: 500; }
+  tr:hover td { background: var(--off-white); }
+  .highlight-row td { background: var(--green-light); color: #1a4a1a; font-weight: 600; }
+  .summary-row td { background: var(--off-white); color: var(--dark); font-weight: 600; border-top: 2px solid var(--border-dark); }
+
+  /* ── SITE SHELL: nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  /* ── SITE SHELL: breadcrumb ── */
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  /* ── SITE SHELL: footer ── */
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  /* ── Post nav (prev/next) ── */
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px auto 0; max-width: 820px; padding: 0 24px; }
+  .post-nav-tile { background: var(--white); border: 1px solid var(--border-dark); border-radius: 10px; padding: 18px 22px; text-decoration: none; color: inherit; transition: border-color 0.18s, background 0.18s; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .post-nav-tile:hover { border-color: var(--dark); background: var(--white); }
+  .post-nav-tile.next { text-align: right; align-items: flex-end; }
+  .post-nav-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .post-nav-title { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.3; color: var(--dark); }
+  .post-nav-spacer { }
+
+  .cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+  .cta-link:hover { text-decoration: underline; }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    footer { padding: 20px; }
+    .post-nav { grid-template-columns: 1fr; padding: 0 20px; }
+    .post-nav-tile.next { text-align: left; align-items: flex-start; }
+    h1 { font-size: 26px; }
+    .compare { grid-template-columns: 1fr; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="blog.html">← Blog</a>
+</div>
+
+<!-- PREV / NEXT NAV -->
+<div class="post-nav">
+  <a class="post-nav-tile prev" href="blog-021.html">
+    <span class="post-nav-label">← Previous</span>
+    <span class="post-nav-title">Test Before You List: The Case for Pre-Launch Market Research</span>
+  </a>
+  <div class="post-nav-spacer"></div>
+</div>
+
+<!-- POST CONTENT -->
+<div class="layout">
+
+  <div class="post-meta">
+    <span class="post-date">May 16, 2026 &nbsp;·&nbsp; 7 min read</span>
+    <div class="post-tags">
+      <span class="post-tag-pill primary">Plan</span>
+      <span class="post-tag-pill empty">Source</span>
+      <span class="post-tag-pill empty">Launch</span>
+      <span class="post-tag-pill empty">Scale</span>
+      <span class="post-tag-pill secondary">Data</span>
+      <span class="post-tag-pill empty">Setup</span>
+      <span class="post-tag-pill empty">Compliance</span>
+      <span class="post-tag-pill secondary">Others</span>
+    </div>
+  </div>
+
+  <h1>Cashflow: Your Unit Economics Over a Time Horizon</h1>
+  <p class="subtitle">Take a $60 product that costs $20 to buy and ship. The 67% margin you see at first glance is not wrong — it's just incomplete. This post works through both corrections: the full unit economics, then the cashflow shape across time.</p>
+
+  <p>Take a $60 product that costs $20 to buy and ship. Subtract one from the other: $40 margin, 67%. That looks like a strong business.</p>
+
+  <p>That number is also wrong — or rather, it's incomplete. The moment you account for every cost that actually sits between you and that $40, the picture changes fast. And the moment you account for <em>when</em> those costs hit versus when revenue arrives, the picture changes again.</p>
+
+  <p>This post works through both corrections: first the full unit economics, then the cashflow shape over time. By the end, the same $60 product tells a very different story than it did at the start.</p>
+
+  <h2>The first correction — your real unit economics</h2>
+
+  <p>Most founders start with sell price minus buy cost. That's the right instinct but the wrong stopping point.</p>
+
+  <p>Here's the same $60 product with every cost accounted for:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Line item</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="left">Selling Price</td><td>+$60.00</td></tr>
+        <tr><td class="left">Buy Cost</td><td>−$10.00</td></tr>
+        <tr><td class="left">Shipping and Tariff</td><td>−$10.00</td></tr>
+        <tr><td class="left">Storage &amp; Pick Pack</td><td>−$2.00</td></tr>
+        <tr><td class="left">Shipping to Customers</td><td>−$10.00</td></tr>
+        <tr><td class="left">Platform Fee (15%)</td><td>−$9.00</td></tr>
+        <tr><td class="left">Return (20%)</td><td>−$3.00</td></tr>
+        <tr><td class="left">Advertising (10%)</td><td>−$6.00</td></tr>
+        <tr class="highlight-row"><td class="left">Remaining Gross Profit</td><td>$10.00</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>$10 margin on a $60 product. That's 17% — not the 67% you calculated when you subtracted only the $20 buy-plus-shipping cost.</p>
+
+  <p>Most new sellers don't discover this until they're already in the red. Platform fees, return rates, and outbound shipping are the three lines that surprise people most. They're not optional costs — they're structural, and they compound quickly at volume.</p>
+
+  <p>The unit P&amp;L above is the necessary first correction. But it still has a blind spot: <strong>it treats all of these costs as if they happen at the same moment. They don't.</strong></p>
+
+  <div class="callout-grey">
+    <p>A healthy margin on paper can still produce a cashflow crisis in practice. The timing of your outflows versus your inflows is what determines whether you can keep operating — especially when you scale.</p>
+  </div>
+
+  <h2>The second correction — your unit economics over time</h2>
+
+  <p>The unit P&amp;L stacks every cost and the revenue into a single column. In reality, those events are spread across months — and the gap between when cash goes out and when it comes back in is where businesses get into trouble.</p>
+
+  <p>Here's the same $60 product mapped against the months when each cash event actually occurs:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Line item</th>
+          <th>Unit P&amp;L</th>
+          <th>M1</th>
+          <th>M2</th>
+          <th>M3</th>
+          <th>M4</th>
+          <th>M5</th>
+          <th>M6</th>
+          <th>M7</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">Buy Cost</td>
+          <td>−$10.00</td>
+          <td></td><td>−$10</td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="left">Ocean and Tariff</td>
+          <td>−$10.00</td>
+          <td></td><td></td><td>−$10</td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="left">Storage &amp; Pick Pack</td>
+          <td>−$2.00</td>
+          <td></td><td></td><td></td><td>−$1</td><td>−$1</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="left">Advertising (10%)</td>
+          <td>−$6.00</td>
+          <td></td><td></td><td>−$2</td><td>−$2</td><td>−$2</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="left">Platform Fee (15%)</td>
+          <td>−$9.00</td>
+          <td></td><td></td><td></td><td></td><td>−$9</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="left">Shipping to Customers</td>
+          <td>−$10.00</td>
+          <td></td><td></td><td></td><td></td><td>−$10</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="left">Selling Price</td>
+          <td>+$60.00</td>
+          <td></td><td></td><td></td><td></td><td></td><td>+$60</td><td></td>
+        </tr>
+        <tr>
+          <td class="left">Return (20%)</td>
+          <td>−$3.00</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td>−$3</td>
+        </tr>
+        <tr class="summary-row">
+          <td class="left">Cashflow per Unit</td>
+          <td></td>
+          <td></td><td>−$10</td><td>−$22</td><td>−$25</td><td>−$47</td><td>+$13</td><td>+$10</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Read across the bottom row. You place the order in Month 1. By Month 5 — before a single dollar of revenue arrives — you are $47 in the hole on this one unit. Revenue hits in Month 6. You're net positive by Month 7, at +$10.</p>
+
+  <p>That's a 7-month cashflow cycle on a single unit. The unit P&amp;L says $10 profit. The cashflow timeline says you're down $47 before you see any of it.</p>
+
+  <div class="callout blue">
+    <p>Both numbers are true simultaneously. But only one of them threatens your ability to keep operating.</p>
+  </div>
+
+  <h2>Why this matters when you scale</h2>
+
+  <p>Now imagine you're not ordering one unit. You're ordering 1,000 — a reasonable opening order for a new product.</p>
+
+  <p>At 1,000 units, the $47 peak cashflow exposure becomes <strong>$47,000</strong> tied up before any revenue arrives. If you're launching in Month 1 and reordering to stay in stock, you may be placing your next purchase order while still waiting on revenue from the first batch.</p>
+
+  <p>This is the unit economics trap: the business model is profitable, but the timing of costs versus revenue creates a capital requirement that catches founders off guard. The faster you grow, the deeper the hole before it pays back.</p>
+
+  <p>The model doesn't break. But you can run out of cash inside a working model.</p>
+
+  <div class="callout-grey">
+    <p>Scaling a profitable unit model without understanding its cashflow cycle is like driving with the right destination but no fuel gauge. You can be on the right road and still run out of runway.</p>
+  </div>
+
+  <p>The 67% margin was not a lie. It was just an incomplete version of the truth.</p>
+
+  <p>The full picture has two layers: the real margin after every cost is accounted for (17% in this case), and the cashflow curve that shows when those costs land versus when revenue arrives. Both corrections matter. Neither one alone is enough.</p>
+
+  <p>If you're doing this for the first time, build the unit P&amp;L first — every line, no shortcuts. Then map the same numbers across a monthly timeline. The shape that emerges is your actual capital requirement, and it will tell you more than any margin ratio.</p>
+
+</div><!-- /.layout -->
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+</body>
+</html>
