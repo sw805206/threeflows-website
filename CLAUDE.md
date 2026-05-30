@@ -26,7 +26,10 @@ being silently overwritten.
 ## Step 2 — Read these two files before writing any code
 
 1. STYLE.md — visual and UX source of truth
-2. handoffs/threeflows_handoff_v0529.md — operational rules
+2. The latest file in handoffs/ — files follow the naming format
+   threeflows_handoff_vMMDD.md (or vMMDDa, vMMDDb for same-day
+   versions). Sort by filename descending and read the first result
+   (e.g. `ls handoffs/ | sort -r | head -1`) — operational rules
 
 If the handoff filename has changed (newer version exists),
 read the most recent version. Both files must be read in full

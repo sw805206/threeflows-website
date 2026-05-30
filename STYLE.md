@@ -13,7 +13,7 @@ This is the single source of truth for all visual and UX decisions on the Three 
 - **If a new pattern is introduced** that is not covered here, add it to the relevant section before committing.
 - **If a pattern is retired or changed**, update this file in the same commit as the code change.
 
-For operational rules (file structure, IDs, git hygiene, blog chain, tool registry), see `handoffs/threeflows_handoff_v0509A.md`.
+For operational rules (file structure, IDs, git hygiene, blog chain, tool registry), see the latest file in `handoffs/` — filename format: `threeflows_handoff_vMMDD.md` (or `vMMDDa`, `vMMDDb` for same-day versions). Always use the highest version present.
 
 ---
 
