@@ -26,7 +26,7 @@ being silently overwritten.
 ## Step 2 — Read these two files before writing any code
 
 1. STYLE.md — visual and UX source of truth
-2. handoffs/threeflows_handoff_v0509A.md — operational rules
+2. handoffs/threeflows_handoff_v0529.md — operational rules
 
 If the handoff filename has changed (newer version exists),
 read the most recent version. Both files must be read in full
