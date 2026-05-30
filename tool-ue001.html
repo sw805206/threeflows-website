@@ -159,6 +159,7 @@
     transition: border-color var(--transition);
   }
   .qa-input:focus { outline: none; border-color: var(--red); }
+  .qa-input::placeholder { color: var(--muted); font-weight: 300; }
   .input-suffix { font-size: 11px; color: var(--muted); white-space: nowrap; }
 
   /* Metric cards */
@@ -360,7 +361,7 @@
         </div>
         <div class="qa-right">
           <div class="input-row">
-            <input class="qa-input" type="number" id="i-vol" value="500" min="1" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-vol" placeholder="e.g. 500" min="1" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">units / mo</span>
         </div>
@@ -375,7 +376,7 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-price" value="60.00" min="0" step="0.01" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-price" placeholder="e.g. 60.00" min="0" step="0.01" oninput="recalc()">
           </div>
           <span class="input-suffix">per unit</span>
         </div>
@@ -390,7 +391,7 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-buy" value="10.00" min="0" step="0.01" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-buy" placeholder="e.g. 10.00" min="0" step="0.01" oninput="recalc()">
           </div>
           <span class="input-suffix">per unit</span>
         </div>
@@ -405,7 +406,7 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-freight" value="10.00" min="0" step="0.01" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-freight" placeholder="e.g. 10.00" min="0" step="0.01" oninput="recalc()">
           </div>
           <span class="input-suffix">per unit</span>
         </div>
@@ -420,7 +421,7 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-outship" value="10.00" min="0" step="0.01" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-outship" placeholder="e.g. 10.00" min="0" step="0.01" oninput="recalc()">
           </div>
           <span class="input-suffix">per unit</span>
         </div>
@@ -435,10 +436,10 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-storage" value="1000" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-storage" placeholder="e.g. 1,000" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
-          <span class="qa-per-unit" id="pu-storage">= $2.00 per unit</span>
+          <span class="qa-per-unit" id="pu-storage"></span>
         </div>
       </div>
 
@@ -451,10 +452,10 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-platform" value="4500" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-platform" placeholder="e.g. 4,500" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
-          <span class="qa-per-unit" id="pu-platform">= $9.00 per unit</span>
+          <span class="qa-per-unit" id="pu-platform"></span>
         </div>
       </div>
 
@@ -467,10 +468,10 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-returns" value="1500" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-returns" placeholder="e.g. 1,500" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
-          <span class="qa-per-unit" id="pu-returns">= $3.00 per unit</span>
+          <span class="qa-per-unit" id="pu-returns"></span>
         </div>
       </div>
 
@@ -483,10 +484,10 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-ads" value="3000" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-ads" placeholder="e.g. 3,000" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
-          <span class="qa-per-unit" id="pu-ads">= $6.00 per unit</span>
+          <span class="qa-per-unit" id="pu-ads"></span>
         </div>
       </div>
 
@@ -499,10 +500,10 @@
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-admin" value="0" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-admin" placeholder="e.g. 0" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
-          <span class="qa-per-unit" id="pu-admin">= $0.00 per unit</span>
+          <span class="qa-per-unit" id="pu-admin"></span>
         </div>
       </div>
 
@@ -620,9 +621,25 @@ function signed(n, dec) {
 }
 function pct(n) { return (n * 100).toFixed(1) + '%'; }
 
-function setPU(id, v) {
-  var el = document.getElementById(id);
-  if (el) el.textContent = '= ' + money(v) + ' per unit';
+// Per-unit tags (Q06–Q10) — only display when both volume and the monthly cost are entered
+function updatePerUnitTags(vol) {
+  var pairs = [
+    ['pu-storage',  'i-storage'],
+    ['pu-platform', 'i-platform'],
+    ['pu-returns',  'i-returns'],
+    ['pu-ads',      'i-ads'],
+    ['pu-admin',    'i-admin']
+  ];
+  pairs.forEach(function (p) {
+    var el = document.getElementById(p[0]);
+    if (!el) return;
+    var monthly = val(p[1]);
+    if (val('i-vol') > 0 && monthly > 0) {
+      el.textContent = '= ' + money(monthly / vol) + ' per unit';
+    } else {
+      el.textContent = '';
+    }
+  });
 }
 function setMetric(id, text, cls) {
   var el = document.getElementById(id);
@@ -734,6 +751,26 @@ function buildCashflow(d) {
 function recalc() {
   var vol      = Math.max(1, val('i-vol'));
   var price    = val('i-price');
+
+  // If no selling price entered yet, clear results and return early
+  if (price === 0) {
+    document.getElementById('m-naive').textContent       = '—';
+    document.getElementById('m-real').textContent        = '—';
+    document.getElementById('m-profit-unit').textContent = '—';
+    document.getElementById('m-profit-mo').textContent   = '—';
+    document.getElementById('m-naive').className         = 'mv dim';
+    document.getElementById('m-real').className          = 'mv dim';
+    document.getElementById('m-profit-unit').className   = 'mv dim';
+    document.getElementById('m-profit-mo').className     = 'mv dim';
+    document.getElementById('waterfall').innerHTML       = '';
+    document.getElementById('ue-callout').innerHTML      = '';
+    document.getElementById('cf-body').innerHTML         = '';
+    document.getElementById('cf-callout').innerHTML      = '';
+    // Per-unit tags still depend only on cost + volume, so update them below
+    updatePerUnitTags(vol);
+    return;
+  }
+
   var buy      = val('i-buy');
   var freight  = val('i-freight');
   var outship  = val('i-outship');
@@ -745,12 +782,8 @@ function recalc() {
   var adsPU      = val('i-ads')      / vol;
   var adminPU    = val('i-admin')    / vol;
 
-  // Per-unit tags (Q06–Q10)
-  setPU('pu-storage', storagePU);
-  setPU('pu-platform', platformPU);
-  setPU('pu-returns', returnsPU);
-  setPU('pu-ads', adsPU);
-  setPU('pu-admin', adminPU);
+  // Per-unit tags (Q06–Q10) — guarded against blank inputs
+  updatePerUnitTags(vol);
 
   var totalCosts  = buy + freight + outship + storagePU + platformPU + returnsPU + adsPU + adminPU;
   var profit      = price - totalCosts;
