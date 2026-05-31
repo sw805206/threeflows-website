@@ -691,13 +691,13 @@ function buildWaterfall(price, costs, profit) {
 function buildCashflow(d) {
   var months = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'];
   var events = [
-    { label: 'Selling price',       rev: true, vals: [0, 0, 0, 0, 0, d.price, 0] },
     { label: 'Buy cost',            vals: [0, -d.buy, 0, 0, 0, 0, 0] },
     { label: 'Ocean + tariff',      vals: [0, 0, -d.freight, 0, 0, 0, 0] },
-    { label: 'Outbound shipping',   vals: [0, 0, 0, 0, -d.outship, 0, 0] },
-    { label: 'Storage & pick-pack', vals: [0, 0, 0, -d.storagePU / 2, -d.storagePU / 2, 0, 0] },
     { label: 'Platform fee',        vals: [0, 0, 0, 0, -d.platformPU, 0, 0] },
     { label: 'Advertising',         vals: [0, 0, -d.adsPU / 3, -d.adsPU / 3, -d.adsPU / 3, 0, 0] },
+    { label: 'Storage & pick-pack', vals: [0, 0, 0, -d.storagePU / 2, -d.storagePU / 2, 0, 0] },
+    { label: 'Outbound shipping',   vals: [0, 0, 0, 0, -d.outship, 0, 0] },
+    { label: 'Selling price',       rev: true, vals: [0, 0, 0, 0, 0, d.price, 0] },
     { label: 'Returns & refunds',   vals: [0, 0, 0, 0, 0, 0, -d.returnsPU] }
   ];
 
