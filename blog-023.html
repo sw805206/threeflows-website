@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make or Buy? Local or Overseas? How to Think Through Your Sourcing Strategy — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #D63B3B;
+  --red-dark: #B82E2E;
+  --red-light: #FDF0F0;
+  --red-mid: rgba(214,59,59,0.12);
+  --dark: #1A1A1A;
+  --mid: #5C5C5C;
+  --muted: #909090;
+  --off-white: #F8F8F8;
+  --white: #FFFFFF;
+  --border: rgba(0,0,0,0.09);
+  --border-dark: rgba(0,0,0,0.18);
+  --green: #00B050;
+  --green-light: #EAF3DE;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.18s ease;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; color: var(--dark); background: var(--off-white); }
+
+.review-banner { background: var(--dark); color: white; text-align: center; padding: 14px 24px; font-size: 13px; letter-spacing: 0.04em; position: sticky; top: 0; z-index: 100; }
+.review-banner strong { color: #f0c060; }
+
+nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; font-family: 'DM Sans', sans-serif; }
+nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+nav .nav-links li { margin: 0; }
+nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+nav .nav-links a:hover { color: var(--dark); }
+nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+nav .nav-cta:hover { background: #333; }
+nav .nav-dropdown { position: relative; }
+nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+.breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; }
+.breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+.post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px auto 0; max-width: 820px; padding: 0 24px; }
+.post-nav-tile { background: var(--white); border: 1px solid var(--border-dark); border-radius: 10px; padding: 18px 22px; text-decoration: none; color: inherit; transition: border-color 0.18s; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.post-nav-tile:hover { border-color: var(--dark); }
+.post-nav-tile.next { text-align: right; align-items: flex-end; }
+.post-nav-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.post-nav-title { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.3; color: var(--dark); }
+
+.layout { max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
+
+.post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+.post-date { font-size: 13px; color: var(--muted); }
+.post-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.post-tag-pill { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: none; letter-spacing: 0.04em; line-height: 1.4; font-weight: 700; }
+.post-tag-pill.primary   { background: #FDE8F0; color: #B5256A; }
+.post-tag-pill.secondary { background: #E8E8E8; color: #3A3A3A; }
+.post-tag-pill.empty     { background: #F8F8F8; color: #C8C8C8; }
+
+h1 { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.2; color: var(--dark); margin-bottom: 10px; }
+.subtitle { font-size: 17px; color: var(--mid); margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); line-height: 1.6; }
+h2 { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--dark); margin: 40px 0 12px; }
+h3 { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: var(--dark); margin: 28px 0 8px; }
+p { margin-bottom: 18px; color: var(--mid); }
+ul, ol { margin: 12px 0 20px 22px; color: var(--mid); }
+li { margin-bottom: 8px; }
+strong { color: var(--dark); font-weight: 600; }
+
+.callout { background: var(--red-light); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 28px 0; }
+.callout p { color: var(--dark); margin: 0; }
+.callout-grey { background: var(--off-white); border-left: 3px solid var(--border-dark); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 28px 0; }
+.callout-grey p { color: var(--mid); margin: 0; font-size: 14px; }
+
+/* 4-option cards */
+.option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+.option-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.option-card h4 { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+.option-card h4 span { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.option-card ul { margin: 0; padding-left: 16px; }
+.option-card li { font-size: 13px; color: var(--mid); margin-bottom: 5px; }
+.option-card .examples { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: italic; }
+.option-card.highlight { border-color: var(--red); }
+.option-card.highlight h4 { border-bottom-color: var(--red-mid); color: var(--red-dark); }
+
+/* Transition ladder */
+.ladder { display: flex; flex-direction: column; gap: 0; margin: 24px 0; }
+.ladder-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.ladder-step:last-child { border-bottom: none; }
+.ladder-num { width: 28px; height: 28px; border-radius: 50%; background: var(--dark); color: white; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.ladder-step h4 { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+.ladder-step p { font-size: 13px; color: var(--mid); margin: 0; }
+
+/* ═══ DECISION TOOL ═══ */
+.tool-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 32px 0;
+}
+.tool-header {
+  background: var(--dark);
+  color: white;
+  padding: 20px 28px;
+}
+.tool-header h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  margin: 0 0 4px;
+}
+.tool-header p { font-size: 13px; color: rgba(255,255,255,0.6); margin: 0; }
+
+.tool-progress-row { display: flex; align-items: center; gap: 14px; padding: 14px 28px; border-bottom: 1px solid var(--border); background: var(--off-white); }
+.tool-progress-track { flex: 1; height: 4px; background: var(--border-dark); border-radius: 20px; overflow: hidden; }
+.tool-progress-fill { height: 100%; background: var(--red); border-radius: 20px; transition: width 0.3s ease; width: 0%; }
+.tool-progress-label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+.tool-body { padding: 24px 28px; }
+
+.tool-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 16px;
+}
+.tool-q { margin-bottom: 24px; }
+.tool-q:last-of-type { margin-bottom: 0; }
+.tool-q-label { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; line-height: 1.4; }
+.tool-q-hint { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.tool-options { display: flex; flex-direction: column; gap: 7px; }
+.tool-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border-dark);
+  border-radius: 8px;
+  background: var(--off-white);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--mid);
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  text-align: left;
+  width: 100%;
+}
+.tool-option:hover { border-color: var(--dark); background: white; color: var(--dark); }
+.tool-option.selected { border-color: var(--red); background: var(--red-light); color: var(--red-dark); font-weight: 500; }
+.tool-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--border-dark); flex-shrink: 0; transition: all 0.15s; }
+.tool-option.selected .tool-dot { background: var(--red); border-color: var(--red); }
+
+.tool-section-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+.tool-submit { text-align: right; padding: 20px 28px; border-top: 1px solid var(--border); background: var(--off-white); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.tool-submit-note { font-size: 12px; color: var(--muted); }
+.tool-submit-btn { background: var(--red); color: white; border: none; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
+.tool-submit-btn:hover { background: var(--red-dark); }
+.tool-error { font-size: 13px; color: var(--red); display: none; padding: 0 28px 16px; }
+
+/* Result */
+.tool-result { display: none; padding: 24px 28px; }
+.result-badge-row { margin-bottom: 18px; }
+.result-badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; color: white;
+}
+.badge-make    { background: #16a34a; }
+.badge-local   { background: #d97706; }
+.badge-overseas { background: #2563eb; }
+.badge-hybrid  { background: var(--red); }
+
+.result-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--dark); margin: 10px 0 6px; }
+.result-tagline { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 10px; }
+.result-desc { font-size: 14px; color: var(--mid); line-height: 1.65; margin-bottom: 20px; }
+
+.result-pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.result-pros, .result-cons { background: var(--off-white); border-radius: 8px; padding: 14px 16px; }
+.result-pros h4 { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+.result-cons h4 { font-size: 12px; font-weight: 700; color: var(--red); margin-bottom: 8px; }
+.result-pros ul, .result-cons ul { list-style: none; padding: 0; margin: 0; }
+.result-pros li, .result-cons li { font-size: 13px; color: var(--mid); margin-bottom: 5px; }
+.result-pros li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+.result-cons li::before { content: "✗ "; color: var(--red); font-weight: 700; }
+
+.result-steps { background: var(--off-white); border-radius: 8px; padding: 18px 20px; margin-bottom: 20px; }
+.result-steps h4 { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+.result-steps ol { list-style: none; padding: 0; margin: 0; counter-reset: steps; }
+.result-steps li { counter-increment: steps; display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; font-size: 13px; color: var(--mid); line-height: 1.5; }
+.result-steps li::before { content: counter(steps); background: var(--dark); color: white; font-size: 10px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+
+.result-scores { margin-bottom: 20px; }
+.result-scores h4 { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.score-label { font-size: 12px; font-weight: 600; width: 130px; flex-shrink: 0; color: var(--mid); }
+.score-track { flex: 1; background: var(--border-dark); border-radius: 20px; height: 8px; overflow: hidden; }
+.score-fill { height: 100%; border-radius: 20px; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); }
+.fill-make    { background: #16a34a; }
+.fill-local   { background: #d97706; }
+.fill-overseas { background: #2563eb; }
+.fill-hybrid  { background: var(--red); }
+.score-num { font-size: 12px; font-weight: 700; width: 28px; text-align: right; color: var(--mid); }
+
+.result-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-restart { background: none; border: 1.5px solid var(--border-dark); color: var(--mid); padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.15s; }
+.btn-restart:hover { border-color: var(--dark); color: var(--dark); }
+
+footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--dark); }
+
+@media (max-width: 800px) {
+  nav { padding: 0 20px; }
+  nav .nav-links { display: none; }
+  .breadcrumb-wrap { padding: 20px 20px 0; }
+  .post-nav { grid-template-columns: 1fr; padding: 0 20px; }
+  .post-nav-tile.next { text-align: left; align-items: flex-start; }
+  footer { padding: 20px; }
+  h1 { font-size: 26px; }
+  .option-grid { grid-template-columns: 1fr; }
+  .result-pros-cons { grid-template-columns: 1fr; }
+  .tool-body { padding: 18px 18px; }
+  .tool-submit { padding: 16px 18px; }
+  .tool-result { padding: 18px 18px; }
+}
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="blog.html">← Blog</a>
+</div>
+
+<div class="post-nav">
+  <a class="post-nav-tile prev" href="blog-009.html">
+    <span class="post-nav-label">← Previous</span>
+    <span class="post-nav-title">Why Your Whatnot Livestream Needs a Sell-Through Model</span>
+  </a>
+  <div></div>
+</div>
+
+<div class="layout">
+
+  <div class="post-meta">
+    <span class="post-date">Publish: March 2, 2026</span>
+    <div class="post-tags">
+      <span class="post-tag-pill primary">Plan</span>
+      <span class="post-tag-pill secondary">Source</span>
+      <span class="post-tag-pill empty">Launch</span>
+      <span class="post-tag-pill empty">Scale</span>
+      <span class="post-tag-pill empty">Data</span>
+      <span class="post-tag-pill empty">Setup</span>
+      <span class="post-tag-pill empty">Compliance</span>
+      <span class="post-tag-pill empty">Others</span>
+    </div>
+  </div>
+
+  <h1>Make or Buy? Local or Overseas? How to Think Through Your Sourcing Strategy</h1>
+  <p class="subtitle">As US manufacturing policy shifts, more small business owners are asking whether they should make their products domestically rather than source from abroad. The answer is rarely a simple yes or no — and the options in between are often the most practical path forward.</p>
+
+  <h2>More angles than you might think</h2>
+
+  <p>The "make or buy" question sounds binary. In practice, it sits at the intersection of product complexity, cost structure, brand positioning, supply chain risk, and your own time and capital. Getting it wrong in either direction is expensive — either you're paying for quality control you don't need, or you're managing supply chain risk you didn't price in.</p>
+
+  <p>The political and economic climate has added a new dimension. US reshoring incentives, tariff exposure on Chinese goods, and a genuine consumer preference for domestically made products have given small brands more reason to at least reconsider the default assumption that overseas sourcing is always the right answer. But it requires looking at all the angles before jumping to a conclusion.</p>
+
+  <h2>Four options — not two</h2>
+
+  <p>Most founders frame this as a binary: make it yourself, or buy it from someone overseas. The reality is a 2×2 matrix — you can make or buy, and you can do either locally or overseas. That gives four positions, three of which are genuinely accessible to small brands.</p>
+
+  <div class="option-grid">
+    <div class="option-card highlight">
+      <h4>Make from US Local<span>You are the factory — full control</span></h4>
+      <ul>
+        <li>Full design and quality control</li>
+        <li>Most unique product, hardest to copy</li>
+        <li>High upfront time investment</li>
+        <li>Difficult to scale quickly</li>
+      </ul>
+      <p class="examples">e.g. Handmade candle, crochet goods</p>
+    </div>
+    <div class="option-card highlight">
+      <h4>Buy from US Local<span>Domestic supplier — speed and simplicity</span></h4>
+      <ul>
+        <li>No tariff or compliance risk</li>
+        <li>Easier communication and site visits</li>
+        <li>Typically harder to find small MOQs</li>
+        <li>Higher unit cost than overseas</li>
+      </ul>
+      <p class="examples">e.g. Vegan food, Bible-inspired beverage</p>
+    </div>
+    <div class="option-card highlight">
+      <h4>Buy from Overseas<span>Import — lowest cost, most complexity</span></h4>
+      <ul>
+        <li>Small MOQ options available</li>
+        <li>Access to more product categories</li>
+        <li>Tariff and compliance exposure</li>
+        <li>Communication and lead time challenges</li>
+      </ul>
+      <p class="examples">e.g. Mulberry scarf, yak soap</p>
+    </div>
+    <div class="option-card" style="opacity:0.55;border-style:dashed;">
+      <h4 style="color:var(--muted);border-bottom-color:var(--border);">Make from Overseas<span style="color:var(--muted);">Large brands only — not covered here</span></h4>
+      <ul>
+        <li>Requires owning or operating an overseas factory</li>
+        <li>Only viable at very high volume on assembly-line products</li>
+        <li>Not a realistic option for small brands</li>
+        <li>No local OEM factories for small batch / wide SKU</li>
+      </ul>
+      <p class="examples" style="color:var(--muted);">e.g. Large consumer electronics brands</p>
+    </div>
+  </div>
+
+  <div class="callout-grey">
+    <p>The decision tool below covers the three options relevant to small brands: Make from US Local, Buy from US Local, and Buy from Overseas. It also surfaces a fourth path — <strong>Domestic Re-Engineering</strong> — which sits between Buy from Overseas and Make from US Local, and is often the most practical transition route for brands currently importing 100% of their product.</p>
+  </div>
+
+  <h2>The in-between options most founders miss</h2>
+
+  <p>The assumption that you have to choose between "100% made overseas" and "100% made in the USA" is a false binary — and for most small brands, the middle ground is actually more achievable and more strategic.</p>
+
+  <p>Here is an honest framing of the reality: for generic, commodity-type products, 100% US manufacturing is mostly only feasible for large brands with high-volume, assembly-line products. Local OEM factories that accept small batch sizes and a wide SKU range are rare. That is a structural constraint, not a moral failing — it is simply the state of US manufacturing capacity for small brands today.</p>
+
+  <p>But that does not mean you cannot inject US elements into what you sell. There is a practical ladder of options:</p>
+
+  <div class="ladder">
+    <div class="ladder-step">
+      <div class="ladder-num">1</div>
+      <div>
+        <h4>Import finished goods — add local packaging</h4>
+        <p>Source the product overseas, then design, print, and assemble packaging domestically. The product is imported; the brand experience is local. This is accessible to almost any small brand immediately.</p>
+      </div>
+    </div>
+    <div class="ladder-step">
+      <div class="ladder-num">2</div>
+      <div>
+        <h4>Import WIP — finish locally</h4>
+        <p>Import a work-in-progress component or sub-assembly, then complete the final manufacturing step in the US. This qualifies as US-made under many contexts and brings the final stage of production — and QC — onshore.</p>
+      </div>
+    </div>
+    <div class="ladder-step">
+      <div class="ladder-num">3</div>
+      <div>
+        <h4>Import finished goods — re-engineer locally</h4>
+        <p>Import the base product, then add meaningful US-developed value: software, firmware, configuration, customisation, or integration. Common in tech-adjacent products. The print-on-demand mug is the simple version; a robot assistant with US-developed software stack is the more sophisticated version.</p>
+      </div>
+    </div>
+    <div class="ladder-step">
+      <div class="ladder-num">4</div>
+      <div>
+        <h4>Full domestic production</h4>
+        <p>Manufacture entirely in the US. Realistic today for: handcrafted goods, food and beverage, certain apparel, and products where the "Made in USA" story carries a price premium that covers the higher cost of production. Not realistic for most physical consumer goods at small batch sizes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>💡 The question is not "should I manufacture in the US?" The question is "what is the most US-local production model that my cost structure and volume can actually support?" The answer often starts at step 1 or 2, not step 4.</p>
+  </div>
+
+  <h2>The decision matrix</h2>
+
+  <p>When evaluating the four options across a consistent set of criteria, the trade-offs become clearer. The matrix below maps the cost and impact dimensions from the sourcing framework:</p>
+
+  <div class="table-wrap" style="overflow-x:auto;margin:20px 0;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead>
+        <tr>
+          <th style="background:var(--dark);color:white;padding:10px 14px;text-align:left;font-weight:500;font-size:12px;width:28%">Dimension</th>
+          <th style="background:var(--dark);color:white;padding:10px 14px;text-align:center;font-weight:500;font-size:12px;">Make from US Local</th>
+          <th style="background:var(--dark);color:white;padding:10px 14px;text-align:center;font-weight:500;font-size:12px;">Buy from US Local</th>
+          <th style="background:var(--dark);color:white;padding:10px 14px;text-align:center;font-weight:500;font-size:12px;">Buy from Overseas</th>
+          <th style="background:var(--dark);color:white;padding:10px 14px;text-align:center;font-weight:500;font-size:12px;">Domestic Re-Engineering ✦</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--dark);font-weight:600;">Fixed cost</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#FDF0F0;">Highest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#fff3cd;">High</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#fff3cd;">High</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#EAF3DE;">Lowest</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--dark);font-weight:600;">Variable cost</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#fff3cd;">High</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#FDF0F0;">Highest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#EAF3DE;">Lowest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#d4edda;">Low</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--dark);font-weight:600;">Tariff / compliance risk</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#EAF3DE;">None</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#EAF3DE;">None</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#FDF0F0;">Highest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#d4edda;">Low</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--dark);font-weight:600;">Quality controllability</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#EAF3DE;">Highest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#d4edda;">High</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#fff3cd;">Low</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#fff3cd;">Moderate</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--dark);font-weight:600;">Scalability</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#FDF0F0;">Lowest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#fff3cd;">Moderate</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#EAF3DE;">Highest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#d4edda;">High</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--dark);font-weight:600;">IP protection</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#EAF3DE;">Highest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#d4edda;">High</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#FDF0F0;">Lowest</td>
+          <td style="padding:10px 14px;border-bottom:1px solid var(--border);color:var(--mid);text-align:center;background:#fff3cd;">Moderate</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;color:var(--dark);font-weight:600;">Communication cost</td>
+          <td style="padding:10px 14px;color:var(--mid);text-align:center;background:#EAF3DE;">Lowest</td>
+          <td style="padding:10px 14px;color:var(--mid);text-align:center;background:#d4edda;">Low</td>
+          <td style="padding:10px 14px;color:var(--mid);text-align:center;background:#FDF0F0;">Highest</td>
+          <td style="padding:10px 14px;color:var(--mid);text-align:center;background:#fff3cd;">Moderate</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:13px;color:var(--muted);margin-top:-10px;">Green = most favourable. Red = least favourable. ✦ Domestic Re-Engineering is not one of the original four quadrants — it is the recommended in-between path for small brands who are currently in "Buy from Overseas" and want to move toward a more local model.</p>
+
+  <h2>Use the tool to find your fit</h2>
+
+  <p>The matrix gives you the framework. The tool below applies it to your specific situation — 12 questions across product, budget, operations, brand, and risk tolerance. Answer all 12 to get a personalised recommendation with a score breakdown and action plan.</p>
+
+  <!-- ═══ DECISION TOOL ═══ -->
+  <div class="tool-wrap">
+    <div class="tool-header">
+      <h3>Sourcing Strategy Decision Guide</h3>
+      <p>12 questions · personalised recommendation · score breakdown</p>
+    </div>
+
+    <div class="tool-progress-row">
+      <div class="tool-progress-track"><div class="tool-progress-fill" id="t-progress-fill"></div></div>
+      <span class="tool-progress-label" id="t-progress-label">0 of 12 answered</span>
+    </div>
+
+    <div class="tool-body" id="t-questions">
+
+      <div class="tool-section-label">Your Product</div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">1. How unique or customised is your product idea?</div>
+        <div class="tool-q-hint">Does it require specialised design, formulations, or proprietary elements?</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,1)"><span class="tool-dot"></span>Highly unique — needs to be custom-made or invented</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,1)"><span class="tool-dot"></span>Somewhat unique — modifications to an existing product</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,1)"><span class="tool-dot"></span>Standard product — available off-the-shelf</button>
+        </div>
+      </div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">2. How complex is the manufacturing process?</div>
+        <div class="tool-q-hint">Think about machinery, expertise, or specialised materials required.</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,2)"><span class="tool-dot"></span>Simple — handcraftable with basic tools or skills</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,2)"><span class="tool-dot"></span>Moderate — requires some equipment or expertise</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,2)"><span class="tool-dot"></span>Complex — needs industrial equipment or specialised factories</button>
+        </div>
+      </div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">3. How important is quality control to your brand?</div>
+        <div class="tool-q-hint">Is hands-on oversight mission-critical?</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,3)"><span class="tool-dot"></span>Critical — I need hands-on oversight of every unit</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,3)"><span class="tool-dot"></span>Important — I want to inspect samples regularly</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,3)"><span class="tool-dot"></span>Manageable — standard QC processes are fine</button>
+        </div>
+      </div>
+
+      <hr class="tool-section-divider">
+      <div class="tool-section-label">Budget &amp; Finances</div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">4. What is your approximate starting budget?</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,4)"><span class="tool-dot"></span>Under $2,000</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,4)"><span class="tool-dot"></span>$2,000 – $15,000</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,4)"><span class="tool-dot"></span>Over $15,000</button>
+        </div>
+      </div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">5. How important is maximising profit margin right now?</div>
+        <div class="tool-q-hint">Versus other priorities like speed, ethics, or control.</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="1" onclick="tSelect(this,5)"><span class="tool-dot"></span>Top priority — I need the lowest possible cost per unit</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,5)"><span class="tool-dot"></span>Important, but balanced with other factors</button>
+          <button class="tool-option" data-val="3" onclick="tSelect(this,5)"><span class="tool-dot"></span>Secondary — I'll pay more for control or quality</button>
+        </div>
+      </div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">6. How comfortable are you with minimum order quantities (MOQs)?</div>
+        <div class="tool-q-hint">Some suppliers require large upfront orders (500–5,000+ units).</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,6)"><span class="tool-dot"></span>I need to start very small (1–50 units)</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,6)"><span class="tool-dot"></span>I can commit to 50–500 units</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,6)"><span class="tool-dot"></span>I'm comfortable with 500+ units if the price is right</button>
+        </div>
+      </div>
+
+      <hr class="tool-section-divider">
+      <div class="tool-section-label">Time &amp; Operations</div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">7. How quickly do you need inventory in hand?</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,7)"><span class="tool-dot"></span>ASAP — within weeks</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,7)"><span class="tool-dot"></span>Within 1–3 months</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,7)"><span class="tool-dot"></span>I can wait 3–6+ months to launch</button>
+        </div>
+      </div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">8. How much time can you personally dedicate to production?</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,8)"><span class="tool-dot"></span>A lot — I'm hands-on and enjoy making things</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,8)"><span class="tool-dot"></span>Some — I'll manage suppliers closely but not make it myself</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,8)"><span class="tool-dot"></span>Minimal — I want to focus on marketing and growth</button>
+        </div>
+      </div>
+
+      <hr class="tool-section-divider">
+      <div class="tool-section-label">Brand &amp; Values</div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">9. How important is "Made in USA" or local production to your brand story?</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="1" onclick="tSelect(this,9)"><span class="tool-dot"></span>Core to my brand — customers expect it</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,9)"><span class="tool-dot"></span>Somewhat important — I'd prefer local if cost allows</button>
+          <button class="tool-option" data-val="3" onclick="tSelect(this,9)"><span class="tool-dot"></span>Not important — customers care more about price and quality</button>
+        </div>
+      </div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">10. How concerned are you about tariff exposure and trade policy risk?</div>
+        <div class="tool-q-hint">E.g., US-China tariffs, Section 301, future trade policy shifts.</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="1" onclick="tSelect(this,10)"><span class="tool-dot"></span>Very concerned — tariff risk is a major factor for me</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,10)"><span class="tool-dot"></span>Somewhat concerned — I want to reduce exposure over time</button>
+          <button class="tool-option" data-val="3" onclick="tSelect(this,10)"><span class="tool-dot"></span>Not a primary concern right now</button>
+        </div>
+      </div>
+
+      <hr class="tool-section-divider">
+      <div class="tool-section-label">Scale &amp; Risk</div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">11. What is your target monthly order volume in 12 months?</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,11)"><span class="tool-dot"></span>Under 100 units/month</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,11)"><span class="tool-dot"></span>100–1,000 units/month</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,11)"><span class="tool-dot"></span>1,000+ units/month</button>
+        </div>
+      </div>
+
+      <div class="tool-q">
+        <div class="tool-q-label">12. How tolerant are you of supply chain complexity?</div>
+        <div class="tool-q-hint">E.g., long lead times, language barriers, currency shifts, shipping delays.</div>
+        <div class="tool-options">
+          <button class="tool-option" data-val="3" onclick="tSelect(this,12)"><span class="tool-dot"></span>Low tolerance — I want reliability and simplicity</button>
+          <button class="tool-option" data-val="2" onclick="tSelect(this,12)"><span class="tool-dot"></span>Moderate — I can manage some complexity</button>
+          <button class="tool-option" data-val="1" onclick="tSelect(this,12)"><span class="tool-dot"></span>High — I'm willing to navigate complexity for better margins</button>
+        </div>
+      </div>
+
+    </div><!-- /.tool-body -->
+
+    <div id="t-error" class="tool-error">Please answer all 12 questions before continuing.</div>
+
+    <div class="tool-submit">
+      <span class="tool-submit-note">Complete all 12 questions to see your recommendation.</span>
+      <button class="tool-submit-btn" onclick="tCalculate()">See My Recommendation →</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="tool-result" id="t-result">
+      <div id="t-result-badge-row" class="result-badge-row"></div>
+      <div id="t-result-title" class="result-title"></div>
+      <div id="t-result-tagline" class="result-tagline"></div>
+      <div id="t-result-desc" class="result-desc"></div>
+      <div id="t-result-pros-cons" class="result-pros-cons"></div>
+      <div id="t-result-steps" class="result-steps"></div>
+      <div class="result-scores">
+        <h4>Score breakdown</h4>
+        <div class="score-row"><span class="score-label">Make from US Local</span><div class="score-track"><div class="score-fill fill-make" id="s-make" style="width:0%"></div></div><span class="score-num" id="n-make">0</span></div>
+        <div class="score-row"><span class="score-label">Buy from US Local</span><div class="score-track"><div class="score-fill fill-local" id="s-local" style="width:0%"></div></div><span class="score-num" id="n-local">0</span></div>
+        <div class="score-row"><span class="score-label">Buy from Overseas</span><div class="score-track"><div class="score-fill fill-overseas" id="s-overseas" style="width:0%"></div></div><span class="score-num" id="n-overseas">0</span></div>
+        <div class="score-row"><span class="score-label">Domestic Re-Engineering</span><div class="score-track"><div class="score-fill fill-hybrid" id="s-hybrid" style="width:0%"></div></div><span class="score-num" id="n-hybrid">0</span></div>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;">Higher score = better fit for your situation. Scores reflect how well each option aligns with your answers.</p>
+      </div>
+      <div class="result-actions">
+        <button class="btn-restart" onclick="tReset()">← Start Over</button>
+      </div>
+    </div>
+
+  </div><!-- /.tool-wrap -->
+
+  <div class="callout-grey">
+    <p>The decision guide is a starting framework — not a definitive answer. Sourcing decisions involve many variables specific to your product, market, and relationships. Three Flows can help you work through the details. <a href="inquiry.html" style="color:var(--dark);font-weight:600;">Submit an inquiry →</a></p>
+  </div>
+
+</div><!-- /.layout -->
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+/* ── Nav ── */
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+});
+
+/* ── Decision Tool ── */
+const tAnswers = {};
+const T_TOTAL = 12;
+
+function tSelect(btn, q) {
+  btn.closest('.tool-options').querySelectorAll('.tool-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  tAnswers[q] = parseInt(btn.dataset.val);
+  tUpdateProgress();
+}
+
+function tUpdateProgress() {
+  const count = Object.keys(tAnswers).length;
+  document.getElementById('t-progress-fill').style.width = (count / T_TOTAL * 100) + '%';
+  document.getElementById('t-progress-label').textContent = count + ' of ' + T_TOTAL + ' answered';
+}
+
+function tCalculate() {
+  if (Object.keys(tAnswers).length < T_TOTAL) {
+    document.getElementById('t-error').style.display = 'block';
+    return;
+  }
+  document.getElementById('t-error').style.display = 'none';
+
+  const a = tAnswers;
+
+  /*
+   * SCORING LOGIC — 4 options
+   *
+   * make     = Manufacture Yourself (handcraft, unique, small scale, hands-on)
+   * local    = Domestic Supplier (mid-scale, ethics, speed, local brand)
+   * overseas = Import from Abroad (high volume, cost-driven, risk-tolerant)
+   * hybrid   = Domestic Re-Engineering (import + local finishing — mid-risk, tariff-conscious, scaling)
+   *
+   * Q1: uniqueness  3=unique→make 2=mod→hybrid/local 1=standard→overseas
+   * Q2: complexity  3=simple→make 2=mod→local/hybrid 1=complex→overseas
+   * Q3: QC          3=critical→make 2=important→local/hybrid 1=standard→overseas
+   * Q4: budget      3=small→make 2=mid→local/hybrid 1=large→overseas
+   * Q5: margin      1=top priority→overseas 2=balanced→hybrid 3=secondary→make/local
+   * Q6: MOQ         3=tiny→make 2=mid→local/hybrid 1=large→overseas
+   * Q7: speed       3=ASAP→make/local 2=1-3mo→local/hybrid 1=flexible→overseas
+   * Q8: time        3=hands-on→make 2=moderate→local/hybrid 1=minimal→overseas
+   * Q9: local brand 1=core→local/make 2=prefer→hybrid 3=not impt→overseas
+   * Q10: tariff risk 1=very concerned→local/make 2=somewhat→hybrid 3=not concerned→overseas
+   * Q11: scale      3=small→make 2=mid→local/hybrid 1=large→overseas
+   * Q12: complexity 3=low tolerance→local/make 2=moderate→hybrid 1=high→overseas
+   */
+
+  let make = 0, local = 0, overseas = 0, hybrid = 0;
+
+  // Q1 — uniqueness
+  if (a[1]===3) { make+=3; }
+  else if (a[1]===2) { hybrid+=3; local+=2; make+=1; }
+  else { overseas+=3; local+=1; }
+
+  // Q2 — manufacturing complexity
+  if (a[2]===3) { make+=3; }
+  else if (a[2]===2) { local+=3; hybrid+=2; make+=1; }
+  else { overseas+=3; hybrid+=2; }
+
+  // Q3 — quality control importance
+  if (a[3]===3) { make+=3; local+=1; }
+  else if (a[3]===2) { local+=3; hybrid+=2; make+=1; }
+  else { overseas+=3; hybrid+=1; }
+
+  // Q4 — budget
+  if (a[4]===3) { make+=3; hybrid+=2; }
+  else if (a[4]===2) { local+=3; hybrid+=2; make+=1; overseas+=1; }
+  else { overseas+=3; local+=1; }
+
+  // Q5 — margin priority
+  if (a[5]===1) { overseas+=3; hybrid+=1; }
+  else if (a[5]===2) { hybrid+=3; local+=2; overseas+=1; }
+  else { make+=3; local+=2; hybrid+=1; }
+
+  // Q6 — MOQ comfort
+  if (a[6]===3) { make+=3; hybrid+=1; }
+  else if (a[6]===2) { local+=3; hybrid+=2; make+=1; }
+  else { overseas+=3; local+=1; hybrid+=1; }
+
+  // Q7 — speed to inventory
+  if (a[7]===3) { make+=3; local+=2; hybrid+=1; }
+  else if (a[7]===2) { local+=3; hybrid+=2; make+=1; }
+  else { overseas+=3; hybrid+=1; }
+
+  // Q8 — personal time
+  if (a[8]===3) { make+=3; }
+  else if (a[8]===2) { local+=3; hybrid+=2; make+=1; }
+  else { overseas+=3; hybrid+=2; local+=1; }
+
+  // Q9 — local brand importance
+  if (a[9]===1) { local+=3; make+=3; hybrid+=1; }
+  else if (a[9]===2) { hybrid+=3; local+=2; }
+  else { overseas+=3; }
+
+  // Q10 — tariff risk concern
+  if (a[10]===1) { local+=3; make+=3; hybrid+=2; }
+  else if (a[10]===2) { hybrid+=3; local+=1; }
+  else { overseas+=3; hybrid+=1; }
+
+  // Q11 — target scale
+  if (a[11]===3) { make+=3; hybrid+=1; }
+  else if (a[11]===2) { local+=3; hybrid+=2; overseas+=1; make+=1; }
+  else { overseas+=3; hybrid+=2; local+=1; }
+
+  // Q12 — supply chain complexity tolerance
+  if (a[12]===3) { local+=3; make+=2; hybrid+=2; }
+  else if (a[12]===2) { hybrid+=3; local+=2; overseas+=1; }
+  else { overseas+=3; hybrid+=1; }
+
+  tRenderResult(make, local, overseas, hybrid);
+}
+
+function tRenderResult(make, local, overseas, hybrid) {
+  const scores = { make, local, overseas, hybrid };
+  const max = Math.max(make, local, overseas, hybrid);
+  const winner = Object.keys(scores).find(k => scores[k] === max);
+  const maxPossible = 36;
+
+  const data = {
+    make: {
+      badge: 'badge-make', badgeLabel: '🛠 Make from US Local',
+      title: 'Make from US Local',
+      tagline: 'Your answers point to a hands-on production approach.',
+      desc: 'You have a unique product concept, care deeply about quality, and are willing to invest your time. Making it yourself allows you to iterate quickly, maintain full creative control, and build an authentic brand story from day one. This path works best at small volumes — plan your transition to a co-manufacturer or domestic supplier as volume grows.',
+      pros: ['Full design and quality control', 'No MOQ requirements', 'Authentic brand story', 'Low upfront capital', 'Easy to pivot or iterate'],
+      cons: ['Limited by your own time and skills', 'Hard to scale quickly', 'Higher per-unit cost at volume', 'Risk of production bottlenecks'],
+      steps: [
+        'Prototype your product with available materials and refine until you are satisfied with quality and consistency.',
+        'Price at 3–5× your material + time cost to ensure sustainable margins at this stage.',
+        'List on Etsy, Shopify, or a social storefront to validate demand before investing further.',
+        'Document your production process in detail so you can hand it off when the time comes.',
+        'Once you reach consistent order volume, explore local co-manufacturers who can take on production.'
+      ]
+    },
+    local: {
+      badge: 'badge-local', badgeLabel: '🏭 Buy from US Local',
+      title: 'Buy from US Local',
+      tagline: 'A domestic supplier fits your priorities around speed, ethics, and local brand positioning.',
+      desc: 'You value transparency, fast turnaround, and the credibility of a local supply chain. Domestic manufacturers typically offer lower MOQs than overseas, respond quickly, and allow site visits — ideal for brands where provenance is part of the value proposition. Expect higher unit costs, but lower complexity and risk.',
+      pros: ['Faster lead times (1–4 weeks typical)', 'Easier communication and site visits', 'Strong IP protection', '"Made in USA" story for marketing', 'No tariff or trade policy exposure'],
+      cons: ['Higher cost per unit than overseas', 'Fewer manufacturer options in some categories', 'Moderate MOQs still common', 'Margin pressure as volume scales'],
+      steps: [
+        "Search Maker's Row, Thomasnet, or local trade directories for domestic manufacturers in your category.",
+        'Request samples from at least 3 suppliers before committing to any relationship.',
+        'Negotiate payment terms — aim for 30–50% deposit with balance on delivery for the first few orders.',
+        'Build a supplier scorecard tracking lead time, defect rate, and responsiveness.',
+        'Once volume grows, use that leverage to negotiate better pricing and priority production slots.'
+      ]
+    },
+    overseas: {
+      badge: 'badge-overseas', badgeLabel: '🌏 Buy from Overseas',
+      title: 'Buy from Overseas',
+      tagline: 'Your profile suits international sourcing — volume, cost, and risk tolerance all point this way.',
+      desc: 'You are focused on volume, competitive unit costs, and are comfortable managing supply chain complexity. Overseas sourcing unlocks the lowest per-unit pricing and the broadest manufacturing capacity — the right choice once you have validated product-market fit and can commit to meaningful order volumes. Build your tariff and lead time buffers into your planning model.',
+      pros: ['Lowest cost per unit', 'Massive production capacity and SKU range', 'Established supplier ecosystems', 'Better margins at scale', 'Access to exotic materials and product categories'],
+      cons: ['Long lead times (6–16 weeks)', 'Higher MOQs typically required', 'Language and time zone barriers', 'IP protection concerns', 'Tariff and trade policy risk'],
+      steps: [
+        'Research suppliers on Alibaba, Global Sources, or attend Canton Fair to meet factories directly.',
+        'Order samples from 3+ shortlisted factories before entering any negotiation.',
+        'Use a third-party inspection service for QC until you have an established track record with the supplier.',
+        'Factor in duties, freight, FX, and inventory carrying cost when calculating true landed cost.',
+        'Start with a trial order before committing to full MOQs. Build a 10–15 week buffer into your inventory planning.'
+      ]
+    },
+    hybrid: {
+      badge: 'badge-hybrid', badgeLabel: '🔄 Domestic Re-Engineering',
+      title: 'Domestic Re-Engineering',
+      tagline: 'Import the base product — add meaningful US value locally. The practical middle path.',
+      desc: 'Your answers suggest you want to reduce tariff exposure, support local brand positioning, or improve quality control — but a full domestic manufacturing setup is not yet viable at your scale. Domestic Re-Engineering lets you import finished goods or WIP and add the local element that differentiates your brand: custom packaging, final assembly, software or firmware, or product configuration. This is the most practical transition path for small brands moving away from pure overseas sourcing.',
+      pros: ['Lower tariff and compliance exposure than pure import', 'Local branding story is authentic', 'Quality control over the US-added value', 'More adaptive to market feedback', 'Does not require finding a local OEM'],
+      cons: ['Requires two supplier relationships to manage', 'Slightly higher cost than pure import', 'US-added step needs design and setup', 'Scaling requires both sides to scale together'],
+      steps: [
+        'Define clearly what the US-added element is: packaging design, final assembly, software layer, or configuration. This is your brand story.',
+        'Source the imported component (finished good or WIP) from your existing or new overseas supplier.',
+        'Find a local partner for the US-added step — this could be a print shop, light assembly facility, or software developer.',
+        'Price the product to reflect the US element. Customers who care about local provenance will absorb a modest premium.',
+        'Document the split clearly for compliance purposes — particularly if you plan to use "Assembled in USA" or similar claims.'
+      ]
+    }
+  };
+
+  const d = data[winner];
+  const maxP = Math.max(make, local, overseas, hybrid);
+
+  document.getElementById('t-result-badge-row').innerHTML = `<span class="result-badge ${d.badge}">${d.badgeLabel}</span>`;
+  document.getElementById('t-result-title').textContent = d.title;
+  document.getElementById('t-result-tagline').textContent = d.tagline;
+  document.getElementById('t-result-desc').textContent = d.desc;
+
+  document.getElementById('t-result-pros-cons').innerHTML = `
+    <div class="result-pros"><h4>Advantages</h4><ul>${d.pros.map(p=>`<li>${p}</li>`).join('')}</ul></div>
+    <div class="result-cons"><h4>Watch out for</h4><ul>${d.cons.map(c=>`<li>${c}</li>`).join('')}</ul></div>
+  `;
+
+  document.getElementById('t-result-steps').innerHTML = `
+    <h4>Action Plan</h4>
+    <ol>${d.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+  `;
+
+  setTimeout(() => {
+    const pct = v => Math.round(v / maxPossible * 100);
+    document.getElementById('s-make').style.width    = pct(make)+'%';
+    document.getElementById('s-local').style.width   = pct(local)+'%';
+    document.getElementById('s-overseas').style.width = pct(overseas)+'%';
+    document.getElementById('s-hybrid').style.width  = pct(hybrid)+'%';
+    document.getElementById('n-make').textContent    = make;
+    document.getElementById('n-local').textContent   = local;
+    document.getElementById('n-overseas').textContent = overseas;
+    document.getElementById('n-hybrid').textContent  = hybrid;
+  }, 100);
+
+  document.getElementById('t-questions').style.display = 'none';
+  document.getElementById('t-result').style.display = 'block';
+  document.getElementById('t-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function tReset() {
+  Object.keys(tAnswers).forEach(k => delete tAnswers[k]);
+  document.querySelectorAll('.tool-option').forEach(b => b.classList.remove('selected'));
+  document.getElementById('t-result').style.display = 'none';
+  document.getElementById('t-questions').style.display = 'block';
+  tUpdateProgress();
+  document.getElementById('t-progress-fill').style.width = '0%';
+  document.querySelector('.tool-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
