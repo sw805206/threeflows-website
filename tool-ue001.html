@@ -175,19 +175,23 @@
   .wf-legend { display: flex; gap: 14px; font-size: 11px; color: var(--mid); margin-bottom: .625rem; flex-wrap: wrap; }
   .wf-legend span { display: flex; align-items: center; gap: 4px; }
   .wf-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
-  .wf-scroll { overflow-x: auto; margin-bottom: 1.25rem; }
-  .wf-inner { display: flex; align-items: flex-end; gap: 3px; height: 160px; min-width: 520px; padding: 0 2px; }
-  .wf-col { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 52px; }
-  .wf-val { font-size: 10px; font-weight: 500; text-align: center; margin-bottom: 2px; min-height: 14px; }
+  .wf-scroll { overflow-x: auto; margin-bottom: 1.25rem; padding-left: 30px; }
+  /* Cascading waterfall: 14px value band (top) + 160px above baseline + 80px below + 16px label band.
+     Baseline ($0) sits 96px from the container bottom (BELOW_H 80 + LBL_BAND 16). */
+  .wf-inner { position: relative; display: flex; gap: 3px; height: 270px; min-width: 520px; padding: 0 2px; }
+  .wf-baseline { position: absolute; bottom: 96px; left: 0; right: 0; height: 1px; background: var(--border-dark); z-index: 0; }
+  .wf-baseline-label { position: absolute; bottom: 96px; left: -28px; font-size: 10px; color: var(--muted); transform: translateY(50%); }
+  .wf-col { position: relative; flex: 1; min-width: 52px; height: 100%; }
+  .wf-val { position: absolute; top: 0; left: 0; right: 0; height: 14px; line-height: 14px; font-size: 10px; font-weight: 500; text-align: center; }
   .wf-val.pos { color: var(--green-dark); }
   .wf-val.neg { color: var(--red-dark); }
   .wf-val.rev { color: var(--blue); }
-  .wf-bar { width: 86%; border-radius: 3px; transition: height .25s ease; }
+  .wf-bar { position: absolute; width: 86%; left: 7%; border-radius: 3px; z-index: 1; transition: height .2s ease, bottom .2s ease; }
   .wf-bar.rev    { background: var(--blue-light); border: 1px solid var(--blue); }
   .wf-bar.cost   { background: var(--red-light);  border: 1px solid rgba(214,59,59,0.3); }
   .wf-bar.profit { background: var(--green-light); border: 1px solid rgba(0,176,80,0.3); }
   .wf-bar.loss   { background: var(--red-light);  border: 1px solid rgba(214,59,59,0.6); }
-  .wf-lbl { font-size: 9px; color: var(--muted); text-align: center; margin-top: 4px; line-height: 1.3; max-width: 58px; }
+  .wf-lbl { position: absolute; bottom: 0; left: 0; right: 0; height: 14px; font-size: 9px; color: var(--muted); text-align: center; line-height: 1.2; }
 
   /* Cashflow table */
   .cf-scroll { overflow-x: auto; margin-bottom: 1rem; }
@@ -651,6 +655,25 @@ function setMetric(id, text, cls) {
 function buildWaterfall(price, costs, profit) {
   var wrap = document.getElementById('waterfall');
   wrap.innerHTML = '';
+
+  // Geometry — keep in sync with the .wf-* CSS
+  var MAX_H    = 160;               // px above the $0 baseline; selling price maps to this
+  var BELOW_H  = 80;                // max px below the baseline (loss cap)
+  var LBL_BAND = 16;                // bottom band reserved for column labels
+  var BASE     = BELOW_H + LBL_BAND;// baseline offset from container bottom = 96px
+  // Scale is ALWAYS based on selling price — above-line scale never changes with cost size
+  var scale = price > 0 ? MAX_H / price : 1;
+
+  // $0 baseline + label (siblings of the columns inside the relative .wf-inner)
+  var baseline = document.createElement('div');
+  baseline.className = 'wf-baseline';
+  wrap.appendChild(baseline);
+  var baseLbl = document.createElement('div');
+  baseLbl.className = 'wf-baseline-label';
+  baseLbl.textContent = '$0';
+  wrap.appendChild(baseLbl);
+
+  // Item list — keep zero-value cost filter (selling price always renders)
   var items = [{ label: 'Selling price', val: price, type: 'rev' }];
   costs.forEach(function (c) {
     if (Math.abs(c.val) >= 0.01) items.push({ label: c.label, val: -c.val, type: 'cost' });
@@ -661,8 +684,7 @@ function buildWaterfall(price, costs, profit) {
     type: profit >= 0 ? 'profit' : 'loss'
   });
 
-  var maxVal = price > 0 ? price : 1;
-  var maxH = 130;
+  var runningBalance = price;
 
   items.forEach(function (it) {
     var col = document.createElement('div');
@@ -673,9 +695,32 @@ function buildWaterfall(price, costs, profit) {
     var prefix = it.type === 'rev' ? '' : (it.val >= 0 ? '+' : '−');
     valEl.textContent = prefix + '$' + Math.abs(it.val).toFixed(2);
 
+    // Cascading position: height + bottom (px from container bottom)
+    var height, bottom, bottomDollar;
+    if (it.type === 'cost') {
+      var prevBalance = runningBalance;
+      runningBalance += it.val;                 // it.val is negative — step down
+      bottomDollar = Math.max(runningBalance, 0);
+      height = Math.round((prevBalance - bottomDollar) * scale);
+    } else if (it.type === 'loss') {
+      height = Math.round(Math.min(Math.abs(profit) * scale, BELOW_H)); // capped at BELOW_H
+    } else { // rev or profit — full bar up from the baseline
+      height = Math.round((it.type === 'rev' ? price : profit) * scale);
+    }
+    height = Math.max(2, height);               // keep tiny bars visible
+
+    if (it.type === 'cost') {
+      bottom = Math.round(bottomDollar * scale) + BASE;
+    } else if (it.type === 'loss') {
+      bottom = BASE - height;                   // top edge at baseline, extends downward
+    } else {
+      bottom = BASE;                            // sits on the baseline
+    }
+
     var bar = document.createElement('div');
     bar.className = 'wf-bar ' + it.type;
-    bar.style.height = Math.max(2, Math.abs(it.val) / maxVal * maxH) + 'px';
+    bar.style.height = height + 'px';
+    bar.style.bottom = bottom + 'px';
 
     var lbl = document.createElement('div');
     lbl.className = 'wf-lbl';
