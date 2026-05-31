@@ -171,55 +171,49 @@
   .metric .mv.neg { color: var(--red-dark); }
   .metric .mv.dim { color: var(--mid); }
 
-  /* Waterfall */
+  /* Q1B live hint */
+  .qa-hint-live { font-size: 11px; color: var(--blue); font-style: italic; font-weight: 300; line-height: 1.5; margin-top: 2px; max-width: 340px; }
+
+  /* Waterfall — cascading (200px above the $0 line + 60px below; 16/18px label bands) */
   .wf-legend { display: flex; gap: 14px; font-size: 11px; color: var(--mid); margin-bottom: .625rem; flex-wrap: wrap; }
   .wf-legend span { display: flex; align-items: center; gap: 4px; }
   .wf-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
-  .wf-scroll { overflow-x: auto; margin-bottom: 1.25rem; }
-  .wf-inner { display: flex; align-items: flex-end; gap: 3px; height: 160px; min-width: 520px; padding: 0 2px; }
-  .wf-col { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 52px; }
-  .wf-val { font-size: 10px; font-weight: 500; text-align: center; margin-bottom: 2px; min-height: 14px; }
+  .wf-scroll { overflow-x: auto; margin-bottom: 1.25rem; padding-left: 30px; }
+  .wf-inner { position: relative; display: flex; gap: 3px; height: 294px; min-width: 560px; padding: 0 2px; }
+  .wf-baseline { position: absolute; bottom: 78px; left: 0; right: 0; height: 1px; background: var(--border-dark); z-index: 0; }
+  .wf-baseline-label { position: absolute; bottom: 78px; left: -28px; font-size: 10px; color: var(--muted); transform: translateY(50%); }
+  .wf-col { position: relative; flex: 1; min-width: 56px; height: 100%; }
+  .wf-val { position: absolute; top: 0; left: 0; right: 0; height: 14px; line-height: 14px; font-size: 10px; font-weight: 500; text-align: center; }
   .wf-val.pos { color: var(--green-dark); }
   .wf-val.neg { color: var(--red-dark); }
   .wf-val.rev { color: var(--blue); }
-  .wf-bar { width: 86%; border-radius: 3px; transition: height .25s ease; }
+  .wf-bar { position: absolute; width: 84%; left: 8%; border-radius: 3px; z-index: 1; transition: height .2s ease, bottom .2s ease; }
   .wf-bar.rev    { background: var(--blue-light); border: 1px solid var(--blue); }
   .wf-bar.cost   { background: var(--red-light);  border: 1px solid rgba(214,59,59,0.3); }
   .wf-bar.profit { background: var(--green-light); border: 1px solid rgba(0,176,80,0.3); }
   .wf-bar.loss   { background: var(--red-light);  border: 1px solid rgba(214,59,59,0.6); }
-  .wf-lbl { font-size: 9px; color: var(--muted); text-align: center; margin-top: 4px; line-height: 1.3; max-width: 58px; }
+  .wf-lbl { position: absolute; bottom: 0; left: 0; right: 0; height: 16px; font-size: 9px; color: var(--muted); text-align: center; line-height: 1.15; }
 
   /* Cashflow table */
-  .cf-scroll { overflow-x: auto; margin-bottom: 1rem; }
-  table.cf { border-collapse: collapse; font-size: 12px; min-width: 580px; width: 100%; }
-  table.cf th {
-    font-size: 10px; font-weight: 500; color: var(--muted);
-    padding: 6px 7px; border-bottom: 1px solid var(--border-dark);
-    white-space: nowrap; text-align: right; letter-spacing: .02em;
-  }
+  .cf-wrap { overflow-x: auto; margin-bottom: 0; }
+  table.cf { border-collapse: collapse; font-size: 11.5px; min-width: 700px; width: 100%; }
+  table.cf th { font-size: 10px; font-weight: 500; color: var(--muted); padding: 5px 6px; border-bottom: 1px solid var(--border-dark); white-space: nowrap; text-align: right; letter-spacing: .02em; }
   table.cf th.lh { text-align: left; }
-  table.cf td {
-    padding: 6px 7px; border-bottom: 1px solid var(--border);
-    white-space: nowrap; text-align: right; color: var(--dark);
-    font-variant-numeric: tabular-nums; font-size: 12px;
-  }
-  table.cf td.lh  { text-align: left; color: var(--mid); }
-  table.cf td.cat-hd {
-    font-size: 10px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: .08em; color: var(--muted);
-    background: var(--off-white); padding: 4px 7px;
-  }
+  table.cf th.fml { text-align: left; font-style: italic; }
+  table.cf td { padding: 5px 6px; border-bottom: 1px solid var(--border); white-space: nowrap; text-align: right; color: var(--dark); font-variant-numeric: tabular-nums; font-size: 11.5px; }
+  table.cf td.lh { text-align: left; color: var(--mid); }
+  table.cf td.fml { text-align: left; color: var(--muted); font-size: 10px; font-style: italic; }
+  table.cf td.cell-empty { color: transparent; user-select: none; }
   table.cf tr.subtotal td { font-weight: 500; background: var(--off-white); border-top: 1px solid var(--border-dark); }
-  table.cf tr.running td  { font-weight: 500; border-top: 1px solid var(--border-dark); background: var(--dark); color: var(--white); }
+  table.cf tr.running td { font-weight: 500; background: var(--dark); color: var(--white); border-top: 1px solid var(--border-dark); }
   table.cf tr.running td.lh { color: rgba(255,255,255,0.6); }
-
-  .cell-pos     { color: var(--green-dark); background: var(--green-light); }
-  .cell-neg     { color: var(--red-dark);   background: var(--red-light); }
-  .cell-run-pos { color: var(--green-dark); font-weight: 600; }
-  .cell-run-neg { color: var(--red);        font-weight: 600; }
-  .cell-empty   { color: var(--border-dark); }
-  .plval-pos    { color: var(--green-dark); }
-  .plval-neg    { color: var(--red-dark); }
+  table.cf tr.running td.cell-empty { background: var(--dark); }
+  .cell-pos { color: var(--green-dark); background: var(--green-light); }
+  .cell-neg { color: var(--red-dark); background: var(--red-light); }
+  .run-pos { color: var(--green-dark); font-weight: 600; }
+  .run-neg { color: var(--red); font-weight: 600; }
+  .net-pos { color: var(--green-dark); }
+  .net-neg { color: var(--red-dark); }
 
   /* Callouts (tool-safe variants — no .callout class, avoid blog conflict) */
   .tool-note {
@@ -349,15 +343,15 @@
 
     <!-- ── Q&A input form ── -->
     <h2 class="sec-title">Your numbers</h2>
-    <p class="sec-sub">Answer 10 questions. Everything below updates as you type.</p>
+    <p class="sec-sub">Answer the questions below. Everything updates as you type.</p>
 
     <div class="qa-form">
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q01</span>
+          <span class="qa-num">Q1A</span>
           <span class="qa-label">How many units do you sell per month?</span>
-          <span class="qa-tip">Your typical monthly sales volume. Monthly costs below are spread across this number.</span>
+          <span class="qa-tip">Used to spread your monthly costs across each unit.</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
@@ -369,9 +363,24 @@
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q02</span>
-          <span class="qa-label">What is your selling price?</span>
-          <span class="qa-tip">The price the customer pays you, per unit, before any of your costs.</span>
+          <span class="qa-num">Q1B</span>
+          <span class="qa-label">How many units do you buy per order?</span>
+          <span class="qa-tip">Drives your batch size and the scale of the cashflow below.</span>
+          <span class="qa-hint-live" id="pu-moq-hint"></span>
+        </div>
+        <div class="qa-right">
+          <div class="input-row">
+            <input class="qa-input" type="number" id="i-moq" placeholder="e.g. 1,500" min="1" step="1" oninput="recalc()">
+          </div>
+          <span class="input-suffix">units / order</span>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-left">
+          <span class="qa-num">Q2</span>
+          <span class="qa-label">What does your customer pay per unit?</span>
+          <span class="qa-tip">If you offer free shipping, make sure the delivery cost is baked into this price — otherwise add your shipping charge on top.</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
@@ -384,9 +393,9 @@
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q03</span>
-          <span class="qa-label">What does each unit cost to buy or make?</span>
-          <span class="qa-tip">Your landed product cost from the supplier or factory, per unit.</span>
+          <span class="qa-num">Q3</span>
+          <span class="qa-label">What do you pay your supplier per unit?</span>
+          <span class="qa-tip">FOB / factory price.</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
@@ -399,9 +408,9 @@
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q04</span>
-          <span class="qa-label">Ocean freight + import tariff</span>
-          <span class="qa-tip">Inbound shipping and duties to get the goods into your warehouse, per unit.</span>
+          <span class="qa-num">Q4</span>
+          <span class="qa-label">What does it cost to land each unit in your warehouse?</span>
+          <span class="qa-tip">Freight + customs + tariff, per unit.</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
@@ -414,29 +423,14 @@
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q05</span>
-          <span class="qa-label">Outbound shipping to the customer</span>
-          <span class="qa-tip">What it costs to deliver one unit to the buyer, per unit.</span>
+          <span class="qa-num">Q5</span>
+          <span class="qa-label">What do you pay your warehouse per month?</span>
+          <span class="qa-tip">Storage fee. Per-unit cost = fee ÷ (units per order ÷ 2).</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-outship" placeholder="e.g. 10.00" min="0" step="0.01" oninput="recalc()">
-          </div>
-          <span class="input-suffix">per unit</span>
-        </div>
-      </div>
-
-      <div class="qa-item">
-        <div class="qa-left">
-          <span class="qa-num">Q06</span>
-          <span class="qa-label">Storage + pick &amp; pack</span>
-          <span class="qa-tip">Total monthly warehousing and fulfilment handling. Spread across your volume.</span>
-        </div>
-        <div class="qa-right">
-          <div class="input-row">
-            <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-storage" placeholder="e.g. 1,000" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-storage" placeholder="e.g. 150" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
           <span class="qa-per-unit" id="pu-storage"></span>
@@ -445,14 +439,44 @@
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q07</span>
-          <span class="qa-label">Platform / marketplace fee</span>
-          <span class="qa-tip">Total monthly fees to your marketplace or selling channel. Spread across your volume.</span>
+          <span class="qa-num">Q6A</span>
+          <span class="qa-label">What does your 3PL charge to pick and pack each order?</span>
+          <span class="qa-tip">Per-unit handling fee.</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-platform" placeholder="e.g. 4,500" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-pickpack" placeholder="e.g. 1.00" min="0" step="0.01" oninput="recalc()">
+          </div>
+          <span class="input-suffix">per unit</span>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-left">
+          <span class="qa-num">Q6B</span>
+          <span class="qa-label">What does it cost to deliver each order to your customer?</span>
+          <span class="qa-tip">Include stickers, inserts, carton, and any other per-order packaging costs here — not just the carrier fee.</span>
+        </div>
+        <div class="qa-right">
+          <div class="input-row">
+            <span class="input-prefix">$</span>
+            <input class="qa-input" type="number" id="i-delivery" placeholder="e.g. 7.00" min="0" step="0.01" oninput="recalc()">
+          </div>
+          <span class="input-suffix">per unit</span>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-left">
+          <span class="qa-num">Q7</span>
+          <span class="qa-label">What does the platform charge you per month?</span>
+          <span class="qa-tip">Commission + referral fees.</span>
+        </div>
+        <div class="qa-right">
+          <div class="input-row">
+            <span class="input-prefix">$</span>
+            <input class="qa-input" type="number" id="i-platform" placeholder="e.g. 50" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
           <span class="qa-per-unit" id="pu-platform"></span>
@@ -461,30 +485,14 @@
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q08</span>
-          <span class="qa-label">Returns &amp; refunds</span>
-          <span class="qa-tip">Total monthly cost of returned and refunded orders. Spread across your volume.</span>
+          <span class="qa-num">Q8</span>
+          <span class="qa-label">What do you spend on ads per month?</span>
+          <span class="qa-tip">Total monthly advertising and marketing spend.</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
             <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-returns" placeholder="e.g. 1,500" min="0" step="1" oninput="recalc()">
-          </div>
-          <span class="input-suffix">/ mo</span>
-          <span class="qa-per-unit" id="pu-returns"></span>
-        </div>
-      </div>
-
-      <div class="qa-item">
-        <div class="qa-left">
-          <span class="qa-num">Q09</span>
-          <span class="qa-label">Advertising &amp; marketing</span>
-          <span class="qa-tip">Total monthly ad spend and marketing cost. Spread across your volume.</span>
-        </div>
-        <div class="qa-right">
-          <div class="input-row">
-            <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-ads" placeholder="e.g. 3,000" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-ads" placeholder="e.g. 200" min="0" step="1" oninput="recalc()">
           </div>
           <span class="input-suffix">/ mo</span>
           <span class="qa-per-unit" id="pu-ads"></span>
@@ -493,17 +501,16 @@
 
       <div class="qa-item">
         <div class="qa-left">
-          <span class="qa-num">Q10</span>
-          <span class="qa-label">Admin &amp; labour</span>
-          <span class="qa-tip">Total monthly overhead — salaries, software, admin. Spread across your volume.</span>
+          <span class="qa-num">Q9</span>
+          <span class="qa-label">What percentage of units sold are returned?</span>
+          <span class="qa-tip">Refund cost = selling price × return % × units sold per month.</span>
         </div>
         <div class="qa-right">
           <div class="input-row">
-            <span class="input-prefix">$</span>
-            <input class="qa-input" type="number" id="i-admin" placeholder="e.g. 0" min="0" step="1" oninput="recalc()">
+            <input class="qa-input" type="number" id="i-returnrate" placeholder="e.g. 2" min="0" step="0.1" oninput="recalc()">
           </div>
-          <span class="input-suffix">/ mo</span>
-          <span class="qa-per-unit" id="pu-admin"></span>
+          <span class="input-suffix">% of units sold</span>
+          <span class="qa-per-unit" id="pu-return"></span>
         </div>
       </div>
 
@@ -547,17 +554,21 @@
 
     <hr class="results-divider">
 
-    <!-- ── Results: Cashflow over time ── -->
-    <h2 class="sec-title">Cashflow over time</h2>
-    <p class="sec-sub">Each row is a cost or revenue event. Each column is a month. Cells show when cash actually moves — not when you record it on a P&amp;L.</p>
+    <!-- ── Results: Cashflow over one order cycle ── -->
+    <h2 class="sec-title">Cashflow over one order cycle</h2>
+    <p class="sec-sub">From paying your supplier to collecting revenue. Each column is a month; cells show when cash actually moves — not when you book it on a P&amp;L.</p>
 
-    <div class="cf-scroll">
+    <div class="cf-wrap">
       <table class="cf">
         <tbody id="cf-body"></tbody>
       </table>
     </div>
 
-    <div class="tool-note" id="cf-callout"></div>
+    <div class="tool-note" style="border-top:none;border-radius:0 0 var(--radius-sm) var(--radius-sm);font-size:12px;line-height:1.6;">
+      <p style="margin-bottom:6px"><strong>Two things to keep in mind.</strong></p>
+      <p style="margin-bottom:6px">The month each event appears in is an assumption based on a typical import cycle. Your actual timing will vary depending on supplier lead time, freight terms, platform payment schedule, and 3PL processing speed. Use the formula column as the logic and map it to your own calendar for a more accurate picture.</p>
+      <p>The math is also simplified — storage is modelled as a flat monthly fee, platform and ad costs are spread evenly, and returns are treated as a single end-of-batch event. Real cashflow will have more overlap and irregular timing. If you want a model built around your actual numbers, use the link below.</p>
+    </div>
 
   </div><!-- /.tool-wrap -->
 </div><!-- /.tool-content -->
@@ -600,7 +611,7 @@ document.addEventListener('click', function(e) {
 
 <script>
 // ═══════════════════════════════════════════
-//  TOOL LOGIC — Unit Economics & Cashflow Model
+//  TOOL LOGIC — Unit Economics & Cashflow Model (v2)
 // ═══════════════════════════════════════════
 
 function val(id) {
@@ -609,6 +620,8 @@ function val(id) {
   var v = parseFloat(el.value);
   return isNaN(v) ? 0 : v;
 }
+function g(name) { return val('i-' + name); }              // g('vol') → #i-vol
+
 function money(n, dec) {
   if (dec === undefined) dec = 2;
   var s = Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
@@ -620,62 +633,92 @@ function signed(n, dec) {
   return (n > 0 ? '+$' : n < 0 ? '−$' : '$') + s;
 }
 function pct(n) { return (n * 100).toFixed(1) + '%'; }
+function num(n) { return n.toLocaleString('en-US', { maximumFractionDigits: 2 }); }   // formula numbers
+function pct0(n) { return (Math.round(n * 1000) / 10) + '%'; }                        // 0.02 → "2%"
 
-// Per-unit tags (Q06–Q10) — only display when both volume and the monthly cost are entered
-function updatePerUnitTags(vol) {
-  var pairs = [
-    ['pu-storage',  'i-storage'],
-    ['pu-platform', 'i-platform'],
-    ['pu-returns',  'i-returns'],
-    ['pu-ads',      'i-ads'],
-    ['pu-admin',    'i-admin']
-  ];
-  pairs.forEach(function (p) {
-    var el = document.getElementById(p[0]);
-    if (!el) return;
-    var monthly = val(p[1]);
-    if (val('i-vol') > 0 && monthly > 0) {
-      el.textContent = '= ' + money(monthly / vol) + ' per unit';
-    } else {
-      el.textContent = '';
-    }
-  });
-}
 function setMetric(id, text, cls) {
   var el = document.getElementById(id);
   if (!el) return;
   el.textContent = text;
   el.className = 'mv ' + cls;
 }
+function setInline(id, txt) {
+  var el = document.getElementById(id);
+  if (el) el.textContent = txt;
+}
 
+// Live Q1B hint — updates when Q1A changes
+function updateMoqHint() {
+  var vol = Math.max(1, g('vol'));
+  var hint = document.getElementById('pu-moq-hint');
+  if (hint) hint.textContent = 'Tip: at least 3× monthly volume recommended — ' + (vol * 3).toLocaleString() + ' units at your current volume.';
+}
+
+// Inline per-unit conversions shown next to the inputs
+function updateInlineDisplays(vol, moq, price, storage, platform, ads, retRate) {
+  setInline('pu-storage',  (storage > 0 && moq > 0)   ? '= ' + money(storage / (moq / 2)) + ' per unit · month' : '');
+  setInline('pu-platform', (platform > 0)             ? '= ' + money(platform / vol) + ' per unit' : '');
+  setInline('pu-ads',      (ads > 0)                  ? '= ' + money(ads / vol) + ' per unit' : '');
+  setInline('pu-return',   (retRate > 0 && price > 0) ? '= ' + money(price * retRate) + ' per unit' : '');
+}
+
+// Months of sell-through = order qty ÷ monthly volume, rounded up, capped at 5
+function sellMonths(moq, vol) {
+  return Math.min(Math.max(1, Math.ceil(moq / vol)), 5);
+}
+
+// ── Cascading waterfall ──
 function buildWaterfall(price, costs, profit) {
   var wrap = document.getElementById('waterfall');
   wrap.innerHTML = '';
+
+  // Geometry — keep in sync with .wf-* CSS
+  var ABOVE = 200, BELOW = 60, LBL = 18, BASE = BELOW + LBL;   // baseline 78px from container bottom
+  var scale = price > 0 ? ABOVE / price : 1;                  // Y-axis based on selling price only
+
+  var baseline = document.createElement('div');
+  baseline.className = 'wf-baseline';
+  wrap.appendChild(baseline);
+  var blLbl = document.createElement('div');
+  blLbl.className = 'wf-baseline-label';
+  blLbl.textContent = '$0';
+  wrap.appendChild(blLbl);
+
   var items = [{ label: 'Selling price', val: price, type: 'rev' }];
   costs.forEach(function (c) {
     if (Math.abs(c.val) >= 0.01) items.push({ label: c.label, val: -c.val, type: 'cost' });
   });
-  items.push({
-    label: profit >= 0 ? 'Gross profit' : 'Loss',
-    val: profit,
-    type: profit >= 0 ? 'profit' : 'loss'
-  });
+  items.push({ label: profit >= 0 ? 'Gross profit' : 'Loss', val: profit, type: profit >= 0 ? 'profit' : 'loss' });
 
-  var maxVal = price > 0 ? price : 1;
-  var maxH = 130;
-
+  var running = price;
   items.forEach(function (it) {
     var col = document.createElement('div');
     col.className = 'wf-col';
 
     var valEl = document.createElement('div');
     valEl.className = 'wf-val ' + (it.type === 'rev' ? 'rev' : (it.val >= 0 ? 'pos' : 'neg'));
-    var prefix = it.type === 'rev' ? '' : (it.val >= 0 ? '+' : '−');
-    valEl.textContent = prefix + '$' + Math.abs(it.val).toFixed(2);
+    valEl.textContent = (it.type === 'rev' ? '' : (it.val >= 0 ? '+' : '−')) + '$' + Math.abs(it.val).toFixed(2);
+
+    var h, bottom, bd;
+    if (it.type === 'cost') {
+      var prev = running;
+      running += it.val;                       // it.val negative — step down
+      bd = Math.max(running, 0);
+      h = Math.round((prev - bd) * scale);
+      bottom = Math.round(bd * scale) + BASE;
+    } else if (it.type === 'loss') {
+      h = Math.round(Math.min(Math.abs(profit) * scale, BELOW));   // capped below the line
+      bottom = BASE - h;
+    } else {                                   // rev or profit — full bar up from baseline
+      h = Math.round((it.type === 'rev' ? price : profit) * scale);
+      bottom = BASE;
+    }
+    h = Math.max(2, h);
 
     var bar = document.createElement('div');
     bar.className = 'wf-bar ' + it.type;
-    bar.style.height = Math.max(2, Math.abs(it.val) / maxVal * maxH) + 'px';
+    bar.style.height = h + 'px';
+    bar.style.bottom = bottom + 'px';
 
     var lbl = document.createElement('div');
     lbl.className = 'wf-lbl';
@@ -688,39 +731,45 @@ function buildWaterfall(price, costs, profit) {
   });
 }
 
+// ── Batch cashflow over one order cycle ──
 function buildCashflow(d) {
   var months = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'];
+  var n = sellMonths(d.moq, d.vol);
+
+  // start = first month (1-based); count = number of months; per = $ per month
+  function row(label, formula, start, count, per) {
+    var vals = [0, 0, 0, 0, 0, 0, 0];
+    for (var m = start; m <= Math.min(start + count - 1, 7); m++) vals[m - 1] += per;
+    return { label: label, formula: formula, vals: vals };
+  }
+
+  var moqStr = d.moq.toLocaleString();
+  var volStr = d.vol.toLocaleString();
   var events = [
-    { label: 'Selling price',       rev: true, vals: [0, 0, 0, 0, 0, d.price, 0] },
-    { label: 'Buy cost',            vals: [0, -d.buy, 0, 0, 0, 0, 0] },
-    { label: 'Ocean + tariff',      vals: [0, 0, -d.freight, 0, 0, 0, 0] },
-    { label: 'Outbound shipping',   vals: [0, 0, 0, 0, -d.outship, 0, 0] },
-    { label: 'Storage & pick-pack', vals: [0, 0, 0, -d.storagePU / 2, -d.storagePU / 2, 0, 0] },
-    { label: 'Platform fee',        vals: [0, 0, 0, 0, -d.platformPU, 0, 0] },
-    { label: 'Advertising',         vals: [0, 0, -d.adsPU / 3, -d.adsPU / 3, -d.adsPU / 3, 0, 0] },
-    { label: 'Returns & refunds',   vals: [0, 0, 0, 0, 0, 0, -d.returnsPU] }
+    row('Buy cost',           '$' + num(d.buy) + ' × ' + moqStr + ' units',     1, 1, -d.buy * d.moq),
+    row('Ocean + tariff',     '$' + num(d.freight) + ' × ' + moqStr + ' units', 2, 1, -d.freight * d.moq),
+    row('Storage fee',        '$' + num(d.storage) + ' / mo',                   3, n, -d.storage),
+    row('Platform fee',       '$' + num(d.platform) + ' / mo',                  3, n, -d.platform),
+    row('Ads fee',            '$' + num(d.ads) + ' / mo',                       4, Math.max(1, n - 1), -d.ads),
+    row('Pick & pack',        '$' + num(d.pickpack) + ' × ' + volStr + ' / mo', 5, n, -d.pickpack * d.vol),
+    row('Delivery fee',       '$' + num(d.delivery) + ' × ' + volStr + ' / mo', 5, n, -d.delivery * d.vol),
+    row('Revenue collection', '$' + num(d.price) + ' × ' + volStr + ' / mo',    6, Math.max(1, n - 1), d.price * d.vol),
+    row('Returns & refunds',  '$' + num(d.price) + ' × ' + pct0(d.retRate) + ' × ' + volStr, Math.min(4 + n, 7), 1, -d.price * d.retRate * d.vol)
   ];
 
+  function cell(v) {
+    if (Math.abs(v) < 0.005) return '<td class="cell-empty"></td>';
+    return '<td class="' + (v > 0 ? 'cell-pos' : 'cell-neg') + '">' + signed(v, 0) + '</td>';
+  }
+
   var html = '';
-  // Header row
-  html += '<tr><th class="lh">Cash event</th>';
+  html += '<tr><th class="lh">Line item</th><th class="fml">Formula</th>';
   months.forEach(function (m) { html += '<th>' + m + '</th>'; });
   html += '</tr>';
-  // Category header
-  html += '<tr><td class="cat-hd" colspan="' + (months.length + 1) + '">Cash events across the order cycle</td></tr>';
 
-  // Event rows (filter zero-value rows except selling price)
   events.forEach(function (ev) {
-    var nonzero = ev.vals.some(function (v) { return Math.abs(v) >= 0.005; });
-    if (!ev.rev && !nonzero) return;
-    html += '<tr><td class="lh">' + ev.label + '</td>';
-    ev.vals.forEach(function (v) {
-      if (Math.abs(v) < 0.005) {
-        html += '<td class="cell-empty">·</td>';
-      } else {
-        html += '<td class="' + (v > 0 ? 'cell-pos' : 'cell-neg') + '">' + signed(v) + '</td>';
-      }
-    });
+    html += '<tr><td class="lh">' + ev.label + '</td><td class="fml">' + ev.formula + '</td>';
+    ev.vals.forEach(function (v) { html += cell(v); });
     html += '</tr>';
   });
 
@@ -728,94 +777,89 @@ function buildCashflow(d) {
   var nets = months.map(function (m, i) {
     return events.reduce(function (s, ev) { return s + ev.vals[i]; }, 0);
   });
-  html += '<tr class="subtotal"><td class="lh">Monthly net</td>';
+  html += '<tr class="subtotal"><td class="lh">Monthly net</td><td class="fml"></td>';
   nets.forEach(function (v) {
-    var cls = v > 0.005 ? 'plval-pos' : (v < -0.005 ? 'plval-neg' : '');
-    html += '<td class="' + cls + '">' + (Math.abs(v) < 0.005 ? '—' : signed(v)) + '</td>';
+    if (Math.abs(v) < 0.005) { html += '<td class="cell-empty"></td>'; return; }
+    html += '<td class="' + (v > 0 ? 'net-pos' : 'net-neg') + '">' + signed(v, 0) + '</td>';
   });
   html += '</tr>';
 
-  // Cumulative cash
-  var cum = 0, peak = 0;
-  var cums = nets.map(function (v) { cum += v; if (cum < peak) peak = cum; return cum; });
-  html += '<tr class="running"><td class="lh">Cumulative cash</td>';
-  cums.forEach(function (v) {
-    html += '<td class="' + (v >= 0 ? 'cell-run-pos' : 'cell-run-neg') + '">' + signed(v) + '</td>';
+  // Cumulative cashflow
+  var cum = 0;
+  html += '<tr class="running"><td class="lh">Cumulative cashflow</td><td class="fml"></td>';
+  months.forEach(function (m, i) {
+    cum += nets[i];
+    html += '<td class="' + (cum >= 0 ? 'run-pos' : 'run-neg') + '">' + signed(cum, 0) + '</td>';
   });
   html += '</tr>';
 
   document.getElementById('cf-body').innerHTML = html;
-  return peak;
 }
 
 function recalc() {
-  var vol      = Math.max(1, val('i-vol'));
-  var price    = val('i-price');
+  var vol      = Math.max(1, g('vol'));
+  var moq      = Math.max(1, g('moq'));
+  var price    = g('price');
+  var buy      = g('buy');
+  var freight  = g('freight');
+  var storage  = g('storage');
+  var pickpack = g('pickpack');
+  var delivery = g('delivery');
+  var platform = g('platform');
+  var ads      = g('ads');
+  var retRate  = g('returnrate') / 100;
 
-  // If no selling price entered yet, clear results and return early
+  // Live hint + inline per-unit displays (independent of selling price where possible)
+  updateMoqHint();
+  updateInlineDisplays(vol, moq, price, storage, platform, ads, retRate);
+
+  // Per-unit conversions
+  var storagePU  = storage  / (moq / 2);   // fee ÷ avg units in stock
+  var platformPU = platform / vol;
+  var adsPU      = ads      / vol;
+  var returnPU   = price    * retRate;      // refund per unit sold
+
+  // Blank-state guard
   if (price === 0) {
-    document.getElementById('m-naive').textContent       = '—';
-    document.getElementById('m-real').textContent        = '—';
-    document.getElementById('m-profit-unit').textContent = '—';
-    document.getElementById('m-profit-mo').textContent   = '—';
-    document.getElementById('m-naive').className         = 'mv dim';
-    document.getElementById('m-real').className          = 'mv dim';
-    document.getElementById('m-profit-unit').className   = 'mv dim';
-    document.getElementById('m-profit-mo').className     = 'mv dim';
-    document.getElementById('waterfall').innerHTML       = '';
-    document.getElementById('ue-callout').innerHTML      = '';
-    document.getElementById('cf-body').innerHTML         = '';
-    document.getElementById('cf-callout').innerHTML      = '';
-    // Per-unit tags still depend only on cost + volume, so update them below
-    updatePerUnitTags(vol);
+    ['m-naive', 'm-real', 'm-profit-unit', 'm-profit-mo'].forEach(function (id) {
+      var el = document.getElementById(id);
+      el.textContent = '—';
+      el.className = 'mv dim';
+    });
+    document.getElementById('waterfall').innerHTML  = '';
+    document.getElementById('ue-callout').innerHTML = '';
+    document.getElementById('cf-body').innerHTML    = '';
     return;
   }
 
-  var buy      = val('i-buy');
-  var freight  = val('i-freight');
-  var outship  = val('i-outship');
-
-  // Monthly → per unit
-  var storagePU  = val('i-storage')  / vol;
-  var platformPU = val('i-platform') / vol;
-  var returnsPU  = val('i-returns')  / vol;
-  var adsPU      = val('i-ads')      / vol;
-  var adminPU    = val('i-admin')    / vol;
-
-  // Per-unit tags (Q06–Q10) — guarded against blank inputs
-  updatePerUnitTags(vol);
-
-  var totalCosts  = buy + freight + outship + storagePU + platformPU + returnsPU + adsPU + adminPU;
+  var totalCosts  = buy + freight + storagePU + pickpack + delivery + platformPU + adsPU + returnPU;
   var profit      = price - totalCosts;
-  var naiveMargin = price > 0 ? (price - buy - freight) / price : 0;
-  var realMargin  = price > 0 ? profit / price : 0;
+  var naiveMargin = (price - buy - freight) / price;
+  var realMargin  = profit / price;
 
-  // Metric cards
   setMetric('m-naive', pct(naiveMargin), 'dim');
   setMetric('m-real', pct(realMargin), realMargin >= 0 ? 'pos' : 'neg');
   setMetric('m-profit-unit', money(profit), profit >= 0 ? 'pos' : 'neg');
   setMetric('m-profit-mo', money(profit * vol, 0), profit >= 0 ? 'pos' : 'neg');
 
-  // Waterfall
-  var costs = [
+  buildWaterfall(price, [
     { label: 'Buy cost',       val: buy },
     { label: 'Ocean + tariff', val: freight },
-    { label: 'Outbound ship',  val: outship },
-    { label: 'Storage & PnP',  val: storagePU },
+    { label: 'Storage',        val: storagePU },
+    { label: 'Pick & pack',    val: pickpack },
+    { label: 'Delivery fee',   val: delivery },
     { label: 'Platform fee',   val: platformPU },
-    { label: 'Returns',        val: returnsPU },
     { label: 'Advertising',    val: adsPU },
-    { label: 'Admin & labour', val: adminPU }
-  ];
-  buildWaterfall(price, costs, profit);
+    { label: 'Returns',        val: returnPU }
+  ], profit);
 
-  // UE callout
+  // Unit-economics callout
   var ue = document.getElementById('ue-callout');
   if (profit < -0.005) {
     ue.className = 'tool-note red';
     ue.innerHTML = 'At these inputs, every unit you sell <strong>loses ' + money(Math.abs(profit)) +
       '</strong>. A naive margin of <strong>' + pct(naiveMargin) +
-      '</strong> looks healthy, but the operating costs below pull the real margin down to <strong>' +
+      '</strong> looks healthy, but the full cost stack pulls the real margin down to <strong>' +
       pct(realMargin) + '</strong>.';
   } else {
     ue.className = 'tool-note';
@@ -826,23 +870,12 @@ function recalc() {
       money(profit * vol, 0) + ' per month</strong> at ' + vol.toLocaleString('en-US') + ' units.';
   }
 
-  // Cashflow
-  var peak = buildCashflow({
-    price: price, buy: buy, freight: freight, outship: outship,
-    storagePU: storagePU, platformPU: platformPU, returnsPU: returnsPU, adsPU: adsPU
+  // Batch cashflow
+  buildCashflow({
+    vol: vol, moq: moq, price: price, buy: buy, freight: freight,
+    storage: storage, pickpack: pickpack, delivery: delivery,
+    platform: platform, ads: ads, retRate: retRate
   });
-
-  // CF callout
-  var cf = document.getElementById('cf-callout');
-  if (peak < -0.005) {
-    cf.className = 'tool-note red';
-    cf.innerHTML = 'Before revenue lands, your cash position dips to <strong>' + money(peak) +
-      ' per unit</strong>. At <strong>' + vol.toLocaleString('en-US') + ' units / month</strong>, that\'s <strong>' +
-      money(peak * vol, 0) + '</strong> of cash tied up in the order cycle before the first dollar comes back.';
-  } else {
-    cf.className = 'tool-note green';
-    cf.innerHTML = '<strong>Cashflow stays positive</strong> across the entire order cycle — money comes in before it goes out. Rare, and worth protecting.';
-  }
 }
 </script>
 
