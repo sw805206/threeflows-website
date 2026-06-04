@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webinar Feedback Survey — Three Flows Solutions</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --green-dark: #3B6D11;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  /* ── SITE SHELL: nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  /* ── SITE SHELL: breadcrumb ── */
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  /* ── Layout (matches tool pages) ── */
+  .layout {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  /* ── Survey header ── */
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .tool-desc { font-size: 17px; color: var(--mid); line-height: 1.6; margin-bottom: 14px; }
+  .tool-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+  .post-date { font-size: 12px; color: var(--muted); }
+  .type-badge {
+    display: inline-block;
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Buttons ── */
+  .btn-red { background: var(--red); color: white; border: none; padding: 12px 26px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s, transform 0.15s; display: inline-block; text-decoration: none; }
+  .btn-red:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  .btn-red:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* ── Survey form ── */
+  .survey-form { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 28px; }
+
+  /* Respondent info block (above the questions) */
+  .respondent { padding: 4px 0 24px; border-bottom: 1px solid var(--border); }
+  .respondent .field-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .respondent .field-row + .field-row { margin-top: 16px; }
+  .respondent .field { flex: 1 1 200px; }
+  .respondent label.field-label { display: block; font-size: 12px; font-weight: 500; color: var(--mid); margin-bottom: 6px; }
+  .respondent label.field-label .req { color: var(--red); }
+  .respondent input {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark);
+    background: var(--white); border: 1.5px solid var(--border-dark);
+    border-radius: 8px; padding: 11px 14px; width: 100%; outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .respondent input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(214,59,59,0.12); }
+
+  .question { padding: 22px 0; border-bottom: 1px solid var(--border); }
+  .question:first-child { padding-top: 4px; }
+  .question:last-of-type { border-bottom: none; }
+  .question .q-label { display: block; font-size: 15px; font-weight: 500; color: var(--dark); line-height: 1.5; margin-bottom: 14px; }
+  .question .q-label .req { color: var(--red); }
+
+  /* Scale (1–5 / 1–10) — radio buttons in a row */
+  .scale { display: flex; flex-wrap: wrap; gap: 8px; }
+  .scale label {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 40px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .scale input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .scale .pip {
+    display: block;
+    border: 1.5px solid var(--border-dark);
+    border-radius: 8px;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mid);
+    background: var(--white);
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .scale label:hover .pip { border-color: var(--red); }
+  .scale input:checked + .pip { border-color: var(--red); background: var(--red); color: var(--white); }
+  .scale input:focus-visible + .pip { box-shadow: 0 0 0 3px rgba(214,59,59,0.18); }
+  .scale-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  /* Textarea */
+  .question textarea {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark);
+    background: var(--white); border: 1.5px solid var(--border-dark);
+    border-radius: 8px; padding: 12px 14px; width: 100%; outline: none;
+    min-height: 96px; resize: vertical; line-height: 1.6;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .question textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(214,59,59,0.12); }
+
+  /* Choice (Yes / No / Maybe) */
+  .choice { display: flex; flex-wrap: wrap; gap: 10px; }
+  .choice label { position: relative; cursor: pointer; }
+  .choice input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .choice .opt {
+    display: inline-block;
+    border: 1.5px solid var(--border-dark);
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mid);
+    background: var(--white);
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .choice label:hover .opt { border-color: var(--red); }
+  .choice input:checked + .opt { border-color: var(--red); background: var(--red); color: var(--white); }
+  .choice input:focus-visible + .opt { box-shadow: 0 0 0 3px rgba(214,59,59,0.18); }
+
+  /* ── Form footer: error + submit ── */
+  .form-footer { margin-top: 26px; }
+  .form-error {
+    display: none; font-size: 13px; color: var(--red-dark);
+    background: var(--red-light); border-radius: 6px; padding: 10px 13px; margin-bottom: 16px;
+  }
+  .form-error.show { display: block; }
+
+  /* ── Success state (replaces the form) ── */
+  .survey-done {
+    display: none;
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 48px 28px; text-align: center;
+  }
+  .survey-done.show { display: block; }
+  .survey-done .check {
+    width: 56px; height: 56px; margin: 0 auto 18px;
+    border-radius: 50%; background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--green-dark);
+  }
+  .survey-done h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--dark); margin-bottom: 10px; }
+  .survey-done p { font-size: 15px; color: var(--mid); line-height: 1.6; max-width: 420px; margin: 0 auto 22px; }
+  .survey-done .secondary { margin-top: 16px; margin-bottom: 0; }
+  .cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+  .cta-link:hover { text-decoration: underline; }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    .layout { padding: 24px 20px 56px; }
+    h1 { font-size: 28px; }
+    .survey-form { padding: 24px 18px; }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; articles</a>
+        <a href="useful-websites.html">Useful websites</a>
+        <a href="free-tools.html">Checklists &amp; calculators</a>
+        <a href="webinars.html">Webinars &amp; seminars</a>
+        <a href="livestream.html">Livestream schedule</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Breadcrumb → back to the survey hub (internal link, → / ← convention) -->
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="surveys.html">← Surveys</a>
+</div>
+
+<div class="layout">
+
+  <!-- Survey header -->
+  <h1>Webinar feedback survey</h1>
+  <p class="tool-desc">Thanks for joining today's webinar. A few quick questions — about a minute — to help us make the next one more useful.</p>
+  <div class="tool-meta">
+    <span class="type-badge">Survey</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SURVEY FORM  (svy001 — Webinar feedback)
+  ════════════════════════════════════════════ -->
+  <form class="survey-form" id="survey-form" novalidate>
+
+    <!-- Respondent info — collected before the survey questions.
+         These map to the first columns of the svy001 Sheet tab. -->
+    <div class="respondent">
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="resp-name">Name <span class="req">*</span></label>
+          <input type="text" id="resp-name" name="name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label class="field-label" for="resp-email">Email <span class="req">*</span></label>
+          <input type="email" id="resp-email" name="email" autocomplete="email">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="resp-company">Company name</label>
+          <input type="text" id="resp-company" name="company" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label class="field-label" for="resp-industry">Industry</label>
+          <input type="text" id="resp-industry" name="industry">
+        </div>
+      </div>
+    </div>
+
+    <!-- Q1 — Usefulness, 1–5 scale -->
+    <div class="question">
+      <label class="q-label">How useful did you find the webinar today?</label>
+      <div class="scale" id="q1-scale">
+        <label><input type="radio" name="usefulness" value="1"><span class="pip">1</span></label>
+        <label><input type="radio" name="usefulness" value="2"><span class="pip">2</span></label>
+        <label><input type="radio" name="usefulness" value="3"><span class="pip">3</span></label>
+        <label><input type="radio" name="usefulness" value="4"><span class="pip">4</span></label>
+        <label><input type="radio" name="usefulness" value="5"><span class="pip">5</span></label>
+      </div>
+      <div class="scale-ends"><span>1 — Not useful at all</span><span>5 — Very useful</span></div>
+    </div>
+
+    <!-- Q2 — Recommend, 1–10 scale -->
+    <div class="question">
+      <label class="q-label">Would you recommend this webinar to a friend?</label>
+      <div class="scale" id="q2-scale">
+        <label><input type="radio" name="recommend" value="1"><span class="pip">1</span></label>
+        <label><input type="radio" name="recommend" value="2"><span class="pip">2</span></label>
+        <label><input type="radio" name="recommend" value="3"><span class="pip">3</span></label>
+        <label><input type="radio" name="recommend" value="4"><span class="pip">4</span></label>
+        <label><input type="radio" name="recommend" value="5"><span class="pip">5</span></label>
+        <label><input type="radio" name="recommend" value="6"><span class="pip">6</span></label>
+        <label><input type="radio" name="recommend" value="7"><span class="pip">7</span></label>
+        <label><input type="radio" name="recommend" value="8"><span class="pip">8</span></label>
+        <label><input type="radio" name="recommend" value="9"><span class="pip">9</span></label>
+        <label><input type="radio" name="recommend" value="10"><span class="pip">10</span></label>
+      </div>
+      <div class="scale-ends"><span>1 — Not at all</span><span>10 — Yes, very much</span></div>
+    </div>
+
+    <!-- Q3 — Suggestions, free text -->
+    <div class="question">
+      <label class="q-label" for="suggestions">What suggestions do you have to make this webinar more useful?</label>
+      <textarea id="suggestions" name="suggestions" placeholder="Optional — tell us what would have made it better."></textarea>
+    </div>
+
+    <!-- Q4 — Interest, choice -->
+    <div class="question">
+      <label class="q-label">Are you interested in working with Three Flows to start a business or support an existing one?</label>
+      <div class="choice" id="q4-choice">
+        <label><input type="radio" name="interest" value="Yes"><span class="opt">Yes</span></label>
+        <label><input type="radio" name="interest" value="No"><span class="opt">No</span></label>
+        <label><input type="radio" name="interest" value="Maybe"><span class="opt">Maybe</span></label>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <div class="form-error" id="form-error">Please enter your name and a valid email address before submitting.</div>
+      <button type="submit" class="btn-red" id="survey-submit">Submit feedback →</button>
+    </div>
+  </form>
+
+  <!-- Success state — replaces the form after a successful submission -->
+  <div class="survey-done" id="survey-done">
+    <div class="check" aria-hidden="true">✓</div>
+    <h2>Thank you!</h2>
+    <p>Your feedback has been recorded. We read every response — it genuinely shapes the next webinar.</p>
+    <!-- Post-survey CTA → internal site tool (Make vs. Buy). href is set from the
+         MAKE_BUY_TOOL_URL constant in the script below. Internal link → uses →. -->
+    <a class="btn-red" id="tool-link" href="#">Explore our Make vs. Buy decision tool →</a>
+    <p class="secondary"><a class="cta-link" href="surveys.html">Back to surveys →</a></p>
+  </div>
+
+</div><!-- /.layout -->
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+<script>
+// ═══════════════════════════════════════════
+//  SURVEY SUBMIT — svy001 (Webinar feedback)
+//  Posts each submission as a row to a Google Apps Script web app,
+//  which appends it to the survey's Google Sheet.
+// ═══════════════════════════════════════════
+(function () {
+  // SURVEY_ID selects which Sheet tab the shared Apps Script appends to —
+  // one tab per survey. Future survey pages set their own id here.
+  const SURVEY_ID = 'svy001';
+
+  // ⚠️ REPLACE THIS PLACEHOLDER with the live Apps Script web app URL.
+  //    Deploy the bound Apps Script (Deploy ▸ New deployment ▸ Web app,
+  //    "Execute as: Me", "Who has access: Anyone") and paste its /exec URL here.
+  //    This SAME URL is shared by every survey page (svy001, svy002, …).
+  const ENDPOINT = 'REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL';
+
+  // Post-survey CTA target — internal site tool (Make vs. Buy decision guide).
+  // Edit here if the tool URL changes.
+  const MAKE_BUY_TOOL_URL = 'https://threeflows.com/tool-ref001.html';
+
+  const form     = document.getElementById('survey-form');
+  const submit   = document.getElementById('survey-submit');
+  const errorBox = document.getElementById('form-error');
+  const doneBox  = document.getElementById('survey-done');
+
+  // Wire the success-state CTA from the constant above.
+  document.getElementById('tool-link').href = MAKE_BUY_TOOL_URL;
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function getRadio(name) {
+    const el = form.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : '';
+  }
+  function getVal(id) { return document.getElementById(id).value.trim(); }
+
+  // Required fields: name + a well-formed email. All other fields are optional.
+  function validate() {
+    return getVal('resp-name') !== '' && EMAIL_RE.test(getVal('resp-email'));
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errorBox.classList.remove('show');
+
+    if (!validate()) {
+      errorBox.classList.add('show');
+      return;
+    }
+
+    // Build the generic, reusable payload. `answers` is an ORDERED array in the
+    // same column order as this survey's Sheet tab: respondent-info fields first,
+    // then the question answers. Optional fields send '' when blank. Future survey
+    // pages send their own answers array of whatever length — the shared Apps
+    // Script and Sheet handle variable lengths, so the script never needs editing.
+    //   svy001 column order:
+    //   [name, email, company, industry, usefulness 1–5, recommend 1–10, suggestions, interest]
+    const answers = [
+      getVal('resp-name'),       // Name      (required)
+      getVal('resp-email'),      // Email     (required)
+      getVal('resp-company'),    // Company   (optional → '')
+      getVal('resp-industry'),   // Industry  (optional → '')
+      getRadio('usefulness'),    // Q1 — 1–5
+      getRadio('recommend'),     // Q2 — 1–10
+      getVal('suggestions'),     // Q3 — free text
+      getRadio('interest')       // Q4 — Yes / No / Maybe
+    ];
+    const payload = { surveyId: SURVEY_ID, answers: answers };
+
+    // Disable the button while sending so it can't be double-submitted.
+    submit.disabled = true;
+    submit.textContent = 'Sending…';
+
+    try {
+      // Apps Script web apps don't return CORS headers, so a normal POST with
+      // a JSON Content-Type would trigger a CORS preflight (OPTIONS) that the
+      // script can't answer. We send the JSON body as text/plain and use
+      // mode:'no-cors' — both keep this a "simple" request with no preflight.
+      // With no-cors the response is opaque (its body can't be read), so we
+      // ASSUME success if the request doesn't throw, and treat only a network
+      // failure (catch) as an error.
+      await fetch(ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+
+      // Success: replace the form with the thank-you state.
+      form.style.display = 'none';
+      doneBox.classList.add('show');
+    } catch (err) {
+      // Network-level failure — let the visitor retry.
+      submit.disabled = false;
+      submit.textContent = 'Submit feedback →';
+      errorBox.textContent = "Something went wrong sending your feedback. Please try again.";
+      errorBox.classList.add('show');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

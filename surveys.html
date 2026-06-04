@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Quick surveys from Three Flows Solutions — share your feedback in about a minute.">
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<title>Surveys — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --red-mid: rgba(214, 59, 59, 0.12);
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+  .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  .nav-cta:hover { background: #333; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  /* SHARED HELPERS */
+  .eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+  .eyebrow.red { color: var(--red); }
+  .btn-outline { background: transparent; color: var(--dark); border: 1px solid var(--border-dark); padding: 13px 28px; border-radius: 6px; font-size: 15px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; display: inline-block; text-decoration: none; }
+  .btn-outline:hover { border-color: var(--dark); }
+  .btn-red { background: var(--red); color: white; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s, transform 0.15s; display: inline-block; text-decoration: none; }
+  .btn-red:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* BREADCRUMB */
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; }
+  .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb:hover { color: var(--dark); }
+
+  /* HERO */
+  .res-hero { max-width: 1100px; margin: 0 auto; padding: 64px 48px 48px; }
+  .res-hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .res-hero p.lead { font-size: 17px; color: var(--mid); line-height: 1.7; font-weight: 300; max-width: 720px; }
+
+  /* SECTIONS */
+  .res-section { max-width: 1100px; margin: 0 auto; padding: 24px 48px; }
+
+  /* INFO BANNER */
+  .info-banner {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--dark);
+  }
+  .info-banner p { margin: 0; padding: 4px 0; color: var(--dark); display: flex; gap: 10px; align-items: flex-start; }
+  .info-banner p::before { content: '•'; color: var(--red); font-weight: 700; flex-shrink: 0; }
+  .info-banner a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
+  .info-banner a:hover { color: var(--red); }
+
+  /* TOOL GRID */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 8px;
+    align-items: stretch;
+  }
+  .tool-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tool-card .tool-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2px; }
+  .tool-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--dark);
+    margin: 4px 0 4px;
+    font-weight: 400;
+  }
+  .tool-card p.tool-desc { font-size: 14px; color: var(--mid); line-height: 1.6; margin-bottom: 8px; }
+  .tool-type-pill {
+    display: inline-block;
+    background: var(--red-mid);
+    color: var(--red-dark);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .tool-revised { font-size: 12px; color: var(--muted); }
+  .tool-card .tool-actions { margin-top: auto; padding-top: 12px; }
+  .tool-card .cta-link { margin-top: auto; }
+  .tool-card .tool-actions .btn-red { padding: 10px 20px; font-size: 14px; }
+  .tool-card .custom-line { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .tool-card .custom-line a { color: var(--red-dark); text-decoration: underline; font-weight: 500; }
+  .tool-card .custom-line a:hover { color: var(--red); }
+
+  /* EMPTY STATE */
+  .tools-empty {
+    border: 1px dashed var(--border-dark);
+    border-radius: var(--radius);
+    padding: 64px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    background: var(--off-white);
+  }
+
+  /* BLACK BANNER BOTTOM CTA */
+  .bottom-cta { background: var(--dark); margin-top: 32px; }
+  .bottom-inner { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+  .bottom-inner h2 { font-family: 'DM Serif Display', serif; font-size: 30px; color: white; max-width: 460px; line-height: 1.25; }
+  .bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+  .bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--dark); }
+
+  /* RESPONSIVE */
+  @media (max-width: 800px) {
+    .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
+    .tools-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    .res-hero { padding: 32px 20px 16px; }
+    .res-hero h1 { font-size: 32px; }
+    .res-section { padding: 20px; }
+    footer { padding: 20px; }
+  }
+
+  .tool-launch-link:hover { text-decoration: underline; }
+.cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+.cta-link:hover { text-decoration: underline; }
+.eyebrow.muted { color: var(--muted); }
+
+  /* CAROUSEL ROWS */
+  .tools-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-top: 8px;
+    padding-bottom: 8px;
+  }
+  .tools-row::-webkit-scrollbar { display: none; }
+  .tools-row .tool-card { flex: 0 0 320px; }
+  .tools-row + .eyebrow { margin-top: 40px; }
+
+  /* PLACEHOLDER CARDS */
+  .tool-card--placeholder { cursor: default; }
+  .tool-card--placeholder .placeholder-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .skeleton-bar {
+    background: var(--off-white);
+    border-radius: 4px;
+    height: 12px;
+    margin-bottom: 8px;
+  }
+  .skeleton-bar.title { height: 20px; width: 65%; margin-bottom: 16px; }
+  .skeleton-bar.short { width: 55%; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; articles</a>
+        <a href="useful-websites.html">Useful websites</a>
+        <a href="free-tools.html">Checklists &amp; calculators</a>
+        <a href="webinars.html">Webinars &amp; seminars</a>
+        <a href="livestream.html">Livestream schedule</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="res-hero">
+  <div class="eyebrow red">Surveys</div>
+  <h1>Tell Us What You Think.</h1>
+  <p class="lead">Quick surveys to share your feedback — no login, and most take about a minute.</p>
+</section>
+
+<section class="res-section" style="padding-top: 8px;">
+
+  <div class="eyebrow muted">Surveys</div>
+
+  <!-- ═══ SVY series — Surveys ═══════════════════════════════════════════
+       Each card below is one survey, linking to its own survey page
+       (svy001.html, svy002.html, …). IDs are sequential per series and live
+       ONLY as the element id / this comment — never as on-card text visible
+       to visitors.
+
+       TO RETIRE A SURVEY (one-step): wrap that card's <div class="tool-card">
+       … </div> block in an HTML comment, or delete it. Inactive surveys
+       render nothing — do NOT leave a placeholder tile behind.
+       ═══════════════════════════════════════════════════════════════════ -->
+  <div class="tools-row" id="surveys-row">
+
+    <!-- svy001 — Webinar feedback survey (ACTIVE) -->
+    <div class="tool-card" id="svy001" data-type="survey">
+      <h3>Webinar feedback survey</h3>
+      <p class="tool-desc">Attended today's webinar? Share quick feedback in about a minute — it helps us make the next one better.</p>
+      <div class="tool-actions">
+        <a class="btn-red" href="svy001.html">Take the survey →</a>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="bottom-cta">
+  <div class="bottom-inner">
+    <div>
+      <h2>Want to work with us?</h2>
+      <p>Beyond the survey, we'd love to hear what you're building.</p>
+    </div>
+    <div class="bottom-actions">
+      <a href="contact.html" class="btn-red on-dark" style="font-size:14px;font-weight:500;padding:11px 24px;">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+
+</script>
+</body>
+</html>
