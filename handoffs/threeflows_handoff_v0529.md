@@ -175,8 +175,9 @@ Format rule: `[Page Name] — Three Flows Solutions`
 | CK003 | tool-ck003.html | Voice of Customer Checklist | May 8, 2026 |
 | CK004 | tool-ck004.html | Company and Brand Setup Checklist | May 8, 2026 |
 | UE001 | tool-ue001.html | Unit Economics & Cashflow Model | May 29, 2026 |
+| UE002 | tool-ue002.html | Last-Mile Rate Calculator | June 3, 2026 |
 
-**Next available IDs:** CK005, UE002
+**Next available IDs:** CK005, UE003
 
 **Standard tool page pattern:**
 - Breadcrumb: `← Free Tools` → `free-tools.html`
@@ -282,7 +283,7 @@ Carried forward from May 10:
 New decisions May 29:
 - **`.tool-note` is the tool-page callout class** — `.callout-*` classes are for blog posts only. Tool pages use `.tool-note`, `.tool-note.red`, `.tool-note.green`. Do not cross-use.
 - **UE series introduced** — `UE` prefix for unit economics / financial model tools. `CK` prefix for checklists. Both follow the same structural page pattern.
-- **Tool ID registry** — IDs are sequential per series. Next: CK005, UE002.
+- **Tool ID registry** — IDs are sequential per series. Next: CK005, UE003.
 
 ---
 
