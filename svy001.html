@@ -268,10 +268,15 @@
 
   <!-- Survey header -->
   <h1>Webinar feedback survey</h1>
-  <p class="tool-desc">Thanks for joining today's webinar. A few quick questions — about a minute — to help us make the next one more useful.</p>
+  <!-- Subheading (webinar name) — reuses .tool-desc, same as a tool page's intro line -->
+  <p class="tool-desc">The E-Commerce Journey for Small Business</p>
+  <!-- Smaller secondary line — reuses .post-date, the same class tool-ckNNN pages use
+       for "Last revised: …", sitting beside the type badge in .tool-meta -->
   <div class="tool-meta">
     <span class="type-badge">Survey</span>
+    <span class="post-date">In collaboration with: NYC Business Solutions | June 4th, 2026</span>
   </div>
+  <p class="tool-desc">Attended today's webinar? Share quick feedback in about a minute — it helps us make the next one better.</p>
 
   <!-- ═══════════════════════════════════════════
        SURVEY FORM  (svy001 — Webinar feedback)
@@ -361,9 +366,10 @@
     <div class="check" aria-hidden="true">✓</div>
     <h2>Thank you!</h2>
     <p>Your feedback has been recorded. We read every response — it genuinely shapes the next webinar.</p>
-    <!-- Post-survey CTA → internal site tool (Make vs. Buy). href is set from the
-         MAKE_BUY_TOOL_URL constant in the script below. Internal link → uses →. -->
-    <a class="btn-red" id="tool-link" href="#">Explore our Make vs. Buy decision tool →</a>
+    <!-- Post-survey CTA → internal site tool (Sourcing Strategy Decision Guide).
+         href is set from the SOURCING_GUIDE_TOOL_URL constant in the script
+         below. Internal link → uses →. -->
+    <a class="btn-red" id="tool-link" href="#">Explore our Sourcing Strategy Decision Guide tool →</a>
     <p class="secondary"><a class="cta-link" href="surveys.html">Back to surveys →</a></p>
   </div>
 
@@ -417,9 +423,9 @@ document.addEventListener('click', function(e) {
   //    (simulates success, posts nothing) — same pattern inquiry.html uses.
   const ENDPOINT = 'https://script.google.com/macros/s/AKfycby4KC-lDutGwu8J_JgJkMHOBqN-KVFzC0imFaOab-PEXs3FP7mwAJDYepPlaEC5SKEH/exec';
 
-  // Post-survey CTA target — internal site tool (Make vs. Buy decision guide).
+  // Post-survey CTA target — internal site tool (Sourcing Strategy Decision Guide).
   // Edit here if the tool URL changes.
-  const MAKE_BUY_TOOL_URL = 'https://threeflows.com/tool-ref001.html';
+  const SOURCING_GUIDE_TOOL_URL = 'https://threeflows.com/tool-ref001.html';
 
   const form     = document.getElementById('survey-form');
   const submit   = document.getElementById('survey-submit');
@@ -427,7 +433,7 @@ document.addEventListener('click', function(e) {
   const doneBox  = document.getElementById('survey-done');
 
   // Wire the success-state CTA from the constant above.
-  document.getElementById('tool-link').href = MAKE_BUY_TOOL_URL;
+  document.getElementById('tool-link').href = SOURCING_GUIDE_TOOL_URL;
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   function getRadio(name) {
