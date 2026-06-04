@@ -45,6 +45,17 @@ before any HTML, CSS, or JS is written or edited.
 
 ---
 
+## Tool ID conventions
+
+- Two tool series: **CK** = Checklist, **CA** = Calculator (financial-model /
+  unit-economics calculators live in the CA series). The short-lived "UE"
+  prefix was retired and consolidated into CA on June 3, 2026.
+- IDs are sequential per series. **Next available: CK005, CA003.**
+- `TOOL_REGISTRY.md` (repo root) is the authoritative tool registry; the latest
+  handoff in `handoffs/` carries the current operational state.
+
+---
+
 ## Rules that never change
 
 - Never read from /Users/swai/multipage without git pulling first
