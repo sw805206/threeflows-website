@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Last-Mile Shipping Rates Explained: UPS vs FedEx vs USPS (2026) — Three Flows Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D63B3B;
+    --red-dark: #B82E2E;
+    --red-light: #FDF0F0;
+    --dark: #1A1A1A;
+    --mid: #5C5C5C;
+    --muted: #909090;
+    --off-white: #F8F8F8;
+    --white: #FFFFFF;
+    --border: rgba(0,0,0,0.09);
+    --border-dark: rgba(0,0,0,0.18);
+    --green: #00B050;
+    --green-light: #EAF3DE;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: var(--off-white);
+  }
+
+  /* ── Layout ── */
+  .layout {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── Post meta ── */
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .post-date { font-size: 13px; color: var(--muted); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .post-meta .post-tags { margin-left: auto; }
+  .post-tag-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: none;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .post-tag-pill.primary   { background: #FDE8F0; color: #B5256A; }
+  .post-tag-pill.secondary { background: #E8E8E8; color: #3A3A3A; }
+  .post-tag-pill.empty     { background: #F8F8F8; color: #C8C8C8; }
+
+  /* ── Typography ── */
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--mid);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+    margin: 40px 0 12px;
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 28px 0 8px;
+  }
+  p { margin-bottom: 18px; color: var(--mid); }
+  ul, ol { margin: 12px 0 20px 22px; color: var(--mid); }
+  li { margin-bottom: 8px; }
+  strong { color: var(--dark); font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -10px; margin-bottom: 18px; }
+
+  /* ── Callout (red — default) ── */
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout p { color: var(--dark); margin: 0; }
+
+  /* ── Callout neutral (grey) ── */
+  .callout-grey {
+    background: var(--off-white);
+    border-left: 3px solid var(--border-dark);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0;
+  }
+  .callout-grey p { color: var(--mid); margin: 0; }
+
+  /* ── Callout green ── */
+  .callout.green { background: var(--green-light); border-left-color: var(--green); }
+  .callout.green p { color: #174a17; }
+
+  /* ── Callout blue ── */
+  .callout.blue { background: #EEF4FB; border-left-color: #185FA5; }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  th.left { text-align: left; }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--mid);
+    text-align: center;
+    font-size: 13px;
+  }
+  td.left { text-align: left; color: var(--dark); font-weight: 500; }
+  tr:hover td { background: var(--off-white); }
+  .highlight-row td { background: var(--green-light); color: #1a4a1a; font-weight: 600; }
+  .summary-row td { background: var(--off-white); color: var(--dark); font-weight: 600; border-top: 2px solid var(--border-dark); }
+
+  /* ── Source fine print ── */
+  .fine-print { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .fine-print strong { color: var(--mid); font-weight: 600; }
+  .fine-print p { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+
+  /* ── SITE SHELL: nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--dark); }
+  nav .logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: var(--dark); }
+  nav .nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  nav .nav-cta:hover { background: #333; }
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 6px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 10px 16px; font-size: 13px; color: var(--dark); text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+
+  /* ── SITE SHELL: breadcrumb ── */
+  .breadcrumb-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 48px 0; font-family: 'DM Sans', sans-serif; }
+  .breadcrumb-wrap .breadcrumb { font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .breadcrumb-wrap .breadcrumb:hover { color: var(--dark); }
+
+  /* ── SITE SHELL: footer ── */
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; background: var(--white); font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: var(--muted); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--dark); }
+
+  /* ── Post nav (prev/next) ── */
+  .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px auto 0; max-width: 820px; padding: 0 24px; }
+  .post-nav-tile { background: var(--white); border: 1px solid var(--border-dark); border-radius: 10px; padding: 18px 22px; text-decoration: none; color: inherit; transition: border-color 0.18s, background 0.18s; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .post-nav-tile:hover { border-color: var(--dark); background: var(--white); }
+  .post-nav-tile.next { text-align: right; align-items: flex-end; }
+  .post-nav-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .post-nav-title { font-family: 'DM Serif Display', serif; font-size: 16px; line-height: 1.3; color: var(--dark); }
+  .post-nav-spacer { }
+
+  .cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+  .cta-link:hover { text-decoration: underline; }
+
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-links { display: none; }
+    .breadcrumb-wrap { padding: 20px 20px 0; }
+    footer { padding: 20px; }
+    .post-nav { grid-template-columns: 1fr; padding: 0 20px; }
+    .post-nav-tile.next { text-align: left; align-items: flex-start; }
+    h1 { font-size: 26px; }
+    .compare { grid-template-columns: 1fr; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown" id="dd-services">
+      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">Business Planning</a>
+        <a href="svc2.html">Sourcing Consultation</a>
+        <a href="svc3.html">Launch Hypercare</a>
+        <a href="svc4.html">Ongoing Management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown" id="dd-resources">
+      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; Articles</a>
+        <a href="useful-websites.html">Useful Websites</a>
+        <a href="free-tools.html">Checklists &amp; Calculators</a>
+        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
+        <a href="livestream.html">Livestream Discussions</a>
+      </div>
+    </li>
+    <li><a href="index.html#about-anchor">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-wrap">
+  <a class="breadcrumb" href="blog.html">← Blog</a>
+</div>
+
+<!-- PREV / NEXT NAV -->
+<div class="post-nav">
+  <a class="post-nav-tile prev" href="blog-023.html">
+    <span class="post-nav-label">← Previous</span>
+    <span class="post-nav-title">Make or Buy? Local or Overseas? How to Think Through Your Sourcing Strategy</span>
+  </a>
+  <div class="post-nav-spacer"></div>
+</div>
+
+<!-- POST CONTENT -->
+<div class="layout">
+
+  <div class="post-meta">
+    <span class="post-date">June 3, 2026 &nbsp;·&nbsp; 10 min read</span>
+    <div class="post-tags">
+      <span class="post-tag-pill primary">Plan</span>
+      <span class="post-tag-pill empty">Source</span>
+      <span class="post-tag-pill empty">Launch</span>
+      <span class="post-tag-pill empty">Scale</span>
+      <span class="post-tag-pill empty">Data</span>
+      <span class="post-tag-pill empty">Setup</span>
+      <span class="post-tag-pill empty">Compliance</span>
+      <span class="post-tag-pill empty">Others</span>
+    </div>
+  </div>
+
+  <h1>Last-Mile Shipping Rates Explained: UPS vs FedEx vs USPS (2026)</h1>
+  <p class="subtitle">"Last-mile" is the final leg that carries a parcel from a regional hub to your customer's door — and for most e-commerce sellers it's the single largest variable cost per order. This post walks through how the three national carriers price that leg in 2026, how a rate is actually built up surcharge by surcharge, and why the published number is almost never what you end up paying.</p>
+
+  <p>When you sell a physical product online, the last-mile carrier is the business partner you never chose but pay every single day. Their rate card sits on top of every order, and a small misunderstanding of how it works — one oversize parcel, one residential surcharge you didn't budget for — quietly erodes the margin you worked hard to build.</p>
+
+  <p>The good news: published rates follow a logic. Once you understand the three carriers' personalities, how dimensional weight is calculated, and the order in which surcharges stack, the rate card stops being a black box. Let's walk through it.</p>
+
+  <h2>1. Three carriers, three personalities</h2>
+
+  <p>USPS, UPS, and FedEx all deliver to every residential address in the country, but they price and behave very differently. Picking the right one for a given parcel is the first lever you control.</p>
+
+  <h3>USPS Ground Advantage</h3>
+  <ul>
+    <li><strong>Advantages:</strong> Residential delivery is included at no surcharge, it reaches every PO box and rural address through the postal network, and it's usually the cheapest option for small, light parcels. Its dimensional-weight rules are the most forgiving of the three.</li>
+    <li><strong>Disadvantages:</strong> Less granular tracking and a softer service guarantee than the private carriers, and pricing gets less competitive as parcels grow heavier and bulkier.</li>
+  </ul>
+
+  <h3>UPS Ground</h3>
+  <ul>
+    <li><strong>Advantages:</strong> Strong, predictable transit times, excellent tracking, and <em>flat-dollar</em> accessorial surcharges — which makes the total cost of a heavy or awkward parcel easy to predict ahead of time.</li>
+    <li><strong>Disadvantages:</strong> Charges a residential surcharge, applies a Delivery Area Surcharge to many ZIPs, and its dimensional-weight threshold kicks in sooner than USPS.</li>
+  </ul>
+
+  <h3>FedEx Ground / Home Delivery</h3>
+  <ul>
+    <li><strong>Advantages:</strong> Broad coverage and competitive base rates, with Home Delivery purpose-built for residential e-commerce (including Saturday delivery in many areas).</li>
+    <li><strong>Disadvantages:</strong> The most aggressive dimensional-weight factor (it bills DIM on <em>every</em> parcel, with no size threshold), the highest residential surcharge of the three, and <em>zone-based</em> accessorials that rise with distance — so the same oversize box can cost noticeably more to a far zone.</li>
+  </ul>
+
+  <div class="callout-grey">
+    <p>Rule of thumb: small and light tends to favor USPS; heavy and predictable tends to favor UPS's flat surcharges; and FedEx Home Delivery is competitive for residential parcels that stay within the dimensional thresholds. The only way to know for a given parcel is to price all three.</p>
+  </div>
+
+  <h2>2. Dimensional weight — why a light box can cost like a heavy one</h2>
+
+  <p>Carriers charge for the space a parcel occupies, not just what it weighs. A large box of pillows weighs little but fills a truck, so each carrier converts size into a <strong>dimensional weight</strong> (DIM) and bills you on whichever is greater — the actual weight or the dimensional weight.</p>
+
+  <p>The formula is the same everywhere; only the divisor and the size threshold change:</p>
+
+  <div class="callout blue">
+    <p><strong>DIM weight = (Length × Width × Height) ÷ divisor</strong>, rounded up to the next whole pound. Your <strong>chargeable weight = max(actual weight, DIM weight)</strong>. A smaller divisor produces a larger DIM weight — so a smaller divisor is worse for you.</p>
+  </div>
+
+  <p>Worked example — a 20 × 18 × 12 inch box (4,320 in³) that actually weighs 8 lb:</p>
+  <ul>
+    <li><strong>FedEx</strong> (divisor 139, no threshold): 4,320 ÷ 139 = 31.1 → <strong>32 lb chargeable.</strong> You pay for 32 lb, not 8.</li>
+    <li><strong>UPS</strong> (divisor 166, applies once volume &gt; 864 in³): 4,320 ÷ 166 = 26.0 → <strong>26 lb chargeable.</strong></li>
+    <li><strong>USPS</strong> (divisor 166, applies once volume &gt; 1,728 in³, and only on zones 5–9): 4,320 ÷ 166 = 26.0 → 26 lb to a far zone, but on a near zone (1–4) USPS bills the <strong>actual 8 lb.</strong></li>
+  </ul>
+
+  <p>The thresholds are where USPS quietly wins on bulky-but-light parcels: anything under one cubic foot (1,728 in³) is billed by actual weight, and even above that, DIM only applies to the farther zones. UPS starts applying DIM at half a cubic foot. FedEx applies it to everything.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Carrier</th>
+          <th>DIM divisor</th>
+          <th>Size threshold before DIM applies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="left">FedEx Ground / Home</td><td>139</td><td>None — DIM applies to every parcel</td></tr>
+        <tr><td class="left">UPS Ground</td><td>166</td><td>Volume &gt; 864 in³</td></tr>
+        <tr><td class="left">USPS Ground Advantage</td><td>166</td><td>Volume &gt; 1,728 in³, zones 5–9 only</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. How a rate is built up, in order</h2>
+
+  <p>A shipping charge is not a single number — it's a stack. Each carrier starts from a base rate and adds surcharges in a specific order, then multiplies the running subtotal by a fuel percentage at the end. Understanding the order matters, because the fuel surcharge applies to <em>everything above it</em>.</p>
+
+  <ol>
+    <li><strong>Base rate</strong> — chargeable weight × zone (the farther the zone, the higher the rate).</li>
+    <li><strong>Additional Handling (AHS)</strong> — for parcels over a weight or dimension/packaging trigger, but not large enough to be oversize.</li>
+    <li><strong>Oversize / Large-Package surcharge</strong> — for parcels past the large-package thresholds. On FedEx this <em>replaces</em> AHS rather than stacking on top of it.</li>
+    <li><strong>Delivery Area Surcharge (DAS)</strong> — for extended or remote ZIP codes.</li>
+    <li><strong>Residential surcharge</strong> — when delivering to a home rather than a commercial address.</li>
+    <li><strong>Address correction</strong> — when the label address is incomplete or wrong.</li>
+    <li><strong>Dangerous goods &amp; other accessorials</strong> — hazardous materials, signature, declared value, etc.</li>
+    <li><strong>Fuel surcharge</strong> — a percentage multiplier applied to the running subtotal of everything above. It moves weekly with fuel prices.</li>
+    <li><strong>Seasonal / demand (peak) surcharges</strong> — added during peak periods (roughly mid-October through mid-January).</li>
+  </ol>
+
+  <div class="callout">
+    <p>Because fuel is a percentage on the subtotal, every surcharge you trigger earlier in the stack also gets marked up by fuel. A $105.50 oversize charge isn't $105.50 — it's $105.50 plus the fuel percentage on top of it. Surcharges compound.</p>
+  </div>
+
+  <h2>4. Side-by-side: the surcharges that move the needle</h2>
+
+  <p>The tables below compare the four accessorials that most often surprise sellers. All figures are <strong>published list rates</strong> for the carrier sources cited at the end — your negotiated rates will differ, and fuel, DAS, peak, address correction, and dangerous-goods charges are excluded.</p>
+
+  <h3>Residential surcharge</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Carrier</th>
+          <th>Residential surcharge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row"><td class="left">USPS Ground Advantage</td><td>$0.00 (included)</td></tr>
+        <tr><td class="left">UPS Ground</td><td>$3.55</td></tr>
+        <tr><td class="left">FedEx Home Delivery</td><td>$6.45</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">For a store shipping mostly to homes, this one line alone can swing per-order cost by several dollars before any other surcharge.</p>
+
+  <h3>Additional Handling (AHS) — weight trigger (&gt; 50 lb)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Carrier</th>
+          <th>AHS — weight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="left">UPS Ground</td><td>$27.75 flat</td></tr>
+        <tr><td class="left">FedEx Ground / Home</td><td>$46.00 – $58.75 (by zone)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Additional Handling (AHS) — dimension / packaging trigger</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Carrier</th>
+          <th>AHS — dimension / packaging</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="left">UPS Ground</td><td>$17.50 flat (billed at 40 lb minimum)</td></tr>
+        <tr><td class="left">FedEx Ground / Home</td><td>$26.50 – $40.75 by zone (billed at 40 lb minimum)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Note the difference in <em>shape</em>: UPS charges one flat dollar amount; FedEx scales the same surcharge by zone, so a far-zone parcel costs more to handle than a near-zone one.</p>
+
+  <h3>Oversize / Large-Package surcharge</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Carrier</th>
+          <th>Oversize surcharge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="left">UPS Ground</td><td>$105.50 commercial / $117.25 residential</td></tr>
+        <tr><td class="left">USPS Ground Advantage</td><td>Zone-based "oversized" price</td></tr>
+        <tr><td class="left">FedEx Ground / Home</td><td>Zone-based (replaces AHS, does not stack)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-grey">
+    <p>Read the pattern across all four tables: <strong>UPS prices accessorials as flat dollars; FedEx prices them by zone; USPS folds many of them into the base rate.</strong> That single difference in pricing philosophy is usually what decides which carrier wins a given parcel.</p>
+  </div>
+
+  <h2>5. The published rate is almost never what you pay</h2>
+
+  <p>Everything above is the <em>list</em> price — the rack rate. Almost no established seller pays it. There are two common ways to get well below published rates:</p>
+
+  <ul>
+    <li><strong>Rate aggregators</strong> (for example, ShipStation and similar platforms) pool many small shippers' volume to access discounts of up to roughly <strong>50% off published</strong> rates — without you having to negotiate a contract yourself.</li>
+    <li><strong>3PL warehouses</strong> that ship enormous combined volume can offer last-mile rates up to roughly <strong>80% off published</strong>, on top of handling pick-pack and storage for you.</li>
+  </ul>
+
+  <div class="callout green">
+    <p>The takeaway isn't "FedEx is expensive" or "USPS is cheap." It's that the published rate is a starting point, and the gap between list and what a high-volume partner actually pays is large enough to change which carrier — and which fulfillment model — makes sense for your business.</p>
+  </div>
+
+  <p>Choosing the right carrier mix, packing to stay under dimensional thresholds, and accessing pooled or 3PL rates can together reshape your single largest variable cost. If you'd like help mapping your parcel profile to the cheapest viable option, <a href="contact.html" class="cta-link">contact us to learn how to save →</a></p>
+
+  <div class="callout blue">
+    <p><strong>Looking ahead:</strong> effective <strong>July 12, 2026</strong>, USPS is tightening Ground Advantage — the dimensional divisor drops to 139 for parcels over 1 cubic foot (bringing it in line with FedEx), and the current 4 oz and 8 oz price tiers are being removed. If a meaningful share of your parcels are bulky-but-light, the USPS advantage described in section 2 narrows after that date. Re-price your mix when it takes effect.</p>
+  </div>
+
+  <div class="fine-print">
+    <p><strong>Sources &amp; fine print.</strong> Published list rates referenced in this post are drawn from: the <strong>FedEx Service Guide</strong> (effective January 5, 2026); the <strong>UPS Small Business Rate Guide</strong> (effective January 26, 2026 — figures shown are UPS Small Business published rates); and <strong>USPS Notice 123, Commercial</strong> (effective April 26, 2026).</p>
+    <p>All figures are published list rates and exclude <strong>fuel surcharge, Delivery Area Surcharge (DAS), demand / peak surcharges, address correction, and dangerous-goods (DG) charges.</strong> Negotiated, aggregator, and 3PL rates differ from published rates. Surcharge amounts and effective dates change frequently — verify current figures against the carrier source before relying on them.</p>
+  </div>
+
+</div><!-- /.layout -->
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+function toggleDropdown(id, event) {
+  if (event) event.stopPropagation();
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
+
+</body>
+</html>
