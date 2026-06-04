@@ -118,6 +118,11 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .flow-num { width: 32px; height: 32px; background: white; border: 1px solid var(--border-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 14px; transition: background 0.2s; }
 .flow-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
 .flow-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+.flow-program { font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+.flow-step.active .flow-program { color: var(--red-light); }
+.flow-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.flow-head .flow-num { margin-bottom: 0; }
+.flow-head .flow-title { margin-bottom: 0; }
 .flow-arrow { position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; background: var(--white); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--mid); z-index: 2; }
 .flow-detail { border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); background: var(--white); overflow: hidden; }
 .flow-detail-inner { display: none; }
@@ -1032,31 +1037,43 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   <div id="services-anchor"></div>
   <div class="process-section">
     <div class="eyebrow">How we work</div>
-    <div class="section-title">A step-by-step journey<br>from idea to operating business</div>
-    <p class="section-sub" style="margin-bottom:0">Click any stage to explore what we do — and how it connects to the next step.</p>
+    <div class="section-title">Pathfinder &amp; Runningmate</div>
+    <p class="section-sub" style="margin-bottom:0">We support you along the way in our journey from start to scale. Click any stage to explore what we do and how it connects to the next step.</p>
 
     <div class="flow-container">
       <div class="flow-step active" onclick="setFlow(0)">
-        <div class="flow-num">1</div>
-        <div class="flow-title">Plan</div>
+        <div class="flow-program">Pathfinder</div>
+        <div class="flow-head">
+          <div class="flow-num">1</div>
+          <div class="flow-title">Plan</div>
+        </div>
         <div class="flow-desc">Validate before you invest</div>
         <div class="flow-arrow">→</div>
       </div>
       <div class="flow-step" onclick="setFlow(1)">
-        <div class="flow-num">2</div>
-        <div class="flow-title">Source</div>
+        <div class="flow-program">Pathfinder</div>
+        <div class="flow-head">
+          <div class="flow-num">2</div>
+          <div class="flow-title">Source</div>
+        </div>
         <div class="flow-desc">Find &amp; negotiate suppliers</div>
         <div class="flow-arrow">→</div>
       </div>
       <div class="flow-step" onclick="setFlow(2)">
-        <div class="flow-num">3</div>
-        <div class="flow-title">Launch</div>
+        <div class="flow-program">Runningmate</div>
+        <div class="flow-head">
+          <div class="flow-num">3</div>
+          <div class="flow-title">Launch</div>
+        </div>
         <div class="flow-desc">Go live with experts</div>
         <div class="flow-arrow">→</div>
       </div>
       <div class="flow-step" onclick="setFlow(3)">
-        <div class="flow-num">4</div>
-        <div class="flow-title">Grow</div>
+        <div class="flow-program">Runningmate</div>
+        <div class="flow-head">
+          <div class="flow-num">4</div>
+          <div class="flow-title">Grow</div>
+        </div>
         <div class="flow-desc">Continuous improvement</div>
       </div>
     </div>
