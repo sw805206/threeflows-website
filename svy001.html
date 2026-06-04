@@ -200,7 +200,7 @@
   .survey-done h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--dark); margin-bottom: 10px; }
   .survey-done p { font-size: 15px; color: var(--mid); line-height: 1.6; max-width: 420px; margin: 0 auto 22px; }
   .survey-done .secondary { margin-top: 16px; margin-bottom: 0; }
-  .survey-done .done-links { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 4px; }
+  .survey-done .done-links { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 4px; }
   .cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
   .cta-link:hover { text-decoration: underline; }
 
@@ -267,17 +267,11 @@
 
 <div class="layout">
 
-  <!-- Survey header: small label (type-badge), title (h1), meta line (post-date), intro.
-       All existing tool-page classes — no new sizes/colors. -->
-  <div class="tool-meta" style="margin-bottom:12px;">
-    <span class="type-badge">Webinar feedback survey</span>
-  </div>
+  <!-- Survey header: title (h1) + meta line. Existing tool-page classes. -->
   <h1>The E-Commerce Journey for Small Business</h1>
   <div class="tool-meta">
-    <span class="post-date">June 4th, 2026 &nbsp;|&nbsp; In collaboration with: NYC Business Solutions</span>
+    <span class="post-date">June 4th, 2026 &nbsp;|&nbsp; In collaboration with: NYC Small Business Services</span>
   </div>
-  <p class="tool-desc">Attended today's webinar? Share quick feedback in about a minute — it helps us make the next one better.</p>
-  <p class="tool-desc">After you submit, you'll get access to the Sourcing Strategy Guide and the webinar materials.</p>
 
   <!-- ═══════════════════════════════════════════
        SURVEY FORM  (svy001 — Webinar feedback)
@@ -363,17 +357,17 @@
   </form>
 
   <!-- Success state — replaces the form after a successful submission.
-       Four outcome options as a clean link list (existing .cta-link component).
-       All → internal links. "Back to survey" reloads svy001.html (resets the form). -->
+       Four left-aligned outcome options (existing .cta-link component). The first
+       three open in a new tab; "Back to survey" reloads svy001.html in the same tab. -->
   <div class="survey-done" id="survey-done">
     <div class="check" aria-hidden="true">✓</div>
     <h2>Thank you!</h2>
-    <p>Your feedback has been recorded — it genuinely shapes the next webinar. Here's what's unlocked:</p>
+    <p>Your feedback has been recorded — it genuinely shapes the next session. Here's what's unlocked:</p>
     <div class="done-links">
-      <a class="cta-link" href="tool-ref001.html">Sourcing Strategy Guide →</a>
-      <a class="cta-link" href="mtl001.html">Webinar materials →</a>
+      <a class="cta-link" href="tool-ref001.html" target="_blank" rel="noopener">Sourcing Strategy Guide →</a>
+      <a class="cta-link" href="mtl001.html" target="_blank" rel="noopener">Webinar materials →</a>
+      <a class="cta-link" href="index.html#how-we-work" target="_blank" rel="noopener">How we work →</a>
       <a class="cta-link" href="svy001.html">Back to survey →</a>
-      <a class="cta-link" href="index.html#services-anchor">How we work →</a>
     </div>
   </div>
 
