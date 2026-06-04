@@ -1,6 +1,14 @@
 # Three Flows Solutions — Website Reference & Handoff
 ## Version 0529 — Updated May 29, 2026
 
+> **⚠️ Superseded in part by `threeflows_handoff_v0603.md`.** The `UE` ("unit
+> economics") calculator prefix introduced in this session was retired on
+> June 3, 2026 and consolidated under the `CA` ("Calculator") series:
+> `tool-ue001.html` → `tool-ca001.html` (UE001 → CA001),
+> `tool-ue002.html` → `tool-ca002.html` (UE002 → CA002). Next available
+> calculator ID is **CA003**, not UE003. References to "UE" below are kept as
+> a historical record of the May 29 session — see v0603 for current naming.
+
 ---
 
 ## How to use this file
