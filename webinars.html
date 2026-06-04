@@ -133,6 +133,17 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .cs-row { flex-direction: column; align-items: flex-start; gap: 36px; padding: 56px 20px; }
   .cs-illustration { width: 100%; }
 }
+
+/* WEBINAR LIST — reuses the site's tool-card component (same as free-tools/surveys) */
+.eyebrow.muted { color: var(--muted); }
+.webinars-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+.tool-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 24px; display: flex; flex-direction: column; gap: 10px; flex: 0 0 360px; }
+.tool-card h3 { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.25; color: var(--dark); margin: 4px 0 4px; font-weight: 400; }
+.tool-card p.tool-desc { font-size: 14px; color: var(--mid); line-height: 1.6; margin-bottom: 8px; }
+.tool-card .tool-actions { margin-top: auto; padding-top: 12px; }
+.cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
+.cta-link:hover { text-decoration: underline; }
+@media (max-width: 800px) { .tool-card { flex: 1 1 100%; } }
 </style>
 </head>
 <body>
@@ -177,38 +188,19 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   <p class="lead">Past sessions on e-commerce operations, sourcing, and retail launch strategy — watch anytime.</p>
 </section>
 
-<section class="cs-row">
-  <div class="cs-illustration">
-    <svg width="320" height="240" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- laptop body (dark frame) -->
-      <rect x="40" y="30" width="240" height="150" rx="10" fill="var(--dark)"/>
-      <!-- screen area -->
-      <rect x="52" y="42" width="216" height="126" rx="4" fill="var(--off-white)"/>
-      <!-- play button background circle -->
-      <circle cx="160" cy="105" r="34" fill="var(--red-light)"/>
-      <!-- play triangle -->
-      <polygon points="148,87 148,123 180,105" fill="var(--red)"/>
-      <!-- laptop base / hinge -->
-      <rect x="20" y="180" width="280" height="14" rx="4" fill="var(--dark)"/>
-      <!-- waveform bars below -->
-      <g stroke="var(--mid)" stroke-width="3" stroke-linecap="round">
-        <line x1="60"  y1="216" x2="60"  y2="222"/>
-        <line x1="80"  y1="210" x2="80"  y2="228"/>
-        <line x1="100" y1="206" x2="100" y2="232"/>
-        <line x1="120" y1="200" x2="120" y2="238"/>
-        <line x1="140" y1="206" x2="140" y2="232"/>
-        <line x1="160" y1="200" x2="160" y2="238"/>
-        <line x1="180" y1="206" x2="180" y2="232"/>
-        <line x1="200" y1="210" x2="200" y2="228"/>
-        <line x1="220" y1="200" x2="220" y2="238"/>
-        <line x1="240" y1="208" x2="240" y2="230"/>
-        <line x1="260" y1="216" x2="260" y2="222"/>
-      </g>
-    </svg>
-  </div>
-  <div class="cs-content">
-    <h2>Coming Soon</h2>
-    <p>We're building our video library with recorded webinars and seminars on e-commerce operations, sourcing, and retail launch strategy. Sessions will also be available on our YouTube and TikTok channels.</p>
+<section class="res-section" style="padding-top:24px;">
+  <div class="eyebrow muted">Past webinars</div>
+  <div class="webinars-row">
+
+    <!-- Webinar 001 — The E-Commerce Journey for Small Business (June 4, 2026) -->
+    <div class="tool-card">
+      <h3>The E-Commerce Journey for Small Business</h3>
+      <p class="tool-desc">June 4th, 2026 · In collaboration with NYC Business Solutions. A practical walkthrough of starting and growing a small e-commerce business.</p>
+      <div class="tool-actions">
+        <a class="cta-link" href="mtl001.html">View materials →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 

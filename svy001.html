@@ -200,6 +200,7 @@
   .survey-done h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--dark); margin-bottom: 10px; }
   .survey-done p { font-size: 15px; color: var(--mid); line-height: 1.6; max-width: 420px; margin: 0 auto 22px; }
   .survey-done .secondary { margin-top: 16px; margin-bottom: 0; }
+  .survey-done .done-links { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 4px; }
   .cta-link { color: var(--red); font-weight: 600; font-size: 15px; text-decoration: none; }
   .cta-link:hover { text-decoration: underline; }
 
@@ -266,17 +267,17 @@
 
 <div class="layout">
 
-  <!-- Survey header -->
-  <h1>Webinar feedback survey</h1>
-  <!-- Subheading (webinar name) — reuses .tool-desc, same as a tool page's intro line -->
-  <p class="tool-desc">The E-Commerce Journey for Small Business</p>
-  <!-- Smaller secondary line — reuses .post-date, the same class tool-ckNNN pages use
-       for "Last revised: …", sitting beside the type badge in .tool-meta -->
+  <!-- Survey header: small label (type-badge), title (h1), meta line (post-date), intro.
+       All existing tool-page classes — no new sizes/colors. -->
+  <div class="tool-meta" style="margin-bottom:12px;">
+    <span class="type-badge">Webinar feedback survey</span>
+  </div>
+  <h1>The E-Commerce Journey for Small Business</h1>
   <div class="tool-meta">
-    <span class="type-badge">Survey</span>
-    <span class="post-date">In collaboration with: NYC Business Solutions | June 4th, 2026</span>
+    <span class="post-date">June 4th, 2026 &nbsp;|&nbsp; In collaboration with: NYC Business Solutions</span>
   </div>
   <p class="tool-desc">Attended today's webinar? Share quick feedback in about a minute — it helps us make the next one better.</p>
+  <p class="tool-desc">After you submit, you'll get access to the Sourcing Strategy Guide and the webinar materials.</p>
 
   <!-- ═══════════════════════════════════════════
        SURVEY FORM  (svy001 — Webinar feedback)
@@ -361,16 +362,19 @@
     </div>
   </form>
 
-  <!-- Success state — replaces the form after a successful submission -->
+  <!-- Success state — replaces the form after a successful submission.
+       Four outcome options as a clean link list (existing .cta-link component).
+       All → internal links. "Back to survey" reloads svy001.html (resets the form). -->
   <div class="survey-done" id="survey-done">
     <div class="check" aria-hidden="true">✓</div>
     <h2>Thank you!</h2>
-    <p>Your feedback has been recorded. We read every response — it genuinely shapes the next webinar.</p>
-    <!-- Post-survey CTA → internal site tool (Sourcing Strategy Decision Guide).
-         href is set from the SOURCING_GUIDE_TOOL_URL constant in the script
-         below. Internal link → uses →. -->
-    <a class="btn-red" id="tool-link" href="#">Explore our Sourcing Strategy Decision Guide tool →</a>
-    <p class="secondary"><a class="cta-link" href="surveys.html">Back to surveys →</a></p>
+    <p>Your feedback has been recorded — it genuinely shapes the next webinar. Here's what's unlocked:</p>
+    <div class="done-links">
+      <a class="cta-link" href="tool-ref001.html">Sourcing Strategy Guide →</a>
+      <a class="cta-link" href="mtl001.html">Webinar materials →</a>
+      <a class="cta-link" href="svy001.html">Back to survey →</a>
+      <a class="cta-link" href="index.html#services-anchor">How we work →</a>
+    </div>
   </div>
 
 </div><!-- /.layout -->
@@ -423,17 +427,14 @@ document.addEventListener('click', function(e) {
   //    (simulates success, posts nothing) — same pattern inquiry.html uses.
   const ENDPOINT = 'https://script.google.com/macros/s/AKfycby4KC-lDutGwu8J_JgJkMHOBqN-KVFzC0imFaOab-PEXs3FP7mwAJDYepPlaEC5SKEH/exec';
 
-  // Post-survey CTA target — internal site tool (Sourcing Strategy Decision Guide).
-  // Edit here if the tool URL changes.
-  const SOURCING_GUIDE_TOOL_URL = 'https://threeflows.com/tool-ref001.html';
+  // Post-survey outcome links (Sourcing Strategy Guide, Webinar materials, Back to
+  // survey, How we work) are static internal links in the success-state markup —
+  // no JS wiring needed.
 
   const form     = document.getElementById('survey-form');
   const submit   = document.getElementById('survey-submit');
   const errorBox = document.getElementById('form-error');
   const doneBox  = document.getElementById('survey-done');
-
-  // Wire the success-state CTA from the constant above.
-  document.getElementById('tool-link').href = SOURCING_GUIDE_TOOL_URL;
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   function getRadio(name) {
