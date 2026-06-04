@@ -397,19 +397,25 @@ document.addEventListener('click', function(e) {
 <script>
 // ═══════════════════════════════════════════
 //  SURVEY SUBMIT — svy001 (Webinar feedback)
-//  Posts each submission as a row to a Google Apps Script web app,
-//  which appends it to the survey's Google Sheet.
+//  Same capture mechanism as inquiry.html / intake.html: a Google Apps Script
+//  web app that appends each submission as a row to a Google Sheet.
+//  Difference: ONE shared web app serves every survey page and routes by
+//  SURVEY_ID into that survey's own tab (svy001, svy002, …) of the spreadsheet,
+//  so surveys never comingle. Each tab carries headers matching its answers.
 // ═══════════════════════════════════════════
 (function () {
-  // SURVEY_ID selects which Sheet tab the shared Apps Script appends to —
-  // one tab per survey. Future survey pages set their own id here.
+  // SURVEY_ID is sent in the payload; the shared Apps Script uses it to pick
+  // the destination tab (sheet named "svy001"). Future survey pages set their
+  // own id here and route to their own matching tab — no script change needed.
   const SURVEY_ID = 'svy001';
 
-  // ⚠️ REPLACE THIS PLACEHOLDER with the live Apps Script web app URL.
-  //    Deploy the bound Apps Script (Deploy ▸ New deployment ▸ Web app,
-  //    "Execute as: Me", "Who has access: Anyone") and paste its /exec URL here.
-  //    This SAME URL is shared by every survey page (svy001, svy002, …).
-  const ENDPOINT = 'REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL';
+  // ⚠️ REPLACE THIS PLACEHOLDER with the live Apps Script web app /exec URL.
+  //    Deploy the script bound to the survey spreadsheet (Deploy ▸ New
+  //    deployment ▸ Web app, "Execute as: Me", "Who has access: Anyone") and
+  //    paste its /exec URL here. This SAME URL is shared by every survey page.
+  //    While it's left as the placeholder, submit runs in preview mode below
+  //    (simulates success, posts nothing) — same pattern inquiry.html uses.
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycby4KC-lDutGwu8J_JgJkMHOBqN-KVFzC0imFaOab-PEXs3FP7mwAJDYepPlaEC5SKEH/exec';
 
   // Post-survey CTA target — internal site tool (Make vs. Buy decision guide).
   // Edit here if the tool URL changes.
@@ -444,12 +450,12 @@ document.addEventListener('click', function(e) {
       return;
     }
 
-    // Build the generic, reusable payload. `answers` is an ORDERED array in the
-    // same column order as this survey's Sheet tab: respondent-info fields first,
-    // then the question answers. Optional fields send '' when blank. Future survey
-    // pages send their own answers array of whatever length — the shared Apps
-    // Script and Sheet handle variable lengths, so the script never needs editing.
-    //   svy001 column order:
+    // Build the payload. `answers` is an ORDERED array matching the column
+    // headers of the svy001 tab: respondent-info fields first, then the question
+    // answers. Optional fields send '' when blank. Each survey page sends its own
+    // answers array of whatever length to its own tab (keyed by surveyId), so the
+    // shared Apps Script never needs editing when a new survey is added.
+    //   svy001 tab headers (after a leading Timestamp the script adds):
     //   [name, email, company, industry, usefulness 1–5, recommend 1–10, suggestions, interest]
     const answers = [
       getVal('resp-name'),       // Name      (required)
@@ -467,14 +473,20 @@ document.addEventListener('click', function(e) {
     submit.disabled = true;
     submit.textContent = 'Sending…';
 
+    // Preview / not-yet-deployed mode: while ENDPOINT is the placeholder, skip
+    // the network call and just show success (mirrors inquiry.html's behaviour).
+    if (ENDPOINT === 'REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL') {
+      form.style.display = 'none';
+      doneBox.classList.add('show');
+      return;
+    }
+
     try {
-      // Apps Script web apps don't return CORS headers, so a normal POST with
-      // a JSON Content-Type would trigger a CORS preflight (OPTIONS) that the
-      // script can't answer. We send the JSON body as text/plain and use
-      // mode:'no-cors' — both keep this a "simple" request with no preflight.
-      // With no-cors the response is opaque (its body can't be read), so we
-      // ASSUME success if the request doesn't throw, and treat only a network
-      // failure (catch) as an error.
+      // Same call shape as inquiry.html: POST the JSON body with mode:'no-cors'.
+      // Apps Script web apps don't return CORS headers, so no-cors keeps this a
+      // "simple" request (no preflight); the response is opaque (can't be read),
+      // so we ASSUME success if the request doesn't throw and treat only a
+      // network failure (catch) as an error.
       await fetch(ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
