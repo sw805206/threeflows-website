@@ -298,34 +298,7 @@ Note: the bottom-CTA (a standing dark component at the foot of the page — see 
 
 ## Style backlog / tech debt
 
-Inline CSS per page → extract to STYLE.css; dead `.nav-cta` rule (remove); duplicate tokens collapsed (`--warm`→N7, `--grey`→palette neutral, `--border-radius-md`→radius scale); line-height/size/spacing drift collapsed to the scales above.
-
-**Verify-from-live (record value, then remove flag):**
-- Card grid column min-width.
-- Service hero `padding-top` (match svc2/3/4).
-- Prev/next card size (still pending a separate design decision).
-
-**Fixes / migrations:**
-- svc1 hero — remove the ~40px extra gap above the eyebrow (match svc2/3/4).
-- Live → token colour migrations: callout red #D63B3B → RR01 #C2291B; continuity pill #D63B3B → RN02; callout green text #174A17 / #1A4A1A → #3B6D11; callout blue bg #EEF4FB → #E6F1FB (BB01); eyebrow red #D63B3B → #C2291B; cta-link red #D63B3B → #EF4444 and size 15px → 16px.
-- Tag pill consolidation: collapse `.badge` (10.5px, radius 20) and `.resource-stage-badge` (10px, radius 20) into one canonical pill (11px, radius 999, pad 3×10).
-- Button cleanup: btn-red colour #D63B3B → RN01 #EF4444 (all class buttons are currently off-palette old red); standardize all button padding to 12×24 (live drift: 13×28, 12×26, 11×24, 10×20, plus 9 inline on-dark overrides); button radius 6 (3 files drift to 8 via `--radius-sm`/`--border-radius-md`); remove the `on-dark` class and its 9 inline "Contact Us" overrides (three inconsistent size/weight combos for one button); remove dead `.nav-cta` CSS (51 pages); blog-007 chart toggles hardcode #D63B3B/#5C5C5C — move to per-post data-viz handling.
-- btn-outline: finalize its combo + border treatment when next encountered (currently 1.5px/1px border drift, radius 8).
-- Bottom-CTA: de-alias `.svc-bottom-cta`/`.svc-bottom-inner` → `.bottom-cta`/`.bottom-inner` (one name); padding 60×48 → 64×48; headline 30px → 32px; subtitle 14px → 16px and translucent-white #FFF/0.5–0.55 → NN07 #909090; resolve the `.bottom-cta` conflicting `var(--white)` definition (drift) so the dark-band pairing is structural. Verify-from-live: shared headline/subtitle max-width.
-- Tool-CTA-card: collapse three drifted forms (ca001/ref001 simple max-w 780/820, ck001 rich with h2 + `.cta-actions`) into one simple canonical card (max-w 800, pad 24×24); body 14px → 16px; drop ck001's h2 + button row; remap `--red-dark` #B82E2E links (retired) → #EF4444 / muted. Retire per-type templates (`tool-ca000`/`tool-ck000`) per ARCHITECTURE.
-- FAQ redesign: migrate svc1–4 from the old boxed-card FAQ to the new compact hairline-row accordion (remove per-item card border/box; question 18px → 16px; row padding 20×24 → 12px vertical; hairline #E8E8E8 dividers). Design change, not a remap — applied during the sweep.
-- Tabs consolidation (Family A — underline text-tabs): collapse svc2 (`setTab`), svc3 (`setSvc3Tab`), and useful-websites (`uwShowTab`) into one component (survivor `.tab-strip`/`setTab`); standardize panel mechanism to `.active` class (retire the uw inline `style.display`); snap button padding 20×16 / 16×20 → 12×24.
-- Stepper consolidation (Family B — numbered steps): collapse contact (`setContactTab`) and index "How we work" (`setFlow`) into one component; canonical circle badge (drop the contact square badge); badge red #D63B3B → RN01 #EF4444; snap card padding 20×18 / 28×24 → 24×24; reconcile 0- vs 1-based indexing. (Contact stepper may change under the contact redesign.)
-- Form blocks: remap gate/field old red #D63B3B → #EF4444 (focus, `.req`, error); error text retired `--red-dark` → #EF4444; input radius 8 → 6; input padding 11×14 → 12×16; container radius 12 → 10, padding 28×26 → 24×24; gate heading 22px serif → h3 20px sans. Verify-from-live: thank-you block treatment.
-- Breadcrumb: `.breadcrumb-wrap` max-width drift (780 on some tool pages, 1100 on others) — pick one. Prev/next card size — settle the deferred design decision.
-
-**Page-by-page sweep (via the component process):**
-- Resolve removed highlight styles: `.info-banner`, `.sourcing-banner`, svc2 inline replica → fold into Content/Remark callout; green/blue callout content → re-map to Content or Remark per post; `.highlight-row`, `.review-banner`, `.process-highlight` → handle as their own (non-callout) patterns.
-- Inventory and define the remaining card types (index, svc1–4, about); decide whether a shared card base is warranted (answer after inventory).
-
-**Other:**
-- Free-tools page → make checklists / calculators tabbed (structural — belongs in ARCHITECTURE.md, logged there; intersects the "retire per-type tool templates" item).
-- Footer Privacy / Terms links — currently `href="#"` placeholders; replace before launch.
+Backlog tracked in BACKLOG.md.
 
 ---
 
