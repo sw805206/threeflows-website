@@ -52,18 +52,6 @@ body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(-
 .page { display: none; }
 .page.active { display: block; }
 
-/* NAV */
-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
-.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
-.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
-.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
-.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
-.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-.nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }
-.nav-links a:hover { color: var(--dark); }
-.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; }
-.nav-cta:hover { background: #333; }
 
 /* SHARED */
 .eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
@@ -197,11 +185,6 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .cta-tile-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
 .cta-tile-desc { font-size: 14px; color: var(--mid); line-height: 1.6; font-weight: 300; }
 
-/* FOOTER */
-footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--muted); text-decoration: none; }
-.footer-links a:hover { color: var(--dark); }
 
 /* ══ SERVICE PAGES ══ */
 .svc-hero-wrap { border-bottom: 1px solid var(--border); }
@@ -272,8 +255,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
 /* Responsive */
 @media (max-width: 800px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
   .hero, .svc-hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
   .hero h1, .svc-hero h1 { font-size: 36px; }
   .process-section, .team-section, .svc-section, .cta-section { padding: 56px 20px; }
@@ -285,17 +266,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .proof-metrics { grid-template-columns: repeat(3,1fr); }
   .partner-strip { padding: 14px 20px; }
   .svc-bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
-  footer { padding: 20px; }
 }
 
-/* NAV */
-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); cursor: pointer; }
-.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
-.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
-.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
-.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
-.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 
 /* SHARED */
 .eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
@@ -499,13 +471,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
 .bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--muted); text-decoration: none; }
-.footer-links a:hover { color: var(--dark); }
 
 @media (max-width: 800px) {
-  nav { padding: 0 20px; }
   .svc-hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
   .svc-hero h1 { font-size: 36px; }
   .section, .mob-section, .itinerary { padding: 48px 20px; }
@@ -520,18 +487,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .trip-hero-overlay { padding: 28px 20px; }
   .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
   .destinations-inner { padding: 48px 20px; }
-  footer { padding: 20px; }
   .pricing-table { font-size: 12px; }
   .pricing-table th, .pricing-table td { padding: 10px 12px; }
 }
 
-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: var(--dark); }
-.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
-.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
-.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
-.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
-.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 
 .eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
 .eyebrow.red { color: var(--red); }
@@ -697,12 +656,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .bottom-inner p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; }
 .bottom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--muted); text-decoration: none; }
 
 @media (max-width: 800px) {
-  nav { padding: 0 20px; }
   .hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
   .hero h1 { font-size: 36px; }
   .section { padding: 48px 20px; }
@@ -712,16 +667,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .tab-inner { grid-template-columns: 1fr 1fr; }
   .bottom-inner { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
   .continuity-inner { padding: 20px; }
-  footer { padding: 20px; }
 }
 
-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; color: var(--dark); }
-.logo-icon { width: 34px; height: 34px; background: var(--red); border-radius: 7px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 6px 7px 5px; flex-shrink: 0; }
-.logo-bar { background: white; width: 5px; border-radius: 2px 2px 0 0; }
-.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
-.logo-tag { font-size: 10px; color: var(--muted); font-weight: 400; }
-.nav-cta { background: var(--dark); color: white; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 
 .eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
 .eyebrow.red { color: var(--red); }
@@ -868,12 +815,8 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96)
 .btn-red.on-dark { background: var(--red); color: white; }
 .btn-red.on-dark:hover { opacity: 0.9; }
 
-footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--muted); text-decoration: none; }
 
 @media (max-width: 800px) {
-  nav { padding: 0 20px; }
   .hero { grid-template-columns: 1fr; padding: 48px 20px 0; gap: 40px; }
   .hero h1 { font-size: 36px; }
   .section { padding: 48px 20px; }
@@ -882,43 +825,9 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
   .bottom-inner { grid-template-columns: 1fr; padding: 48px 20px; gap: 24px; }
   .bottom-actions { align-items: flex-start; }
   .continuity-inner { padding: 20px; }
-  footer { padding: 20px; }
 }
 
 
-/* ── NAV DROPDOWNS ── */
-.nav-dropdown { position: relative; }
-.nav-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  min-width: 240px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  z-index: 1000;
-  padding: 6px 0;
-}
-.nav-dropdown-menu a {
-  display: block;
-  padding: 10px 16px;
-  font-size: 13px;
-  color: var(--dark);
-  text-decoration: none;
-  font-weight: 400;
-}
-.nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red); }
-.nav-dropdown.open .nav-dropdown-menu { display: block; }
-.nav-dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 0;
-  right: 0;
-  height: 8px;
-}
 
 /* ── UNIFIED PAGE SYSTEM ── */
 .page { display: none !important; }
@@ -929,40 +838,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 </head>
 <body>
 
-<!-- ══ SHARED NAV ══ -->
-<nav>
-  <a class="logo" href="index.html">
-    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
-    <div>
-      <div class="logo-name">Three Flows Solutions</div>
-      <div class="logo-tag">from Start to Scale</div>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li class="nav-dropdown" id="dd-services">
-      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
-      <div class="nav-dropdown-menu">
-        <a href="svc1.html">Business Planning</a>
-        <a href="svc2.html">Sourcing Consultation</a>
-        <a href="svc3.html">Launch Hypercare</a>
-        <a href="svc4.html">Ongoing Management</a>
-      </div>
-    </li>
-    <li class="nav-dropdown" id="dd-resources">
-      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
-      <div class="nav-dropdown-menu">
-        <a href="blog.html">Blogs &amp; articles</a>
-        <a href="useful-websites.html">Useful websites</a>
-        <a href="free-tools.html">Checklists &amp; calculators</a>
-        <a href="webinars.html">Webinars &amp; seminars</a>
-        <a href="livestream.html">Livestream schedule</a>
-      </div>
-    </li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+<!-- ══ SHARED NAV (injected from partials.html) ══ -->
+<div id="site-nav"></div>
 
 <!-- ══ HOME PAGE CONTENT ══ -->
 
@@ -1261,30 +1138,23 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
     </div>
   </div>
 
-  <footer>
-    <div style="display:flex;align-items:center;gap:12px">
-      <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
-      <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
-    </div>
-    <div class="footer-links">
-      
-      <a href="#">Privacy</a><a href="#">Terms</a>
-    </div>
-  </footer>
+  <!-- ══ SHARED FOOTER (injected from partials.html) ══ -->
+  <div id="site-footer"></div>
 
+<!-- ══ Fetch shared nav + footer from partials.html, then wire dropdowns + hamburger ══ -->
 <script>
-function toggleDropdown(id, event) {
-  if (event) event.stopPropagation();
-  const el = document.getElementById(id);
-  const isOpen = el.classList.contains('open');
-  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
-  if (!isOpen) el.classList.add('open');
-}
-
+fetch('/partials.html').then(function(r){ return r.text(); }).then(function(h){
+  var t = document.createElement('template'); t.innerHTML = h;
+  var s = t.content.querySelector('style'); if (s) document.head.appendChild(s);
+  var n = t.content.querySelector('nav'); if (n) { var np = document.getElementById('site-nav'); if (np) np.replaceWith(n); }
+  var f = t.content.querySelector('footer'); if (f) { var ff = document.getElementById('site-footer'); if (ff) ff.replaceWith(f); }
+}).catch(function(){});
 document.addEventListener('click', function(e) {
-  if (!e.target.closest('.nav-dropdown')) {
-    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
-  }
+  var tog = e.target.closest && e.target.closest('.nav-dropdown-toggle');
+  var ham = e.target.closest && e.target.closest('.nav-toggle');
+  if (ham) { ham.closest('nav').classList.toggle('nav-open'); return; }
+  document.querySelectorAll('.nav-dropdown').forEach(function(d){ if (!tog || !d.contains(tog)) d.classList.remove('open'); });
+  if (tog) tog.parentElement.classList.toggle('open');
 });
 
 function setFlow(idx) {

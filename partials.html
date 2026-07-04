@@ -1,0 +1,94 @@
+<!--
+  partials.html — shared site chrome (nav + footer), fetched by every page at load.
+  Single source of truth for nav/footer MARKUP and (temporarily) their STYLING.
+
+  The <style> block below is a deliberate, TEMPORARY exception to the "no inline CSS"
+  goal: it keeps this partial injectable with zero STYLE.css dependency. It is scoped
+  to nav/footer/hamburger only and will be lifted into STYLE.css during the migration
+  (see STYLE.md backlog). Values are remapped to STYLE.md tokens; see the pilot audit
+  for the per-value decisions (nav link 14px kept as a ramp-gap pattern; gap 28→24;
+  dropdown pad→8 / item pad→8×16 / radius 12→10; footer pad→24×48; hover red→#EF4444;
+  logo lockup 14/10 kept as a fixed brand lockup; hamburger is net-new).
+-->
+<style>
+  /* ── SHARED CHROME: nav ── */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid #E8E8E8; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; font-family: 'DM Sans', sans-serif; }
+  nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #1A1A1A; cursor: pointer; }
+  nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  nav .logo-tag { font-size: 10px; color: #909090; font-weight: 400; }
+  nav .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  nav .nav-links li { margin: 0; }
+  nav .nav-links a { text-decoration: none; color: #5C5C5C; font-size: 14px; cursor: pointer; transition: color 0.2s; }
+  nav .nav-links a:hover { color: #1A1A1A; }
+  /* ── SHARED CHROME: nav dropdowns ── */
+  nav .nav-dropdown { position: relative; }
+  nav .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: #FFFFFF; border: 1px solid #E8E8E8; border-radius: 10px; min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 1000; padding: 8px 0; }
+  nav .nav-dropdown-menu a { display: block; padding: 8px 16px; font-size: 13px; color: #1A1A1A; text-decoration: none; font-weight: 400; }
+  nav .nav-dropdown-menu a:hover { background: #F8F8F8; color: #EF4444; }
+  nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+  /* ── SHARED CHROME: hamburger (net-new; no live equivalent) ── */
+  nav .nav-toggle { display: none; background: none; border: none; font-size: 22px; line-height: 1; color: #1A1A1A; cursor: pointer; padding: 4px 8px; }
+  /* ── SHARED CHROME: footer ── */
+  footer { border-top: 1px solid #E8E8E8; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #909090; flex-wrap: wrap; gap: 12px; background: #FFFFFF; font-family: 'DM Sans', sans-serif; }
+  footer .footer-links { display: flex; gap: 24px; }
+  footer .footer-links a { color: #909090; text-decoration: none; }
+  footer .footer-links a:hover { color: #1A1A1A; }
+  /* ── SHARED CHROME: mobile (≤800px) — hamburger replaces the old "no nav at all" ── */
+  @media (max-width: 800px) {
+    nav { padding: 0 20px; }
+    nav .nav-toggle { display: block; }
+    nav .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: #FFFFFF; border-bottom: 1px solid #E8E8E8; padding: 8px 0; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    nav.nav-open .nav-links { display: flex; }
+    nav .nav-links > li { width: 100%; }
+    nav .nav-links > li > a { display: block; padding: 12px 20px; }
+    nav .nav-dropdown-menu { position: static; display: block; border: none; box-shadow: none; min-width: 0; padding: 0 0 8px 16px; border-radius: 0; }
+    nav .nav-dropdown-menu::before { display: none; }
+    footer { padding: 20px; }
+  }
+</style>
+
+<nav>
+  <a class="logo" href="index.html">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <div>
+      <div class="logo-name">Three Flows Solutions</div>
+      <div class="logo-tag">from Start to Scale</div>
+    </div>
+  </a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a class="nav-dropdown-toggle">Services &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="svc1.html">Business planning</a>
+        <a href="svc2.html">Sourcing consultation</a>
+        <a href="svc3.html">Launch hypercare</a>
+        <a href="svc4.html">Ongoing management</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a class="nav-dropdown-toggle">Resources &#9662;</a>
+      <div class="nav-dropdown-menu">
+        <a href="blog.html">Blogs &amp; articles</a>
+        <a href="useful-websites.html">Useful websites</a>
+        <a href="free-tools.html">Checklists &amp; calculators</a>
+        <a href="webinars.html">Webinars &amp; seminars</a>
+        <a href="livestream.html">Livestream schedule</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
+    <span>&copy; 2026 Three Flows Solutions LLC. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a>
+  </div>
+</footer>
