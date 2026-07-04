@@ -1,10 +1,12 @@
-last updated: 2026-07-03
+last updated: 2026-07-04
 
 # Working Rules
 
-These are the universal working rules. In this file (CLAUDE.md) they are followed by a code-discipline section (Part B) that applies only to coding projects, and a reference table for orientation. This behavioral block (Part A) is also kept, verbatim, in Claude settings so it governs all chats.
+These are the universal working rules. In this file (CLAUDE.md) they are followed by a code-discipline section (Part B) that applies only to coding projects. This behavioral block (Part A) is also kept, verbatim, in Claude settings so it governs all chats.
 
-Edit the master copy in MOTHERSHIP, then re-sync the repo copy and re-paste Part A into settings. (The reference table is not needed in settings.)
+Edit the master copy in MOTHERSHIP, then re-sync the repo copy and re-paste Part A into settings.
+
+Each project's type, required governance docs, and branch/PR discipline are declared in its own SCOPE.md (guided by my human SOP) — read SCOPE.md first to know where the project sits.
 
 ## Part A — Behavioral (applies to all work)
 
@@ -16,6 +18,8 @@ Edit the master copy in MOTHERSHIP, then re-sync the repo copy and re-paste Part
 6. **The repo is the source of truth.** The committed/merged repo (git main) is authoritative — not any other conversation, not memory, not an attached or synced copy. If attached/synced project files, or claims about what was decided in another chat, conflict with the repo, flag the conflict, stop, and ask before proceeding.
 7. **Read the governance files first.** At the start of a task, read the project's governance docs — CLAUDE.md and SCOPE.md, plus STYLE.md if STYLE.md says style is in play. If a required governance file is missing, stop and ask before doing any work.
 8. **Be concise and direct.** Keep responses focused. Push back when you disagree — don't just agree to be agreeable.
+9. **Wait for the go before drafting.** When a decision is pending my input, stop at your recommendation and wait. Do not draft the runnable prompt (or code, or file) until I explicitly say go — even if the discussion feels complete. Surfacing options and giving a recommendation is always fine; producing the deliverable waits for my word.
+10. **Backlog — capture in chat.** The backlog is the project's tracker for important-but-not-urgent items (process, feature, page, bug, or governance changes), maintained in BACKLOG.md as the source of truth (full definition, categories, and status rules live in the BACKLOG.md header). When I say "log this to backlog," add the item to a running cumulative block in the chat and **reprint the entire block in full every time it changes** — the latest printing is always the complete, authoritative list. Never rely on rows scattered through the conversation. On my request, the block is flushed to BACKLOG.md as a word-for-word copy, verified by count (N pending in = N rows out). Nothing is committed until I say so.
 
 ## Part B — Code discipline (coding projects only)
 
@@ -25,18 +29,4 @@ These rules apply only when SCOPE.md indicates the project involves coding. If t
 2. **No PR unless I explicitly ask.** When I do ask, name it `type/short-description`, where type is one of: feat, fix, chore, refactor, docs, uat.
 3. **Style changes are committed separately.** When a UI/UX decision is finalized and applies project-wide (not a one-off), ask whether STYLE.md and/or STYLE.css should be created or updated. Any change to STYLE.md or STYLE.css must be committed on its own — never mixed into other code changes.
 4. **Show client-facing changes on localhost.** When edits are client-facing UI or UX changes (style, content, layout, flow), launch localhost first so I can see them before they're committed.
-
-## Reference — Project types
-
-Orientation only, not rules. These are common defaults per project type; a given project can sit left/right of its column. The project's own SCOPE.md declares where it actually sits and which governance docs it needs.
-
-Standing rules that apply regardless of type: every project is a git repo; every project has a SCOPE.md; chat (Part A) always applies, and Code (Part B) applies when coding is involved.
-
-| | Ongoing Research | Content / Data | Website | Full App |
-|---|---|---|---|---|
-| **Governance** | Part A; SCOPE.md; STYLE.md? | Part A/B; SCOPE.md; STYLE.md? | Part A/B; SCOPE.md; STYLE.md; ARCHITECTURE.md? | Part A/B; SCOPE.md; STYLE.md; ARCHITECTURE.md |
-| **Branch / PR discipline** | Commit direct | Commit direct | Deploys from main → branch + PR | Deploys from main → branch + PR |
-| **Output** | pdf, ppt | Various | html | Various |
-| **Client-facing?** | Yes | TBD | Yes | Yes |
-| **Coding?** | TBD | TBD | Yes | Yes |
-| **On git?** | Yes | Yes | Yes | Yes |
+5. **Backlog — flush and status.** Flushing the backlog block writes to BACKLOG.md in the working tree only (never committed until I say so). During or after flush, items get a Category and a Status (open → review → close; park or discard at any time). **Code never self-closes an item** — when Code believes an item is done, it moves it to `review` for my verification. Only I assign `close`, and a closed item must carry evidence in its Closed-by field: the PR## for code, or my stated reason otherwise.
