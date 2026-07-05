@@ -261,7 +261,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-blog-id="blog-014">
 
 <!-- ══ SHARED NAV (injected from partials.html) ══ -->
 <div id="site-nav"></div>
@@ -270,16 +270,7 @@
   <a class="breadcrumb" href="blog.html">← Blog</a>
 </div>
 
-<div class="post-nav">
-  <a class="post-nav-tile prev" href="blog-013.html">
-    <span class="post-nav-label">← Previous</span>
-    <span class="post-nav-title">[Post 013 Title]</span>
-  </a>
-  <a class="post-nav-tile next" href="blog-015.html">
-    <span class="post-nav-label">Next →</span>
-    <span class="post-nav-title">How Amazon Built a Global Logistics Network from Scratch</span>
-  </a>
-</div>
+<div class="post-nav" data-post-nav></div>
 
 <div class="layout">
 
@@ -431,5 +422,68 @@ document.addEventListener('click', function(e) {
   if (tog) tog.parentElement.classList.toggle('open');
 });
 </script>
+
+<!-- ══ Runtime prev/next + date from bloglist.json (manifest-driven; see ARCHITECTURE.md) ══ -->
+<script>
+(function () {
+  function fmtDate(iso) {
+    var months = ['January','February','March','April','May','June','July','August',
+                  'September','October','November','December'];
+    var p = (iso || '').split('-');
+    if (p.length !== 3) return iso || '';
+    return months[(+p[1]) - 1] + ' ' + (+p[2]) + ', ' + p[0];
+  }
+  function tile(kind, post) {
+    var a = document.createElement('a');
+    a.className = 'post-nav-tile ' + kind;
+    a.href = post.filename;
+    var label = document.createElement('span');
+    label.className = 'post-nav-label';
+    label.textContent = kind === 'prev' ? '← Previous' : 'Next →';
+    var title = document.createElement('span');
+    title.className = 'post-nav-title';
+    title.textContent = post.title;
+    a.appendChild(label);
+    a.appendChild(title);
+    return a;
+  }
+  function spacer() {
+    var d = document.createElement('div');
+    d.className = 'post-nav-spacer';
+    return d;
+  }
+  try {
+    var bid = document.body.getAttribute('data-blog-id');
+    if (!bid) return;
+    fetch('/bloglist.json').then(function (r) { return r.json(); }).then(function (all) {
+      var pub = all.filter(function (p) { return p.status === 'published'; });
+      pub.sort(function (a, b) {
+        if (a.date === b.date) {
+          console.warn('bloglist: same-date collision between ' + a.blogID + ' and ' + b.blogID + ' — order ambiguous, resolve in the manifest');
+          return a.blogID < b.blogID ? 1 : -1;
+        }
+        return a.date < b.date ? 1 : -1; // date descending (newest first)
+      });
+      var idx = -1;
+      for (var i = 0; i < pub.length; i++) { if (pub[i].blogID === bid) { idx = i; break; } }
+      if (idx === -1) return; // this post not in manifest -> render nothing
+      var dateEl = document.querySelector('.post-date');
+      if (dateEl) {
+        var existing = dateEl.textContent || '';
+        var ci = existing.indexOf('·'); // middot before "N min read", if any
+        dateEl.textContent = fmtDate(pub[idx].date) + (ci >= 0 ? ' ' + existing.slice(ci) : '');
+      }
+      var navEl = document.querySelector('.post-nav');
+      if (!navEl) return;
+      var newer = idx > 0 ? pub[idx - 1] : null;              // Next = newer
+      var older = idx < pub.length - 1 ? pub[idx + 1] : null; // Previous = older
+      navEl.innerHTML = '';
+      navEl.appendChild(older ? tile('prev', older) : spacer());
+      navEl.appendChild(newer ? tile('next', newer) : spacer());
+    }).catch(function () { /* graceful: leave .post-nav empty */ });
+  } catch (e) { /* graceful failure */ }
+})();
+</script>
+
 </body>
 </html>
