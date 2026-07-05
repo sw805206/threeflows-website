@@ -57,7 +57,7 @@ All blog ordering and cross-linking derive from a single manifest file, **`blogl
 | `title` | Display title. Prev/next tiles and the index pull the title from here — so a post's title is single-sourced and a raw placeholder can never ship. |
 | `date` | Publish date, ISO format `YYYY-MM-DD` (for reliable sorting). |
 | `status` | `published`, `draft`, or `hidden`. Only `published` posts are visible and participate in the sort/prev-next chain. |
-| `primaryTag` | The post's primary category (rendered as the emphasized pill). |
+| `primaryTags` | Array of the post's primary categories (rendered as the emphasized pills). A post may have one or more. |
 | `secondaryTags` | Array of secondary categories (rendered as secondary-emphasis pills). |
 
 ### Sort and prev/next behavior (runtime)
@@ -75,7 +75,7 @@ Ordering and prev/next are computed **at runtime in the browser** — each post 
 
 New posts are created from `blog-000-template.html`, which defines the shared post content structure and styling and carries the `data-blog-id` hook. Nav and footer come from `partials.html` via the fetch snippet (not baked into the template). Post content styling is defined in STYLE.md (blog style). Contact/data-capture behavior, where relevant, follows the Form-ish pattern.
 
-A new post requires a manifest entry (blogID, filename, title, date, status, primaryTag, secondaryTags). Adding the entry is what places the post in the sequence — the post file itself carries no prev/next links. The operational procedure (human + Chat + Code) lives in the blog-creation SOP.
+A new post requires a manifest entry (blogID, filename, title, date, status, primaryTags, secondaryTags). Adding the entry is what places the post in the sequence — the post file itself carries no prev/next links. The operational procedure (human + Chat + Code) lives in the blog-creation SOP.
 
 ---
 
