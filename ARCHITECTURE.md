@@ -1,6 +1,6 @@
 # Architecture
 
-*Last updated 2026-07-02*
+*Last updated 2026-07-04*
 
 This document describes the **target architecture** for the Threeflows website — the intended design of the site. Some parts are already built and live; others are not yet implemented. Anything not yet in the repo is marked **(not yet built)**. As each piece ships, its tag is removed, so over time this document converges on the current state of the site.
 
@@ -44,11 +44,38 @@ Note the tradeoff: the nav renders via JavaScript, so it depends on JS loading. 
 
 Blog index: https://threeflows.com/blog.html
 
-**Blog behavior (how the blog works):** posts are sorted in descending date order; previous/next links are based on dates.
+### Source of truth: the blog manifest
 
-**When creating a post (workflow):** always ask the admin for the posting date, and ask for the primary and secondary tags.
+All blog ordering and cross-linking derive from a single manifest file, **`bloglist.json`** (repo root). Nothing about post sequence is hand-typed into individual posts — the manifest is the one place post metadata lives, and prev/next, sort order, and (later) the index all compute from it. This is the same single-source, computed-not-copied principle as `partials.html`.
 
-New posts are created from `blog-000-template.html`, which defines the shared post content structure and styling. Nav and footer come from `partials.html` via the fetch snippet (not baked into the template). Post content styling is defined in STYLE.md (blog style). Contact/data-capture behavior, where relevant, follows the Form-ish pattern.
+**Manifest schema** — one entry per post:
+
+| Field | Meaning |
+|---|---|
+| `blogID` | Stable internal key (e.g. `blog-006`). Never changes once assigned; not necessarily the filename. |
+| `filename` | The actual served file the links target (e.g. `blog-006.html`). Decoupled from `blogID` so filenames can change (e.g. to descriptive SEO slugs) without touching `blogID` or any linking logic. |
+| `title` | Display title. Prev/next tiles and the index pull the title from here — so a post's title is single-sourced and a raw placeholder can never ship. |
+| `date` | Publish date, ISO format `YYYY-MM-DD` (for reliable sorting). |
+| `status` | `published`, `draft`, or `hidden`. Only `published` posts are visible and participate in the sort/prev-next chain. |
+| `primaryTag` | The post's primary category (rendered as the emphasized pill). |
+| `secondaryTags` | Array of secondary categories (rendered as secondary-emphasis pills). |
+
+### Sort and prev/next behavior (runtime)
+
+Ordering and prev/next are computed **at runtime in the browser** — each post fetches `bloglist.json` on load, sorts the published entries, finds its own position, and renders its prev/next tiles. A change to the manifest (e.g. a corrected publish date) automatically re-ripples to every affected post on next load, with no edits to any post file.
+
+- **Sort:** published posts, publish date **descending** (newest first).
+- **Prev/next semantics:** the **Previous** tile links to the next **older** published post; the **Next** tile links to the next **newer** published post. Draft/hidden posts are skipped — prev/next steps over them to the nearest *published* neighbor.
+- **Endpoints:** the newest published post has no Next; the oldest has no Previous. The absent side collapses (the present tile holds its natural side; see STYLE.md prev/next).
+- **Same-date collision:** if two *published* posts share a publish date, the ordering is ambiguous — the logic **stops and surfaces a warning** rather than guessing. A human resolves it (adjust a date, or the manifest is corrected) before the ambiguity ships.
+- **Self-identification:** each post declares its own `blogID` via a data attribute (e.g. `<body data-blog-id="blog-006">`) so the runtime logic can locate its position in the sorted list. The template carries this; every post must.
+- **Graceful failure:** if the manifest fails to load or an entry is malformed, prev/next renders nothing rather than throwing (same soft-JS-dependency posture as the partials nav — see Page layout).
+
+### Creating a post
+
+New posts are created from `blog-000-template.html`, which defines the shared post content structure and styling and carries the `data-blog-id` hook. Nav and footer come from `partials.html` via the fetch snippet (not baked into the template). Post content styling is defined in STYLE.md (blog style). Contact/data-capture behavior, where relevant, follows the Form-ish pattern.
+
+A new post requires a manifest entry (blogID, filename, title, date, status, primaryTag, secondaryTags). Adding the entry is what places the post in the sequence — the post file itself carries no prev/next links. The operational procedure (human + Chat + Code) lives in the blog-creation SOP.
 
 ---
 
