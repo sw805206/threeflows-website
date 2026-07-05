@@ -433,5 +433,20 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+<!-- ══ Page tool JS — interactive checklist (restored; lost in PR#45 nav sweep) ══ -->
+<script>
+function toggleCheck(item) {
+  const cb = item.querySelector('input[type="checkbox"]');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+  updateProgress();
+}
+function updateProgress() {
+  const total = document.querySelectorAll('.checklist-item').length;
+  const done  = document.querySelectorAll('.checklist-item input:checked').length;
+  document.getElementById('progress-fill').style.width = (done / total * 100) + '%';
+  document.getElementById('progress-label').textContent = done + ' / ' + total + ' reviewed';
+}
+</script>
 </body>
 </html>
