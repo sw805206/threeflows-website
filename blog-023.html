@@ -241,39 +241,8 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 </head>
 <body>
 
-<nav>
-  <a class="logo" href="index.html">
-    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
-    <div>
-      <div class="logo-name">Three Flows Solutions</div>
-      <div class="logo-tag">from Start to Scale</div>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li class="nav-dropdown" id="dd-services">
-      <a onclick="toggleDropdown('dd-services', event)">Services ▾</a>
-      <div class="nav-dropdown-menu">
-        <a href="svc1.html">Business Planning</a>
-        <a href="svc2.html">Sourcing Consultation</a>
-        <a href="svc3.html">Launch Hypercare</a>
-        <a href="svc4.html">Ongoing Management</a>
-      </div>
-    </li>
-    <li class="nav-dropdown" id="dd-resources">
-      <a onclick="toggleDropdown('dd-resources', event)">Resources ▾</a>
-      <div class="nav-dropdown-menu">
-        <a href="blog.html">Blogs &amp; Articles</a>
-        <a href="useful-websites.html">Useful Websites</a>
-        <a href="free-tools.html">Checklists &amp; Calculators</a>
-        <a href="webinars.html">Recorded Webinars &amp; Seminars</a>
-        <a href="livestream.html">Livestream Discussions</a>
-      </div>
-    </li>
-    <li><a href="index.html#about-anchor">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+<!-- ══ SHARED NAV (injected from partials.html) ══ -->
+<div id="site-nav"></div>
 
 <div class="breadcrumb-wrap">
   <a class="breadcrumb" href="blog.html">← Blog</a>
@@ -501,255 +470,24 @@ footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex;
 
 </div><!-- /.layout -->
 
-<footer>
-  <div style="display:flex;align-items:center;gap:12px">
-    <img src="assets/images/logo_claude.svg" alt="Three Flows Solutions" style="width:34px;height:34px;">
-    <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
-  </div>
-  <div class="footer-links">
-    <a href="#">Privacy</a><a href="#">Terms</a>
-  </div>
-</footer>
+<!-- ══ SHARED FOOTER (injected from partials.html) ══ -->
+<div id="site-footer"></div>
 
+<!-- ══ Fetch shared nav + footer from partials.html, then wire dropdowns + hamburger ══ -->
 <script>
-/* ── Nav ── */
-function toggleDropdown(id, event) {
-  if (event) event.stopPropagation();
-  const el = document.getElementById(id);
-  const isOpen = el.classList.contains('open');
-  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
-  if (!isOpen) el.classList.add('open');
-}
+fetch('/partials.html').then(function(r){ return r.text(); }).then(function(h){
+  var t = document.createElement('template'); t.innerHTML = h;
+  var s = t.content.querySelector('style'); if (s) document.head.appendChild(s);
+  var n = t.content.querySelector('nav'); if (n) { var np = document.getElementById('site-nav'); if (np) np.replaceWith(n); }
+  var f = t.content.querySelector('footer'); if (f) { var ff = document.getElementById('site-footer'); if (ff) ff.replaceWith(f); }
+}).catch(function(){});
 document.addEventListener('click', function(e) {
-  if (!e.target.closest('.nav-dropdown')) document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  var tog = e.target.closest && e.target.closest('.nav-dropdown-toggle');
+  var ham = e.target.closest && e.target.closest('.nav-toggle');
+  if (ham) { ham.closest('nav').classList.toggle('nav-open'); return; }
+  document.querySelectorAll('.nav-dropdown').forEach(function(d){ if (!tog || !d.contains(tog)) d.classList.remove('open'); });
+  if (tog) tog.parentElement.classList.toggle('open');
 });
-
-/* ── Decision Tool ── */
-const tAnswers = {};
-const T_TOTAL = 12;
-
-function tSelect(btn, q) {
-  btn.closest('.tool-options').querySelectorAll('.tool-option').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  tAnswers[q] = parseInt(btn.dataset.val);
-  tUpdateProgress();
-}
-
-function tUpdateProgress() {
-  const count = Object.keys(tAnswers).length;
-  document.getElementById('t-progress-fill').style.width = (count / T_TOTAL * 100) + '%';
-  document.getElementById('t-progress-label').textContent = count + ' of ' + T_TOTAL + ' answered';
-}
-
-function tCalculate() {
-  if (Object.keys(tAnswers).length < T_TOTAL) {
-    document.getElementById('t-error').style.display = 'block';
-    return;
-  }
-  document.getElementById('t-error').style.display = 'none';
-
-  const a = tAnswers;
-
-  /*
-   * SCORING LOGIC — 4 options
-   *
-   * make     = Manufacture Yourself (handcraft, unique, small scale, hands-on)
-   * local    = Domestic Supplier (mid-scale, ethics, speed, local brand)
-   * overseas = Import from Abroad (high volume, cost-driven, risk-tolerant)
-   * hybrid   = Domestic Re-Engineering (import + local finishing — mid-risk, tariff-conscious, scaling)
-   *
-   * Q1: uniqueness  3=unique→make 2=mod→hybrid/local 1=standard→overseas
-   * Q2: complexity  3=simple→make 2=mod→local/hybrid 1=complex→overseas
-   * Q3: QC          3=critical→make 2=important→local/hybrid 1=standard→overseas
-   * Q4: budget      3=small→make 2=mid→local/hybrid 1=large→overseas
-   * Q5: margin      1=top priority→overseas 2=balanced→hybrid 3=secondary→make/local
-   * Q6: MOQ         3=tiny→make 2=mid→local/hybrid 1=large→overseas
-   * Q7: speed       3=ASAP→make/local 2=1-3mo→local/hybrid 1=flexible→overseas
-   * Q8: time        3=hands-on→make 2=moderate→local/hybrid 1=minimal→overseas
-   * Q9: local brand 1=core→local/make 2=prefer→hybrid 3=not impt→overseas
-   * Q10: tariff risk 1=very concerned→local/make 2=somewhat→hybrid 3=not concerned→overseas
-   * Q11: scale      3=small→make 2=mid→local/hybrid 1=large→overseas
-   * Q12: complexity 3=low tolerance→local/make 2=moderate→hybrid 1=high→overseas
-   */
-
-  let make = 0, local = 0, overseas = 0, hybrid = 0;
-
-  // Q1 — uniqueness
-  if (a[1]===3) { make+=3; }
-  else if (a[1]===2) { hybrid+=3; local+=2; make+=1; }
-  else { overseas+=3; local+=1; }
-
-  // Q2 — manufacturing complexity
-  if (a[2]===3) { make+=3; }
-  else if (a[2]===2) { local+=3; hybrid+=2; make+=1; }
-  else { overseas+=3; hybrid+=2; }
-
-  // Q3 — quality control importance
-  if (a[3]===3) { make+=3; local+=1; }
-  else if (a[3]===2) { local+=3; hybrid+=2; make+=1; }
-  else { overseas+=3; hybrid+=1; }
-
-  // Q4 — budget
-  if (a[4]===3) { make+=3; hybrid+=2; }
-  else if (a[4]===2) { local+=3; hybrid+=2; make+=1; overseas+=1; }
-  else { overseas+=3; local+=1; }
-
-  // Q5 — margin priority
-  if (a[5]===1) { overseas+=3; hybrid+=1; }
-  else if (a[5]===2) { hybrid+=3; local+=2; overseas+=1; }
-  else { make+=3; local+=2; hybrid+=1; }
-
-  // Q6 — MOQ comfort
-  if (a[6]===3) { make+=3; hybrid+=1; }
-  else if (a[6]===2) { local+=3; hybrid+=2; make+=1; }
-  else { overseas+=3; local+=1; hybrid+=1; }
-
-  // Q7 — speed to inventory
-  if (a[7]===3) { make+=3; local+=2; hybrid+=1; }
-  else if (a[7]===2) { local+=3; hybrid+=2; make+=1; }
-  else { overseas+=3; hybrid+=1; }
-
-  // Q8 — personal time
-  if (a[8]===3) { make+=3; }
-  else if (a[8]===2) { local+=3; hybrid+=2; make+=1; }
-  else { overseas+=3; hybrid+=2; local+=1; }
-
-  // Q9 — local brand importance
-  if (a[9]===1) { local+=3; make+=3; hybrid+=1; }
-  else if (a[9]===2) { hybrid+=3; local+=2; }
-  else { overseas+=3; }
-
-  // Q10 — tariff risk concern
-  if (a[10]===1) { local+=3; make+=3; hybrid+=2; }
-  else if (a[10]===2) { hybrid+=3; local+=1; }
-  else { overseas+=3; hybrid+=1; }
-
-  // Q11 — target scale
-  if (a[11]===3) { make+=3; hybrid+=1; }
-  else if (a[11]===2) { local+=3; hybrid+=2; overseas+=1; make+=1; }
-  else { overseas+=3; hybrid+=2; local+=1; }
-
-  // Q12 — supply chain complexity tolerance
-  if (a[12]===3) { local+=3; make+=2; hybrid+=2; }
-  else if (a[12]===2) { hybrid+=3; local+=2; overseas+=1; }
-  else { overseas+=3; hybrid+=1; }
-
-  tRenderResult(make, local, overseas, hybrid);
-}
-
-function tRenderResult(make, local, overseas, hybrid) {
-  const scores = { make, local, overseas, hybrid };
-  const max = Math.max(make, local, overseas, hybrid);
-  const winner = Object.keys(scores).find(k => scores[k] === max);
-  const maxPossible = 36;
-
-  const data = {
-    make: {
-      badge: 'badge-make', badgeLabel: '🛠 Make from US Local',
-      title: 'Make from US Local',
-      tagline: 'Your answers point to a hands-on production approach.',
-      desc: 'You have a unique product concept, care deeply about quality, and are willing to invest your time. Making it yourself allows you to iterate quickly, maintain full creative control, and build an authentic brand story from day one. This path works best at small volumes — plan your transition to a co-manufacturer or domestic supplier as volume grows.',
-      pros: ['Full design and quality control', 'No MOQ requirements', 'Authentic brand story', 'Low upfront capital', 'Easy to pivot or iterate'],
-      cons: ['Limited by your own time and skills', 'Hard to scale quickly', 'Higher per-unit cost at volume', 'Risk of production bottlenecks'],
-      steps: [
-        'Prototype your product with available materials and refine until you are satisfied with quality and consistency.',
-        'Price at 3–5× your material + time cost to ensure sustainable margins at this stage.',
-        'List on Etsy, Shopify, or a social storefront to validate demand before investing further.',
-        'Document your production process in detail so you can hand it off when the time comes.',
-        'Once you reach consistent order volume, explore local co-manufacturers who can take on production.'
-      ]
-    },
-    local: {
-      badge: 'badge-local', badgeLabel: '🏭 Buy from US Local',
-      title: 'Buy from US Local',
-      tagline: 'A domestic supplier fits your priorities around speed, ethics, and local brand positioning.',
-      desc: 'You value transparency, fast turnaround, and the credibility of a local supply chain. Domestic manufacturers typically offer lower MOQs than overseas, respond quickly, and allow site visits — ideal for brands where provenance is part of the value proposition. Expect higher unit costs, but lower complexity and risk.',
-      pros: ['Faster lead times (1–4 weeks typical)', 'Easier communication and site visits', 'Strong IP protection', '"Made in USA" story for marketing', 'No tariff or trade policy exposure'],
-      cons: ['Higher cost per unit than overseas', 'Fewer manufacturer options in some categories', 'Moderate MOQs still common', 'Margin pressure as volume scales'],
-      steps: [
-        "Search Maker's Row, Thomasnet, or local trade directories for domestic manufacturers in your category.",
-        'Request samples from at least 3 suppliers before committing to any relationship.',
-        'Negotiate payment terms — aim for 30–50% deposit with balance on delivery for the first few orders.',
-        'Build a supplier scorecard tracking lead time, defect rate, and responsiveness.',
-        'Once volume grows, use that leverage to negotiate better pricing and priority production slots.'
-      ]
-    },
-    overseas: {
-      badge: 'badge-overseas', badgeLabel: '🌏 Buy from Overseas',
-      title: 'Buy from Overseas',
-      tagline: 'Your profile suits international sourcing — volume, cost, and risk tolerance all point this way.',
-      desc: 'You are focused on volume, competitive unit costs, and are comfortable managing supply chain complexity. Overseas sourcing unlocks the lowest per-unit pricing and the broadest manufacturing capacity — the right choice once you have validated product-market fit and can commit to meaningful order volumes. Build your tariff and lead time buffers into your planning model.',
-      pros: ['Lowest cost per unit', 'Massive production capacity and SKU range', 'Established supplier ecosystems', 'Better margins at scale', 'Access to exotic materials and product categories'],
-      cons: ['Long lead times (6–16 weeks)', 'Higher MOQs typically required', 'Language and time zone barriers', 'IP protection concerns', 'Tariff and trade policy risk'],
-      steps: [
-        'Research suppliers on Alibaba, Global Sources, or attend Canton Fair to meet factories directly.',
-        'Order samples from 3+ shortlisted factories before entering any negotiation.',
-        'Use a third-party inspection service for QC until you have an established track record with the supplier.',
-        'Factor in duties, freight, FX, and inventory carrying cost when calculating true landed cost.',
-        'Start with a trial order before committing to full MOQs. Build a 10–15 week buffer into your inventory planning.'
-      ]
-    },
-    hybrid: {
-      badge: 'badge-hybrid', badgeLabel: '🔄 Domestic Re-Engineering',
-      title: 'Domestic Re-Engineering',
-      tagline: 'Import the base product — add meaningful US value locally. The practical middle path.',
-      desc: 'Your answers suggest you want to reduce tariff exposure, support local brand positioning, or improve quality control — but a full domestic manufacturing setup is not yet viable at your scale. Domestic Re-Engineering lets you import finished goods or WIP and add the local element that differentiates your brand: custom packaging, final assembly, software or firmware, or product configuration. This is the most practical transition path for small brands moving away from pure overseas sourcing.',
-      pros: ['Lower tariff and compliance exposure than pure import', 'Local branding story is authentic', 'Quality control over the US-added value', 'More adaptive to market feedback', 'Does not require finding a local OEM'],
-      cons: ['Requires two supplier relationships to manage', 'Slightly higher cost than pure import', 'US-added step needs design and setup', 'Scaling requires both sides to scale together'],
-      steps: [
-        'Define clearly what the US-added element is: packaging design, final assembly, software layer, or configuration. This is your brand story.',
-        'Source the imported component (finished good or WIP) from your existing or new overseas supplier.',
-        'Find a local partner for the US-added step — this could be a print shop, light assembly facility, or software developer.',
-        'Price the product to reflect the US element. Customers who care about local provenance will absorb a modest premium.',
-        'Document the split clearly for compliance purposes — particularly if you plan to use "Assembled in USA" or similar claims.'
-      ]
-    }
-  };
-
-  const d = data[winner];
-  const maxP = Math.max(make, local, overseas, hybrid);
-
-  document.getElementById('t-result-badge-row').innerHTML = `<span class="result-badge ${d.badge}">${d.badgeLabel}</span>`;
-  document.getElementById('t-result-title').textContent = d.title;
-  document.getElementById('t-result-tagline').textContent = d.tagline;
-  document.getElementById('t-result-desc').textContent = d.desc;
-
-  document.getElementById('t-result-pros-cons').innerHTML = `
-    <div class="result-pros"><h4>Advantages</h4><ul>${d.pros.map(p=>`<li>${p}</li>`).join('')}</ul></div>
-    <div class="result-cons"><h4>Watch out for</h4><ul>${d.cons.map(c=>`<li>${c}</li>`).join('')}</ul></div>
-  `;
-
-  document.getElementById('t-result-steps').innerHTML = `
-    <h4>Action Plan</h4>
-    <ol>${d.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
-  `;
-
-  setTimeout(() => {
-    const pct = v => Math.round(v / maxPossible * 100);
-    document.getElementById('s-make').style.width    = pct(make)+'%';
-    document.getElementById('s-local').style.width   = pct(local)+'%';
-    document.getElementById('s-overseas').style.width = pct(overseas)+'%';
-    document.getElementById('s-hybrid').style.width  = pct(hybrid)+'%';
-    document.getElementById('n-make').textContent    = make;
-    document.getElementById('n-local').textContent   = local;
-    document.getElementById('n-overseas').textContent = overseas;
-    document.getElementById('n-hybrid').textContent  = hybrid;
-  }, 100);
-
-  document.getElementById('t-questions').style.display = 'none';
-  document.getElementById('t-result').style.display = 'block';
-  document.getElementById('t-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function tReset() {
-  Object.keys(tAnswers).forEach(k => delete tAnswers[k]);
-  document.querySelectorAll('.tool-option').forEach(b => b.classList.remove('selected'));
-  document.getElementById('t-result').style.display = 'none';
-  document.getElementById('t-questions').style.display = 'block';
-  tUpdateProgress();
-  document.getElementById('t-progress-fill').style.width = '0%';
-  document.querySelector('.tool-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
 </script>
 </body>
 </html>
