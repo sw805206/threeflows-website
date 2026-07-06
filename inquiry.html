@@ -573,9 +573,12 @@
     const submitBtn = document.getElementById('submit-btn');
 
     function showSuccess() {
-      document.querySelector('.trust-strip').style.display = 'none';
-      document.querySelector('.intake-nudge').style.display = 'none';
-      document.querySelector('.form-card').style.display = 'none';
+      const trustStrip = document.querySelector('.trust-strip');
+      if (trustStrip) trustStrip.style.display = 'none';
+      const intakeNudge = document.querySelector('.intake-nudge');
+      if (intakeNudge) intakeNudge.style.display = 'none';
+      const formCard = document.querySelector('.form-card');
+      if (formCard) formCard.style.display = 'none';
       document.getElementById('success-state').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -631,15 +634,17 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-
-        // no-cors means we can't read the response — assume success if no error thrown
-        showSuccess();
       } catch (err) {
         showStatus('error', 'Something went wrong. Please try again.');
         console.error(err);
+        return;
       } finally {
         setLoading(false);
       }
+
+      // no-cors means we can't read the response — assume success if no error thrown.
+      // Render outside the try{} so a rendering error can't be mislabeled as a fetch failure.
+      showSuccess();
     });
   </script>
 
