@@ -1459,10 +1459,22 @@
   }
 
   // ── Collect data ───────────────────────────────────────────────────────────
+  function nowEastern() {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/New_York',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    }).formatToParts(new Date());
+    const p = Object.fromEntries(parts.map(x => [x.type, x.value]));
+    let hour = p.hour === '24' ? '00' : p.hour;  // Intl hour12:false can emit '24' at midnight
+    return `${p.year}-${p.month}-${p.day} ${hour}:${p.minute}:${p.second}`;
+  }
+
   function collectData() {
     const stage = getRadio('stage');
     const base  = {
-      submitted_at: new Date().toISOString(),
+      submitted_at: nowEastern(),
       stage,
       first_name: val('first-name'), last_name: val('last-name'),
       email: val('email'), phone: val('phone'),

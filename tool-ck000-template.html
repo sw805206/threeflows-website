@@ -737,13 +737,25 @@ document.addEventListener('click', function(e) {
       return;
     }
 
+    function nowEastern() {
+      const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/New_York',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false
+      }).formatToParts(new Date());
+      const p = Object.fromEntries(parts.map(x => [x.type, x.value]));
+      let hour = p.hour === '24' ? '00' : p.hour;  // Intl hour12:false can emit '24' at midnight
+      return `${p.year}-${p.month}-${p.day} ${hour}:${p.minute}:${p.second}`;
+    }
+
     const payload = new FormData();
     payload.append('tool_id', TOOL_ID);                              // e.g. 'ck001'
     payload.append('tool_name', TOOL_NAME);                          // e.g. '[Checklist Name]'
     payload.append('first_name', firstEl.value.trim());
     payload.append('email', emailEl.value.trim());
     payload.append('consent', consentEl.checked ? 'true' : 'false');
-    payload.append('timestamp', new Date().toISOString());
+    payload.append('timestamp', nowEastern());
 
     try {
       await fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: payload });
