@@ -142,7 +142,9 @@ There are currently two types: surveys and materials.
 
 **Surveys**
 - The survey URL is sent directly to a target audience; surveys are not in the nav.
-- Only one survey is active at a time; past and future surveys stay hidden.
+- `surveys.html` remains hidden — not in the nav, accessible via direct link only.
+- Multiple surveys may be active at once. Each active survey is listed on `surveys.html` as a block whose "take survey" link points to its `svy###` page.
+- Past and retired surveys stay hidden.
 - No survey template — each survey differs.
 - Results go to a Google Sheet.
 - `surveys.html` serves as the cover page; `svy###.html` is each individual survey (active or inactive).
