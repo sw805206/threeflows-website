@@ -80,7 +80,7 @@ A **project-based tracker** for important-but-not-urgent items — process, feat
 | BL-035 | open | content | SEO / metadata — not yet implemented | 2026-07-03 | |
 | BL-036 | open | content | Footer Privacy / Terms links — currently `href="#"` placeholders; replace before launch | 2026-07-03 | |
 | BL-037 | open | content | Terms & conditions / privacy pages — "add hidden page?"; confirm approach | 2026-07-03 | |
-| BL-038 | open | content | Survey 1 activation / deactivation — only one survey active at a time | 2026-07-03 | |
+| BL-038 | discard | content | Survey 1 activation / deactivation — only one survey active at a time | 2026-07-03 | One-active constraint retired; multi-active survey behavior now defined in ARCHITECTURE.md → Hidden pages → Surveys. |
 | BL-039 | open | content | Paywall (livestream) — not built | 2026-07-03 | |
 | BL-040 | open | content | Livestream calendar — placeholder / coming soon | 2026-07-03 | |
 | BL-041 | open | process | Component-add process — write the rule parallel to the palette's "add the combo here first, then implement in STYLE.css"; placement (Google Doc vs STYLE.md note) to be decided | 2026-07-03 | |
