@@ -1,8 +1,8 @@
 # Style
 
-*Target-state. Refer to STYLE.md and STYLE.css for specific values. All sections drafted; values are decided unless explicitly marked verify-from-live or deferred. STYLE.css implements these tokens (not yet built — see backlog).*
+*Target-state. Refer to STYLE.md and STYLE.css for specific values. All sections drafted; values are decided unless explicitly marked verify-from-live or deferred. STYLE.css exists and is being populated in phases — tokens first (v1), components migrated per-family in later phases (see backlog).*
 
-This document is the single source of truth for visual and UX decisions. STYLE.css (not yet built) implements these tokens; every page draws from it rather than defining styles inline. For structure and page mechanics, see ARCHITECTURE.md. For scope, see SCOPE.md.
+This document is the single source of truth for visual and UX decisions. STYLE.css implements these tokens; it is being built in phases (tokens first, components migrated per-family later), and pages migrate onto it during the STYLE.css migration. Every page draws from it rather than defining styles inline. For structure and page mechanics, see ARCHITECTURE.md. For scope, see SCOPE.md.
 
 ---
 
@@ -64,6 +64,21 @@ This section is the **source of truth for colors**. Raw colors are identified by
 | BN01 | #185FA5 / #FFFFFF | loud blue fill |
 | AN01 | #FACC15 / #1A1A1A | amber fill, dark text |
 | NN08 | #909090 / #FFFFFF | disabled / inactive |
+
+### CSS custom-property naming
+
+The variable names defined here are the **canonical source of truth** for STYLE.css — the stylesheet uses these names and never invents its own. Names derive mechanically from this document; adding a token means naming it here first (per this convention), then defining it in STYLE.css — same governance as the palette's "add the combo here first" rule.
+
+- **Raw colours — `--{family}-{role}`.** `family` is `red` / `amber` / `green` / `blue`, and for neutrals `grey` (the greys) or the colour's own name; `role` is the descriptor this section already uses. Where the descriptor *is* the family word, the name collapses to just `--{family}`.
+  - Reds: `--red-brand` (#C2291B), `--red-interactive` (#EF4444), `--red-wash` (#FDF0F0).
+  - Neutrals: `--black` (#1A1A1A), `--charcoal` (#3A3A3A), `--grey-mid` (#5C5C5C), `--grey-muted` (#909090), `--grey-light` (#C8C8C8), `--grey-border` (#E8E8E8), `--off-white` (#F8F8F8), `--white` (#FFFFFF).
+  - Ambers: `--amber` (#FACC15), `--amber-wash` (#FEF3C7), `--amber-text` (#854F0B).
+  - Greens: `--green` (#00B050), `--green-wash` (#EAF3DE), `--green-text` (#3B6D11).
+  - Blues: `--blue` (#185FA5), `--blue-wash` (#E6F1FB).
+- **Combos — `--combo-{ID}-bg` / `--combo-{ID}-text`.** Each combo (RR01 … NN08) is a background+text pair, so it emits two variables carrying the combo ID verbatim; each points at the raw-colour variable above (single source of truth — a combo never re-hardcodes a hex).
+- **Type ramp / families — `--type-{name}` and `--font-{style}`.** Ramp sizes: `--type-h1` (44), `--type-h2` (32), `--type-h3` (20), `--type-body` (16); dense/UI tier `--type-dense-title` (13), `--type-dense-body` (12), `--type-dense-meta` (11). Families: `--font-serif`, `--font-sans`.
+- **Spacing — `--space-{px}`.** One variable per scale step, named by its pixel value: `--space-4` … `--space-64` (4 / 8 / 12 / 16 / 24 / 32 / 48 / 64).
+- **Border-radius — `--radius-{value}`.** `--radius-6`, `--radius-10`, `--radius-20`, `--radius-999` (pill), `--radius-circle` (50%).
 
 ### Typography
 
@@ -135,7 +150,7 @@ Three callouts, by function. All cite palette combos; no new colours. The two in
 |---|---|---|---|
 | **Continuity** | service / price-related | dark full-width band + pill badge; no rim; flex layout | band **NN06** (#1A1A1A) + pill **RN02** |
 | **Content** | reminder, draw attention | red left-rim tinted box, in prose | **RR01** (#FDF0F0 / #C2291B rim) |
-| **Remark** | additional comment / aside | grey left-rim tinted box, in prose | **NN05** (#F8F8F8) + neutral-dark rim, mid-grey text |
+| **Remark** | additional comment / aside | grey left-rim tinted box, in prose | **NN05** (#F8F8F8) + #3A3A3A (charcoal, `--charcoal`) rim, mid-grey text |
 
 - Content and Remark: in-prose emphasis boxes; geometry as above.
 - Continuity: standalone band (service pages), pill badge + light body text on the dark band.
@@ -240,7 +255,7 @@ A set of reusable blocks that compose the site's forms and gates (see ARCHITECTU
 
 **Fields / labels:**
 - **Label:** 12px, weight 500, colour #5C5C5C (mid); required marker `.req` asterisk in interactive red #EF4444. Margin-bottom 6.
-- **Input** (text / email): DM Sans 14px, colour #1A1A1A, white bg, 1.5px border #border-dark, radius 6, padding 12×16, full width. **Focus:** border → #EF4444 + 3px red glow (rgba of #EF4444). Field margin-bottom 16.
+- **Input** (text / email): DM Sans 14px, colour #1A1A1A, white bg, 1px border #E8E8E8 (`--grey-border`, matching the container/cards), radius 6, padding 12×16, full width. **Focus:** border → #EF4444 + 3px red glow (rgba of #EF4444). Field margin-bottom 16.
 - **Consent row:** checkbox + 13px text (#5C5C5C), aligned flex-start.
 - **Error:** 13px, interactive red #EF4444 text on red-wash (#FDF0F0) bg, radius 6, padding 9×12; hidden until shown. (Live uses retired `--red-dark` — remapped; see backlog.)
 
@@ -293,6 +308,10 @@ Note: the bottom-CTA (a standing dark component at the foot of the page — see 
 **Card background.** Cards use a white (#FFFFFF) fill regardless of the section background they sit on — so a card reads consistently on a white, off-white, or dark section. Both resource-card and tool-card share this white fill (they differ in size/content, not background).
 
 **Hero padding (service pages).** All four service pages (svc1–4) use identical hero `padding-top`. Service-scoped — not a sitewide rule. Canonical value: verify-from-live (match svc2/3/4, then record here). The svc1 hero has a known ~40px extra gap above the eyebrow — see backlog.
+
+**Breakpoints.** The governed sitewide mobile breakpoint is **800px** — a single `max-width: 800px` boundary, matching the partials nav slice (below it the nav collapses to the hamburger menu). Mobile section padding (`48px 20px`) and other responsive shifts key off this one breakpoint. Do not introduce additional ad-hoc breakpoints without documenting them here.
+
+**Scrollbar gutter.** The vertical scrollbar gutter is reserved sitewide via `html { scrollbar-gutter: stable; }` (implemented in STYLE.css). This holds the layout width constant between TALL (scrolling) and SHORT (non-scrolling) pages, preventing the ~15px horizontal nav shift on classic-scrollbar setups. A single additive rule — not a per-page concern.
 
 ---
 
