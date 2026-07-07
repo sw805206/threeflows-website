@@ -143,3 +143,35 @@ html {
    STYLE-ID CMP-CTALINK. */
 .cta-link       { color: var(--red-interactive); font-weight: 600; font-size: var(--type-body); text-decoration: none; }
 .cta-link:hover { text-decoration: underline; }
+
+/* --- Buttons (STYLE.md → Components → Buttons) ------------------------------
+   Filled action buttons. One canonical geometry — padding 12×24, radius 6,
+   DM Sans 14px/600, line-height 1.1 — reconciling the prior live variants
+   (13×28 / 12×26 padding, 15px/500 font, and the tool/survey :disabled tier)
+   into a single component. Arrows (→) ride inside the label text, so the box
+   stays inline-block (no flex/gap) — matching the prior rules.
+     - btn-red  = interactive red #EF4444 (RN01) — primary, sitewide. Migrated
+                  from live #D63B3B. STYLE-ID CMP-BTN-RED.
+     - btn-dark = #1A1A1A (NN06) — index-only by design ("See how we work →").
+                  STYLE-ID CMP-BTN-DARK.
+   :disabled is baked in (was the tool/survey variant). btn-outline is DEFERRED
+   (BL-017) and not defined here. The .btn-red.on-dark dark-band buttons keep
+   their own page-local rule + inline styles for now (separate later cleanup). */
+.btn-red {
+  background: var(--red-interactive); color: var(--white);
+  padding: var(--space-12) var(--space-24); border-radius: var(--radius-6);
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600; line-height: 1.1;
+  border: none; cursor: pointer; text-decoration: none; display: inline-block;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-red:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+.btn-red:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-dark {
+  background: var(--black); color: var(--white);
+  padding: var(--space-12) var(--space-24); border-radius: var(--radius-6);
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600; line-height: 1.1;
+  border: none; cursor: pointer; text-decoration: none; display: inline-block;
+  transition: opacity 0.2s;
+}
+.btn-dark:hover:not(:disabled) { opacity: 0.85; }
