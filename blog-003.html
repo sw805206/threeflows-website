@@ -49,60 +49,6 @@
   }
   .review-banner strong { color: #f0c060; }
 
-  /* TOC sidebar */
-  .layout {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 24px;
-    gap: 48px;
-    align-items: flex-start;
-  }
-
-  .toc {
-    width: 220px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 60px;
-  }
-
-  .toc h3 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .toc a {
-    display: block;
-    font-size: 13px;
-    color: var(--mid);
-    text-decoration: none;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border);
-    transition: color 0.18s;
-  }
-  .toc a:hover { color: var(--red); }
-  .toc .toc-date {
-    display: block;
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  /* Main content */
-  .posts { flex: 1; min-width: 0; }
-
-  .post {
-    background: white;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    padding: 48px 56px;
-    margin-bottom: 40px;
-  }
 
   .post-meta {
     display: flex;
@@ -253,9 +199,6 @@
   }
 
   @media (max-width: 800px) {
-    .layout { flex-direction: column; }
-    .toc { width: 100%; position: static; }
-    .post { padding: 32px 24px; }
     .stat-box { flex-wrap: wrap; }
   }
 
@@ -273,13 +216,10 @@
 }
 
 
-/* For split posts: replace the multi-post layout flex with a single-column
-   article width matching the standalone post drafts. */
-.layout { display: block; max-width: 820px; margin: 0 auto; padding: 40px 24px 60px; }
-.post { background: white; border-radius: var(--radius); border: 1px solid var(--border); padding: 48px 56px; margin-bottom: 0; }
-@media (max-width: 800px) {
-  .post { padding: 32px 24px; }
-}
+/* Article layout — canonical bare reading column (matches blog-000-template).
+   .post wrapper is retained as a transparent content scope (Option B); its card
+   visuals + the dead boxed scaffold (flex .layout, .toc, .posts) are removed. */
+.layout { max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
 
 /* POST NAV (prev/next) */
 .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 48px auto 0; max-width: 820px; padding: 0 24px; }
