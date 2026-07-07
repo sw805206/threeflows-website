@@ -132,3 +132,14 @@ html {
 }
 .eyebrow.red   { color: var(--red-brand); }   /* CMP-EYEBROW-RED — #C2291B */
 .eyebrow.muted { color: var(--grey-muted); }  /* explicit alias for Shape-B markup */
+
+/* --- In-page link (STYLE.md → Components → In-page links) -------------------
+   Inline red action link inside body content (e.g. "Contact us →",
+   "Get it for free →"). One canonical class — never inline styles. Colour is
+   interactive red #EF4444 (NR01 — these are clickable, so interactive red per
+   the two-reds rule, NOT brand red). Size is the body ramp 16px (snapped from
+   the old off-scale 15px). Hover underlines; no visited/focus/disabled states.
+   Arrows (→ internal, ↗ external) live in the markup, per the Arrow rule.
+   STYLE-ID CMP-CTALINK. */
+.cta-link       { color: var(--red-interactive); font-weight: 600; font-size: var(--type-body); text-decoration: none; }
+.cta-link:hover { text-decoration: underline; }
