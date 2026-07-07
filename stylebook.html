@@ -249,17 +249,17 @@
 
   <!-- ============================== COMPONENTS ============================== -->
   <div class="domain">Components</div>
-  <p class="hint">Each slot renders with the component's <b>real class</b>. STYLE.css v1 has no component classes yet, so slots render unstyled and are tagged <span class="status pending">pending Phase 1</span> — they light up automatically as each component is migrated into STYLE.css. Two are <span class="status deferred">deferred</span> (design decision pending). Specs from STYLE.md → Components.</p>
+  <p class="hint">Each slot renders with the component's <b>real class</b>. Components migrate into STYLE.css in phases: a slot tagged <span class="status incss">in STYLE.css ✓</span> renders live from the stylesheet, while a <span class="status pending">pending Phase 1</span> slot has no class yet and renders unstyled — it lights up automatically once migrated. Two are <span class="status deferred">deferred</span> (design decision pending). Specs from STYLE.md → Components.</p>
 
   <div class="cmp">
-    <div class="cmp-head"><span class="cmp-id">CMP-EYEBROW-MUTED</span><span class="cmp-name">Eyebrow — muted</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-head"><span class="cmp-id">CMP-EYEBROW-MUTED</span><span class="cmp-name">Eyebrow — muted</span><span class="status incss">in STYLE.css ✓</span></div>
     <div class="cmp-spec">11px · 600 · uppercase · ls .12em · #909090. Section labels (default).</div>
     <div class="cmp-render"><span class="eyebrow">Common questions</span><span class="usedclass">&lt;span class="eyebrow"&gt;</span></div>
   </div>
   <div class="cmp">
-    <div class="cmp-head"><span class="cmp-id">CMP-EYEBROW-RED</span><span class="cmp-name">Eyebrow — red</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-head"><span class="cmp-id">CMP-EYEBROW-RED</span><span class="cmp-name">Eyebrow — red</span><span class="status incss">in STYLE.css ✓</span></div>
     <div class="cmp-spec">Brand red #C2291B accent (RR01 family, not interactive). Hero identifiers (PLAN, SOURCE, CONTACT US).</div>
-    <div class="cmp-render"><span class="eyebrow eyebrow-red">PLAN</span><span class="usedclass">&lt;span class="eyebrow eyebrow-red"&gt;</span></div>
+    <div class="cmp-render"><span class="eyebrow red">PLAN</span><span class="usedclass">&lt;span class="eyebrow red"&gt;</span></div>
   </div>
 
   <div class="cmp">

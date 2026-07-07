@@ -110,3 +110,25 @@
 html {
   scrollbar-gutter: stable;
 }
+
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+
+/* --- Eyebrow (STYLE.md → Components → Eyebrows) -----------------------------
+   Small uppercase label above a section title or hero identifier. One pattern
+   only — never page-specific eyebrow classes. Base = muted (default); .red for
+   hero identifiers (a static brand-red accent, not interactive — two-reds rule).
+   STYLE-IDs: CMP-EYEBROW-MUTED, CMP-EYEBROW-RED. Size = TY-EYEBROW (11px — the
+   eyebrow's own governed use; shares the dense-meta value, no separate token).
+   Font-family inherits DM Sans (body font), matching the prior inline rules. */
+.eyebrow {
+  font-size: var(--type-dense-meta);   /* 11px (TY-EYEBROW) */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-12);
+  color: var(--grey-muted);            /* CMP-EYEBROW-MUTED (default) */
+}
+.eyebrow.red   { color: var(--red-brand); }   /* CMP-EYEBROW-RED — #C2291B */
+.eyebrow.muted { color: var(--grey-muted); }  /* explicit alias for Shape-B markup */
