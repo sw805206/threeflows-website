@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stylebook — Three Flows Solutions</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo_claude.svg">
+<!-- Google Fonts (variant A: DM Serif Display ital + full DM Sans weight set) so real type renders -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<!-- STYLE.css: the source the stylebook mirrors. Tokens + components resolve from here. -->
+<link rel="stylesheet" href="STYLE.css">
+<style>
+  /* ============================================================================
+     STYLEBOOK CHROME — styles the stylebook's OWN furniture (swatch grid, tables,
+     spec rows, spacing bars, radius chips). Reused verbatim from the reference
+     example. NOT demonstrated values — the demonstrated swatches/specimens render
+     live from STYLE.css var()/classes on top of this.
+     One reconciliation: the example's `.pill` chrome class is renamed `.sb-pill`
+     here so it does not collide with (and mask) the real `.pill` tag-pill
+     component, which is still pending in STYLE.css.
+     ============================================================================ */
+  body { font-family:'DM Sans',-apple-system,sans-serif; color:#1A1A1A; max-width:940px; margin:0 auto; padding:32px 24px 70px; line-height:1.5; }
+  h1.doc { font-size:26px; margin-bottom:2px; }
+  .sub { color:#5C5C5C; font-size:14px; margin-bottom:8px; }
+  .redrule { background:#FDF0F0; border-left:3px solid #C2291B; border-radius:0 8px 8px 0; padding:11px 15px; margin:16px 0 4px; font-size:13px; color:#3A3A3A; }
+  .redrule b { color:#C2291B; }
+  .domain { font-family:'DM Serif Display',serif; font-size:22px; font-weight:400; margin:40px 0 2px; padding-top:20px; border-top:2px solid #1A1A1A; }
+  h2 { font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:#5C5C5C; margin:26px 0 6px; border-bottom:1px solid #E8E8E8; padding-bottom:6px; }
+  .hint { font-size:12px; color:#909090; margin:0 0 12px; }
+  .buckets { display:flex; gap:14px; align-items:flex-start; }
+  .bucket { flex:1; }
+  .bucket .bh { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:#909090; margin-bottom:8px; text-align:center; }
+  .sw { height:44px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:ui-monospace,Menlo,monospace; font-size:11px; font-weight:600; margin-bottom:6px; }
+  table { border-collapse:collapse; width:100%; font-size:12px; margin-top:4px; }
+  th,td { border:1px solid #E8E8E8; padding:6px 10px; text-align:left; vertical-align:middle; }
+  th { background:#F8F8F8; font-weight:600; color:#5C5C5C; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; }
+  .id { font-family:ui-monospace,Menlo,monospace; font-weight:700; }
+  .hex { font-family:ui-monospace,Menlo,monospace; font-size:11px; color:#5C5C5C; }
+  .demo { text-align:center; font-weight:700; border-radius:6px; padding:5px 12px; display:inline-block; font-size:12px; }
+  .sb-pill { display:inline-block; padding:4px 13px; border-radius:999px; font-size:11px; font-weight:700; line-height:1.1; }
+  .note { font-size:12px; color:#909090; margin-top:10px; }
+  .co { border-radius:0 8px 8px 0; padding:16px 20px; margin:10px 0 4px; font-size:14px; line-height:1.55; }
+  .co-content { background:#FDF0F0; border-left:3px solid #C2291B; color:#1A1A1A; }
+  .co-remark  { background:#F8F8F8; border-left:3px solid #3A3A3A; color:#5C5C5C; }
+  .co-band { background:#1A1A1A; border-radius:10px; padding:20px 24px; margin:10px 0 4px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .co-band-pill { background:#C2291B; color:#FFFFFF; font-size:11px; font-weight:700; padding:5px 14px; border-radius:999px; white-space:nowrap; line-height:1.1; }
+  .co-band-text { color:rgba(255,255,255,0.8); font-size:14px; line-height:1.5; flex:1 1 300px; }
+  .co-meta { font-size:11px; color:#909090; margin:0 0 18px; }
+  .co-fn { font-size:12px; color:#5C5C5C; font-weight:600; margin-bottom:2px; }
+  .spec { display:flex; align-items:baseline; gap:20px; padding:14px 0; border-bottom:1px solid #F0F0F0; flex-wrap:wrap; }
+  .spec .meta { flex:0 0 190px; font-size:11px; color:#909090; line-height:1.4; }
+  .spec .meta b { display:block; color:#1A1A1A; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; }
+  .spec .sample { flex:1 1 380px; color:#1A1A1A; }
+  .serif { font-family:'DM Serif Display',serif; font-weight:400; }
+  .sans  { font-family:'DM Sans',sans-serif; }
+  .weights { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+  .wt { flex:1 1 120px; border:1px solid #E8E8E8; border-radius:8px; padding:12px 14px; }
+  .wt .n { font-size:11px; color:#909090; margin-bottom:4px; }
+  .wt .g { font-size:22px; color:#1A1A1A; }
+  .btnrow { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:4px; }
+  .btncap { font-size:11px; color:#909090; }
+  .sp { display:flex; align-items:center; gap:14px; padding:5px 0; }
+  .sp .lbl { flex:0 0 90px; font-size:12px; color:#5C5C5C; font-family:ui-monospace,Menlo,monospace; }
+  .sp .bar { height:16px; background:#EF4444; border-radius:3px; }
+  .sp .use { font-size:11px; color:#909090; }
+  .exc { font-size:12px; color:#5C5C5C; margin-top:12px; }
+  .exc b { color:#1A1A1A; }
+  .radrow { display:flex; gap:14px; flex-wrap:wrap; margin-top:6px; }
+  .rad { text-align:center; font-size:11px; color:#909090; }
+  .rad .box { width:70px; height:54px; background:#F8F8F8; border:1px solid #E8E8E8; margin-bottom:5px; }
+
+  /* --- stylebook additions (not in the reference chrome): Components section + status markers.
+         Kept minimal and visually consistent with the chrome above. --- */
+  .status { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:2px 8px; border-radius:999px; vertical-align:middle; }
+  .status.incss   { background:#EAF3DE; color:#3B6D11; }   /* class exists in STYLE.css */
+  .status.pending { background:#FEF3C7; color:#854F0B; }   /* not yet migrated */
+  .status.deferred{ background:#E8E8E8; color:#5C5C5C; }   /* design decision deferred */
+  .cmp { padding:16px 0; border-bottom:1px solid #F0F0F0; }
+  .cmp-head { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .cmp-id { font-family:ui-monospace,Menlo,monospace; font-weight:700; font-size:12px; }
+  .cmp-name { font-size:13px; font-weight:600; color:#1A1A1A; }
+  .cmp-spec { font-size:12px; color:#909090; margin:5px 0 10px; }
+  .cmp-render { border:1px dashed #C8C8C8; border-radius:8px; padding:14px; background:#FCFCFC; }
+  .cmp-render .usedclass { display:block; font-family:ui-monospace,Menlo,monospace; font-size:10px; color:#B0B0B0; margin-top:10px; }
+</style>
+</head>
+<body>
+
+  <h1 class="doc">Three Flows — Stylebook</h1>
+  <p class="sub">Hidden reference page · renders live from <b>STYLE.css</b> · not linked from nav (direct-link only).</p>
+  <div class="redrule">
+    This page is a <b>view, not a copy</b>. Swatches, type, spacing and radius render from the real <span class="hex" style="color:#3A3A3A">var(--…)</span> tokens in STYLE.css; the printed hex/ID/spec labels are read from <b>STYLE.md</b> (the source of truth). Component slots below fill in as Phase 1 migrates each component into STYLE.css — an unstyled <span class="status pending">pending</span> slot means not-yet-migrated, not broken.
+  </div>
+
+  <!-- ============================== COLOUR ============================== -->
+  <div class="domain">Colour</div>
+
+  <h2>Raw colours</h2>
+  <p class="hint">Swatch background = live <code>var(--name)</code> from STYLE.css. Hex label = identifier (STYLE.md → Color palette).</p>
+  <div class="buckets">
+    <div class="bucket">
+      <div class="bh">Reds</div>
+      <div class="sw" style="background:var(--red-brand);color:#fff">#C2291B</div>
+      <div class="sw" style="background:var(--red-interactive);color:#fff">#EF4444</div>
+      <div class="sw" style="background:var(--red-wash);color:#1A1A1A">#FDF0F0</div>
+    </div>
+    <div class="bucket">
+      <div class="bh">Neutrals</div>
+      <div class="sw" style="background:var(--black);color:#fff">#1A1A1A</div>
+      <div class="sw" style="background:var(--charcoal);color:#fff">#3A3A3A</div>
+      <div class="sw" style="background:var(--grey-mid);color:#fff">#5C5C5C</div>
+      <div class="sw" style="background:var(--grey-muted);color:#fff">#909090</div>
+      <div class="sw" style="background:var(--grey-light);color:#1A1A1A">#C8C8C8</div>
+      <div class="sw" style="background:var(--grey-border);color:#1A1A1A">#E8E8E8</div>
+      <div class="sw" style="background:var(--off-white);color:#1A1A1A">#F8F8F8</div>
+      <div class="sw" style="background:var(--white);color:#1A1A1A;border:1px solid var(--grey-border)">#FFFFFF</div>
+    </div>
+    <div class="bucket">
+      <div class="bh">Ambers</div>
+      <div class="sw" style="background:var(--amber);color:#1A1A1A">#FACC15</div>
+      <div class="sw" style="background:var(--amber-wash);color:#1A1A1A">#FEF3C7</div>
+      <div class="sw" style="background:var(--amber-text);color:#fff">#854F0B</div>
+    </div>
+    <div class="bucket">
+      <div class="bh">Greens</div>
+      <div class="sw" style="background:var(--green);color:#fff">#00B050</div>
+      <div class="sw" style="background:var(--green-wash);color:#1A1A1A">#EAF3DE</div>
+      <div class="sw" style="background:var(--green-text);color:#fff">#3B6D11</div>
+    </div>
+    <div class="bucket">
+      <div class="bh">Blues</div>
+      <div class="sw" style="background:var(--blue);color:#fff">#185FA5</div>
+      <div class="sw" style="background:var(--blue-wash);color:#1A1A1A">#E6F1FB</div>
+    </div>
+  </div>
+
+  <h2>Combos — with meaning (tag pills · context-scoped)</h2>
+  <p class="hint">Pill renders from <code>var(--combo-XX-bg)</code> / <code>var(--combo-XX-text)</code>. Context + meaning from STYLE.md.</p>
+  <table>
+    <tr><th>ID</th><th>bg / text</th><th>Live</th><th>Context</th><th>Meaning</th></tr>
+    <tr><td class="id">RR01</td><td class="hex">#FDF0F0 / #C2291B</td><td><span class="sb-pill" style="background:var(--combo-RR01-bg);color:var(--combo-RR01-text)">startup</span></td><td>Blogs · Insights · Status</td><td>primary · startup · failure</td></tr>
+    <tr><td class="id">NN01</td><td class="hex">#E8E8E8 / #3A3A3A</td><td><span class="sb-pill" style="background:var(--combo-NN01-bg);color:var(--combo-NN01-text)">established</span></td><td>Blogs · Insights</td><td>secondary · established</td></tr>
+    <tr><td class="id">GG01</td><td class="hex">#EAF3DE / #3B6D11</td><td><span class="sb-pill" style="background:var(--combo-GG01-bg);color:var(--combo-GG01-text)">open</span></td><td>Marketplaces · Status</td><td>open · success/eco</td></tr>
+    <tr><td class="id">BB01</td><td class="hex">#E6F1FB / #185FA5</td><td><span class="sb-pill" style="background:var(--combo-BB01-bg);color:var(--combo-BB01-text)">curated</span></td><td>Marketplaces · Status</td><td>curated · to-start</td></tr>
+    <tr><td class="id">AA01</td><td class="hex">#FEF3C7 / #854F0B</td><td><span class="sb-pill" style="background:var(--combo-AA01-bg);color:var(--combo-AA01-text)">vendor</span></td><td>Marketplaces · Status</td><td>vendor · at-risk</td></tr>
+  </table>
+
+  <h2>Combos — commonly used (text on bg · buttons · links)</h2>
+  <table>
+    <tr><th>ID</th><th>bg / text</th><th>Live</th><th>Use</th></tr>
+    <tr><td class="id">NN02</td><td class="hex">#FFFFFF / #1A1A1A</td><td><span class="demo" style="background:var(--combo-NN02-bg);color:var(--combo-NN02-text);border:1px solid var(--grey-border)">Aa text</span></td><td>primary text on white</td></tr>
+    <tr><td class="id">NN03</td><td class="hex">#FFFFFF / #5C5C5C</td><td><span class="demo" style="background:var(--combo-NN03-bg);color:var(--combo-NN03-text);border:1px solid var(--grey-border)">Aa text</span></td><td>secondary text on white</td></tr>
+    <tr><td class="id">NN04</td><td class="hex">#FFFFFF / #909090</td><td><span class="demo" style="background:var(--combo-NN04-bg);color:var(--combo-NN04-text);border:1px solid var(--grey-border)">Aa text</span></td><td>muted / caption on white *</td></tr>
+    <tr><td class="id">NN05</td><td class="hex">#F8F8F8 / #1A1A1A</td><td><span class="demo" style="background:var(--combo-NN05-bg);color:var(--combo-NN05-text)">Aa text</span></td><td>primary text on off-white</td></tr>
+    <tr><td class="id">NN06</td><td class="hex">#1A1A1A / #F8F8F8</td><td><span class="demo" style="background:var(--combo-NN06-bg);color:var(--combo-NN06-text)">Aa text</span></td><td>light text on dark section</td></tr>
+    <tr><td class="id">NN07</td><td class="hex">#1A1A1A / #909090</td><td><span class="demo" style="background:var(--combo-NN07-bg);color:var(--combo-NN07-text)">Aa text</span></td><td>muted text on dark</td></tr>
+    <tr><td class="id">NR01</td><td class="hex">#FFFFFF / #EF4444</td><td><span class="demo" style="background:var(--combo-NR01-bg);color:var(--combo-NR01-text);border:1px solid var(--grey-border)">Link ↗</span></td><td>interactive link on white *</td></tr>
+    <tr><td class="id">RN01</td><td class="hex">#EF4444 / #FFFFFF</td><td><span class="demo" style="background:var(--combo-RN01-bg);color:var(--combo-RN01-text)">Button</span></td><td>primary button *</td></tr>
+    <tr><td class="id">NR02</td><td class="hex">#1A1A1A / #EF4444</td><td><span class="demo" style="background:var(--combo-NR02-bg);color:var(--combo-NR02-text)">Link on dark</span></td><td>button / link on dark</td></tr>
+  </table>
+
+  <h2>Combos — viable but unassigned (reserved)</h2>
+  <table>
+    <tr><th>ID</th><th>bg / text</th><th>Live</th><th>Note</th></tr>
+    <tr><td class="id">RN02</td><td class="hex">#C2291B / #FFFFFF</td><td><span class="demo" style="background:var(--combo-RN02-bg);color:var(--combo-RN02-text)">Aa</span></td><td>brand-red solid fill</td></tr>
+    <tr><td class="id">GN01</td><td class="hex">#00B050 / #FFFFFF</td><td><span class="demo" style="background:var(--combo-GN01-bg);color:var(--combo-GN01-text)">Aa</span></td><td>loud green fill</td></tr>
+    <tr><td class="id">BN01</td><td class="hex">#185FA5 / #FFFFFF</td><td><span class="demo" style="background:var(--combo-BN01-bg);color:var(--combo-BN01-text)">Aa</span></td><td>loud blue fill</td></tr>
+    <tr><td class="id">AN01</td><td class="hex">#FACC15 / #1A1A1A</td><td><span class="demo" style="background:var(--combo-AN01-bg);color:var(--combo-AN01-text)">Aa</span></td><td>amber fill, dark text</td></tr>
+    <tr><td class="id">NN08</td><td class="hex">#909090 / #FFFFFF</td><td><span class="demo" style="background:var(--combo-NN08-bg);color:var(--combo-NN08-text)">Aa</span></td><td>disabled / inactive</td></tr>
+  </table>
+  <p class="note">* Below WCAG-AA for normal text (large/bold only): NN04 (3.19), NR01 (3.76), RN01 (3.76). See STYLE.md → Color palette.</p>
+
+  <!-- ============================== TYPE ============================== -->
+  <div class="domain">Type</div>
+
+  <h2>Type ramp</h2>
+  <p class="hint">Specimen size = live <code>var(--type-*)</code>; family = <code>var(--font-*)</code>. Spec from STYLE.md → Typography.</p>
+  <div class="spec">
+    <div class="meta"><b>TY-H1</b>DM Serif Display · 44px · hero</div>
+    <div class="sample serif" style="font-size:var(--type-h1)">Business, built to scale</div>
+  </div>
+  <div class="spec">
+    <div class="meta"><b>TY-H2</b>DM Serif Display · 32px · section title</div>
+    <div class="sample serif" style="font-size:var(--type-h2)">How we work</div>
+  </div>
+  <div class="spec">
+    <div class="meta"><b>TY-H3</b>DM Sans · 20px · 700 · subhead</div>
+    <div class="sample sans" style="font-size:var(--type-h3);font-weight:700">Subhead / card heading</div>
+  </div>
+  <div class="spec">
+    <div class="meta"><b>TY-BODY</b>DM Sans · 16px · 300 · #5C5C5C</div>
+    <div class="sample sans" style="font-size:var(--type-body);font-weight:300;color:var(--grey-mid)">The standard content paragraph is the body ramp — 16px DM Sans, mid grey, light weight.</div>
+  </div>
+
+  <h2>Dense / UI tier</h2>
+  <p class="hint">Compact directory-style UI (cards, badges, in-card links). Governed sizes only.</p>
+  <div class="spec">
+    <div class="meta"><b>TY-D13</b>DM Sans · 13px · dense title / card name</div>
+    <div class="sample sans" style="font-size:var(--type-dense-title);font-weight:600">Resource card name</div>
+  </div>
+  <div class="spec">
+    <div class="meta"><b>TY-D12</b>DM Sans · 12px · dense body / card description</div>
+    <div class="sample sans" style="font-size:var(--type-dense-body)">A short card description sits at the dense-body size.</div>
+  </div>
+  <div class="spec">
+    <div class="meta"><b>TY-D11</b>DM Sans · 11px · dense meta / in-card link</div>
+    <div class="sample sans" style="font-size:var(--type-dense-meta)">Visit site ↗</div>
+  </div>
+  <div class="spec">
+    <div class="meta"><b>TY-EYEBROW</b>DM Sans · 11px · 600 · uppercase · ls .12em<br><span style="color:#C8C8C8">no dedicated token — shares TY-D11's 11px</span></div>
+    <div class="sample sans" style="font-size:var(--type-dense-meta);font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--grey-muted)">Eyebrow label</div>
+  </div>
+
+  <h2>Weights &amp; line-height</h2>
+  <p class="hint">DM Sans weights in use (family = <code>var(--font-sans)</code>). Line-height: body 1.6 · headings 1.2 · dense/UI 1.3–1.45 · tight 1.1.</p>
+  <div class="weights">
+    <div class="wt"><div class="n">300 light — body</div><div class="g sans" style="font-weight:300">Aa Gg 123</div></div>
+    <div class="wt"><div class="n">400 regular</div><div class="g sans" style="font-weight:400">Aa Gg 123</div></div>
+    <div class="wt"><div class="n">500 medium</div><div class="g sans" style="font-weight:500">Aa Gg 123</div></div>
+    <div class="wt"><div class="n">600 semibold — UI/labels</div><div class="g sans" style="font-weight:600">Aa Gg 123</div></div>
+    <div class="wt"><div class="n">700 bold — h3</div><div class="g sans" style="font-weight:700">Aa Gg 123</div></div>
+  </div>
+  <p class="note">Families: <code>--font-serif</code> = DM Serif Display (h1, h2) · <code>--font-sans</code> = DM Sans (h3, body, UI).</p>
+
+  <!-- ============================== SPACING & RADIUS ============================== -->
+  <div class="domain">Spacing &amp; Radius</div>
+
+  <h2>Spacing scale</h2>
+  <p class="hint">Bar width = live <code>var(--space-*)</code>. Every margin, gap, padding snaps to a step.</p>
+  <div class="sp"><span class="lbl">SP-4</span><span class="bar" style="width:var(--space-4)"></span><span class="use">card internal gap</span></div>
+  <div class="sp"><span class="lbl">SP-8</span><span class="bar" style="width:var(--space-8)"></span><span class="use">tag / pill row gap</span></div>
+  <div class="sp"><span class="lbl">SP-12</span><span class="bar" style="width:var(--space-12)"></span><span class="use">compact row padding (FAQ)</span></div>
+  <div class="sp"><span class="lbl">SP-16</span><span class="bar" style="width:var(--space-16)"></span><span class="use">between-block (grids) · field mb</span></div>
+  <div class="sp"><span class="lbl">SP-24</span><span class="bar" style="width:var(--space-24)"></span><span class="use">between-block · card/step padding</span></div>
+  <div class="sp"><span class="lbl">SP-32</span><span class="bar" style="width:var(--space-32)"></span><span class="use">larger block spacing</span></div>
+  <div class="sp"><span class="lbl">SP-48</span><span class="bar" style="width:var(--space-48)"></span><span class="use">section padding (×48 sides)</span></div>
+  <div class="sp"><span class="lbl">SP-64</span><span class="bar" style="width:var(--space-64)"></span><span class="use">section padding (64 top/bottom)</span></div>
+  <p class="exc"><b>Governed exceptions (off-scale, by design):</b> card internal padding <b>12×14</b> · callouts 16×20 · buttons 12×24 · tag pills 3×10. Section padding: standard 64×48, emphasis 80×48, mobile 48×20.</p>
+
+  <h2>Border-radius</h2>
+  <p class="hint">Chip radius = live <code>var(--radius-*)</code>.</p>
+  <div class="radrow">
+    <div class="rad"><div class="box" style="border-radius:var(--radius-6)"></div>RAD-6 · 6px<br>buttons, chips</div>
+    <div class="rad"><div class="box" style="border-radius:var(--radius-10)"></div>RAD-10 · 10px<br>cards</div>
+    <div class="rad"><div class="box" style="border-radius:var(--radius-20)"></div>RAD-20 · 20px<br>large cards, callouts</div>
+    <div class="rad"><div class="box" style="border-radius:var(--radius-999)"></div>RAD-999 · 999px<br>pills (fully round)</div>
+    <div class="rad"><div class="box" style="border-radius:var(--radius-circle)"></div>RAD-50 · 50%<br>circles, avatars</div>
+  </div>
+
+  <!-- ============================== COMPONENTS ============================== -->
+  <div class="domain">Components</div>
+  <p class="hint">Each slot renders with the component's <b>real class</b>. STYLE.css v1 has no component classes yet, so slots render unstyled and are tagged <span class="status pending">pending Phase 1</span> — they light up automatically as each component is migrated into STYLE.css. Two are <span class="status deferred">deferred</span> (design decision pending). Specs from STYLE.md → Components.</p>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-EYEBROW-MUTED</span><span class="cmp-name">Eyebrow — muted</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">11px · 600 · uppercase · ls .12em · #909090. Section labels (default).</div>
+    <div class="cmp-render"><span class="eyebrow">Common questions</span><span class="usedclass">&lt;span class="eyebrow"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-EYEBROW-RED</span><span class="cmp-name">Eyebrow — red</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Brand red #C2291B accent (RR01 family, not interactive). Hero identifiers (PLAN, SOURCE, CONTACT US).</div>
+    <div class="cmp-render"><span class="eyebrow eyebrow-red">PLAN</span><span class="usedclass">&lt;span class="eyebrow eyebrow-red"&gt;</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-BTN-RED</span><span class="cmp-name">Button — red (primary)</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">RN01 #EF4444 / #FFFFFF · pad 12×24 · radius 6. Ubiquitous primary action, incl. on dark bands.</div>
+    <div class="cmp-render"><div class="btnrow"><button class="btn-red">Get started →</button></div><span class="usedclass">&lt;button class="btn-red"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-BTN-DARK</span><span class="cmp-name">Button — dark</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">#1A1A1A / #FFFFFF (NN06 family) · index-only ("See how we work →").</div>
+    <div class="cmp-render"><div class="btnrow"><button class="btn-dark">See how we work →</button></div><span class="usedclass">&lt;button class="btn-dark"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-BTN-OUTLINE</span><span class="cmp-name">Button — outline (secondary)</span><span class="status deferred">deferred</span></div>
+    <div class="cmp-spec">Combo + border treatment not finalized — to settle via the component process. Do not rely on current rendering.</div>
+    <div class="cmp-render"><div class="btnrow"><button class="btn-outline">Secondary</button></div><span class="usedclass">&lt;button class="btn-outline"&gt; — deferred</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-PILL</span><span class="cmp-name">Tag pill</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">radius 999 · pad 3×10 · 11px · 600. Colour from combo by context (startup RR01 · established NN01 · open GG01 · curated BB01 · vendor AA01 — see Colour). Shape is the component; colour is the palette.</div>
+    <div class="cmp-render"><span class="pill">startup</span> <span class="pill">established</span> <span class="pill">open</span> <span class="pill">curated</span> <span class="pill">vendor</span><span class="usedclass">&lt;span class="pill"&gt; (colour via combo modifier, TBD Phase 1)</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-CALLOUT-CONTENT</span><span class="cmp-name">Callout — content</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">RR01 red left-rim (3px) tinted box · radius 0 8 8 0 · pad 16×20. Reminder / draw attention, in prose.</div>
+    <div class="cmp-render"><div class="callout-content">Reminder: submit before the cut-off to lock this rate.</div><span class="usedclass">&lt;div class="callout-content"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-CALLOUT-REMARK</span><span class="cmp-name">Callout — remark</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">NN05 #F8F8F8 box + #3A3A3A (charcoal) left rim · mid-grey text. Aside / additional comment.</div>
+    <div class="cmp-render"><div class="callout-remark">Aside: this figure assumes standard ground shipping.</div><span class="usedclass">&lt;div class="callout-remark"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-CALLOUT-CONTINUITY</span><span class="cmp-name">Callout — continuity</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Dark full-width band (NN06 #1A1A1A) + pill badge (RN02) · flex. Service / price-related.</div>
+    <div class="cmp-render"><div class="callout-continuity"><span class="callout-pill">Included</span><span>Ongoing management is billed monthly — cancel anytime.</span></div><span class="usedclass">&lt;div class="callout-continuity"&gt; › .callout-pill</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-CTALINK</span><span class="cmp-name">In-page link (cta-link)</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">16px · 600 · #EF4444 (NR01, interactive) · hover underline. Inline red body links.</div>
+    <div class="cmp-render"><a class="cta-link" href="#">Contact us →</a><span class="usedclass">&lt;a class="cta-link"&gt;</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-CARD-RESOURCE</span><span class="cmp-name">Resource card</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">White fill · 1px #E8E8E8 · radius 10 · dense type (13/12/11) · pad 12×14 · external ↗.</div>
+    <div class="cmp-render"><div class="resource-card"><div class="card-name">Jungle Scout</div><div class="card-desc">Amazon product & keyword research.</div><div class="card-bottom"><a class="card-link" href="#">Visit ↗</a><span class="pill">established</span></div></div><span class="usedclass">&lt;div class="resource-card"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-CARD-TOOL</span><span class="cmp-name">Tool card</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Same spec as resource card; internal → arrow, Threeflows logo. Content differs, styling identical.</div>
+    <div class="cmp-render"><div class="tool-card"><div class="card-name">Margin Calculator</div><div class="card-desc">Model unit economics before you list.</div><div class="card-bottom"><a class="card-link" href="#">Open →</a><span class="pill">startup</span></div></div><span class="usedclass">&lt;div class="tool-card"&gt;</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-BOTTOMCTA</span><span class="cmp-name">Bottom-CTA band</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Dark band NN06 · headline 32 serif white · subtitle 16 #909090 (NN07) · one btn-red. Sitewide foot (except contact).</div>
+    <div class="cmp-render"><div class="bottom-cta"><div class="bottom-inner"><div class="bottom-cta-text"><div class="bottom-cta-headline">Ready to scale?</div><div class="bottom-cta-subtitle">Tell us where you are — we'll map the next step.</div></div><button class="btn-red">Start now →</button></div></div><span class="usedclass">&lt;div class="bottom-cta"&gt; › .bottom-inner</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-TOOLCTACARD</span><span class="cmp-name">Tool-CTA-card</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">White bordered card · radius 10 · pad 24×24 · max-w 800 · plain text links only (no buttons).</div>
+    <div class="cmp-render"><div class="tool-cta-card"><p>Need a version built for your business?</p><a class="cta-link" href="#">Start an inquiry →</a> · <a class="tool-cta-bug" href="#">Report a bug →</a></div><span class="usedclass">&lt;div class="tool-cta-card"&gt;</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FAQ</span><span class="cmp-name">FAQ accordion</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Hairline-row accordion (1px #E8E8E8 dividers, no boxes) · question 16/600 · + icon rotates to ×. Service pages.</div>
+    <div class="cmp-render"><div class="faq-row"><div class="faq-question">How long does onboarding take?<span class="faq-icon">+</span></div></div><div class="faq-row"><div class="faq-question">Do you handle fulfilment?<span class="faq-icon">+</span></div></div><span class="usedclass">&lt;div class="faq-row"&gt; › .faq-question</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-TAB</span><span class="cmp-name">Tabs — underline text-tabs</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Pad 12×24 · idle #5C5C5C/500 · active #1A1A1A/600 + 2px dark underline · flat.</div>
+    <div class="cmp-render"><div class="tab-strip"><button class="tab-btn active">Overview</button><button class="tab-btn">Pricing</button><button class="tab-btn">FAQ</button></div><span class="usedclass">&lt;div class="tab-strip"&gt; › .tab-btn(.active)</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-TAB-SVC</span><span class="cmp-name">Tabs — svc variant (num+title+sub)</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Same bar; button carries num + title + sub-label (e.g. "2A").</div>
+    <div class="cmp-render"><div class="tab-strip"><button class="tab-btn tab-btn-svc active">2A · Sourcing · find suppliers</button><button class="tab-btn tab-btn-svc">2B · Vetting · qualify</button></div><span class="usedclass">&lt;button class="tab-btn tab-btn-svc"&gt;</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-STEPPER</span><span class="cmp-name">Stepper — numbered steps</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Step card pad 24×24 · radius 10 · active = filled dark NN06 + red (RN01) circle badge.</div>
+    <div class="cmp-render"><div class="step-card active"><span class="step-badge">1</span> Discovery <span class="step-sub">intake &amp; goals</span></div><span class="usedclass">&lt;div class="step-card(.active)"&gt; › .step-badge</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FORM-CARD</span><span class="cmp-name">Form / gate container</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">White · 1px #E8E8E8 · radius 10 · pad 24×24 · h3 heading · 13px sub-text.</div>
+    <div class="cmp-render"><div class="form-card"><div class="form-card-heading">Get the checklist</div><div class="form-card-sub">Enter your email to unlock the download.</div></div><span class="usedclass">&lt;div class="form-card"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FORM-LABEL</span><span class="cmp-name">Form label</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">12px · 500 · #5C5C5C · required marker .req asterisk in #EF4444 · mb 6.</div>
+    <div class="cmp-render"><label class="form-label">Work email <span class="req">*</span></label><span class="usedclass">&lt;label class="form-label"&gt; › .req</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FORM-FIELD</span><span class="cmp-name">Form input</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">DM Sans 14px · 1px #E8E8E8 · radius 6 · pad 12×16 · full width · focus → #EF4444 + 3px glow.</div>
+    <div class="cmp-render"><input class="form-input" type="email" placeholder="you@company.com"><span class="usedclass">&lt;input class="form-input"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FORM-CONSENT</span><span class="cmp-name">Consent row</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Checkbox + 13px text (#5C5C5C), aligned flex-start.</div>
+    <div class="cmp-render"><label class="form-consent"><input type="checkbox"> I agree to be contacted about my inquiry.</label><span class="usedclass">&lt;label class="form-consent"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FORM-ERROR</span><span class="cmp-name">Form error</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">13px · #EF4444 text on red-wash #FDF0F0 · radius 6 · pad 9×12 · hidden until shown.</div>
+    <div class="cmp-render"><div class="form-error">Please enter a valid email address.</div><span class="usedclass">&lt;div class="form-error"&gt; (shown state)</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FORM-THANKYOU</span><span class="cmp-name">Thank-you block</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Centred h3 (20px) + body (16px) confirmation. Exact treatment verify-from-live.</div>
+    <div class="cmp-render"><div class="thank-you"><div class="thank-you-heading">Thanks — you're in.</div><div class="thank-you-body">Check your inbox for the download link.</div></div><span class="usedclass">&lt;div class="thank-you"&gt;</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-BREADCRUMB</span><span class="cmp-name">Breadcrumb</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">13px · #909090 muted · ← Parent · hover → #1A1A1A · no underline. Tool/blog pages.</div>
+    <div class="cmp-render"><a class="breadcrumb" href="#">← Free Tools</a><span class="usedclass">&lt;a class="breadcrumb"&gt;</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-PREVNEXT</span><span class="cmp-name">Prev / next (blog)</span><span class="status deferred">deferred</span></div>
+    <div class="cmp-spec">Prev card left / next card right; single direction holds its side. Card size &amp; exact styling deferred (see backlog).</div>
+    <div class="cmp-render"><div class="prevnext"><div class="prevnext-prev">← Previous post</div><div class="prevnext-next">Next post →</div></div><span class="usedclass">&lt;div class="prevnext"&gt; — deferred</span></div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-NAV</span><span class="cmp-name">Global nav (chrome)</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Sticky bar · logo lockup + link tree · hamburger below 800px. Injected from partials.html; slice to lift into STYLE.css.</div>
+    <div class="cmp-render"><nav><a class="logo"><span class="logo-name">Three Flows</span></a><ul class="nav-links"><li><a href="#">Services</a></li><li><a href="#">About</a></li><li><a href="#">Blog</a></li></ul></nav><span class="usedclass">&lt;nav&gt; › .logo / .nav-links</span></div>
+  </div>
+  <div class="cmp">
+    <div class="cmp-head"><span class="cmp-id">CMP-FOOTER</span><span class="cmp-name">Global footer (chrome)</span><span class="status pending">pending Phase 1</span></div>
+    <div class="cmp-spec">Logo + copyright + Privacy &amp; Terms link. Injected from partials.html.</div>
+    <div class="cmp-render"><footer><span>© Three Flows Solutions LLC</span><span class="footer-links"><a href="#">Privacy &amp; Terms</a></span></footer><span class="usedclass">&lt;footer&gt; › .footer-links</span></div>
+  </div>
+
+  <p class="note" style="margin-top:32px;border-top:1px solid #E8E8E8;padding-top:14px">Hidden reference page — not linked from nav; direct-link only. Renders live from STYLE.css; <b>STYLE.md</b> is the source of truth. Governed by STYLE.md → Stylebook (sync rule): any token/component add, rename, or removal updates its slot + STYLE-ID here in the same commit.</p>
+
+</body>
+</html>
