@@ -202,6 +202,14 @@
   }
   .skeleton-bar.title { height: 20px; width: 65%; margin-bottom: 16px; }
   .skeleton-bar.short { width: 55%; }
+
+  /* SURVEY CONSENT GATE */
+  .survey-consent { max-width: 1100px; margin: 0 auto 4px; padding: 16px 20px; background: var(--off-white); border: 1px solid var(--border); border-radius: var(--radius); }
+  .consent-check { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--mid); line-height: 1.6; cursor: pointer; }
+  .consent-check input { margin-top: 3px; flex-shrink: 0; }
+  .consent-check a { color: var(--red-dark); text-decoration: underline; }
+  .consent-check a:hover { color: var(--red); }
+  .survey-cta.disabled { background: var(--muted); pointer-events: none; opacity: 0.6; cursor: not-allowed; }
 </style>
 </head>
 <body>
@@ -242,11 +250,18 @@
 
 <section class="res-hero">
   <div class="eyebrow red">Surveys</div>
-  <h1>Tell Us How We Can Improve</h1>
+  <h1>Your Voice Matters</h1>
   <p class="lead">Quick surveys to share your feedback — no login, and most take about a minute.</p>
 </section>
 
 <section class="res-section" style="padding-top: 8px;">
+
+  <div class="survey-consent" id="surveyConsent">
+    <label class="consent-check">
+      <input type="checkbox" id="consentBox" onchange="toggleSurveyGate()">
+      <span>I understand my responses will be collected and shared with the survey's owner. See our <a href="privacy.html">Privacy &amp; Terms</a> for details.</span>
+    </label>
+  </div>
 
   <!-- ═══ SVY series — Surveys ═══════════════════════════════════════════
        Each card below is one survey, linking to its own survey page
@@ -268,7 +283,19 @@
       </div>
       <p class="tool-desc">A practical walkthrough of starting and growing a small e-commerce business.</p>
       <div class="tool-actions">
-        <a class="btn-red" href="svy001.html">Take the survey →</a>
+        <a class="btn-red survey-cta" href="svy001.html" data-survey="svy001">Take the survey →</a>
+      </div>
+    </div>
+
+    <!-- svy002 — VitalTrip: guided medical & wellness travel (ACTIVE) -->
+    <div class="tool-card" id="svy002" data-type="survey">
+      <h3>A China Trip, Plus a Health Check?</h3>
+      <div class="tool-meta">
+        <span class="tool-revised">July 2026 | In collaboration with: VitalTrip</span>
+      </div>
+      <p class="tool-desc">Already heading to China for business or leisure? Tell us whether you'd add a guided health screening to the trip — and what would make it worth your time.</p>
+      <div class="tool-actions">
+        <a class="btn-red survey-cta" href="svy002.html" data-survey="svy002">Take the survey →</a>
       </div>
     </div>
 
@@ -294,7 +321,7 @@
     <span>© 2026 Three Flows Solutions LLC. All rights reserved.</span>
   </div>
   <div class="footer-links">
-    <a href="#">Privacy</a><a href="#">Terms</a>
+    <a href="privacy.html">Privacy</a><a href="privacy.html#terms">Terms</a>
   </div>
 </footer>
 
@@ -310,6 +337,19 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('.nav-dropdown')) {
     document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
   }
+});
+
+// Survey consent gate: Take-survey buttons disabled until consent is checked.
+function toggleSurveyGate(){
+  var ok = document.getElementById('consentBox').checked;
+  document.querySelectorAll('.survey-cta').forEach(function(a){
+    if(ok){ a.classList.remove('disabled'); }
+    else  { a.classList.add('disabled'); }
+  });
+}
+// Initialize disabled on load (JS present = gate active; JS off = links inert via no handler? see note).
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.survey-cta').forEach(function(a){ a.classList.add('disabled'); });
 });
 
 </script>
