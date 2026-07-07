@@ -80,6 +80,29 @@ The variable names defined here are the **canonical source of truth** for STYLE.
 - **Spacing — `--space-{px}`.** One variable per scale step, named by its pixel value: `--space-4` … `--space-64` (4 / 8 / 12 / 16 / 24 / 32 / 48 / 64).
 - **Border-radius — `--radius-{value}`.** `--radius-6`, `--radius-10`, `--radius-20`, `--radius-999` (pill), `--radius-circle` (50%).
 
+### Style-ID scheme
+
+Every style element carries a **canonical reference ID** — a stable handle for naming it unambiguously in backlog items, prompts, and the stylebook. These IDs are governance: they are the canonical handles, and `stylebook.html` (see Stylebook) displays each element beside its ID. This extends the palette's hex-as-identifier and combo-ID scheme to the rest of the system. **To add a token or component, name its ID here first (per this scheme), then implement it in STYLE.css, then add its slot to `stylebook.html` in the same commit** (see Stylebook).
+
+- **Colours** — *unchanged:* raw colours are identified by **hex**, grouped by family (see Color palette).
+- **Combos** — *unchanged:* the **2-letter + 2-digit IDs** (RR01 … NN08), verbatim (see Color palette).
+- **Type ramp** — `TY-H1` (44), `TY-H2` (32), `TY-H3` (20), `TY-BODY` (16); dense/UI tier `TY-D13` (dense title), `TY-D12` (dense body), `TY-D11` (dense meta); `TY-EYEBROW` (11 — the eyebrow's own governed size; shares the 11px value with `TY-D11` but is a distinct governed use).
+- **Spacing** — `SP-4` `SP-8` `SP-12` `SP-16` `SP-24` `SP-32` `SP-48` `SP-64` (the px scale steps).
+- **Radius** — `RAD-6` `RAD-10` `RAD-20` `RAD-999` (pill) `RAD-50` (= 50%, circle → `--radius-circle`).
+- **Components** — `CMP-{NAME}[-{VARIANT}]`. Names match the component's STYLE.md name — never rename a component to fit an ID. Canonical component IDs:
+  - `CMP-EYEBROW-MUTED`, `CMP-EYEBROW-RED`
+  - `CMP-BTN-RED`, `CMP-BTN-DARK`, `CMP-BTN-OUTLINE` *(outline deferred — combo/border not finalized; ID reserved)*
+  - `CMP-PILL` (variants by combo/meaning: startup RR01, established NN01, open GG01, curated BB01, vendor AA01)
+  - `CMP-CALLOUT-CONTENT`, `CMP-CALLOUT-REMARK`, `CMP-CALLOUT-CONTINUITY`
+  - `CMP-CARD-RESOURCE`, `CMP-CARD-TOOL` *(other card types — client/case-study, stat, service-stage, principal/bio — not yet defined as components; no ID until specified, see backlog)*
+  - `CMP-CTALINK` (in-page links)
+  - `CMP-BOTTOMCTA`, `CMP-TOOLCTACARD`
+  - `CMP-FAQ`, `CMP-TAB` (svc num+title+sub variant `CMP-TAB-SVC`), `CMP-STEPPER`
+  - `CMP-FORM-*` (Form blocks is a multi-part family, not one component): `CMP-FORM-CARD` (container), `CMP-FORM-FIELD` (input), `CMP-FORM-LABEL`, `CMP-FORM-CONSENT`, `CMP-FORM-ERROR`, `CMP-FORM-THANKYOU`
+  - `CMP-BREADCRUMB` (prev/next → `CMP-PREVNEXT`, styling deferred — see backlog)
+  - `CMP-NAV`, `CMP-FOOTER` (global chrome; `CMP-NAV` includes the mobile hamburger)
+- **Not everything gets a CMP-id.** The **Arrow direction rule** is a link-behaviour convention, not a styled object (no ID). **Section wrappers / background-rhythm / section-padding** are layout patterns, not components (no CMP-id — they reference the `SP-*` tokens).
+
 ### Typography
 
 - **Fonts:** DM Serif Display (h1, h2), DM Sans (h3, body, UI). Google Fonts.
@@ -312,6 +335,14 @@ Note: the bottom-CTA (a standing dark component at the foot of the page — see 
 **Breakpoints.** The governed sitewide mobile breakpoint is **800px** — a single `max-width: 800px` boundary, matching the partials nav slice (below it the nav collapses to the hamburger menu). Mobile section padding (`48px 20px`) and other responsive shifts key off this one breakpoint. Do not introduce additional ad-hoc breakpoints without documenting them here.
 
 **Scrollbar gutter.** The vertical scrollbar gutter is reserved sitewide via `html { scrollbar-gutter: stable; }` (implemented in STYLE.css). This holds the layout width constant between TALL (scrolling) and SHORT (non-scrolling) pages, preventing the ~15px horizontal nav shift on classic-scrollbar setups. A single additive rule — not a per-page concern.
+
+---
+
+## Stylebook (stylebook.html)
+
+`stylebook.html` is a **hidden reference page** — repo root, **not in nav, direct-link only** — that renders the tokens and components **live from STYLE.css**. It factually reflects what STYLE.css defines; it is **not** a hardcoded copy. Components not yet migrated into STYLE.css render as **pending slots** and fill in as each is migrated. Every element is shown beside its **STYLE-ID** (see Design Tokens → Style-ID scheme).
+
+**Sync rule (governance).** Any change to STYLE.md or STYLE.css that **adds, renames, or removes a token or component** must, in the **same commit**, add/adjust that item's labelled slot + STYLE-ID in `stylebook.html`. The stylebook is a *view*; **STYLE.md is the source of truth.**
 
 ---
 
