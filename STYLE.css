@@ -1,632 +1,112 @@
 /* ============================================================================
    STYLE.css — Threeflows Solutions sitewide stylesheet
    ----------------------------------------------------------------------------
-   Implements the tokens and components defined in STYLE.md (the single source
-   of truth for visual/UX decisions). Every value here traces to a STYLE.md
-   line; target-state values only (no live/legacy values).
+   Single source of truth for visual/UX decisions is STYLE.md. This file is
+   built in PHASES (see backlog BL-034):
+     - v1 (this file): design tokens (:root) + the sitewide scrollbar-gutter
+       rule. Nothing else — no component selectors, no page overrides.
+     - later phases: components migrated per-family, then pages linked.
 
-   This file does NOT load fonts — DM Serif Display + DM Sans are loaded
-   per-page (Google Fonts <link>); STYLE.css only references the families.
-
-   Authored: 2026-07-04. Step 1 of the STYLE.css work — the stylesheet in
-   isolation. No page links to it yet; migration is a later task (BL-034).
-   verify-from-live values are flagged inline with their backlog ID.
+   Variable names follow STYLE.md → Design Tokens → "CSS custom-property
+   naming" (the canonical naming convention). Every value traces to STYLE.md;
+   target-state values only. Fonts are loaded per-page (Google Fonts <link>);
+   this file only references the families. No page links to it yet.
    ============================================================================ */
 
-/* ----------------------------------------------------------------------------
-   :root — design tokens (STYLE.md → Design Tokens)
-   Raw colours only (all five families). Combos (RN01, NN03, RR01, …) are NOT
-   tokenized — they are applied in component rules by citing the raw-colour
-   vars, with the combo ID named in a comment on that rule.
-   ---------------------------------------------------------------------------- */
 :root {
-  /* Raw colours — Reds (STYLE.md → Color palette) */
-  --red-brand:        #C2291B;  /* brand red (logo anchor) */
-  --red-interactive:  #EF4444;  /* interactive red */
-  --red-wash:         #FDF0F0;  /* red wash */
+  /* --- Raw colours (STYLE.md → Color palette) ------------------------------ */
+  /* Reds */
+  --red-brand:        #C2291B;   /* brand red (logo anchor) */
+  --red-interactive:  #EF4444;   /* interactive red */
+  --red-wash:         #FDF0F0;   /* red wash */
 
-  /* Raw colours — Neutrals (white + black fold into N) */
+  /* Neutrals (white + black fold into the N family) */
   --black:            #1A1A1A;
   --charcoal:         #3A3A3A;
-  --grey-mid:         #5C5C5C;
-  --grey-muted:       #909090;
-  --grey-light:       #C8C8C8;
-  --grey-border:      #E8E8E8;
+  --grey-mid:         #5C5C5C;    /* mid grey */
+  --grey-muted:       #909090;    /* muted grey */
+  --grey-light:       #C8C8C8;    /* light grey */
+  --grey-border:      #E8E8E8;    /* border grey */
   --off-white:        #F8F8F8;
   --white:            #FFFFFF;
 
-  /* Raw colours — Ambers */
+  /* Ambers */
   --amber:            #FACC15;
   --amber-wash:       #FEF3C7;
   --amber-text:       #854F0B;
 
-  /* Raw colours — Greens */
+  /* Greens */
   --green:            #00B050;
   --green-wash:       #EAF3DE;
   --green-text:       #3B6D11;
 
-  /* Raw colours — Blues */
+  /* Blues */
   --blue:             #185FA5;
   --blue-wash:        #E6F1FB;
 
-  /* Font families (STYLE.md → Typography). Referenced only; loaded per-page. */
-  --font-serif:       'DM Serif Display', serif;
-  --font-sans:        'DM Sans', sans-serif;
+  /* --- Combos: bg + text pairs (STYLE.md → Color palette combos) -----------
+     Two variables per combo, ID verbatim; each points at a raw-colour
+     variable above so a combo never re-hardcodes a hex. */
+  /* Combos with meaning (tag pills / wash, context-scoped) */
+  --combo-RR01-bg:    var(--red-wash);     --combo-RR01-text:  var(--red-brand);
+  --combo-NN01-bg:    var(--grey-border);  --combo-NN01-text:  var(--charcoal);
+  --combo-GG01-bg:    var(--green-wash);   --combo-GG01-text:  var(--green-text);
+  --combo-BB01-bg:    var(--blue-wash);    --combo-BB01-text:  var(--blue);
+  --combo-AA01-bg:    var(--amber-wash);   --combo-AA01-text:  var(--amber-text);
 
-  /* Type ramp (STYLE.md → Typography) */
-  --fs-h1:            44px;  /* hero — DM Serif Display */
-  --fs-h2:            32px;  /* section title — DM Serif Display */
-  --fs-h3:            20px;  /* subhead — DM Sans 700 */
-  --fs-body:          16px;  /* body — DM Sans 300 */
-  --fs-dense-title:   13px;  /* dense title / card name */
-  --fs-dense-body:    12px;  /* dense body / card description */
-  --fs-dense-meta:    11px;  /* dense meta / in-card link */
+  /* Combos commonly used (text on bg, buttons, links) */
+  --combo-NN02-bg:    var(--white);        --combo-NN02-text:  var(--black);
+  --combo-NN03-bg:    var(--white);        --combo-NN03-text:  var(--grey-mid);
+  --combo-NN04-bg:    var(--white);        --combo-NN04-text:  var(--grey-muted);
+  --combo-NN05-bg:    var(--off-white);    --combo-NN05-text:  var(--black);
+  --combo-NN06-bg:    var(--black);        --combo-NN06-text:  var(--off-white);
+  --combo-NN07-bg:    var(--black);        --combo-NN07-text:  var(--grey-muted);
+  --combo-NR01-bg:    var(--white);        --combo-NR01-text:  var(--red-interactive);
+  --combo-RN01-bg:    var(--red-interactive); --combo-RN01-text: var(--white);
+  --combo-NR02-bg:    var(--black);        --combo-NR02-text:  var(--red-interactive);
 
-  /* Line-height (STYLE.md → Typography). Dense/UI 1.3–1.45 applied inline. */
-  --lh-body:          1.6;
-  --lh-heading:       1.2;
-  --lh-tight:         1.1;   /* buttons, badges, pills */
+  /* Combos viable but unassigned (reserved, no use yet) */
+  --combo-RN02-bg:    var(--red-brand);    --combo-RN02-text:  var(--white);
+  --combo-GN01-bg:    var(--green);        --combo-GN01-text:  var(--white);
+  --combo-BN01-bg:    var(--blue);         --combo-BN01-text:  var(--white);
+  --combo-AN01-bg:    var(--amber);        --combo-AN01-text:  var(--black);
+  --combo-NN08-bg:    var(--grey-muted);   --combo-NN08-text:  var(--white);
 
-  /* Spacing scale (STYLE.md → Spacing scale) — 4/8/12/16/24/32/48/64 */
-  --space-1:          4px;
-  --space-2:          8px;
-  --space-3:          12px;
-  --space-4:          16px;
-  --space-5:          24px;
-  --space-6:          32px;
-  --space-7:          48px;
-  --space-8:          64px;
+  /* --- Typography (STYLE.md → Typography) ---------------------------------- */
+  /* Font families — referenced only; loaded per-page */
+  --font-serif:       'DM Serif Display', serif;   /* h1, h2 */
+  --font-sans:        'DM Sans', sans-serif;       /* h3, body, UI */
 
-  /* Border-radius scale (STYLE.md → Border-radius) — 6/10/20/999/50% */
-  --radius-sm:        6px;    /* buttons, chips */
-  --radius-md:        10px;   /* cards */
-  --radius-lg:        20px;   /* large cards, callouts */
-  --radius-pill:      999px;  /* pills (fully round) */
-  --radius-circle:    50%;    /* circles, avatars */
+  /* Type ramp — sizes */
+  --type-h1:          44px;   /* hero */
+  --type-h2:          32px;   /* section title */
+  --type-h3:          20px;   /* subhead */
+  --type-body:        16px;   /* body */
+  --type-dense-title: 13px;   /* dense title / card name */
+  --type-dense-body:  12px;   /* dense body / card description */
+  --type-dense-meta:  11px;   /* dense meta / in-card link */
+
+  /* --- Spacing scale (STYLE.md → Spacing scale) ---------------------------- */
+  --space-4:          4px;
+  --space-8:          8px;
+  --space-12:         12px;
+  --space-16:         16px;
+  --space-24:         24px;
+  --space-32:         32px;
+  --space-48:         48px;
+  --space-64:         64px;
+
+  /* --- Border-radius scale (STYLE.md → Border-radius) ---------------------- */
+  --radius-6:         6px;     /* buttons, chips */
+  --radius-10:        10px;    /* cards */
+  --radius-20:        20px;    /* large cards, callouts */
+  --radius-999:       999px;   /* pills (fully round) */
+  --radius-circle:    50%;     /* circles, avatars */
 }
 
-/* ----------------------------------------------------------------------------
-   Base / reset — minimal (STYLE.md → Typography: body ramp)
-   ---------------------------------------------------------------------------- */
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: var(--fs-body);
-  font-weight: 300;                 /* body — light */
-  line-height: var(--lh-body);      /* 1.6 */
-  color: var(--grey-mid);           /* NN03 — body copy #5C5C5C on white */
-  background: var(--white);
-}
-
-/* Type ramp as base element rules (STYLE.md → Typography) */
-h1 { font-family: var(--font-serif); font-size: var(--fs-h1); line-height: var(--lh-heading); margin: 0; }
-h2 { font-family: var(--font-serif); font-size: var(--fs-h2); line-height: var(--lh-heading); margin: 0; }
-h3 { font-family: var(--font-sans);  font-size: var(--fs-h3); font-weight: 700; line-height: var(--lh-heading); margin: 0; }
-
-/* ----------------------------------------------------------------------------
-   Global chrome — nav / footer / hamburger
-   STYLE.md → Global chrome (nav + footer); BL-052 (lifted out of partials.html).
-   Values are the target-state remaps already recorded in partials.html's slice
-   comment: gap 28→24, dropdown radius 12→10 / item pad 8×16, footer pad 24×48,
-   hover red→#EF4444. Nav link 14px + logo lockup 14/10 are off-ramp values kept
-   deliberately as a fixed brand/nav pattern (BL-049 ramp-gap decision).
-   NOTE: authored here only — partials.html still carries its own copy until the
-   migration deletes it (not this task).
-   ---------------------------------------------------------------------------- */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--grey-border);
-  padding: 0 var(--space-7);        /* 0 48 */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  font-family: var(--font-sans);
-}
-nav .logo { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; color: var(--black); cursor: pointer; }
-nav .logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: var(--lh-heading); }  /* 14px lockup — BL-049 */
-nav .logo-tag { font-size: 10px; color: var(--grey-muted); font-weight: 400; }                                   /* 10px lockup — BL-049 */
-nav .nav-links { display: flex; align-items: center; gap: var(--space-5); list-style: none; margin: 0; padding: 0; }  /* gap 24 */
-nav .nav-links li { margin: 0; }
-nav .nav-links a { text-decoration: none; color: var(--grey-mid); font-size: 14px; cursor: pointer; transition: color 0.2s; }  /* 14px nav link — BL-049 */
-nav .nav-links a:hover { color: var(--black); }
-
-/* nav dropdowns */
-nav .nav-dropdown { position: relative; }
-nav .nav-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  background: var(--white);
-  border: 1px solid var(--grey-border);
-  border-radius: var(--radius-md);  /* 10 */
-  min-width: 240px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  z-index: 1000;
-  padding: var(--space-2) 0;        /* 8 */
-}
-nav .nav-dropdown-menu a { display: block; padding: var(--space-2) var(--space-4); font-size: var(--fs-dense-title); color: var(--black); text-decoration: none; font-weight: 400; }  /* 8×16, 13px */
-nav .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--red-interactive); }  /* hover → #EF4444 */
-nav .nav-dropdown.open .nav-dropdown-menu { display: block; }
-nav .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
-
-/* hamburger (net-new; no live equivalent) */
-nav .nav-toggle { display: none; background: none; border: none; font-size: 22px; line-height: 1; color: var(--black); cursor: pointer; padding: var(--space-1) var(--space-2); }
-
-/* footer */
-footer {
-  border-top: 1px solid var(--grey-border);
-  padding: var(--space-5) var(--space-7);  /* 24×48 */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: var(--fs-dense-title);        /* 13 */
-  color: var(--grey-muted);
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  background: var(--white);
-  font-family: var(--font-sans);
-}
-footer .footer-links { display: flex; gap: var(--space-5); }
-footer .footer-links a { color: var(--grey-muted); text-decoration: none; }
-footer .footer-links a:hover { color: var(--black); }
-
-/* ----------------------------------------------------------------------------
-   Layout — section wrappers, padding, background rhythm
-   STYLE.md → Section / layout patterns.
-   ---------------------------------------------------------------------------- */
-.section { padding: var(--space-8) var(--space-7); }   /* standard 64×48 */
-.svc-section { padding: var(--space-8) var(--space-7); }  /* historical name; page-specific overrides. Applies beyond svc pages. */
-.section--emphasis { padding: 80px var(--space-7); }   /* emphasis 80×48 — 80 stated in STYLE.md (off the token scale) */
-
-/* Background rhythm helpers (STYLE.md → Background rhythm).
-   Default is white ↔ off-white alternation; dark is a deliberate exception. */
-.section--offwhite { background: var(--off-white); }                    /* #F8F8F8 */
-.section--dark { background: var(--black); color: var(--off-white); }   /* NN06 — light text on dark section */
-
-/* Service hero padding (svc1–4) — STYLE.md → Hero padding (service pages).
-   Service-scoped, identical across svc1–4; NOT a sitewide rule. Canonical
-   padding-top is unresolved. (BL-013: svc1's ~40px extra gap is a page fix.) */
-/* VERIFY-FROM-LIVE: BL-008 service hero padding-top (interim 64px) */
-.svc-hero { padding-top: var(--space-8); }
-
-/* ----------------------------------------------------------------------------
-   Component — Cards (resource/tool dense card)
-   STYLE.md → Components → Cards. One spec for resource-card and tool-card
-   (differ in content, not styling). BL-007 (grid min-width), BL-015 (pill),
-   BL-026 (other card types are separate components — not defined here).
-   ---------------------------------------------------------------------------- */
-.resource-card,
-.tool-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);                /* internal gap 4 */
-  height: 100%;                       /* equal height within a grid row (content-derived) */
-  background: var(--white);           /* card fill always white, on any section */
-  border: 1px solid var(--grey-border);
-  border-radius: var(--radius-md);    /* 10 */
-  padding: 12px 14px;                 /* governed exception 12×14 (14 off-scale, deliberate) */
-  font-family: var(--font-sans);      /* DM Sans throughout — no serif on cards */
-}
-.card-logo { width: 16px; height: 16px; }                               /* logo slot 16px, top-left before the name */
-.card-name { font-size: var(--fs-dense-title); font-weight: 600; color: var(--black); line-height: 1.3; }   /* dense title 13 */
-.card-desc { font-size: var(--fs-dense-body); color: var(--grey-mid); line-height: 1.45; }                  /* dense body 12 */
-.card-bottom { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }       /* in-card link (left) + pill (right), pinned to bottom */
-.card-link { font-size: var(--fs-dense-meta); font-weight: 600; color: var(--red-interactive); text-decoration: none; }  /* in-card link 11; NR01 */
-.card-link:hover { text-decoration: underline; }
-
-/* Card grid — responsive auto-fill, capped at 4 columns, 1 per row on mobile.
-   The max()/(100% - 3*gap)/4 idiom caps the column count at 4 while auto-fill
-   handles the responsive collapse. The 240px floor is the verify-from-live
-   value (kept valid interim). */
-.card-grid {
-  display: grid;
-  gap: var(--space-4);                /* between-block spacing 16 */
-  /* VERIFY-FROM-LIVE: BL-007 card grid column min-width (interim 240px) */
-  grid-template-columns: repeat(auto-fill, minmax(max(240px, (100% - 3 * 16px) / 4), 1fr));
-}
-
-/* ----------------------------------------------------------------------------
-   Component — Callouts (three-callout system only)
-   STYLE.md → Components → Callouts. Content + Remark share anatomy: attention
-   text colour + matching-colour 3px left rim + tinted box (radius 0 8px 8px 0,
-   pad 16×20). Continuity is a dark band + pill (different shape, same family).
-   No green/blue/legacy callout variants (BL-025 handles those leftovers).
-   ---------------------------------------------------------------------------- */
-.callout-content {                    /* reminder / draw attention — RR01 */
-  background: var(--red-wash);        /* #FDF0F0 */
-  color: var(--red-brand);           /* #C2291B */
-  border-left: 3px solid var(--red-brand);
-  border-radius: 0 8px 8px 0;         /* stated callout geometry */
-  padding: var(--space-4) 20px;       /* 16×20 (20 off-scale, stated for callouts) */
-}
-.callout-remark {                     /* additional comment / aside — NN05 box */
-  background: var(--off-white);       /* #F8F8F8 */
-  color: var(--grey-mid);             /* mid-grey text */
-  border-left: 3px solid var(--charcoal);/* rim resolved to #3A3A3A (charcoal); STYLE.md says "neutral-dark", pending STYLE.md pin (backlog) */
-  border-radius: 0 8px 8px 0;
-  padding: var(--space-4) 20px;       /* 16×20 */
-}
-.callout-continuity {                 /* service / price band — NN06 band + RN02 pill */
-  background: var(--black);           /* #1A1A1A dark band */
-  color: var(--off-white);            /* NN06 light body text on dark */
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4) 20px;       /* callouts 16×20 (band padding not separately specified) */
-}
-.callout-continuity .callout-pill {   /* pill badge — RN02 */
-  background: var(--red-brand);       /* #C2291B */
-  color: var(--white);
-  border-radius: var(--radius-pill);
-  padding: 3px 10px;                  /* pill padding (Tag pills) */
-  font-size: var(--fs-dense-meta);
-  font-weight: 600;
-  line-height: var(--lh-tight);
-  white-space: nowrap;
-}
-
-/* ----------------------------------------------------------------------------
-   Component — Eyebrows
-   STYLE.md → Components → Eyebrows. One pattern; two colour variants only.
-   ---------------------------------------------------------------------------- */
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: 11px;                    /* eyebrow's own governed size */
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: var(--space-3);      /* 12 */
-  color: var(--grey-muted);           /* muted (default) #909090 */
-}
-.eyebrow--red { color: var(--red-brand); }  /* red — brand red #C2291B (RR01 family accent, not interactive) */
-
-/* ----------------------------------------------------------------------------
-   Component — Tag pills (one canonical pill)
-   STYLE.md → Components → Tag pills. Pill defines shape; palette defines colour.
-   BL-015 (collapses .badge / .resource-stage-badge into this one pill).
-   ---------------------------------------------------------------------------- */
-.pill {
-  display: inline-flex;
-  align-items: center;
-  border-radius: var(--radius-pill);  /* 999 fully round */
-  padding: 3px 10px;                  /* 3×10 (off-scale, stated for pills) */
-  font-family: var(--font-sans);
-  font-size: 11px;                    /* dense/UI tier */
-  font-weight: 600;
-  line-height: var(--lh-tight);       /* 1.1 tight */
-  white-space: nowrap;                /* height fixed, width flexes to label */
-}
-.pill-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }  /* gap 8 between pills */
-
-/* Pill colours — palette combos, meaning by context (STYLE.md → Cards / palette) */
-.pill--startup     { background: var(--red-wash);    color: var(--red-brand); }   /* RR01 */
-.pill--established { background: var(--grey-border);  color: var(--charcoal); }    /* NN01 */
-.pill--open        { background: var(--green-wash);  color: var(--green-text); }   /* GG01 */
-.pill--curated     { background: var(--blue-wash);   color: var(--blue); }         /* BB01 */
-.pill--vendor      { background: var(--amber-wash);  color: var(--amber-text); }   /* AA01 */
-
-/* ----------------------------------------------------------------------------
-   Component — In-page links (cta-link)
-   STYLE.md → Components → In-page links. Inline red text links in body content.
-   ---------------------------------------------------------------------------- */
-.cta-link {
-  font-family: var(--font-sans);
-  font-size: var(--fs-body);          /* 16 (body ramp) */
-  font-weight: 600;
-  color: var(--red-interactive);      /* #EF4444 — NR01 (interactive) */
-  text-decoration: none;
-}
-.cta-link:hover { text-decoration: underline; }
-
-/* ----------------------------------------------------------------------------
-   Component — Buttons
-   STYLE.md → Components → Buttons. All buttons: pad 12×24, radius 6, DM Sans.
-   btn-red (primary, sitewide) + btn-dark (index-only). btn-outline is DEFERRED
-   (BL-017) — deliberately NOT authored. No on-dark modifier, no nav CTA button.
-   ---------------------------------------------------------------------------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 12px 24px;                 /* 12×24 */
-  border-radius: var(--radius-sm);    /* 6 */
-  border: none;
-  font-family: var(--font-sans);
-  line-height: var(--lh-tight);       /* 1.1 tight */
-  text-decoration: none;
-  cursor: pointer;
-}
-.btn-red  { background: var(--red-interactive); color: var(--white); }  /* RN01 — primary, sitewide (incl. on dark bands) */
-.btn-dark { background: var(--black); color: var(--white); }            /* NN06 family — index-only, kept dark by design */
-
-/* ----------------------------------------------------------------------------
-   Component — Bottom-CTA
-   STYLE.md → Components → Bottom-CTA. Standing dark band at page foot (except
-   contact). Sits OUTSIDE the background-rhythm system. BL-009 (shared text
-   max-width), BL-018 (de-alias to .bottom-cta / .bottom-inner + snaps).
-   ---------------------------------------------------------------------------- */
-.bottom-cta { background: var(--black); }   /* NN06 dark band */
-.bottom-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: var(--space-8) var(--space-7);  /* 64×48 (snapped from live 60×48) */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;                          /* gap 40 (off-scale, stated) */
-  flex-wrap: wrap;
-}
-/* VERIFY-FROM-LIVE: BL-009 bottom-cta shared headline/subtitle max-width (interim 460px) */
-.bottom-cta-text { max-width: 460px; }
-.bottom-cta-headline {
-  font-family: var(--font-serif);
-  font-size: var(--fs-h2);            /* 32 (snapped from live 30) */
-  color: var(--white);
-  line-height: 1.25;                  /* stated for this headline */
-}
-.bottom-cta-subtitle {
-  font-size: var(--fs-body);          /* 16 (snapped from live 14) */
-  color: var(--grey-muted);           /* NN07 — muted-on-dark #909090 (tokenized, not opacity) */
-}
-
-/* ----------------------------------------------------------------------------
-   Component — Tool-CTA-card
-   STYLE.md → Components → Tool-CTA-card. Quiet in-page card at foot of tool
-   pages — NOT the bottom-CTA. Plain text links only, no filled buttons.
-   BL-019 (consolidate 3 drifted forms; drop ck001 rich variant).
-   ---------------------------------------------------------------------------- */
-.tool-cta-card {
-  max-width: 800px;
-  margin: 0 auto;
-  background: var(--white);
-  border: 1px solid var(--grey-border);
-  border-radius: var(--radius-md);    /* 10 */
-  padding: var(--space-5) var(--space-5);  /* 24×24 */
-}
-.tool-cta-card p { font-size: var(--fs-body); color: var(--grey-mid); }  /* body 16, mid */
-/* inquiry link uses .cta-link (16px, #EF4444). Bug-report link below: */
-.tool-cta-bug { font-size: var(--fs-dense-body); color: var(--grey-muted); text-decoration: none; }  /* 12 muted, → arrow */
-
-/* ----------------------------------------------------------------------------
-   Component — FAQ (compact hairline-row accordion)
-   STYLE.md → Components → FAQ. Rows (not cards) separated by a 1px hairline.
-   Scope: service pages (svc1–4) only. BL-022 (redesign from boxed-card FAQ).
-   ---------------------------------------------------------------------------- */
-.faq-row {
-  border-top: 1px solid var(--grey-border);  /* 1px hairline divider #E8E8E8 */
-  padding: var(--space-3) 0;                 /* 12 top/bottom (compact) */
-}
-.faq-question {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: var(--fs-body);          /* 16 */
-  font-weight: 600;
-  font-family: var(--font-sans);
-  cursor: pointer;
-}
-.faq-icon { transition: transform 0.2s; }              /* '+' icon at right */
-.faq-row.open .faq-icon { transform: rotate(45deg); }  /* rotates 45° to '×' on the open row */
-.faq-answer { display: none; font-size: var(--fs-body); color: var(--grey-mid); }  /* 16, mid; revealed on open */
-.faq-row.open .faq-answer { display: block; }
-
-/* ----------------------------------------------------------------------------
-   Component — Tabs (underline text-tabs)
-   STYLE.md → Components → Tabs. One component (Family A). Active tab marked by
-   a 2px dark underline; no fill, no badge. BL-023 (consolidate setTab/…).
-   ---------------------------------------------------------------------------- */
-.tab-strip {
-  display: flex;
-  border-bottom: 1px solid var(--grey-border);  /* 1px bottom border */
-  overflow-x: auto;                             /* scrolls horizontally on overflow */
-}
-.tab-btn {
-  padding: 12px 24px;                 /* 12×24 */
-  font-family: var(--font-sans);
-  color: var(--grey-mid);             /* idle #5C5C5C */
-  font-weight: 500;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.tab-btn.active {
-  color: var(--black);                /* active #1A1A1A */
-  font-weight: 600;
-  border-bottom-color: var(--black);  /* 2px dark underline */
-}
-.tab-panel { display: none; }         /* mechanism: .active class (standardized) */
-.tab-panel.active { display: block; }
-
-/* ----------------------------------------------------------------------------
-   Component — Stepper (numbered steps)
-   STYLE.md → Components → Stepper. One component (Family B). Active step is a
-   filled-dark card with a red circle badge. Distinct from Tabs. BL-024.
-   NOTE: badge diameter and the active sub-label opacity are not legislated by
-   STYLE.md (it says "circle" and "translucent-white"); interim structural
-   values chosen below — flagged for the reviewer.
-   ---------------------------------------------------------------------------- */
-.step-card {
-  padding: var(--space-5) var(--space-5);  /* 24×24 */
-  border-radius: var(--radius-md);         /* 10 */
-  background: var(--white);                /* idle */
-  border: 1px solid var(--grey-border);
-}
-.step-card.active {
-  background: var(--black);           /* NN06 filled dark */
-  color: var(--white);
-  border-color: transparent;
-}
-.step-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px; height: 28px;          /* diameter not specified in STYLE.md — interim */
-  border-radius: var(--radius-circle);/* 50% circle (canonical — index style) */
-  background: var(--white);           /* idle: white, 1px border, dark text */
-  border: 1px solid var(--grey-border);
-  color: var(--black);
-  font-weight: 600;
-}
-.step-card.active .step-badge {
-  background: var(--red-interactive); /* RN01 #EF4444 fill, white text */
-  color: var(--white);
-  border-color: transparent;
-}
-.step-sub { color: var(--grey-muted); }                              /* sub-label muted #909090 idle */
-.step-card.active .step-sub { color: rgba(255, 255, 255, 0.6); }     /* translucent-white on active dark (opacity not specified — interim) */
-.step-panel { display: none; }
-.step-panel.active { display: block; }
-
-/* ----------------------------------------------------------------------------
-   Component — Form blocks
-   STYLE.md → Components → Form blocks. Container + fields/labels + error +
-   thank-you. Wizard buttons inherit the Buttons component. BL-020 (remaps),
-   BL-010 (thank-you treatment verify-from-live).
-   NOTE: STYLE.md writes the input border as "#border-dark" (not a defined hex).
-   Input border resolved to #E8E8E8 (--grey-border), matching cards; STYLE.md
-   line 243 "#border-dark" malformed, pending STYLE.md fix (backlog).
-   ---------------------------------------------------------------------------- */
-.form-card {
-  background: var(--white);
-  border: 1px solid var(--grey-border);
-  border-radius: var(--radius-md);    /* 10 */
-  padding: var(--space-5) var(--space-5);  /* 24×24 */
-}
-.form-card-heading { font-family: var(--font-sans); font-size: var(--fs-h3); font-weight: 700; }  /* h3 card heading */
-.form-card-sub { font-size: var(--fs-dense-title); color: var(--grey-mid); }                      /* 13 dense/UI */
-
-.form-label {
-  display: block;
-  font-size: var(--fs-dense-body);    /* 12 */
-  font-weight: 500;
-  color: var(--grey-mid);
-  margin-bottom: 6px;                 /* 6 (off-scale, stated) */
-}
-.form-label .req { color: var(--red-interactive); }  /* required marker asterisk #EF4444 */
-
-.form-input {
-  display: block;
-  width: 100%;
-  font-family: var(--font-sans);
-  font-size: 14px;                    /* input 14 (dense-tier-adjacent, stated for inputs) */
-  color: var(--black);
-  background: var(--white);
-  border: 1.5px solid var(--grey-border);  /* color resolved to #E8E8E8 (border grey, as cards); STYLE.md line 243 "#border-dark" is malformed, pending STYLE.md fix (backlog) */
-  border-radius: var(--radius-sm);    /* 6 */
-  padding: 12px 16px;                 /* 12×16 */
-  margin-bottom: var(--space-4);      /* field margin-bottom 16 */
-}
-.form-input:focus {
-  outline: none;
-  border-color: var(--red-interactive);            /* focus border → #EF4444 */
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);    /* 3px red glow (rgba of #EF4444; opacity interim) */
-}
-
-.form-consent { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--fs-dense-title); color: var(--grey-mid); }  /* checkbox + 13px */
-
-.form-error {
-  font-size: var(--fs-dense-title);   /* 13 */
-  color: var(--red-interactive);      /* #EF4444 text */
-  background: var(--red-wash);        /* #FDF0F0 */
-  border-radius: var(--radius-sm);    /* 6 */
-  padding: 9px 12px;                  /* 9×12 (off-scale, stated) */
-  display: none;                      /* hidden until shown */
-}
-
-/* Thank-you block (STYLE.md → Form blocks: exact treatment verify-from-live) */
-/* VERIFY-FROM-LIVE: BL-010 thank-you block treatment */
-.thank-you { text-align: center; }
-.thank-you-heading { font-family: var(--font-sans); font-size: var(--fs-h3); font-weight: 700; }  /* h3 20 */
-.thank-you-body { font-size: var(--fs-body); color: var(--grey-mid); }                            /* 16 */
-
-/* ----------------------------------------------------------------------------
-   Breadcrumb / prev-next
-   STYLE.md → Breadcrumb / prev-next. BL-011 (breadcrumb max-width drift),
-   BL-012 (prev/next card size deferred).
-   ---------------------------------------------------------------------------- */
-.breadcrumb {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;                           /* 6 (off-scale, stated) */
-  font-family: var(--font-sans);
-  font-size: var(--fs-dense-title);   /* 13 */
-  color: var(--grey-muted);           /* muted #909090 */
-  text-decoration: none;
-}
-.breadcrumb:hover { color: var(--black); }  /* hover → dark #1A1A1A */
-/* VERIFY-FROM-LIVE: BL-011 breadcrumb wrap max-width (780 vs 1100 drift; interim 1100) */
-.breadcrumb-wrap { max-width: 1100px; margin: 0 auto; }
-
-/* Prev/next (blog posts only) — prev card left, next card right; never centred.
-   Card size / exact styling DEFERRED (BL-012). */
-.prevnext { display: flex; justify-content: space-between; gap: var(--space-4); }
-.prevnext-prev { text-align: left; }
-.prevnext-next { text-align: right; margin-left: auto; }
-
-/* ----------------------------------------------------------------------------
-   Arrow-direction helper (STYLE.md → Arrow direction rule)
-   A convention, not a styled object: → internal (stay on site), ↗ external
-   (leave the site, new tab). Never mixed. Optional utility helpers.
-   ---------------------------------------------------------------------------- */
-.arrow-internal::after { content: ' \2192'; }  /* → internal / same-site */
-.arrow-external::after { content: ' \2197'; }  /* ↗ external / new tab */
-
-/* ----------------------------------------------------------------------------
-   Responsive / mobile overrides (LAST)
-   Single breakpoint at 800px — the breakpoint the nav slice already uses;
-   STYLE.md gives no numeric breakpoint, so it is unified here for consistency.
-   ---------------------------------------------------------------------------- */
-@media (max-width: 800px) {
-  /* Section padding — mobile 48×20 (STYLE.md → Section padding) */
-  .section, .svc-section { padding: var(--space-7) 20px; }   /* 48×20 (20 off-scale, stated for mobile) */
-  .section--emphasis { padding: var(--space-7) 20px; }
-
-  /* Cards — collapse to 1 per row */
-  .card-grid { grid-template-columns: 1fr; }
-
-  /* Bottom-CTA — mobile 48×20, stacked */
-  .bottom-inner { padding: var(--space-7) 20px; flex-direction: column; align-items: flex-start; }
-
-  /* Global chrome — hamburger replaces the desktop nav links (STYLE.md → Global
-     chrome: mobile collapses to a hamburger menu). Lifted from partials.html. */
-  nav { padding: 0 20px; }
-  nav .nav-toggle { display: block; }
-  nav .nav-links {
-    display: none;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    background: var(--white);
-    border-bottom: 1px solid var(--grey-border);
-    padding: var(--space-2) 0;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  }
-  nav.nav-open .nav-links { display: flex; }
-  nav .nav-links > li { width: 100%; }
-  nav .nav-links > li > a { display: block; padding: var(--space-3) 20px; }
-  nav .nav-dropdown-menu {
-    position: static;
-    display: block;
-    border: none;
-    box-shadow: none;
-    min-width: 0;
-    padding: 0 0 var(--space-2) var(--space-4);
-    border-radius: 0;
-  }
-  nav .nav-dropdown-menu::before { display: none; }
-  footer { padding: 20px; }
+/* --- Scrollbar gutter (STYLE.md → Section/layout → Scrollbar gutter) --------
+   Reserve the vertical scrollbar gutter sitewide so layout width stays
+   constant between TALL and SHORT pages (prevents the ~15px nav shift). */
+html {
+  scrollbar-gutter: stable;
 }
